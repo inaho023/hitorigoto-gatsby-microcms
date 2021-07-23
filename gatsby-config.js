@@ -1,35 +1,47 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "いなほちゅんのひとりごとGatsby版（）",
+    siteUrl: 'https://blog.inaho.space',
+    title: 'いなほちゅんのひとりごとGatsby版（）'
   },
   plugins: [
-    "gatsby-plugin-sass",
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-image",
+    'gatsby-plugin-sass',
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-image',
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: "G-L110Y3L355",
-      },
+        trackingId: 'G-L110Y3L355'
+      }
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: "src/images/icon.png",
-      },
+        icon: 'src/images/favicon.png'
+      }
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/'
       },
-      __key: "images",
+      __key: 'images'
     },
-  ],
-};
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
+        exclude: /(.cache|.vscode|node_modules|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false
+        }
+      }
+    }
+  ]
+}
