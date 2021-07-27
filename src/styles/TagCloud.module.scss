@@ -1,0 +1,106 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  .title {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    .icon {
+      font-weight: 900;
+      font-size: 24px;
+    }
+    
+    h3 {
+      line-height: 1.25;
+      font-size: 24px;
+    }
+  }
+          
+  .tagcloud {
+    position: relative;
+    width: calc( 100% - 16px );
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 8px;
+    border: 2px solid #332100;
+    border-radius: 8px;
+    background-color: #cc8500;
+    box-shadow: #332100 4px 4px 8px;
+    
+    a {
+      display: inline-block;
+      margin: 0 0.25em 0.5em 0;
+      padding: 0.75em;
+      line-height: 1;
+      text-decoration: none;
+      color: #332100;
+      background-color: orange;
+      border: 1px solid #332100;
+      border-left: 8px solid #332100;
+      box-shadow: #332100 1px 1px 2px;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+}
+
+@media screen and ( min-width: 801px ) { 
+  .wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    padding-top: 4px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .title {
+      align-items: center;
+      text-align: center;
+      color: #332100;
+    
+      .icon {
+        font-weight: 900;
+        font-size: 24px;
+      }
+
+      h3 {
+        line-height: 1.25;
+        font-size: 24px;
+      }
+    }
+          
+    .tagcloud {
+      position: relative;
+      width: 100%;
+      border: 1px solid #332100;
+      border-radius: 8px;
+      background-color: #cc8500;
+      box-shadow: #332100 4px 4px 4px;
+      
+      a {
+        display: inline-block;
+        margin: 0 0.25em 0.5em 0;
+        padding: 0.75em;
+        line-height: 1;
+        text-decoration: none;
+        color: #332100;
+        background-color: orange;
+        border: 1px solid #332100;
+        border-left: 8px solid #332100;
+        box-shadow: #332100 1px 1px 2px;
+        font-size: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.post {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 16px;
+  border-top: 1px solid #eaeaea;
+
+  h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+  }
+}

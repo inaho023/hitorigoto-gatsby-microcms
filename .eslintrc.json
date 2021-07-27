@@ -26,8 +26,11 @@
           ".ts",
           ".tsx"
         ]
+      },
+      "webpack": {
+        "config": "webpack.config.js"
       }
-    }
+      }
   },
   "parserOptions": {
     "ecmaFeatures": {

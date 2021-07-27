@@ -1,0 +1,17 @@
+.share {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  vertical-align: middle;
+  position: relative;
+}
+
+.button {
+  width: fit-content;
+  justify-content: center;
+  position: relative;
+  padding: 4px;
+}
+

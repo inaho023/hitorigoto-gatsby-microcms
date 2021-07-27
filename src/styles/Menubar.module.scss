@@ -1,0 +1,150 @@
+/* A simple, css only, (some-what) responsive menu */
+.menubar {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: orange;
+    display: block;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  ul {
+    list-style: none;
+    position: relative;
+    text-align: left;
+  }
+
+  li {
+    float: left;
+  }
+
+  /* clear'n floats */
+  ul:after {
+    clear: both;
+  }
+
+  ul:before,
+  ul:after {
+    content: ' ';
+    display: table;
+  }
+
+  nav {
+    position: relative;
+    background: #332100;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px #332100;
+    box-shadow: 2px 2px 3px #cc8500;
+  }
+
+  /* prime */
+  ul.primary li a {
+    display: block;
+    padding: 24px 32px;
+    border-right: 1px solid #332100;
+  }
+
+  ul.primary li:last-child a {
+    border-right: none;
+  }
+
+  ul.primary li a:hover {
+    color: orange;
+  }
+
+  /* subs */
+  ul.sub {
+    position: absolute;
+    z-index: 200;
+    box-shadow: 4px 4px 0 #332100;
+    width: 25%;
+    display: none;
+  }
+
+  ul.sub li {
+    float: none;
+    margin: 0;
+  }
+
+  ul.sub li a {
+    border-bottom: 1px solid #332100;
+    border-right: none;
+    color: orange;
+    padding: 16px;
+  }
+
+  ul.sub li:last-child a {
+    border-bottom: none;
+  }
+
+  ul.sub li a:hover {
+    color: orange;
+  }
+
+  /* sub display*/
+  ul.primary li:hover ul {
+    display: block;
+    background: #cc8500;
+  }
+
+  /* keeps the tab background white */
+  ul.primary li:hover a {
+    background: #cc8500;
+    color: #332100;
+    text-shadow: none;
+  }
+
+  ul.primary li:hover > a {
+    color: #332100;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menubar {
+    display: inline-block;
+
+    .wrap {
+      width: 100%;
+      margin-top: 0px;
+    }
+
+    li {
+      float: none;
+    }
+
+    ul.primary li:hover a {
+      background: none;
+      color: orange;
+    }
+
+    ul.primary li:hover ul {
+      display: block;
+      background: #332100;
+      color: orange;
+    }
+
+    ul.sub {
+      display: block;
+      position: static;
+      box-shadow: none;
+      width: 100%;
+    }
+
+    ul.sub li a {
+      background: #332100;
+      border: none;
+      color: orange;
+    }
+
+    ul.sub li a:hover {
+      color: orange;
+      background: none;
+    }
+  }
+}
