@@ -16,7 +16,7 @@ import styles from '../styles/Menubar.module.scss'
 // 定数
 import { URL_MY_TWITTER, URL_MY_INSTAGRAM, URL_MY_TWITCASTING } from './Constant'
 
-export default function Menubar() {
+const Menubar = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -112,3 +112,5 @@ export default function Menubar() {
     </div>
   )
 }
+
+export default Menubar

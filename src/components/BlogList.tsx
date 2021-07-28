@@ -5,30 +5,13 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-// 定数
-import { THUMB_IMG_OPT_LIST } from './Constant'
-
 // スタイルシート
 import styles from '../styles/BlogList.module.scss'
 
-export default function BlogList(props) {
+const BlogList = props => {
   // リストタイトル
-  let listTitle
-  switch (props.pageContext.list) {
-    case 'archive':
-      listTitle = 'アーカイブ：' + props.pageContext.name
-      break
-    case 'category':
-      listTitle = 'カテゴリー：' + props.pageContext.name
-      break
-    case 'tag':
-      listTitle = 'タグ：' + props.pageContext.name
-      break
-    default:
-      listTitle = ''
-      break
-  }
-  // 出力
+  const listTitle = props.title
+  // リターン
   return (
     <>
       {listTitle && (
@@ -37,12 +20,12 @@ export default function BlogList(props) {
         </div>
       )}
       <div className={styles.wrapper}>
-        {props.data.allMicrocmsBlog.edges.map(blog => {
+        {props.blog.map(blog => {
           const image = blog.node.image && getImage(blog.node.image.url)
           return (
             <Link key={blog.node.blogId} to={'/blog/post/' + blog.node.blogId}>
               <div className={styles.grid}>
-                <GatsbyImage className={styles.image} image={image} alt={blog.node.title} loading={'lazy'} layout={'fixed'} width={blog.node.image.width} height={blog.node.image.height} formats={'webp'} quality={'25'} />
+                <GatsbyImage className={styles.image} image={image} alt={blog.node.title} loading={'lazy'} />
                 <div className={styles.title}>
                   <h3>{blog.node.title && blog.node.title}</h3>
                 </div>
@@ -60,3 +43,5 @@ export default function BlogList(props) {
     </>
   )
 }
+
+export default BlogList

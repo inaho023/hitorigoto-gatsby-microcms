@@ -8,7 +8,7 @@ import Layout from '../components/Layout'
 import styles from '../styles/E404.module.scss'
 
 // 404ページ
-export default function E404() {
+const E404 = () => {
   const sitePosition = '404'
   return (
     <Layout sitePosition={sitePosition}>
@@ -18,3 +18,5 @@ export default function E404() {
     </Layout>
   )
 }
+
+export default E404

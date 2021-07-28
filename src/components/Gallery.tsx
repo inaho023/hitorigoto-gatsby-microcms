@@ -1,13 +1,15 @@
 // React
 import * as React from 'react'
 
+// Gatsby
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 // Font Awesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 // その他モジュール
-import PropTypes from 'prop-types'
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
 // スタイルシート
@@ -16,11 +18,11 @@ import styles from '../styles/Gallery.module.scss'
 // 定数
 import { THUMB_IMG_OPT_GALLERY } from './Constant'
 
-export default function gallery(props) {
+const Gallery = props => {
   // Font Awesome Icon
   library.add(faCamera)
   //
-  return blogGalleries.map(galleries => {
+  return props.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
       // ギャラリータイトル設定
       const galleryTitle = gallery.display_name ? gallery.display_name : gallery.name
@@ -37,14 +39,13 @@ export default function gallery(props) {
             <SimpleReactLightbox>
               <SRLWrapper>
                 <div className={styles.image_wrapper} key={'ImageWrapper' + (index + 1).toString()}>
-                  {gallery.images.map((image, index) => {
-                    const imageTitle = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
+                  {gallery.images.map((images, index) => {
+                    const image = getImage(images.image.url)
+                    const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                     return (
-                      <div className={styles.image_box} key={'Image' + (index + 1).toString()}>
-                        <a href={image.image.url}>
-                          <img key={image.image.url} src={image.image.url + THUMB_IMG_OPT_GALLERY} alt={imageTitle} />
-                        </a>
-                      </div>
+                      <a key={images.image.url} href={images.image.url}>
+                        <GatsbyImage className={styles.image_box} key={images.image.url} image={image} alt={title} />
+                      </a>
                     )
                   })}
                 </div>
@@ -57,6 +58,4 @@ export default function gallery(props) {
   })
 }
 
-gallery.propTypes = {
-  blogGalleries: PropTypes.array
-}
+export default Gallery

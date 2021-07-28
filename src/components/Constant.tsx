@@ -1,9 +1,5 @@
-export const SITE_TITLE = 'いなほちゅんのひとりごと' // サイトタイトル
-export const SITE_SUB_TITLE = 'Jamstack版' // サイトサブタイトル
-export const SITE_DESCRIPTION = '私のメモ帳を公開してみる' // サイト概要
-export const SITE_URL = 'https://jam.inaho.space' // サイトURL
+export const SITE_LIST_LIMIT = '1024' // 記事リスト取得件数
 export const SITE_PER_PAGE = 12 // 記事リストの1ページあたりの表示件数
-export const SITE_PROFILE = 'profile' // プロフィールのページID
 export const THUMB_IMG_OPT_LIST = '?fit=crop&fm=webp&q=25&w=200&h=200' // 記事リスト用画像オプション
 export const THUMB_IMG_OPT_DETAIL = '?fit=crop&fm=webp&q=50&w=640&h=640' // 記事詳細用画像オプション
 export const THUMB_IMG_OPT_GALLERY = '?fit=crop&crop=faces&fm=webp&q=25&w=480&h=480' // ギャラリー用画像オプション

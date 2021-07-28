@@ -15,7 +15,7 @@ import moment from 'moment'
 // スタイルシート
 import styles from '../styles/ArchiveMenu.module.scss'
 
-export default function ArchiveMenu() {
+const ArchiveMenu = () => {
   // 配列初期化
   const arrayYear: string[] = []
   const arrayMonth: string[] = []
@@ -76,3 +76,5 @@ export default function ArchiveMenu() {
     </div>
   )
 }
+
+export default ArchiveMenu

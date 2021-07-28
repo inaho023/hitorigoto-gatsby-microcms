@@ -12,7 +12,7 @@ import { faTag } from '@fortawesome/free-solid-svg-icons'
 // スタイルシート
 import * as styles from '../styles/TagCloud.module.scss'
 
-export default function TagCloud() {
+const TagCloud = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -47,3 +47,5 @@ export default function TagCloud() {
     </div>
   )
 }
+
+export default TagCloud

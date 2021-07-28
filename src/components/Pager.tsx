@@ -3,10 +3,7 @@ import * as React from 'react'
 
 // Gatsby
 import { navigate } from 'gatsby'
-import { paginate } from 'gatsby-awesome-pagination'
-
-// その他モジュール
-import path from 'path'
+import { paginate, createPage } from 'gatsby-awesome-pagination'
 
 // 定数
 import { SITE_PER_PAGE } from './Constant'
@@ -19,6 +16,7 @@ const Pager = props => {
     value === 1 ? navigate(prefix) : navigate(prefix + '/' + value)
   }
   return paginate({
+    createpage: createPage,
     component: path.resolve('./src/templates/index.js'),
     items: props.data.allMicrocmsBlog.edges,
     itemsPerPage: SITE_PER_PAGE,

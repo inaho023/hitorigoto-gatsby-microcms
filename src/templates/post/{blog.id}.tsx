@@ -20,7 +20,7 @@ import ShareButton from '../../components/ShareButton'
 import Disqus from '../../components/Disqus'
 
 // スタイルシート
-import styles from '../../styles/{id}.module.scss'
+import styles from '../../styles/{blog.id}.module.scss'
 
 // 定数
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_PREV_NEXT } from '../../components/Constant'
@@ -119,9 +119,7 @@ const post = props => {
       {
         // Disqus
       }
-      <div className={styles.disqus}>
-        <Disqus blog={blog} />
-      </div>
+      <Disqus blog={blog} />
       {
         // 前後の記事へ移動
       }
@@ -182,55 +180,5 @@ const post = props => {
     </Layout>
   )
 }
-
-export const query = graphql`
-  {
-    microcmsBlog {
-      blogId
-      title
-      datetime
-      category {
-        id
-        name
-      }
-      tags {
-        id
-        name
-      }
-      image {
-        url
-        width
-        height
-      }
-      image_parm
-      body
-      galleries {
-        gallery {
-          name
-          display_name
-          images {
-            image {
-              url
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-    allMicrocmsBlog(limit: 1024) {
-      nodes {
-        blogId
-        title
-        image {
-          url
-          width
-          height
-        }
-        image_parm
-      }
-    }
-  }
-`
 
 export default post

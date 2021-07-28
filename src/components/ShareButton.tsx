@@ -10,7 +10,7 @@ import styles from '../styles/ShareButton.module.scss'
 // 定数
 import { SITE_TITLE, SITE_URL, SHARE_BUTTON_SIZE } from './Constant'
 
-export default function ShareButton(props) {
+const ShareButton = props => {
   const url = SITE_URL + '/post/' + props.data.microcmsBlog.blogId
   const title = props.data.microcmsBlog.title.replace('＠', ' ＠ ').replace('@', ' @ ')
   return (
@@ -58,3 +58,5 @@ export default function ShareButton(props) {
     </div>
   )
 }
+
+export default ShareButton

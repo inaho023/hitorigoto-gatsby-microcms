@@ -23,7 +23,7 @@ import TagCloud from './TagCloud'
 import styles from '../styles/Layout.module.scss'
 
 // Layout コンポーネント
-export default function Layout({ sitePosition, children }) {
+const Layout = ({ sitePosition, children }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -85,3 +85,5 @@ export default function Layout({ sitePosition, children }) {
     </>
   )
 }
+
+export default Layout

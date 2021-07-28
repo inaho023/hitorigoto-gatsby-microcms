@@ -12,7 +12,7 @@ import { faTags } from '@fortawesome/free-solid-svg-icons'
 // スタイルシート
 import styles from '../styles/CategoryMenu.module.scss'
 
-export default function CategoryMenu() {
+const CategoryMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -52,3 +52,5 @@ export default function CategoryMenu() {
     </div>
   )
 }
+
+export default CategoryMenu
