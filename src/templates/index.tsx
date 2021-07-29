@@ -13,12 +13,12 @@ import Pager from '../components/Pager'
 const blogIndex = (props: { pageContext: { list: any; name: string } }) => {
   // ポジション
   let sitePosition = ''
-  var ql
+  let ql
   switch (props.pageContext.list) {
     // すべて
     case 'all':
       sitePosition = ''
-      ql = graphql`
+      ql = `
         query listAllQuery {
           allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
             edges {
@@ -44,9 +44,10 @@ const blogIndex = (props: { pageContext: { list: any; name: string } }) => {
     // アーカイブ
     case 'archive':
       sitePosition = 'アーカイブ：' + props.pageContext.name
-      ql = graphql`
-        query listArchiveQuery {
-          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+      ql = `
+        query listArchiveQuery($from: Date = "${props.pageContext.from}", $to: Date = "${props.pageContext.to}") {
+          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }, filter: {datetime: {gte: $from, lt: $to}}
+            ) {
             edges {
               node {
                 blogId
@@ -70,9 +71,9 @@ const blogIndex = (props: { pageContext: { list: any; name: string } }) => {
     // カテゴリー
     case 'category':
       sitePosition = 'カテゴリー：' + props.pageContext.name
-      ql = graphql`
-        query listCategoryQuery {
-          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+      ql = `
+        query listCategoryQuery($id: String = "${props.pageContext.id}") {
+          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC },filter: {category: {id: {eq: $id}}}) {
             edges {
               node {
                 blogId
@@ -96,9 +97,9 @@ const blogIndex = (props: { pageContext: { list: any; name: string } }) => {
     // タグ
     case 'tag':
       sitePosition = 'タグ：' + props.pageContext.name
-      ql = graphql`
-        query listTagQuery {
-          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+      ql = `
+        query listTagQuery($id: [String] = "") {
+          allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }, filter: {tags: {elemMatch: {id: {in: $id}}}}) {
             edges {
               node {
                 blogId
@@ -121,7 +122,7 @@ const blogIndex = (props: { pageContext: { list: any; name: string } }) => {
       break
   }
   // クエリー実行
-  const { data } = useStaticQuery(ql)
+  const { data } = useStaticQuery(graphql(ql))
   console.log(data)
   // リターン
   return (
