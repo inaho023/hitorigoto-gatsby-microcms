@@ -224,8 +224,8 @@ const post = ({ data }) => {
           </>
         ) : (
           <>
-            <span className={styles.icon}></span>
-            <span className={styles.nocard}></span>
+            <div className={styles.icon} />
+            <div className={styles.nocard} />
           </>
         )}
         {nextArticle ? (
@@ -257,8 +257,8 @@ const post = ({ data }) => {
           </>
         ) : (
           <>
-            <span className={styles.nocard}></span>
-            <span className={styles.icon}></span>
+            <div className={styles.nocard} />
+            <div className={styles.icon} />
           </>
         )}
       </div>
