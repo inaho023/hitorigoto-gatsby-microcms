@@ -13,7 +13,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "format:prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:eslint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "disqus-react": "^1.1.1",
     "gatsby": "^3.10.2",
+    "gatsby-plugin-fontawesome-css": "^1.1.0",
     "gatsby-plugin-gatsby-cloud": "^2.10.1",
     "gatsby-plugin-google-analytics": "^3.10.0",
     "gatsby-plugin-image": "^1.10.1",
@@ -36,6 +37,7 @@
     "gatsby-transformer-sharp": "^3.10.0",
     "graphql": "^15.5.1",
     "moment": "^2.29.1",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^17.0.2",
@@ -44,12 +46,7 @@
     "simple-react-lightbox": "^3.6.6"
   },
   "devDependencies": {
-    "@types/react-anchor-link-smooth-scroll": "^1.0.2",
-    "@types/react-helmet": "^6.1.2",
-    "@types/simple-react-lightbox": "^3.6.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "dts-css-modules-loader": "^1.2.3",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -60,12 +57,10 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-webpack-plugin": "^3.0.1",
     "gatsby-awesome-pagination": "^0.3.8",
-    "gatsby-plugin-dts-css-modules": "^2.1.0",
     "gatsby-plugin-eslint": "^3.0.0",
-    "gatsby-plugin-scss-typescript": "^5.1.0",
     "prettier": "^2.3.2",
-    "sass": "^1.36.0",
-    "typescript": "^4.3.5"
+    "sass": "^1.36.0"
   }
 }

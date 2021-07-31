@@ -1,11 +1,11 @@
 // React
-import * as React from 'react'
+import React from 'react'
 
 // 自作モジュール
 import Layout from '../components/Layout'
 
 // スタイルシート
-import styles from '../styles/E404.module.scss'
+import * as styles from '../styles/404.module.scss'
 
 // 404ページ
 const E404 = () => {

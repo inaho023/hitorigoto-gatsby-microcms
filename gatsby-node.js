@@ -1,7 +1,9 @@
-// プラグインの読み込み
+// モジュールの読み込み
 const moment = require('moment')
 const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
+// 定数
+const SITE_LIST_PER_PAGE = 12 // 1ページあたりの記事数
 //
 exports.createPages = async ({ graphql, actions }) => {
   // 定数定義
@@ -14,7 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // 記事リスト
   list = 'all'
   result = await graphql(`
-    query blogQuery {
+    query {
       allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
         edges {
           node {
@@ -27,10 +29,10 @@ exports.createPages = async ({ graphql, actions }) => {
   // ページネーション
   paginate({
     createPage, // The Gatsby `createPage` function
-    items: result, // An array of objects
-    itemsPerPage: 12, // How many items you want per page
+    items: result.data.allMicrocmsBlog.edges, // An array of objects
+    itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
     pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/page'), // Creates pages like `/blog`, `/blog/2`, etc
-    component: path.resolve('src/templates/index.js'), // Just like `createPage()`
+    component: path.resolve('src/templates/index.jsx'), // Just like `createPage()`
     context: { list: list }
   })
   // アーカイブリスト
@@ -52,15 +54,10 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allMicrocmsBlog.edges.forEach((edge, index) => {
     const id = edge.node.datetime
     const name = moment(edge.node.datetime, 'YYYYMM').format('YYYY年MM月')
-    const from = new Date(Number(edge.node.datetime.substring(0, 3)), Number(edge.node.datetime.substring(4, 5)), 1)
-    const to = new Date(Number(edge.node.datetime.substring(4, 5)) + 1 === 13 ? Number(edge.node.datetime.substring(0, 3)) + 1 : Number(edge.node.datetime.substring(0, 3)), Number(edge.node.datetime.substring(4, 5)) + 1 === 13 ? 1 : Number(edge.node.datetime.substring(4, 5)) + 1, 1)
+    const from = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) - 1, 1)
+    const to = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')) + 1 : Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? 0 : Number(moment(edge.node.datetime, 'YYYYMM').format('MM')), 1)
     context[index] = { list: list, id: id, name: name, from: from.toISOString(), to: to.toISOString() }
     pathList[index] = '/' + list + '/' + id
-    actions.createPage({
-      path: pathList[index],
-      component: path.resolve('src/templates/index.tsx'),
-      context: context[index]
-    })
     // 記事リスト（アーカイブ）
     blogArchive[index] = graphql(`
       query archiveListQuery($from: Date = "${from.toISOString()}", $to: Date = "${to.toISOString()}") {
@@ -81,9 +78,9 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: 12, // How many items you want per page
+      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
-      component: path.resolve('src/templates/index.tsx'), // Just like `createPage()`
+      component: path.resolve('src/templates/archive/{month.id}.jsx'), // Just like `createPage()`
       context: context[index]
     })
   })
@@ -107,11 +104,6 @@ exports.createPages = async ({ graphql, actions }) => {
     const name = node.name
     context[index] = { list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id
-    actions.createPage({
-      path: pathList[index],
-      component: path.resolve('src/templates/index.tsx'),
-      context: context[index]
-    })
     // 記事リスト（カテゴリー）
     blogCategory[index] = graphql(`
       query categoryListQuery($id: String = "${id}") {
@@ -132,9 +124,9 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: 12, // How many items you want per page
+      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
-      component: path.resolve('src/templates/index.tsx'), // Just like `createPage()`
+      component: path.resolve('src/templates/category/{category.id}.jsx'), // Just like `createPage()`
       context: context[index]
     })
   })
@@ -159,14 +151,9 @@ exports.createPages = async ({ graphql, actions }) => {
     const name = node.name
     context[index] = { list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id
-    actions.createPage({
-      path: pathList[index],
-      component: path.resolve('src/templates/index.tsx'),
-      context: context[index]
-    })
     blogTag[index] = graphql(`
-      query tagListQuery($id: [String] = "${id}") {
-        allMicrocmsBlog(filter: { tags: { elemMatch: { id: { in: $id } } } }) {
+      query tagListQuery($id: String = "${id}") {
+        allMicrocmsBlog(filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
           edges {
             node {
               blogId
@@ -177,15 +164,15 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
   })
   // クエリーを実行
-  result = await Promise.all(blogCategory)
+  result = await Promise.all(blogTag)
   // ID毎にページを生成
   result.map((result, index) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: 12, // How many items you want per page
+      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
-      component: path.resolve('src/templates/index.tsx'), // Just like `createPage()`
+      component: path.resolve('src/templates/tag/{tag.id}.jsx'), // Just like `createPage()`
       context: context[index]
     })
   })
@@ -203,7 +190,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const id = node.blogId
     actions.createPage({
       path: '/post/' + id,
-      component: path.resolve('src/templates/post/{blog.id}.tsx'),
+      component: path.resolve('src/templates/post/{blog.id}.jsx'),
       context: { id: id }
     })
   })
@@ -221,7 +208,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const id = node.pageId
     actions.createPage({
       path: '/' + id,
-      component: path.resolve('src/templates/{page.id}.tsx'),
+      component: path.resolve('src/templates/{page.id}.jsx'),
       context: { id: id }
     })
   })

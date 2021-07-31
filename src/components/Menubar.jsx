@@ -2,32 +2,21 @@
 import React from 'react'
 
 // Gatsby
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 // FontAwesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faUserCircle, faPeopleArrows, faMicrophoneAlt, faTags } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUserCircle, faPeopleArrows, faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 // スタイルシート
-import styles from '../styles/Menubar.module.scss'
+import * as styles from '../styles/Menubar.module.scss'
 
 // 定数
 import { URL_MY_TWITTER, URL_MY_INSTAGRAM, URL_MY_TWITCASTING } from './Constant'
 
 const Menubar = () => {
-  // クエリー実行
-  const data = useStaticQuery(graphql`
-    {
-      allMicrocmsCategories(limit: 1024) {
-        nodes {
-          categoriesId
-          name
-        }
-      }
-    }
-  `)
   // Font Awesome Icon
   library.add(faHome)
   library.add(faUserCircle)
@@ -35,7 +24,6 @@ const Menubar = () => {
   library.add(faTwitter)
   library.add(faInstagram)
   library.add(faMicrophoneAlt)
-  library.add(faTags)
   // リターン
   return (
     <div className={styles.menubar}>
@@ -57,28 +45,6 @@ const Menubar = () => {
               </a>
             </li>
           </Link>
-          <li key={'Category'}>
-            <a href={'#'}>
-              <FontAwesomeIcon icon={['fas', 'tags']} fixedWidth />
-              {'カテゴリー'}
-            </a>
-            <ul className={styles.sub}>
-              <div>
-                {data.allMicrocmsCategories.nodes.map(siteCategory => {
-                  return (
-                    <Link key={siteCategory.categoriesId} to={'/category/' + siteCategory.categoriesId}>
-                      <li key={siteCategory.categoriesId}>
-                        <a>
-                          <FontAwesomeIcon icon={['fas', 'tags']} fixedWidth />
-                          {siteCategory.name}
-                        </a>
-                      </li>
-                    </Link>
-                  )
-                })}
-              </div>
-            </ul>
-          </li>
           <li key={'Social'}>
             <a href={'#'}>
               <FontAwesomeIcon icon={['fas', 'people-arrows']} fixedWidth />

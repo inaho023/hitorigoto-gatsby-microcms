@@ -1,22 +1,41 @@
 // React
 import React from 'react'
 
-// React Share
+// Gatsby
+import { useStaticQuery, graphql } from 'gatsby'
+
+// その他モジュール
 import { EmailShareButton, FacebookShareButton, HatenaShareButton, LineShareButton, PinterestShareButton, PocketShareButton, TumblrShareButton, TwitterShareButton, EmailIcon, FacebookIcon, HatenaIcon, LineIcon, PinterestIcon, PocketIcon, TumblrIcon, TwitterIcon } from 'react-share'
 
 // スタイルシート
-import styles from '../styles/ShareButton.module.scss'
+import * as styles from '../styles/ShareButton.module.scss'
 
 // 定数
-import { SITE_TITLE, SITE_URL, SHARE_BUTTON_SIZE } from './Constant'
+import { SHARE_BUTTON_SIZE } from './Constant'
 
-const ShareButton = props => {
-  const url = SITE_URL + '/post/' + props.data.microcmsBlog.blogId
-  const title = props.data.microcmsBlog.title.replace('＠', ' ＠ ').replace('@', ' @ ')
+const ShareButton = ({ blog }) => {
+  // クエリー実行
+  const data = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          siteUrl
+          title
+          subtitle
+          description
+          lang
+        }
+      }
+    }
+  `)
+  //
+  const url = data.site.siteMetadata.siteUrl + '/post/' + blog.blogId
+  const title = blog.title.replace('＠', ' ＠ ').replace('@', ' @ ')
+  // リターン
   return (
     <div className={styles.share}>
       <div className={styles.button}>
-        <TwitterShareButton url={url} title={title} hashtags={[SITE_TITLE]}>
+        <TwitterShareButton url={url} title={title} hashtags={[data.site.siteMetadata.title]}>
           <TwitterIcon size={SHARE_BUTTON_SIZE} round />
         </TwitterShareButton>
       </div>

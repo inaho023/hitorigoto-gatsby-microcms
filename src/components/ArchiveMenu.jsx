@@ -1,5 +1,5 @@
 // React
-import * as React from 'react'
+import React from 'react'
 
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
@@ -13,12 +13,12 @@ import { faArchive } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
 
 // スタイルシート
-import styles from '../styles/ArchiveMenu.module.scss'
+import * as styles from '../styles/ArchiveMenu.module.scss'
 
 const ArchiveMenu = () => {
   // 配列初期化
-  const arrayYear: string[] = []
-  const arrayMonth: string[] = []
+  const arrayYear = []
+  const arrayMonth = []
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -30,7 +30,7 @@ const ArchiveMenu = () => {
     }
   `)
   // 年月を配列化
-  data.allMicrocmsBlog.nodes.map((node: { datetime: moment.MomentInput }, index: number) => {
+  data.allMicrocmsBlog.nodes.map((node, index) => {
     arrayYear[index] = moment(node.datetime, 'YYYYMM').format('YYYY')
     arrayMonth[index] = moment(node.datetime, 'YYYYMM').format('YYYYMM')
   })
@@ -61,7 +61,7 @@ const ArchiveMenu = () => {
                   return (
                     moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
                       <li key={siteMonth}>
-                        <Link key={siteMonth} to={'/blog/archive/' + siteMonth}>
+                        <Link key={siteMonth} to={'/archive/' + siteMonth}>
                           <a>{moment(siteMonth, 'YYYYMM').format('MM月')}</a>
                         </Link>
                       </li>

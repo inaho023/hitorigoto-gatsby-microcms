@@ -10,7 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 
 // スタイルシート
-import styles from '../styles/CategoryMenu.module.scss'
+import * as styles from '../styles/CategoryMenu.module.scss'
 
 const CategoryMenu = () => {
   // クエリー実行
@@ -38,10 +38,10 @@ const CategoryMenu = () => {
       <ul className={styles.dropdown_menu}>
         {data.allMicrocmsCategories.nodes.map(node => {
           return (
-            <Link key={node.categoryesId} to={'/blog/category/' + node.categoryesId}>
-              <li className={styles.dropdown} key={node.categoryesId}>
+            <Link key={node.categoriesId} to={'/category/' + node.categoriesId}>
+              <li className={styles.dropdown} key={node.categoriesId}>
                 <input id={node.categoryesId} type='checkbox' />
-                <label htmlFor={node.categoryesId}>
+                <label htmlFor={node.categoriesId}>
                   <a data-toggle='dropdown'>{node.name}</a>
                 </label>
               </li>

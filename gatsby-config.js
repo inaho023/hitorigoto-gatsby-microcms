@@ -11,17 +11,7 @@ module.exports = {
     lang: 'ja'
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-typescript',
-      options: {
-        isTSX: true, // defaults to false
-        jsxPragma: 'jsx', // defaults to "React"
-        allExtensions: true // defaults to false
-      }
-    },
     'gatsby-plugin-sass',
-    'gatsby-plugin-scss-typescript',
-    'gatsby-plugin-dts-css-modules',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-image',
     {
@@ -38,6 +28,7 @@ module.exports = {
         icon: 'src/images/favicon.png'
       }
     },
+    'gatsby-plugin-fontawesome-css',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -67,7 +58,10 @@ module.exports = {
         serviceId: 'inaho',
         apis: [
           {
-            endpoint: 'blog'
+            endpoint: 'blog',
+            query: {
+              depth: 3
+            }
           },
           {
             endpoint: 'page'

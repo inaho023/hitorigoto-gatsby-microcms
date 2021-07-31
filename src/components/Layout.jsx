@@ -1,5 +1,5 @@
 // React
-import * as React from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 
 // Gatsby
@@ -20,7 +20,7 @@ import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
 
 // スタイルシート
-import styles from '../styles/Layout.module.scss'
+import * as styles from '../styles/Layout.module.scss'
 
 // Layout コンポーネント
 const Layout = ({ sitePosition, children }) => {
@@ -44,7 +44,7 @@ const Layout = ({ sitePosition, children }) => {
   return (
     <>
       <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang }}>
-        <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + data.site.siteMetadata.subtitle}</title>
+        <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='description' content={data.site.siteMetadata.description} />
       </Helmet>
@@ -54,6 +54,7 @@ const Layout = ({ sitePosition, children }) => {
             <Link key={'Header'} to='/'>
               <a>
                 <h1>{data.site.siteMetadata.title}</h1>
+                <h2>{data.site.siteMetadata.subtitle}</h2>
               </a>
             </Link>
             <p className={styles.description}>{data.site.siteMetadata.description}</p>

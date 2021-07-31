@@ -36,10 +36,10 @@ const TagCloud = () => {
         <h3>タグ</h3>
       </div>
       <div className={styles.tagcloud}>
-        {data.allMicrocmsTags.nodes.map(siteTag => {
+        {data.allMicrocmsTags.nodes.map(node => {
           return (
-            <Link key={siteTag.tagsId} to={'/blog/tag/' + siteTag.tagsId}>
-              {siteTag.name}
+            <Link key={node.tagsId} to={'/tag/' + node.tagsId}>
+              {node.name}
             </Link>
           )
         })}

@@ -1,9 +1,10 @@
 // React
-import * as React from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 
 // Gatsby
 import { Link, graphql } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Font Awesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -20,13 +21,74 @@ import ShareButton from '../../components/ShareButton'
 import Disqus from '../../components/Disqus'
 
 // スタイルシート
-import styles from '../../styles/{blog.id}.module.scss'
-
+import * as styles from '../../styles/{blog.id}.module.scss'
 // 定数
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_PREV_NEXT } from '../../components/Constant'
-
+// クエリー
+export const pageQuery = graphql`
+  query postQuery($id: String!) {
+    microcmsBlog(blogId: { eq: $id }) {
+      blogId
+      title
+      datetime(formatString: "YYYYMMDD")
+      category {
+        name
+        id
+      }
+      tags {
+        id
+        name
+      }
+      image {
+        url
+        width
+        height
+      }
+      image_parm
+      body
+      galleries {
+        gallery {
+          id
+          name
+          display_name
+          images {
+            image {
+              url
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+    allMicrocmsBlog(limit: 1000) {
+      edges {
+        node {
+          blogId
+          title
+          image {
+            url
+            width
+            height
+          }
+          image_parm
+        }
+      }
+    }
+    allFile(filter: { relativePath: { eq: "noimage.png" } }) {
+      edges {
+        node {
+          publicURL
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED, quality: 50, formats: AUTO)
+          }
+        }
+      }
+    }
+  }
+`
 // 記事詳細
-const post = props => {
+const post = ({ data }) => {
   // Font Awesome Icon
   library.add(faArrowAltCircleLeft)
   library.add(faArrowAltCircleRight)
@@ -36,19 +98,23 @@ const post = props => {
   library.add(faShareAltSquare)
   library.add(faCamera)
   // 記事詳細
-  const blog = props.data.microcmsBlog
+  const blog = data.microcmsBlog
   // 記事リスト
-  const list = props.data.allMicrocmsBlog.nodes
+  const list = data.allMicrocmsBlog.edges
+  // イメージ画像取得
+  const image = data.allFile.edges.map(edge => getImage(edge.node.childImageSharp.gatsbyImageData))
+  const imageURL = data.allFile.edges.map(edge => edge.node.publicURL)
   // 前後の記事
-  const current = list.findIndex(list => list.blogId === blog.blogId)
+  const current = list.findIndex(list => list.node.blogId === blog.blogId)
   const prevArticle = current === 0 ? null : list[current - 1]
   const nextArticle = current === list.length - 1 ? null : list[current + 1]
+  // リターン
   return (
     <Layout sitePosition={blog.title}>
       <Helmet>
         <meta property='og:type' content='article' />
         <meta property='og:title' content={blog.title} />
-        <meta property='og:image' content={blog.image ? blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm) : '/noimage-large.png'} />
+        <meta property='og:image' content={blog.image ? blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm) : imageURL} />
       </Helmet>
       <div className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.pagetitle}>
@@ -57,8 +123,11 @@ const post = props => {
               <h1>{blog.title && `${blog.title}`}</h1>
             </div>
             <div className={styles.content_wrapper}>
-              <div className={styles.image_wrapper} key={'InfoWrapper'}>
-                <img className={styles.image} key={blog.id} src={blog.image ? blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm) : '/noimage-large.png'} width={640} height={640} quality={50} alt={blog.title} />
+              <div className={styles.image_wrapper}>
+                {
+                  // 画像表示
+                  blog.image ? <img key={blog.blogId} src={blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm)} alt={blog.title} /> : <GatsbyImage ClassName={styles.image} image={image[0]} />
+                }
               </div>
               <div className={styles.text_wrapper} key={'TextWrapper'}>
                 <div className={styles.box} key={'BoxDate'}>
@@ -67,7 +136,7 @@ const post = props => {
                   </div>
                   <div className={styles.text}>
                     <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM')}>
-                      <a>{moment(blog.datetime).format('YYYY年MM月DD日')}</a>
+                      {moment(blog.datetime).format('YYYY年MM月DD日')}
                     </Link>
                   </div>
                 </div>
@@ -77,7 +146,7 @@ const post = props => {
                   </div>
                   <div className={styles.text}>
                     <Link key={blog.category.categoriesId} to={'/category/' + blog.category.categoriesId}>
-                      <a>{blog.category.name}</a>
+                      {blog.category.name}
                     </Link>
                   </div>
                 </div>
@@ -89,7 +158,7 @@ const post = props => {
                     {blog.tags.map(tag => {
                       return (
                         <Link key={tag.tagsId} to={'/tag/' + tag.tagsId}>
-                          <a>{tag.name}</a>
+                          {tag.name}
                         </Link>
                       )
                     })}
@@ -113,67 +182,83 @@ const post = props => {
           // ギャラリー
         }
         <div className={styles.gallery}>
-          <Gallery blogGalleries={blog.galleries} />
+          <Gallery galleries={blog.galleries} />
         </div>
       </div>
       {
         // Disqus
       }
-      <Disqus blog={blog} />
+      <div>
+        <Disqus blog={blog} />
+      </div>
       {
         // 前後の記事へ移動
       }
       <div className={styles.navi}>
-        {prevArticle == null ? (
-          <>
-            <span className={styles.icon}></span>
-            <span className={styles.nocard}></span>
-          </>
-        ) : (
+        {prevArticle ? (
           <>
             <span className={styles.icon}>
-              <Link key={prevArticle.id} to={'/'}>
+              <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
                 <FontAwesomeIcon icon={['fas', 'arrow-alt-circle-left']} alt={'前の記事へ'} />
               </Link>
             </span>
-            <Link key={prevArticle.id} to={'/'}>
-              <span className={styles.card}>
+            <span className={styles.card}>
+              <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
                 <>
-                  <span className={styles.image}>
-                    <img src={prevArticle.image ? prevArticle.image.url + THUMB_IMG_OPT_PREV_NEXT + (prevArticle.image_parm && '&' + prevArticle.image_parm) : '/noimage-large.png'} alt={prevArticle.title} />
-                  </span>
+                  {
+                    // 画像表示
+                    prevArticle.node.image ? (
+                      <div className={styles.image}>
+                        <img key={prevArticle.node.blogId} src={prevArticle.node.image.url + THUMB_IMG_OPT_PREV_NEXT + (prevArticle.node.image_parm && '&' + prevArticle.node.image_parm)} alt={prevArticle.node.title} />
+                      </div>
+                    ) : (
+                      <GatsbyImage className={styles.image} image={image[0]} Layout={'fullWidth'} />
+                    )
+                  }
                   <span className={styles.title}>
-                    <h3>{prevArticle.title}</h3>
+                    <h3>{prevArticle.node.title}</h3>
                   </span>
                 </>
-              </span>
-            </Link>
+              </Link>
+            </span>
           </>
-        )}
-        {nextArticle == null ? (
+        ) : (
           <>
             <span className={styles.icon}></span>
             <span className={styles.nocard}></span>
           </>
-        ) : (
+        )}
+        {nextArticle ? (
           <>
-            <Link key={nextArticle.id} to={'/'}>
-              <span className={styles.card}>
+            <span className={styles.card}>
+              <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
                 <>
-                  <span className={styles.image}>
-                    <img src={nextArticle.image ? nextArticle.image.url + THUMB_IMG_OPT_PREV_NEXT + (nextArticle.image_parm && '&' + nextArticle.image_parm) : '/noimage-large.png'} alt={nextArticle.title} />
-                  </span>
+                  {
+                    // 画像表示
+                    nextArticle.node.image ? (
+                      <div className={styles.image}>
+                        <img key={nextArticle.node.blogId} src={nextArticle.node.image.url + THUMB_IMG_OPT_PREV_NEXT + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm)} alt={nextArticle.node.title} />
+                      </div>
+                    ) : (
+                      <GatsbyImage className={styles.image} image={image[0]} />
+                    )
+                  }
                   <span className={styles.title}>
-                    <h3>{nextArticle.title}</h3>
+                    <h3>{nextArticle.node.title}</h3>
                   </span>
                 </>
-              </span>
-            </Link>
+              </Link>
+            </span>
             <span className={styles.icon}>
-              <Link key={nextArticle.id} to={'/'}>
+              <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
                 <FontAwesomeIcon icon={['fas', 'arrow-alt-circle-right']} alt={'次の記事へ'} />
               </Link>
             </span>
+          </>
+        ) : (
+          <>
+            <span className={styles.nocard}></span>
+            <span className={styles.icon}></span>
           </>
         )}
       </div>
