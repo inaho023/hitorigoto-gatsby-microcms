@@ -1,6 +1,5 @@
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
-})
+const env = process.env.NODE_ENV || 'development'
+require('dotenv').config({ path: `./.env.${env}` })
 
 module.exports = {
   siteMetadata: {
@@ -11,17 +10,18 @@ module.exports = {
     lang: 'ja'
   },
   plugins: [
-    'gatsby-plugin-sass',
-    'gatsby-plugin-gatsby-cloud',
-    'gatsby-plugin-image',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: process.env.GA_TRACKING_ID
+        trackingId: process.env.GA_TRACKING_ID,
+        head: true
       }
     },
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-sass',
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -38,6 +38,13 @@ module.exports = {
         path: './src/images/'
       },
       __key: 'images'
+    },
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: ['Kosugi Maru'],
+        display: 'swap'
+      }
     },
     {
       resolve: 'gatsby-plugin-eslint',
