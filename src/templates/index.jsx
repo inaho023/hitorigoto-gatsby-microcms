@@ -12,7 +12,7 @@ import Pager from '../components/Pager'
 // ページクエリー
 export const pageQuery = graphql`
   query blogIndexQuery($limit: Int!, $skip: Int!) {
-    allMicrocmsBlog(limit: $limit, skip: $skip) {
+    allMicrocmsBlog(limit: $limit, skip: $skip, sort: { fields: datetime, order: DESC }) {
       edges {
         node {
           blogId
@@ -34,14 +34,14 @@ export const pageQuery = graphql`
 `
 
 // インデックスページ
-const blogIndex = ({ data, pageContext, location }) => {
+const blogIndex = ({ data, pageContext }) => {
   // ポジション
   const sitePosition = ''
   // リターン
   return (
     <Layout sitePosition={sitePosition}>
       <BlogList title={sitePosition} blog={data.allMicrocmsBlog.edges} />
-      <Pager pageContext={pageContext} location={location} />
+      <Pager pageContext={pageContext} />
     </Layout>
   )
 }

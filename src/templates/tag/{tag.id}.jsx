@@ -12,7 +12,7 @@ import Pager from '../../components/Pager'
 // ページクエリー
 export const pageQuery = graphql`
   query blogTagQuery($limit: Int!, $skip: Int!, $id: String!) {
-    allMicrocmsBlog(limit: $limit, skip: $skip, filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
+    allMicrocmsBlog(limit: $limit, skip: $skip, sort: { fields: datetime, order: DESC }, filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
       edges {
         node {
           blogId
