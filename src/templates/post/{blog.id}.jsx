@@ -32,8 +32,8 @@ export const pageQuery = graphql`
       title
       datetime(formatString: "YYYYMMDD")
       category {
-        name
         id
+        name
       }
       tags {
         id
@@ -129,7 +129,7 @@ const post = ({ data }) => {
                     <FontAwesomeIcon icon={['fas', 'tags']} fixedWidth />
                   </div>
                   <div className={styles.text}>
-                    <Link key={blog.category.categoriesId} to={'/category/' + blog.category.categoriesId}>
+                    <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id}>
                       {blog.category.name}
                     </Link>
                   </div>
@@ -141,7 +141,7 @@ const post = ({ data }) => {
                   <div className={styles.text}>
                     {blog.tags.map(tag => {
                       return (
-                        <Link key={tag.tagsId} to={'/tag/' + tag.tagsId}>
+                        <Link key={tag.tagsId} to={'/tag/' + tag.id}>
                           {tag.name}
                         </Link>
                       )
