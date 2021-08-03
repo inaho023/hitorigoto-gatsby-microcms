@@ -304,9 +304,8 @@
       position: absolute;
       left: 0px;
       top: 0px;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto;
+      width: 96px;
+      height: 96px;
       margin: 0px;
       padding: 0px;
       overflow: hidden;
@@ -633,9 +632,8 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        flex-basis: auto;
+        width: 128px;
+        height: 128px;
         margin: 0px;
         padding: 0px;
         overflow: hidden;

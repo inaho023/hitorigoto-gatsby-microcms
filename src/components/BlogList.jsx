@@ -1,5 +1,5 @@
 // React
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Img } from 'react-image'
 
 // Gatsby
@@ -31,9 +31,7 @@ const BlogList = ({ title, blog }) => {
         return (
           <Link className={styles.grid} key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
             <div className={styles.image}>
-              <Suspense>
-                <Img key={blog.node.blogId} src={image[1]} alt={blog.node.title} width={200} height={200} loader={<imgLoad />} />
-              </Suspense>
+              <Img key={blog.node.blogId} src={image[1]} alt={blog.node.title} width={200} height={200} loader={<imgLoad />} />
             </div>
             <div className={styles.title}>
               <h3>{blog.node.title && blog.node.title}</h3>

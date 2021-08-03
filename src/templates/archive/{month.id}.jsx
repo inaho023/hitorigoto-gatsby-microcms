@@ -11,7 +11,7 @@ import Pager from '../../components/Pager'
 
 // ページクエリー
 export const pageQuery = graphql`
-  query blogArchiveQuery($limit: Int = 1000, $skip: Int = 10, $from: Date!, $to: Date!) {
+  query indexArchiveQuery($limit: Int!, $skip: Int!, $from: Date!, $to: Date!) {
     allMicrocmsBlog(limit: $limit, skip: $skip, sort: { fields: datetime, order: DESC }, filter: { datetime: { gte: $from, lt: $to } }) {
       edges {
         node {

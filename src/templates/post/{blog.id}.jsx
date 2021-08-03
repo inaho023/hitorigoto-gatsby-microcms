@@ -1,5 +1,5 @@
 // React
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Img } from 'react-image'
 import { Helmet } from 'react-helmet'
 
@@ -26,7 +26,7 @@ import * as styles from '../../styles/{blog.id}.module.scss'
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
 // クエリー
 export const pageQuery = graphql`
-  query postQuery($id: String!) {
+  query postDetailQuery($id: String!) {
     microcmsBlog(blogId: { eq: $id }) {
       blogId
       title
@@ -135,9 +135,7 @@ const post = ({ data }) => {
             </div>
             <div className={styles.content_wrapper}>
               <div className={styles.image_wrapper}>
-                <Suspense>
-                  <Img className={styles.image} src={image[1]} width={blog.image.width} height={blog.image.height} loader={<imgLoad />} />
-                </Suspense>
+                <Img className={styles.image} src={image[1]} width={blog.image.width} height={blog.image.height} loader={<imgLoad />} />
               </div>
               <div className={styles.text_wrapper} key={'TextWrapper'}>
                 <div className={styles.box} key={'BoxDate'}>
@@ -216,9 +214,7 @@ const post = ({ data }) => {
               <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
                 <>
                   <div className={styles.image}>
-                    <Suspense>
-                      <Img className={styles.image} src={prevImage[1]} width={prevArticle.node.image.width} height={prevArticle.node.image.height} loader={<prevImageLoad />} />
-                    </Suspense>
+                    <Img className={styles.image} src={prevImage[1]} width={prevArticle.node.image.width} height={prevArticle.node.image.height} loader={<prevImageLoad />} />
                   </div>
                   <span className={styles.title}>
                     <h3>{prevArticle.node.title}</h3>
@@ -239,9 +235,7 @@ const post = ({ data }) => {
               <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
                 <>
                   <div className={styles.image}>
-                    <Suspense>
-                      <Img className={styles.image} src={nextImage[1]} width={nextArticle.node.image.width} height={nextArticle.node.image.height} loader={<nextImageLoad />} />
-                    </Suspense>
+                    <Img className={styles.image} src={nextImage[1]} width={nextArticle.node.image.width} height={nextArticle.node.image.height} loader={<nextImageLoad />} />
                   </div>
                   <span className={styles.title}>
                     <h3>{nextArticle.node.title}</h3>
