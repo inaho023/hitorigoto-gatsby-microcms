@@ -1,5 +1,6 @@
 // React
-import React from 'react'
+import React, { Suspense } from 'react'
+import { Img } from 'react-image'
 
 // Gatsby
 import { Link } from 'gatsby'
@@ -8,7 +9,7 @@ import { Link } from 'gatsby'
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_LIST } from './Constant'
+import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ブログリスト
 const BlogList = ({ title, blog }) => {
@@ -21,10 +22,18 @@ const BlogList = ({ title, blog }) => {
         </div>
       )}
       {blog.map(blog => {
+        // 画像生成
+        const image = []
+        image[0] = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm) + THUMB_IMG_OPT_BLUR
+        image[1] = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)
+        const imgLoad = () => <img className={styles.image} src={image[0]} />
+        // リターン
         return (
           <Link className={styles.grid} key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
             <div className={styles.image}>
-              <img key={blog.node.blogId} src={blog.node.image.url + THUMB_IMG_OPT_LIST + '&' + blog.node.image_parm} alt={blog.node.title} width={200} height={200} />
+              <Suspense>
+                <Img key={blog.node.blogId} src={image[1]} alt={blog.node.title} width={200} height={200} loader={<imgLoad />} />
+              </Suspense>
             </div>
             <div className={styles.title}>
               <h3>{blog.node.title && blog.node.title}</h3>

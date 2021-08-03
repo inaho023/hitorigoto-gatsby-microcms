@@ -1,10 +1,10 @@
 // React
-import React from 'react'
+import React, { Suspense } from 'react'
+import { Img } from 'react-image'
 import { Helmet } from 'react-helmet'
 
 // Gatsby
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Font Awesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +23,7 @@ import Disqus from '../../components/Disqus'
 // スタイルシート
 import * as styles from '../../styles/{blog.id}.module.scss'
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_PREV_NEXT } from '../../components/Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
 // クエリー
 export const pageQuery = graphql`
   query postQuery($id: String!) {
@@ -91,10 +91,33 @@ const post = ({ data }) => {
   const blog = data.microcmsBlog
   // 記事リスト
   const list = data.allMicrocmsBlog.edges
+  // 画像生成
+  const image = []
+  image[0] = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm) + THUMB_IMG_OPT_BLUR
+  image[1] = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm)
+  const imgLoad = () => <img className={styles.image} src={image[0]} />
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
   const prevArticle = current === 0 ? null : list[current - 1]
   const nextArticle = current === list.length - 1 ? null : list[current + 1]
+  // 前記事の画像生成
+  const prevImage = []
+  if (prevArticle) {
+    prevImage[0] = prevArticle.node.image.url + THUMB_IMG_OPT_NAVI + (prevArticle.node.image_parm && '&' + prevArticle.node.image_parm) + THUMB_IMG_OPT_BLUR
+    prevImage[1] = prevArticle.node.image.url + THUMB_IMG_OPT_NAVI + (prevArticle.node.image_parm && '&' + prevArticle.node.image_parm)
+  }
+  const prevImageLoad = () => {
+    prevArticle ? <Img className={styles.image} src={prevImage[0]} width={prevArticle.node.image.width} height={prevArticle.node.image.height} /> : <p></p>
+  }
+  // 次記事の画像生成
+  const nextImage = []
+  if (nextArticle) {
+    nextImage[0] = nextArticle.node.image.url + THUMB_IMG_OPT_NAVI + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm) + THUMB_IMG_OPT_BLUR
+    nextImage[1] = nextArticle.node.image.url + THUMB_IMG_OPT_NAVI + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm)
+  }
+  const nextImageLoad = () => {
+    nextArticle ? <Img className={styles.image} src={nextImage[0]} width={nextArticle.node.image.width} height={nextArticle.node.image.height} /> : <p></p>
+  }
   // リターン
   return (
     <Layout sitePosition={blog.title}>
@@ -102,6 +125,7 @@ const post = ({ data }) => {
         <meta property='og:type' content='article' />
         <meta property='og:title' content={blog.title} />
         <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_DETAIL + '&' + blog.image_parm} />
+        <script type='text/javascript'></script>
       </Helmet>
       <div className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.pagetitle}>
@@ -111,7 +135,9 @@ const post = ({ data }) => {
             </div>
             <div className={styles.content_wrapper}>
               <div className={styles.image_wrapper}>
-                <img className={styles.image} src={blog.image.url + THUMB_IMG_OPT_DETAIL + '&' + blog.image_parm} width={blog.image.width} height={blog.image.height} />
+                <Suspense>
+                  <Img className={styles.image} src={image[1]} width={blog.image.width} height={blog.image.height} loader={<imgLoad />} />
+                </Suspense>
               </div>
               <div className={styles.text_wrapper} key={'TextWrapper'}>
                 <div className={styles.box} key={'BoxDate'}>
@@ -190,7 +216,9 @@ const post = ({ data }) => {
               <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
                 <>
                   <div className={styles.image}>
-                    <img key={prevArticle.node.blogId} src={prevArticle.node.image.url + THUMB_IMG_OPT_PREV_NEXT + '&' + prevArticle.node.image_parm} alt={prevArticle.node.title} width={128} height={128} />
+                    <Suspense>
+                      <Img className={styles.image} src={prevImage[1]} width={prevArticle.node.image.width} height={prevArticle.node.image.height} loader={<prevImageLoad />} />
+                    </Suspense>
                   </div>
                   <span className={styles.title}>
                     <h3>{prevArticle.node.title}</h3>
@@ -211,7 +239,9 @@ const post = ({ data }) => {
               <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
                 <>
                   <div className={styles.image}>
-                    <img key={nextArticle.node.blogId} src={nextArticle.node.image.url + THUMB_IMG_OPT_PREV_NEXT + '&' + nextArticle.node.image_parm} alt={nextArticle.node.title} width={128} height={128} />
+                    <Suspense>
+                      <Img className={styles.image} src={nextImage[1]} width={nextArticle.node.image.width} height={nextArticle.node.image.height} loader={<nextImageLoad />} />
+                    </Suspense>
                   </div>
                   <span className={styles.title}>
                     <h3>{nextArticle.node.title}</h3>

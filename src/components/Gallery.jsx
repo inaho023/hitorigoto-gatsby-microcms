@@ -1,5 +1,6 @@
 // React
 import React from 'react'
+import { Img } from 'react-image'
 
 // Font Awesome Icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +14,7 @@ import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_GALLERY } from './Constant'
+import { THUMB_IMG_OPT_GALLERY, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
@@ -40,10 +41,16 @@ const Gallery = ({ galleries }) => {
                   {
                     // 画像を配置
                     gallery.images.map((image, index) => {
+                      // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
+                      // 画像生成
+                      const img = []
+                      img[0] = image.image.url + THUMB_IMG_OPT_GALLERY + THUMB_IMG_OPT_BLUR
+                      img[1] = image.image.url + THUMB_IMG_OPT_GALLERY
+                      const imgLoad = () => <img src={img[0]} alt={title} />
                       return (
                         <a key={image.image.url} href={image.image.url}>
-                          <img src={image.image.url + THUMB_IMG_OPT_GALLERY} alt={title} />
+                          <Img className={styles.img} src={img[1]} alt={title} loader={<imgLoad />} />
                         </a>
                       )
                     })
