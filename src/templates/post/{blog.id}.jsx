@@ -95,7 +95,7 @@ const post = ({ data }) => {
   const image = []
   image[0] = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm) + THUMB_IMG_OPT_BLUR
   image[1] = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm)
-  const imgLoad = () => <img className={styles.image} src={image[0]} />
+  const imgLoad = () => <img className={styles.image} src={image[0]} width={960} height={960} alt={'Loading... ' + blog.title} />
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
   const prevArticle = current === 0 ? null : list[current - 1]
@@ -107,7 +107,7 @@ const post = ({ data }) => {
     prevImage[1] = prevArticle.node.image.url + THUMB_IMG_OPT_NAVI + (prevArticle.node.image_parm && '&' + prevArticle.node.image_parm)
   }
   const prevImageLoad = () => {
-    prevArticle ? <Img className={styles.image} src={prevImage[0]} width={prevArticle.node.image.width} height={prevArticle.node.image.height} /> : <p></p>
+    prevArticle ? <Img className={styles.image} src={prevImage[0]} width={960} height={960} /> : <p></p>
   }
   // 次記事の画像生成
   const nextImage = []
@@ -116,7 +116,7 @@ const post = ({ data }) => {
     nextImage[1] = nextArticle.node.image.url + THUMB_IMG_OPT_NAVI + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm)
   }
   const nextImageLoad = () => {
-    nextArticle ? <Img className={styles.image} src={nextImage[0]} width={nextArticle.node.image.width} height={nextArticle.node.image.height} /> : <p></p>
+    nextArticle ? <Img className={styles.image} src={nextImage[0]} width={960} height={960} /> : <p></p>
   }
   // リターン
   return (
@@ -135,7 +135,7 @@ const post = ({ data }) => {
             </div>
             <div className={styles.content_wrapper}>
               <div className={styles.image_wrapper}>
-                <Img className={styles.image} src={image[1]} width={blog.image.width} height={blog.image.height} loader={<imgLoad />} />
+                <Img className={styles.image} src={image[1]} width={960} height={960} alt={blog.title} loader={<imgLoad />} />
               </div>
               <div className={styles.text_wrapper} key={'TextWrapper'}>
                 <div className={styles.box} key={'BoxDate'}>
