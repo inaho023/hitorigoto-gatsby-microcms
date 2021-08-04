@@ -640,6 +640,9 @@
       }
 
       .title {
+        position: absolute;
+        top: 0px;
+        left: 128px;
         flex-basis: auto;
 
         h3 {
