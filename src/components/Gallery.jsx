@@ -2,10 +2,15 @@
 import React from 'react'
 import { Img } from 'react-image'
 
-// Font Awesome Icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+// Material-UI
+import Grid from '@material-ui/core/Grid'
+import Accordion from '@material-ui/core/Accordion'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import AccordionDetails from '@material-ui/core/AccordionDetails'
+
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiChevronUp, mdiCamera } from '@mdi/js'
 
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
@@ -18,8 +23,6 @@ import { THUMB_IMG_OPT_GALLERY, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
-  // Font Awesome Icon
-  library.add(faCamera)
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -27,17 +30,15 @@ const Gallery = ({ galleries }) => {
       const galleryTitle = gallery.display_name ? gallery.display_name : gallery.name
       // リターン
       return (
-        <div className={styles.gallery} key={'Gallery' + (index + 1).toString()}>
-          <details key={'Gallery' + (index + 1).toString()} open>
-            <summary>
-              <span className={styles.icon}>
-                <FontAwesomeIcon icon={['fas', 'camera']} />
-              </span>
-              <span className={styles.text}>{galleryTitle}</span>
-            </summary>
+        <Accordion key={'Gallery' + (index + 1).toString()} className={styles.gallery} defaultExpanded>
+          <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronUp} size={2} />}>
+            <Icon path={mdiCamera} size={2} title={galleryTitle} />
+            <span className={styles.text}>{galleryTitle}</span>
+          </AccordionSummary>
+          <AccordionDetails>
             <SimpleReactLightbox>
               <SRLWrapper>
-                <div className={styles.image_wrapper} key={'ImageWrapper' + (index + 1).toString()}>
+                <Grid container className={styles.details} spacing={0}>
                   {
                     // 画像を配置
                     gallery.images.map((image, index) => {
@@ -49,17 +50,19 @@ const Gallery = ({ galleries }) => {
                       img[1] = image.image.url + THUMB_IMG_OPT_GALLERY
                       const imgLoad = () => <img src={img[0]} alt={title} />
                       return (
-                        <a key={image.image.url} href={image.image.url}>
-                          <Img className={styles.img} src={img[1]} alt={title} loader={<imgLoad />} />
-                        </a>
+                        <Grid item key={image.image.url} xs={6} sm={3}>
+                          <a key={image.image.url} href={image.image.url}>
+                            <Img className={styles.img} src={img[1]} alt={title} loader={<imgLoad />} />
+                          </a>
+                        </Grid>
                       )
                     })
                   }
-                </div>
+                </Grid>
               </SRLWrapper>
             </SimpleReactLightbox>
-          </details>
-        </div>
+          </AccordionDetails>
+        </Accordion>
       )
     })
   })

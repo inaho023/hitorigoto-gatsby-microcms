@@ -4,10 +4,9 @@ import React from 'react'
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
-// Font Awesome Icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArchive } from '@fortawesome/free-solid-svg-icons'
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiArchive } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'
@@ -37,16 +36,14 @@ const ArchiveMenu = () => {
   // 年および年月の配列をユニーク化
   const siteYear = Array.from(new Set(arrayYear))
   const siteMonth = Array.from(new Set(arrayMonth))
-  // Font Awesome Icon
-  library.add(faArchive)
   // 月別アーカイブ
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <div className={styles.icon}>
-          <FontAwesomeIcon icon={['fas', 'archive']} />
-        </div>
-        <h3>アーカイブ</h3>
+        <p>
+          <Icon className={styles.icon} path={mdiArchive} size={1.5} />
+          アーカイブ
+        </p>
       </div>
       <ul key={'YearMonth'}>
         {siteYear.map(siteYear => {

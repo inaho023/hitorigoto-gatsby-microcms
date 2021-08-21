@@ -4,18 +4,18 @@ import React from 'react'
 // Gatsby
 import { Link } from 'gatsby'
 
+// Material-UI
+import Pagination from '@material-ui/lab/Pagination'
+import PaginationItem from '@material-ui/lab/PaginationItem'
+
 // 自作モジュール
 import * as styles from '../styles/Pager.module.scss'
 
 // ページャー
 const Pager = ({ pageContext }) => {
-  // 現在のページ
-  const nowPage = pageContext.pageNumber
-  // 最後のページ
-  const maxPage = pageContext.numberOfPages - 1
   // パス設定
   const path = []
-  for (let index = 0; index <= maxPage; index++) {
+  for (let index = 0; index < pageContext.numberOfPages; index++) {
     if (index == 0) {
       if (pageContext.list == 'all') {
         path[index] = '/'
@@ -32,48 +32,8 @@ const Pager = ({ pageContext }) => {
   }
   // リターン
   return (
-    <div className={styles.pager_wrapper}>
-      <div className={styles.pager}>
-        {pageContext.pageNumber !== 0 && (
-          <>
-            <Link key={'Pager-Top'} to={path[0]}>
-              <div className={styles.page} key={'Pager-Top'}>
-                {'|<'}
-              </div>
-            </Link>
-            <Link key={'Pager-Prev'} to={path[pageContext.pageNumber - 1]}>
-              <div className={styles.page} key={'Pager-Prev'}>
-                {'<<'}
-              </div>
-            </Link>
-          </>
-        )}
-        {path.map((path, index) => {
-          return index === nowPage ? (
-            <div className={styles.current} key={'Pager-' + index.toString()}>
-              {(index + 1).toString()}
-            </div>
-          ) : (
-            <Link key={'Pager-' + index.toString()} to={path}>
-              <div className={styles.page}>{(index + 1).toString()}</div>
-            </Link>
-          )
-        })}
-        {nowPage !== maxPage && (
-          <>
-            <Link key={'Pager-Next'} to={path[pageContext.pageNumber + 1]}>
-              <div className={styles.page} key={'Pager-Next'}>
-                {'>>'}
-              </div>
-            </Link>
-            <Link key={'Pager-End'} to={path[pageContext.numberOfPages - 1]}>
-              <div className={styles.page} key={'Pager-End'}>
-                {'>|'}
-              </div>
-            </Link>
-          </>
-        )}
-      </div>
+    <div className={styles.wrapper}>
+      <Pagination className={styles.MuiPagination} page={pageContext.humanPageNumber} count={pageContext.numberOfPages} size={'large'} variant={'outlined'} shape={'rounded'} showFirstButton showLastButton renderItem={item => <PaginationItem className={styles.MuiPaginationItem} component={Link} to={path[item.page - 1]} {...item} />} />
     </div>
   )
 }

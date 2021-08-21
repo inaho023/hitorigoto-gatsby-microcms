@@ -4,10 +4,9 @@ import React from 'react'
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
-// Font Awesome Icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTags } from '@fortawesome/free-solid-svg-icons'
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiShape } from '@mdi/js'
 
 // スタイルシート
 import * as styles from '../styles/CategoryMenu.module.scss'
@@ -24,16 +23,14 @@ const CategoryMenu = () => {
       }
     }
   `)
-  // Font Awesome Icon
-  library.add(faTags)
-  //
+  // リターン
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <div className={styles.icon}>
-          <FontAwesomeIcon icon={['fas', 'tags']} />
-        </div>
-        <h3>カテゴリー</h3>
+        <p>
+          <Icon className={styles.icon} path={mdiShape} size={1.5} />
+          カテゴリー
+        </p>
       </div>
       <ul className={styles.dropdown_menu}>
         {data.allMicrocmsCategories.nodes.map(node => {

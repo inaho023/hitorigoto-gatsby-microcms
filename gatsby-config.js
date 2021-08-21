@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: ['Kosugi Maru'],
+        fonts: ['Roboto', 'Material+Icons'],
         display: 'swap'
       }
     },

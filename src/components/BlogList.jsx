@@ -6,8 +6,8 @@ import { Img } from 'react-image'
 import { Link } from 'gatsby'
 
 // Material-UI
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
 
 // スタイルシート
 import * as styles from '../styles/BlogList.module.scss'
@@ -21,7 +21,7 @@ const BlogList = ({ title, blog }) => {
   return (
     <div className={styles.wrapper}>
       {title && (
-        <div className={styles.list_title}>
+        <div className={styles.list}>
           <h2>{title}</h2>
         </div>
       )}
@@ -34,9 +34,9 @@ const BlogList = ({ title, blog }) => {
           const imgLoad = () => <img className={styles.image} src={image[0]} />
           // リターン
           return (
-            <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3}>
+            <Grid key={blog.node.blogId} item xs={12} md={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
-                <Paper className={styles.paper}>
+                <Card className={styles.card}>
                   <div className={styles.image}>
                     <Img key={blog.node.blogId} src={image[1]} alt={blog.node.title} width={200} height={200} loader={<imgLoad />} />
                   </div>
@@ -49,7 +49,7 @@ const BlogList = ({ title, blog }) => {
                   <div className={styles.date}>
                     <p>{blog.node.datetime && blog.node.datetime}</p>
                   </div>
-                </Paper>
+                </Card>
               </Link>
             </Grid>
           )

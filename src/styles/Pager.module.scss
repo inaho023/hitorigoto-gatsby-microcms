@@ -1,39 +1,30 @@
-.pager_wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  vertical-align: middle;
-  position: relative;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 16px;
-  border-top: 1px solid #eaeaea;
-  
-  .pager {
+.wrapper {
+  .MuiPagination {
+    position: relative;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    flex-basis: 100%;
-    align-items: flex-start;
-    align-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
     justify-content: center;
     vertical-align: middle;
-    position: relative;
-    
-    .page {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+
+    .MuiPaginationItem {
       width: fit-content;
       align-items: center;
       justify-content: center;
       vertical-align: middle;
       position: relative;
       border-radius: 8px;
-      margin: 4px;
+      margin: 8px;
       padding: 8px;
       background-color: #cc8500;
       font-size: 1.5rem;
@@ -42,27 +33,10 @@
       transition: color 0.15s ease, border-color 0.15s ease;
       box-shadow: #332100 4px 4px 8px;
     }
-    
-    .current {
-      width: fit-content;
-      align-items: center;
-      justify-content: center;
-      vertical-align: middle;
-      position: relative;
-      border-radius: 8px;
-      margin: 4px;
-      padding: 8px;
-      background-color: orange;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-align: center;
-      transition: color 0.15s ease, border-color 0.15s ease;
-      box-shadow: #332100 4px 4px 8px;
-    }
-    
-    .page:hover,
-    .page:focus,
-    .page:active {
+
+    .MuiPaginationItem:hover,
+    .MuiPaginationItem:focus,
+    .MuiPaginationItem:active {
       cursor: pointer;
       background-color: orange;
     }

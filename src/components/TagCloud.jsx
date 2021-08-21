@@ -4,10 +4,9 @@ import * as React from 'react'
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
-// Font Awesome Icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTag } from '@fortawesome/free-solid-svg-icons'
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiTag } from '@mdi/js'
 
 // スタイルシート
 import * as styles from '../styles/TagCloud.module.scss'
@@ -24,16 +23,14 @@ const TagCloud = () => {
       }
     }
   `)
-  // Font Awesome Icon
-  library.add(faTag)
-  //
+  // リターン
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <div className={styles.icon}>
-          <FontAwesomeIcon icon={['fas', 'tag']} />
-        </div>
-        <h3>タグ</h3>
+        <p>
+          <Icon className={styles.icon} path={mdiTag} size={1.5} />
+          タグ
+        </p>
       </div>
       <div className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {

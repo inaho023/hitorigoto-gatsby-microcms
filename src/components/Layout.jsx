@@ -1,17 +1,19 @@
 // React
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
-// Font Awesome Icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons'
+// Material-UI
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Fab from '@material-ui/core/Fab'
+import Tooltip from '@material-ui/core/Tooltip'
 
-// その他モジュール
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiNavigation } from '@mdi/js'
 
 // 自作コンポーネント
 import Menubar from './Menubar'
@@ -38,8 +40,6 @@ const Layout = ({ sitePosition, children }) => {
       }
     }
   `)
-  // Font Awesome Icon
-  library.add(faArrowAltCircleUp)
   // リターン
   return (
     <>
@@ -48,40 +48,46 @@ const Layout = ({ sitePosition, children }) => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='description' content={data.site.siteMetadata.description} />
       </Helmet>
-      <div className={styles.container}>
-        <section id={'Header'} className={styles.header}>
-          <header className={styles.title}>
-            <Link key={'Header'} to='/'>
-              <a>
-                <h1>{data.site.siteMetadata.title}</h1>
-                <h2>{data.site.siteMetadata.subtitle}</h2>
-              </a>
-            </Link>
-            <p className={styles.description}>{data.site.siteMetadata.description}</p>
-          </header>
-        </section>
-        <Menubar />
+      <a id={'Header'} />
+      <Menubar />
+      <Container className={styles.container} maxWidth={'xl'}>
+        <header className={styles.header}>
+          <Link key={'Header'} className={styles.title} to='/'>
+            <a>
+              <h1>{data.site.siteMetadata.title}</h1>
+              <h2>{data.site.siteMetadata.subtitle}</h2>
+            </a>
+          </Link>
+          <p className={styles.description}>{data.site.siteMetadata.description}</p>
+        </header>
         <article>
           <div className={styles.main}>{children}</div>
         </article>
-        <section>
-          <div className={styles.bottom_wrapper}>
-            <ArchiveMenu />
-            <CategoryMenu />
-            <TagCloud />
-          </div>
+        <section id={'Botton'}>
+          <Grid container className={styles.bottom} spacing={1}>
+            <Grid item xs={12} md={3}>
+              <ArchiveMenu />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <CategoryMenu />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TagCloud />
+            </Grid>
+          </Grid>
         </section>
         <footer className={styles.footer}>
           <Link key={'Footer'} to='/'>
             <a>&copy; {data.site.siteMetadata.title}</a>
           </Link>
         </footer>
-      </div>
+      </Container>
       <div className={styles.float}>
-        <AnchorLink href={'#Header'}>
-          <FontAwesomeIcon icon={['fas', 'arrow-alt-circle-up']} />
-          先頭へ
-        </AnchorLink>
+        <Tooltip title={'先頭へ'}>
+          <Fab href={'#Header'}>
+            <Icon path={mdiNavigation} size={1} />
+          </Fab>
+        </Tooltip>
       </div>
     </>
   )
