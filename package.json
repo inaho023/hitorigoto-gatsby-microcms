@@ -24,7 +24,6 @@
     "disqus-react": "^1.1.1",
     "dotenv": "^10.0.0",
     "gatsby": "^3.12.0",
-    "gatsby-plugin-fontawesome-css": "^1.1.0",
     "gatsby-plugin-gatsby-cloud": "^3.0.0",
     "gatsby-plugin-google-analytics": "^3.12.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
