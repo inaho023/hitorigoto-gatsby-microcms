@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box'
 
 // Material Design Icons
 import Icon from '@mdi/react'
-import { mdiArrowLeftBoldCircle, mdiArrowRightBoldCircle, mdiCalendarToday, mdiShape, mdiTag, mdiShareVariant } from '@mdi/js'
+import { mdiCalendarToday, mdiShape, mdiTag, mdiShareVariant } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'

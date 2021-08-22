@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Img } from 'react-image'
 
 // Material-UI
 import Grid from '@material-ui/core/Grid'
@@ -19,7 +18,7 @@ import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_GALLERY, THUMB_IMG_OPT_BLUR } from './Constant'
+import { THUMB_IMG_OPT_GALLERY } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
@@ -44,15 +43,11 @@ const Gallery = ({ galleries }) => {
                     gallery.images.map((image, index) => {
                       // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
-                      // 画像生成
-                      const img = []
-                      img[0] = image.image.url + THUMB_IMG_OPT_GALLERY + THUMB_IMG_OPT_BLUR
-                      img[1] = image.image.url + THUMB_IMG_OPT_GALLERY
-                      const imgLoad = () => <img src={img[0]} alt={title} />
+                      // リターン
                       return (
                         <Grid item key={image.image.url} xs={6} sm={3}>
                           <a key={image.image.url} href={image.image.url}>
-                            <Img className={styles.img} src={img[1]} alt={title} loader={<imgLoad />} />
+                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_GALLERY} alt={title} width={480} height={480} />
                           </a>
                         </Grid>
                       )
