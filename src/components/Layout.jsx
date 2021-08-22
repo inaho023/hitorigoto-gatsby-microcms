@@ -63,8 +63,8 @@ const Layout = ({ sitePosition, children }) => {
         <article>
           <div className={styles.main}>{children}</div>
         </article>
-        <section id={'Botton'}>
-          <Grid container className={styles.bottom} spacing={1}>
+        <section id={'Botton'} className={styles.bottom}>
+          <Grid container spacing={1}>
             <Grid item xs={12} md={3}>
               <ArchiveMenu />
             </Grid>

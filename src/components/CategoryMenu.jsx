@@ -31,10 +31,8 @@ const CategoryMenu = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <p>
-          <Icon className={styles.icon} path={mdiShape} size={1.5} />
-          カテゴリー
-        </p>
+        <Icon className={styles.icon} path={mdiShape} size={1.5} />
+        <p>カテゴリー</p>
       </div>
       <ButtonGroup orientation={'vertical'} fullWidth>
         {data.allMicrocmsCategories.nodes.map(node => {

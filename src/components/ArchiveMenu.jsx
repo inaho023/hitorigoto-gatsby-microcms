@@ -47,16 +47,14 @@ const ArchiveMenu = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <p>
-          <Icon className={styles.icon} path={mdiArchive} size={1.5} />
-          アーカイブ
-        </p>
+        <Icon className={styles.icon} path={mdiArchive} size={1.5} />
+        <p>アーカイブ</p>
       </div>
       <div className={styles.menu}>
         {siteYear.map(siteYear => {
           return (
             <Accordion key={siteYear} className={styles.accordion}>
-              <AccordionSummary expandIcon={<Icon path={mdiChevronUp} size={2} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
+              <AccordionSummary expandIcon={<Icon path={mdiChevronUp} size={1} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
               <AccordionDetails className={styles.detail}>
                 <ButtonGroup orientation={'vertical'} fullWidth>
                   {siteMonth.map(siteMonth => {

@@ -1,22 +1,22 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
 
   .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    text-align: center;
 
     .icon {
-      justify-content: center;
       vertical-align: middle;
-      align-items: center;
       text-align: center;
     }
 
     p {
-      justify-content: center;
       vertical-align: middle;
-      align-items: center;
       text-align: center;
       font-size: 1.75rem;
       font-weight: 700;
@@ -27,8 +27,7 @@
     position: relative;
     padding: 8px;
     border: 2px solid #332100;
-    border-radius: 8px;
-    background-color: #cc8500;
+    background: #cc8500;
     box-shadow: #332100 4px 4px 8px;
 
     a {
@@ -38,7 +37,7 @@
       line-height: 1;
       text-decoration: none;
       color: #332100;
-      background-color: orange;
+      background: orange;
       border: 1px solid #332100;
       border-left: 8px solid #332100;
       box-shadow: #332100 1px 1px 2px;

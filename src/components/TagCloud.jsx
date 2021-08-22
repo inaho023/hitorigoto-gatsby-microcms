@@ -27,10 +27,8 @@ const TagCloud = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <p>
-          <Icon className={styles.icon} path={mdiTag} size={1.5} />
-          タグ
-        </p>
+        <Icon className={styles.icon} path={mdiTag} size={1.5} />
+        <p>タグ</p>
       </div>
       <div className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {
