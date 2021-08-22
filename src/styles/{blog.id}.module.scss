@@ -103,7 +103,9 @@
       }
     }
   }
+
   .post {
+    color: #332100;
     background-color: white;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -187,7 +189,7 @@
         flex: auto;
         color: white;
         background: #332100;
-        border-radius: 8px;
+        border-radius: 4px;
         margin-left: auto;
         margin-right: auto;
         padding: 1rem;
@@ -219,131 +221,115 @@
 }
 
 .nav {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-top: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
+  .wrapper {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
 
-  .nocard {
-    height: 96px;
-    position: relative;
-  }
-
-  .prev {
-    cursor: pointer;
-    height: 96px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    background: #cc8500;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    box-shadow: #332100 4px 4px 4px;
-
-    .image {
-      position: absolute;
-      right: 0px;
-      top: 0px;
-      width: 96px;
+    .nocard {
       height: 96px;
-      margin: 0px;
-      padding: 0px;
-      overflow: hidden;
-      object-fit: cover;
+      position: relative;
     }
 
-    .box {
-      width: auto;
+    .prev {
+      cursor: pointer;
       height: 96px;
-      position: absolute;
-      top: 0px;
-      right: 96px;
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      background: #cc8500;
+      border: 1px solid #332100;
+      border-left: 16px solid #332100;
 
-      .icon {
-        width: max-content;
+      .image {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 96px;
+        height: 96px;
+        overflow: hidden;
+        object-fit: cover;
       }
 
-      h5 {
-        position: relative;
+      .box {
+        width: auto;
+        height: 96px;
+        position: absolute;
+        top: 0px;
+        right: 96px;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         justify-content: center;
-        vertical-align: middle;
-        text-align: left;
-        padding: 0.25rem;
-        line-height: 1.25rem;
-        font-size: 1rem;
-        font-weight: 700;
-        word-break: break-all;
+
+        h5 {
+          position: relative;
+          justify-content: center;
+          vertical-align: middle;
+          text-align: left;
+          padding: 0.25rem;
+          line-height: 1.25rem;
+          font-size: 1rem;
+          font-weight: 700;
+          word-break: break-all;
+        }
       }
     }
-  }
 
-  .prev:active,
-  .prev:focus,
-  .prev:hover {
-    background: orange;
-  }
-
-  .next {
-    cursor: pointer;
-    height: 96px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    background: #cc8500;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    box-shadow: #332100 4px 4px 4px;
-
-    .image {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      width: 96px;
-      height: 96px;
-      margin: 0px;
-      padding: 0px;
-      overflow: hidden;
-      object-fit: cover;
+    .prev:active,
+    .prev:focus,
+    .prev:hover {
+      background: orange;
     }
 
-    .box {
-      width: auto;
+    .next {
+      cursor: pointer;
       height: 96px;
-      position: absolute;
-      top: 0px;
-      left: 96px;
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      background: #cc8500;
+      border: 1px solid #332100;
+      border-right: 16px solid #332100;
 
-      .icon {
-        width: max-content;
+      .image {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 96px;
+        height: 96px;
+        overflow: hidden;
+        object-fit: cover;
       }
 
-      h5 {
-        position: relative;
+      .box {
+        width: auto;
+        height: 96px;
+        position: absolute;
+        top: 0px;
+        left: 96px;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         justify-content: center;
-        vertical-align: middle;
-        text-align: left;
-        padding: 0.25rem;
-        line-height: 1.25rem;
-        font-size: 1rem;
-        font-weight: 700;
-        word-break: break-all;
+
+        h5 {
+          position: relative;
+          justify-content: center;
+          vertical-align: middle;
+          text-align: left;
+          padding: 0.25rem;
+          line-height: 1.25rem;
+          font-size: 1rem;
+          font-weight: 700;
+          word-break: break-all;
+        }
       }
     }
-  }
 
-  .next:active,
-  .next:focus,
-  .next:hover {
-    background: orange;
+    .next:active,
+    .next:focus,
+    .next:hover {
+      background: orange;
+    }
   }
 }

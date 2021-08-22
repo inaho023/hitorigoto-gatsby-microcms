@@ -105,7 +105,7 @@ const post = ({ data }) => {
         <meta property='og:title' content={blog.title} />
         <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_DETAIL + '&' + blog.image_parm} />
       </Helmet>
-      <div className={styles.wrapper} key={'wrapper'}>
+      <Box className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.title}>
           <Grid container className={styles.info} key={'Info'} spacing={0}>
             <Grid item className={styles.title} xs={12}>
@@ -168,20 +168,17 @@ const post = ({ data }) => {
           // Disqus
         }
         <Disqus blog={blog} />
-      </div>
+      </Box>
       {
         // 前後の記事へ移動
       }
-      <nav>
-        <Grid container className={styles.nav} spacing={1}>
+      <nav className={styles.nav}>
+        <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
           {prevArticle ? (
-            <Grid item className={styles.prev} xs={12} md={6}>
-              <Tooltip title={'前の記事へ'}>
+            <Grid item className={styles.prev} xs={12} md={5}>
+              <Tooltip title={'前の記事へ'} arrow>
                 <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
                   <Box className={styles.box}>
-                    <Box className={styles.icon}>
-                      <Icon path={mdiArrowLeftBoldCircle} size={1} />
-                    </Box>
                     <h5>{prevArticle.node.title}</h5>
                   </Box>
                   <img className={styles.image} src={prevImage} alt={prevArticle.node.title} />
@@ -189,24 +186,21 @@ const post = ({ data }) => {
               </Tooltip>
             </Grid>
           ) : (
-            <Grid item className={styles.nocard} xs={12} md={6} />
+            <Grid item className={styles.nocard} xs={12} md={5} />
           )}
           {nextArticle ? (
-            <Grid item className={styles.next} xs={12} md={6}>
-              <Tooltip title={'次の記事へ'}>
+            <Grid item className={styles.next} xs={12} md={5}>
+              <Tooltip title={'次の記事へ'} arrow>
                 <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
                   <img className={styles.image} src={nextImage} alt={nextArticle.node.title} />
                   <Box className={styles.box}>
                     <h5>{nextArticle.node.title}</h5>
-                    <Box className={styles.icon}>
-                      <Icon path={mdiArrowRightBoldCircle} size={1} />
-                    </Box>
                   </Box>
                 </Link>
               </Tooltip>
             </Grid>
           ) : (
-            <Grid item className={styles.nocard} xs={12} md={6} />
+            <Grid item className={styles.nocard} xs={12} md={5} />
           )}
         </Grid>
       </nav>

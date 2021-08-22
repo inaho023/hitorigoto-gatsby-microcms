@@ -22,19 +22,10 @@
   .card {
     position: relative;
     height: 200px;
-    border-radius: 8px;
     overflow: hidden;
     background-color: #cc8500;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    box-shadow: #332100 4px 4px 4px;
-
-    ul {
-      list-style-type: none;
-    }
-
-    li {
-      list-style-type: none;
-    }
+    border: 1px solid #332100;
+    border-left: 16px solid #332100;
 
     .image {
       position: absolute;
@@ -110,9 +101,9 @@
     }
   }
 
-  .paper:hover,
-  .paper:focus,
-  .paper:active {
+  .card:hover,
+  .card:focus,
+  .card:active {
     cursor: pointer;
     color: #332100;
     background-color: orange;
