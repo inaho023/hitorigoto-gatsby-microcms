@@ -4,9 +4,16 @@ import React from 'react'
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
+// Material-UI
+import Accordion from '@material-ui/core/Accordion'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import AccordionDetails from '@material-ui/core/AccordionDetails'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+
 // Material Design Icons
 import Icon from '@mdi/react'
-import { mdiArchive } from '@mdi/js'
+import { mdiArchive, mdiChevronUp } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'
@@ -45,31 +52,30 @@ const ArchiveMenu = () => {
           アーカイブ
         </p>
       </div>
-      <ul key={'YearMonth'}>
+      <div className={styles.menu}>
         {siteYear.map(siteYear => {
           return (
-            <li className={styles.dropdown} key={siteYear}>
-              <input id={siteYear} type='checkbox' />
-              <label htmlFor={siteYear}>
-                <a data-toggle='dropdown'>{moment(siteYear, 'YYYY').format('YYYY年')}</a>
-              </label>
-              <ul className={styles.dropdown_menu} key={siteYear}>
-                {siteMonth.map(siteMonth => {
-                  return (
-                    moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
-                      <Link key={siteMonth} to={'/archive/' + siteMonth}>
-                        <li key={siteMonth}>
-                          <a>{moment(siteMonth, 'YYYYMM').format('MM月')}</a>
-                        </li>
-                      </Link>
+            <Accordion key={siteYear} className={styles.accordion}>
+              <AccordionSummary expandIcon={<Icon path={mdiChevronUp} size={2} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
+              <AccordionDetails className={styles.detail}>
+                <ButtonGroup orientation={'vertical'} fullWidth>
+                  {siteMonth.map(siteMonth => {
+                    return (
+                      moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
+                        <Link key={siteMonth} to={'/archive/' + siteMonth}>
+                          <Button key={siteMonth} className={styles.button} size={'large'} variant={'contained'} fullWidth>
+                            <a>{moment(siteMonth, 'YYYYMM').format('M月')}</a>
+                          </Button>
+                        </Link>
+                      )
                     )
-                  )
-                })}
-              </ul>
-            </li>
+                  })}
+                </ButtonGroup>
+              </AccordionDetails>
+            </Accordion>
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }

@@ -3,166 +3,67 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 100%;
   margin-left: auto;
   margin-right: auto;
-}
 
-.wrapper > ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.title {
-  align-items: center;
-  text-align: center;
-
-  .icon {
-    justify-content: center;
-    vertical-align: middle;
+  .title {
     align-items: center;
     text-align: center;
+
+    .icon {
+      justify-content: center;
+      vertical-align: middle;
+      align-items: center;
+      text-align: center;
+    }
+
+    p {
+      justify-content: center;
+      vertical-align: middle;
+      align-items: center;
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
   }
+  .menu {
+    .accordion {
+      width: 100%;
+      display: inline-block;
+      margin: 0 0.125em 0.25em 0;
+      padding: 0.25em;
+      line-height: 1;
+      text-decoration: none;
+      color: #332100;
+      background-color: #cc8500;
+      border: 1px solid #332100;
+      box-shadow: #332100 1px 1px 2px;
+      font-size: 1.5rem;
+      font-weight: 700;
 
-  p {
-    justify-content: center;
-    vertical-align: middle;
-    align-items: center;
-    text-align: center;
-    font-size: 1.75rem;
-    font-weight: 700;
-  }
-}
+      .detail {
+        .button {
+          display: inline-block;
+          margin: 0 0.25em 0.5em 0;
+          padding: 0.75em;
+          line-height: 1;
+          text-decoration: none;
+          color: #332100;
+          background-color: orange;
+          border: 1px solid #332100;
+          border-left: 16px solid #332100;
+          box-shadow: #332100 1px 1px 2px;
+          font-size: 1.25rem;
+          font-weight: 700;
+        }
+      }
+    }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown a {
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.dropdown [data-toggle='dropdown'] {
-  display: block;
-  color: #332100;
-  background: #cc8500;
-  box-shadow: 0 1px 0 #cc8500 inset, 0 -1px 0 orange inset;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-  padding: 16px;
-  border-radius: 8px;
-}
-
-.dropdown [data-toggle='dropdown']:hover {
-  background: #cc8500;
-}
-
-.dropdown [data-toggle='dropdown']:before {
-  position: absolute;
-  display: block;
-  content: '\25BC';
-  font-size: 1rem;
-  color: white;
-  top: 16px;
-  right: 8px;
-  transform: rotate(0deg);
-  transition: transform 0.6s;
-  border-radius: 8px;
-}
-
-.dropdown > .dropdown_menu {
-  max-height: 0;
-  overflow: hidden;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  transform: scaleY(0);
-  transform-origin: 50% 0%;
-  transition: max-height 0.6s ease-out;
-  animation: hideAnimation 0.4s ease-out;
-  border-radius: 8px;
-}
-
-.dropdown > .dropdown_menu li {
-  padding: 0;
-}
-
-.dropdown > .dropdown_menu li a {
-  display: block;
-  color: #332100;
-  background: #eee;
-  box-shadow: 0 1px 0 white inset, 0 -1px 0 orange inset;
-  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
-  padding: 10px 10px;
-  border-radius: 8px;
-}
-
-.dropdown > .dropdown_menu li a:hover {
-  background: orange;
-}
-
-.dropdown > input[type='checkbox'] {
-  opacity: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.dropdown > input[type='checkbox']:checked ~ .dropdown_menu {
-  max-height: 9999px;
-  display: block;
-  transform: scaleY(1);
-  animation: showAnimation 0.5s ease-in-out;
-  transition: max-height 2s ease-in-out;
-}
-
-.dropdown > input[type='checkbox']:checked + a[data-toggle='dropdown']:before {
-  transform: rotate(-180deg);
-  transition: transform 0.6s;
-}
-
-@keyframes showAnimation {
-  0% {
-    transform: scaleY(0.1);
-  }
-  40% {
-    transform: scaleY(1.04);
-  }
-  60% {
-    transform: scaleY(0.98);
-  }
-  80% {
-    transform: scaleY(1.04);
-  }
-  100% {
-    transform: scaleY(0.98);
-  }
-  80% {
-    transform: scaleY(1.02);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes hideAnimation {
-  0% {
-    transform: scaleY(1);
-  }
-  60% {
-    transform: scaleY(0.98);
-  }
-  80% {
-    transform: scaleY(1.02);
-  }
-  100% {
-    transform: scaleY(0);
+    .accordion:hover,
+    .accordion:focus,
+    .accordion:active {
+      color: #332100;
+      background-color: orange;
+    }
   }
 }
