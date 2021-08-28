@@ -13,7 +13,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 // Material Design Icons
 import Icon from '@mdi/react'
-import { mdiArchive, mdiChevronUp } from '@mdi/js'
+import { mdiArchive, mdiChevronDown } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'
@@ -54,7 +54,7 @@ const ArchiveMenu = () => {
         {siteYear.map(siteYear => {
           return (
             <Accordion key={siteYear} className={styles.accordion}>
-              <AccordionSummary expandIcon={<Icon path={mdiChevronUp} size={1} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
+              <AccordionSummary expandIcon={<Icon path={mdiChevronDown} size={1} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
               <AccordionDetails className={styles.detail}>
                 <ButtonGroup orientation={'vertical'} fullWidth>
                   {siteMonth.map(siteMonth => {

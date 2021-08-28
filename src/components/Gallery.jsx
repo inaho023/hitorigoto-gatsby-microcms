@@ -9,7 +9,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 
 // Material Design Icons
 import Icon from '@mdi/react'
-import { mdiChevronUp, mdiCamera } from '@mdi/js'
+import { mdiChevronDown, mdiCamera } from '@mdi/js'
 
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
@@ -30,7 +30,7 @@ const Gallery = ({ galleries }) => {
       // リターン
       return (
         <Accordion key={'Gallery' + (index + 1).toString()} className={styles.gallery} defaultExpanded>
-          <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronUp} size={2} />}>
+          <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={2} />}>
             <Icon path={mdiCamera} size={2} title={galleryTitle} />
             <span className={styles.text}>{galleryTitle}</span>
           </AccordionSummary>
