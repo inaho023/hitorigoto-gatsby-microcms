@@ -9,10 +9,10 @@ exports.createPages = async ({ graphql, actions }) => {
   // 定数定義
   const { createPage } = actions
   // 変数定義
-  var result
-  var context
-  var list
-  var pathList
+  let result
+  let context
+  let list
+  let pathList
   // 記事リスト
   list = 'all'
   result = await graphql(`
