@@ -1,6 +1,10 @@
 const env = process.env.NODE_ENV || 'development'
 require('dotenv').config({ path: `./.env.${env}` })
 
+const path = require('path')
+
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules')
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://blog.inaho.space',
@@ -54,13 +58,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
-        exclude: /(.cache|.vscode|node_modules|public)/,
+        // Gatsby required rules directory
+        rulePaths: [gatsbyRequiredRules],
+        // Default settings that may be ommitted or customized
         stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false
-        }
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        exclude: ['node_modules', 'bower_components', '.cache', 'public']
+        // Any additional eslint-webpack-plugin options below
+        // ...
       }
     },
     {
