@@ -18,7 +18,7 @@ import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_GALLERY } from './Constant'
+import { THUMB_IMG_OPT_DESKTOP_GALLERY, THUMB_IMG_OPT_MOBILE_GALLERY } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
@@ -47,7 +47,7 @@ const Gallery = ({ galleries }) => {
                       return (
                         <Grid item key={image.image.url} xs={6} sm={3}>
                           <a key={image.image.url} href={image.image.url}>
-                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_GALLERY} alt={title} width={480} height={480} />
+                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY} srcSet={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + ' 960w,' + image.image.url + THUMB_IMG_OPT_DESKTOP_GALLERY} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>
                       )
