@@ -9,44 +9,19 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://blog.inaho.space',
     title: 'いなほちゅんのひとりごと',
-    subtitle: 'Gatsby版',
+    subtitle: 'ブログ版',
     description: '私のメモ帳を公開してみる。',
     lang: 'ja'
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: process.env.GA_TRACKING_ID,
-        head: true
+        trackingIds: [process.env.GA_TRACKING_ID],
+        pluginConfig: {
+          head: true
+        }
       }
-    },
-    'gatsby-plugin-gatsby-cloud',
-    'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        policy: [{ userAgent: '*', allow: '/' }]
-      }
-    },
-    'gatsby-plugin-sass',
-    'gatsby-plugin-image',
-    'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        icon: 'src/images/favicon.png'
-      }
-    },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: './src/images/'
-      },
-      __key: 'images'
     },
     {
       resolve: 'gatsby-plugin-google-fonts',
@@ -55,17 +30,19 @@ module.exports = {
         display: 'swap'
       }
     },
+    'gatsby-plugin-sitemap',
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        // Gatsby required rules directory
-        rulePaths: [gatsbyRequiredRules],
-        // Default settings that may be ommitted or customized
-        stages: ['develop'],
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
-        exclude: ['node_modules', 'bower_components', '.cache', 'public']
-        // Any additional eslint-webpack-plugin options below
-        // ...
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    'gatsby-plugin-sass',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/images/favicon.png'
       }
     },
     {
@@ -90,6 +67,19 @@ module.exports = {
             endpoint: 'tags'
           }
         ]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        // Gatsby required rules directory
+        rulePaths: [gatsbyRequiredRules],
+        // Default settings that may be ommitted or customized
+        stages: ['develop'],
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        exclude: ['node_modules', 'bower_components', '.cache', 'public']
+        // Any additional eslint-webpack-plugin options below
+        // ...
       }
     }
   ]
