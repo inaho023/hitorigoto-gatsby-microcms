@@ -48,28 +48,28 @@ const Menubar = () => {
             <Tooltip title={'プロフィール'}>
               <IconButton color={'inherit'}>
                 <Link key={'Profile'} to={'/profile'}>
-                  <Icon path={mdiAccount} size={1} />
+                  <Icon path={mdiAccount} size={1} title={'プロフィール'} />
                 </Link>
               </IconButton>
             </Tooltip>
             <Tooltip title={'Twitter'}>
               <IconButton color={'inherit'}>
                 <a key={'Twitter'} href={URL_MY_TWITTER} target={'_blank'} rel={'noreferrer'}>
-                  <Icon path={mdiTwitter} size={1} />
+                  <Icon path={mdiTwitter} size={1} title={'Twitter'} />
                 </a>
               </IconButton>
             </Tooltip>
             <Tooltip title={'Instagram'}>
               <IconButton color={'inherit'}>
                 <a key={'Instagram'} href={URL_MY_INSTAGRAM} target={'_blank'} rel={'noreferrer'}>
-                  <Icon path={mdiInstagram} size={1} />
+                  <Icon path={mdiInstagram} size={1} title={'Instagram'} />
                 </a>
               </IconButton>
             </Tooltip>
             <Tooltip title={'ツイキャス'}>
               <IconButton color={'inherit'}>
                 <a key={'TwitCasting'} href={URL_MY_TWITCASTING} target={'_blank'} rel={'noreferrer'}>
-                  <Icon path={mdiBroadcast} size={1} />
+                  <Icon path={mdiBroadcast} size={1} title={'ツイキャス'} />
                 </a>
               </IconButton>
             </Tooltip>
