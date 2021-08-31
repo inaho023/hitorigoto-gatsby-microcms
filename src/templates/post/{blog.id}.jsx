@@ -22,7 +22,7 @@ import moment from 'moment'
 import Layout from '../../components/Layout'
 import Gallery from '../../components/Gallery'
 import ShareButton from '../../components/ShareButton'
-import Disqus from '../../components/Disqus'
+import Comment from '../../components/Comment'
 
 // スタイルシート
 import * as styles from '../../styles/{blog.id}.module.scss'
@@ -167,9 +167,9 @@ const post = ({ data }) => {
         }
         <Gallery galleries={blog.galleries} />
         {
-          // Disqus
+          // コメント欄
         }
-        <Disqus blog={blog} />
+        <Comment blog={blog} />
       </Box>
       {
         // 前後の記事へ移動

@@ -5,12 +5,12 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 // その他モジュール
-import { DiscussionEmbed } from 'disqus-react'
+import { Disqus } from 'gatsby-plugin-disqus'
 
 // スタイルシート
 import * as styles from '../styles/Disqus.module.scss'
 
-const Disqus = props => {
+const Comment = props => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -30,9 +30,9 @@ const Disqus = props => {
   // リターン
   return (
     <div className={styles.disqus}>
-      <DiscussionEmbed shortname='jam-inaho-space-disqus' config={{ url: url, identifier: props.blog.blogId, title: props.blog.title, language: data.site.siteMetadata.lang }} />
+      <Disqus config={{ url: url, identifier: props.blog.blogId, title: props.blog.title }} />
     </div>
   )
 }
 
-export default Disqus
+export default Comment

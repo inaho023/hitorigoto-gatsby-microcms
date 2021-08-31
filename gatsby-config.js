@@ -70,6 +70,12 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-disqus',
+      options: {
+        shortname: 'blog-inaho-space-disqus'
+      }
+    },
+    {
       resolve: 'gatsby-plugin-eslint',
       options: {
         // Gatsby required rules directory
