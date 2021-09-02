@@ -22,9 +22,6 @@ import moment from 'moment'
 import * as styles from '../styles/ArchiveMenu.module.scss'
 
 const ArchiveMenu = () => {
-  // 配列初期化
-  const arrayYear = []
-  const arrayMonth = []
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -35,6 +32,9 @@ const ArchiveMenu = () => {
       }
     }
   `)
+  // 配列初期化
+  const arrayYear = []
+  const arrayMonth = []
   // 年月を配列化
   data.allMicrocmsBlog.nodes.map((node, index) => {
     arrayYear[index] = moment(node.datetime, 'YYYYMM').format('YYYY')
