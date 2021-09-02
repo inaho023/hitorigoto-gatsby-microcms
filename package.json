@@ -23,6 +23,7 @@
     "@mdi/react": "^1.5.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.13.0",
+    "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-disqus": "^1.2.3",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-gtag": "^3.13.0",
@@ -48,7 +49,6 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-webpack": "^0.13.1",
     "eslint-loader": "^4.0.2",
@@ -58,7 +58,6 @@
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^3.0.1",
-    "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-eslint": "^4.0.0",
     "prettier": "^2.3.2"
   }
