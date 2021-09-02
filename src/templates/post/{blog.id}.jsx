@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 
 // Material-UI
+import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -177,32 +178,36 @@ const post = ({ data }) => {
       <nav className={styles.nav}>
         <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
           {prevArticle ? (
-            <Grid item className={styles.prev} xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <Tooltip title={'前の記事へ'} arrow>
                 <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
-                  <Box className={styles.box}>
-                    <h5>{prevArticle.node.title}</h5>
-                  </Box>
-                  <img className={styles.image} src={prevImage} alt={prevArticle.node.title} />
+                  <Card className={styles.prev}>
+                    <Box className={styles.box}>
+                      <h5>{prevArticle.node.title}</h5>
+                    </Box>
+                    <img className={styles.image} src={prevImage} alt={prevArticle.node.title} />
+                  </Card>
                 </Link>
               </Tooltip>
             </Grid>
           ) : (
-            <Grid item className={styles.nocard} xs={12} md={5} />
+            <Grid item className={styles.nocard} xs={12} md={6} />
           )}
           {nextArticle ? (
-            <Grid item className={styles.next} xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <Tooltip title={'次の記事へ'} arrow>
                 <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
-                  <img className={styles.image} src={nextImage} alt={nextArticle.node.title} />
-                  <Box className={styles.box}>
-                    <h5>{nextArticle.node.title}</h5>
-                  </Box>
+                  <Card className={styles.next}>
+                    <img className={styles.image} src={nextImage} alt={nextArticle.node.title} />
+                    <Box className={styles.box}>
+                      <h5>{nextArticle.node.title}</h5>
+                    </Box>
+                  </Card>
                 </Link>
               </Tooltip>
             </Grid>
           ) : (
-            <Grid item className={styles.nocard} xs={12} md={5} />
+            <Grid item className={styles.nocard} xs={12} md={6} />
           )}
         </Grid>
       </nav>
