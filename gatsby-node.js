@@ -53,7 +53,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
   result.data.allMicrocmsBlog.edges.forEach((edge, index) => {
     const id = edge.node.datetime
-    const name = moment(edge.node.datetime, 'YYYYMM').format('YYYY年MM月')
+    const name = moment(edge.node.datetime, 'YYYYMM').format('YYYY年M月')
     const from = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) - 1, 1)
     const to = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')) + 1 : Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? 0 : Number(moment(edge.node.datetime, 'YYYYMM').format('MM')), 1)
     context[index] = { list: list, id: id, name: name, from: from.toISOString(), to: to.toISOString() }
