@@ -26,7 +26,7 @@
     .accordion {
       text-decoration: none;
       color: #332100;
-      background-color: #cc8500;
+      background: #cc8500;
       border: 1px solid #332100;
       box-shadow: #332100 1px 1px 2px;
       font-size: 1.25rem;
@@ -37,12 +37,12 @@
           margin: 0 0.25em 0.5em 0;
           padding: 0.75em;
           line-height: 1;
+          text-transform: none;
           text-decoration: none;
           color: #332100;
-          background-color: orange;
+          background: orange;
           border: 1px solid #332100;
           border-left: 16px solid #332100;
-          box-shadow: #332100 1px 1px 2px;
           font-size: 1.25rem;
           font-weight: 700;
         }
@@ -53,7 +53,6 @@
     .accordion:focus,
     .accordion:active {
       color: #332100;
-      background-color: orange;
     }
   }
 }

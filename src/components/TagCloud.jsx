@@ -4,6 +4,10 @@ import * as React from 'react'
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
+// Material-UI
+import Card from '@material-ui/core/Card'
+import Button from '@material-ui/core/Button'
+
 // Material Design Icons
 import Icon from '@mdi/react'
 import { mdiTag } from '@mdi/js'
@@ -30,15 +34,17 @@ const TagCloud = () => {
         <Icon className={styles.icon} path={mdiTag} size={1.5} />
         <p>タグ</p>
       </div>
-      <div className={styles.tagcloud}>
+      <Card className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {
           return (
             <Link key={node.tagsId} to={'/tag/' + node.tagsId}>
-              {node.name}
+              <Button className={styles.button} size={'medium'} variant={'contained'}>
+                {node.name}
+              </Button>
             </Link>
           )
         })}
-      </div>
+      </Card>
     </div>
   )
 }
