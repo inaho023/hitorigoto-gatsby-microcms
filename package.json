@@ -19,7 +19,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "@mdi/js": "^5.9.55",
+    "@mdi/js": "^6.1.95",
     "@mdi/react": "^1.5.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.13.0",
@@ -35,7 +35,7 @@
     "gatsby-plugin-sitemap": "^4.9.0",
     "gatsby-source-filesystem": "^3.13.0",
     "gatsby-source-microcms": "^1.2.1",
-    "graphql": "^15.5.2",
+    "graphql": "^15.5.3",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
