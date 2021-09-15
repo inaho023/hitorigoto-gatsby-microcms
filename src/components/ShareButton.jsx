@@ -30,7 +30,7 @@ const ShareButton = ({ blog }) => {
   `)
   //
   const url = data.site.siteMetadata.siteUrl + '/post/' + blog.blogId
-  const title = blog.title.replace('＠', ' ＠ ').replace('@', ' @ ')
+  const title = '「' + blog.title.replace('＠', ' ＠ ').replace('@', ' @ ') + '」'
   // リターン
   return (
     <div className={styles.share}>
