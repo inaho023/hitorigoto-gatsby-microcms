@@ -37,7 +37,7 @@ const CategoryMenu = () => {
       <ButtonGroup orientation={'vertical'} fullWidth>
         {data.allMicrocmsCategories.nodes.map(node => {
           return (
-            <Link key={node.categoriesId} to={'/category/' + node.categoriesId}>
+            <Link key={node.categoriesId} to={'/category/' + node.categoriesId + '/'}>
               <Button className={styles.button} size={'large'} variant={'contained'} fullWidth>
                 {node.name}
               </Button>

@@ -123,7 +123,7 @@ const post = ({ data }) => {
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>
                     <Icon className={styles.icon} path={mdiCalendarToday} size={3} />
                     <Box className={styles.text}>
-                      <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM')}>
+                      <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM') + '/'}>
                         {moment(blog.datetime).format('YYYY年MM月DD日')}
                       </Link>
                     </Box>
@@ -131,7 +131,7 @@ const post = ({ data }) => {
                   <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
                     <Icon className={styles.icon} path={mdiShape} size={3} />
                     <Box className={styles.text}>
-                      <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id}>
+                      <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id + '/'}>
                         {blog.category.name}
                       </Link>
                     </Box>
@@ -141,7 +141,7 @@ const post = ({ data }) => {
                     <Box className={styles.text}>
                       {blog.tags.map(tag => {
                         return (
-                          <Link key={tag.tagsId} to={'/tag/' + tag.id}>
+                          <Link key={tag.tagsId} to={'/tag/' + tag.id + '/'}>
                             {tag.name}
                           </Link>
                         )
