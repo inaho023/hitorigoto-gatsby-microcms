@@ -5,6 +5,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -36,14 +37,14 @@ const Menubar = () => {
   `)
   // リターン
   return (
-    <div className={styles.wrapper}>
+    <Box className={styles.wrapper}>
       <AppBar className={styles.AppBar} position={'sticky'}>
         <Toolbar>
           <Link key={'Home'} to={'/'}>
             <p>{data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</p>
           </Link>
-          <div className={styles.grow} />
-          <div className={styles.icon}>
+          <Box className={styles.grow} />
+          <Box className={styles.icon}>
             <IconButton color={'inherit'}>
               <Link key={'Profile'} to={'/profile'}>
                 <Icon path={mdiAccount} size={1} title={'プロフィール'} />
@@ -64,10 +65,10 @@ const Menubar = () => {
                 <Icon path={mdiBroadcast} size={1} title={'ツイキャス'} />
               </a>
             </IconButton>
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   )
 }
 

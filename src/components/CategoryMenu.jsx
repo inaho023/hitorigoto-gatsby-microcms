@@ -5,6 +5,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 
@@ -29,11 +30,11 @@ const CategoryMenu = () => {
   `)
   // リターン
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.title}>
+    <Box className={styles.wrapper}>
+      <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiShape} size={1.5} />
         <p>カテゴリー</p>
-      </div>
+      </Box>
       <ButtonGroup orientation={'vertical'} fullWidth>
         {data.allMicrocmsCategories.nodes.map(node => {
           return (
@@ -45,7 +46,7 @@ const CategoryMenu = () => {
           )
         })}
       </ButtonGroup>
-    </div>
+    </Box>
   )
 }
 

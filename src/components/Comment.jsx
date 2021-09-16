@@ -4,6 +4,9 @@ import React from 'react'
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
 
+// Material-UI
+import Box from '@material-ui/core/Box'
+
 // その他モジュール
 import { Disqus } from 'gatsby-plugin-disqus'
 
@@ -29,9 +32,9 @@ const Comment = props => {
   const url = data.site.siteMetadata.siteUrl + '/post/' + props.blog.blogId
   // リターン
   return (
-    <div className={styles.disqus}>
+    <Box className={styles.disqus}>
       <Disqus config={{ url: url, identifier: props.blog.blogId, title: props.blog.title }} />
-    </div>
+    </Box>
   )
 }
 

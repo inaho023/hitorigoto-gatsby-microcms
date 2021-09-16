@@ -5,6 +5,7 @@ import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 
@@ -29,11 +30,11 @@ const TagCloud = () => {
   `)
   // リターン
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.title}>
+    <Box className={styles.wrapper}>
+      <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiTag} size={1.5} />
         <p>タグ</p>
-      </div>
+      </Box>
       <Card className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {
           return (
@@ -45,7 +46,7 @@ const TagCloud = () => {
           )
         })}
       </Card>
-    </div>
+    </Box>
   )
 }
 

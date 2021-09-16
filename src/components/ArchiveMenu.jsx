@@ -5,6 +5,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
@@ -45,12 +46,12 @@ const ArchiveMenu = () => {
   const siteMonth = Array.from(new Set(arrayMonth))
   // 月別アーカイブ
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.title}>
+    <Box className={styles.wrapper}>
+      <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiArchive} size={1.5} />
         <p>アーカイブ</p>
-      </div>
-      <div className={styles.menu}>
+      </Box>
+      <Box className={styles.menu}>
         {siteYear.map(siteYear => {
           return (
             <Accordion key={siteYear} className={styles.accordion}>
@@ -73,8 +74,8 @@ const ArchiveMenu = () => {
             </Accordion>
           )
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

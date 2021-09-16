@@ -4,6 +4,9 @@ import React from 'react'
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
 
+// Material-UI
+import Box from '@material-ui/core/Box'
+
 // その他モジュール
 import { EmailShareButton, FacebookShareButton, HatenaShareButton, LineShareButton, PinterestShareButton, PocketShareButton, TumblrShareButton, TwitterShareButton, EmailIcon, FacebookIcon, HatenaIcon, LineIcon, PinterestIcon, PocketIcon, TumblrIcon, TwitterIcon } from 'react-share'
 
@@ -33,48 +36,48 @@ const ShareButton = ({ blog }) => {
   const title = '「' + blog.title.replace('＠', ' ＠ ').replace('@', ' @ ') + '」'
   // リターン
   return (
-    <div className={styles.share}>
-      <div className={styles.button}>
+    <Box className={styles.share}>
+      <Box className={styles.button}>
         <TwitterShareButton url={url} title={title} hashtags={[data.site.siteMetadata.title]}>
           <TwitterIcon size={SHARE_BUTTON_SIZE} round />
         </TwitterShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <FacebookShareButton url={url} quote={title}>
           <FacebookIcon size={SHARE_BUTTON_SIZE} round />
         </FacebookShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <TumblrShareButton url={url} title={title}>
           <TumblrIcon size={SHARE_BUTTON_SIZE} round />
         </TumblrShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <LineShareButton url={url} title={title}>
           <LineIcon size={SHARE_BUTTON_SIZE} round />
         </LineShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <PinterestShareButton url={url} description={title} media={''}>
           <PinterestIcon size={SHARE_BUTTON_SIZE} round />
         </PinterestShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <PocketShareButton url={url} title={title}>
           <PocketIcon size={SHARE_BUTTON_SIZE} round />
         </PocketShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <HatenaShareButton url={url} title={title}>
           <HatenaIcon size={SHARE_BUTTON_SIZE} round />
         </HatenaShareButton>
-      </div>
-      <div className={styles.button}>
+      </Box>
+      <Box className={styles.button}>
         <EmailShareButton url={url} subject={title} body={title}>
           <EmailIcon size={SHARE_BUTTON_SIZE} round />
         </EmailShareButton>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

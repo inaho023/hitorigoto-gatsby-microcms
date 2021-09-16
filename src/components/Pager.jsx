@@ -5,6 +5,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import Pagination from '@material-ui/lab/Pagination'
 import PaginationItem from '@material-ui/lab/PaginationItem'
 
@@ -32,9 +33,9 @@ const Pager = ({ pageContext }) => {
   }
   // リターン
   return (
-    <div className={styles.wrapper}>
+    <Box className={styles.wrapper}>
       <Pagination className={styles.MuiPagination} page={pageContext.humanPageNumber} count={pageContext.numberOfPages} size={'large'} variant={'outlined'} shape={'rounded'} showFirstButton showLastButton renderItem={item => <PaginationItem className={styles.MuiPaginationItem} component={Link} to={path[item.page - 1]} {...item} />} />
-    </div>
+    </Box>
   )
 }
 

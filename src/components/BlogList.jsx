@@ -5,6 +5,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 // Material-UI
+import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 
@@ -18,11 +19,11 @@ import { THUMB_IMG_OPT_LIST } from './Constant'
 const BlogList = ({ title, blog }) => {
   // リターン
   return (
-    <div className={styles.wrapper}>
+    <Box className={styles.wrapper}>
       {title && (
-        <div className={styles.list}>
+        <Box className={styles.list}>
           <h2>{title}</h2>
-        </div>
+        </Box>
       )}
       <Grid container spacing={1}>
         {blog.map(blog => {
@@ -31,25 +32,25 @@ const BlogList = ({ title, blog }) => {
             <Grid key={blog.node.blogId} item xs={12} md={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
                 <Card className={styles.card}>
-                  <div className={styles.image}>
+                  <Box className={styles.image}>
                     <img key={blog.node.blogId} src={blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)} alt={blog.node.title} width={200} height={200} />
-                  </div>
-                  <div className={styles.title}>
+                  </Box>
+                  <Box className={styles.title}>
                     <h3>{blog.node.title && blog.node.title}</h3>
-                  </div>
-                  <div className={styles.category}>
+                  </Box>
+                  <Box className={styles.category}>
                     <p>{blog.node.category && blog.node.category.name}</p>
-                  </div>
-                  <div className={styles.date}>
+                  </Box>
+                  <Box className={styles.date}>
                     <p>{blog.node.datetime && blog.node.datetime}</p>
-                  </div>
+                  </Box>
                 </Card>
               </Link>
             </Grid>
           )
         })}
       </Grid>
-    </div>
+    </Box>
   )
 }
 

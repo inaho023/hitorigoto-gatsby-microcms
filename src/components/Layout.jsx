@@ -8,8 +8,8 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 // Material-UI
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Fab from '@material-ui/core/Fab'
-import Tooltip from '@material-ui/core/Tooltip'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -61,7 +61,7 @@ const Layout = ({ sitePosition, children }) => {
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
         <article>
-          <div className={styles.main}>{children}</div>
+          <Box className={styles.main}>{children}</Box>
         </article>
         <section id={'Botton'} className={styles.bottom}>
           <Grid container spacing={1}>
@@ -82,13 +82,11 @@ const Layout = ({ sitePosition, children }) => {
           </Link>
         </footer>
       </Container>
-      <div className={styles.float}>
-        <Tooltip title={'先頭へ'}>
-          <Fab href={'#Header'}>
-            <Icon path={mdiNavigation} size={1} />
-          </Fab>
-        </Tooltip>
-      </div>
+      <Box className={styles.float}>
+        <Fab href={'#Header'}>
+          <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
+        </Fab>
+      </Box>
     </>
   )
 }
