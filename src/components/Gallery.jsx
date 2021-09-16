@@ -31,7 +31,7 @@ const Gallery = ({ galleries }) => {
       return (
         <Accordion key={'Gallery' + (index + 1).toString()} className={styles.gallery} defaultExpanded>
           <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={2} />}>
-            <Icon path={mdiCamera} size={2} title={galleryTitle} />
+            <Icon path={mdiCamera} size={2} title={'ギャラリー'} />
             <span className={styles.text}>{galleryTitle}</span>
           </AccordionSummary>
           <AccordionDetails>

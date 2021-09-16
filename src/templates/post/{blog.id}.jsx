@@ -9,7 +9,6 @@ import { Link, graphql } from 'gatsby'
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Tooltip from '@material-ui/core/Tooltip'
 import Box from '@material-ui/core/Box'
 
 // Material Design Icons
@@ -121,7 +120,7 @@ const post = ({ data }) => {
                 </Grid>
                 <Grid item className={styles.wrapper} xs={12} md={6}>
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>
-                    <Icon className={styles.icon} path={mdiCalendarToday} size={3} />
+                    <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
                     <Box className={styles.text}>
                       <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM') + '/'}>
                         {moment(blog.datetime).format('YYYY年MM月DD日')}
@@ -129,7 +128,7 @@ const post = ({ data }) => {
                     </Box>
                   </Grid>
                   <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
-                    <Icon className={styles.icon} path={mdiShape} size={3} />
+                    <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
                     <Box className={styles.text}>
                       <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id + '/'}>
                         {blog.category.name}
@@ -137,7 +136,7 @@ const post = ({ data }) => {
                     </Box>
                   </Grid>
                   <Grid item className={styles.box} key={'BoxTags'} xs={12}>
-                    <Icon className={styles.icon} path={mdiTag} size={3} />
+                    <Icon className={styles.icon} path={mdiTag} size={3} title={'タグ'} />
                     <Box className={styles.text}>
                       {blog.tags.map(tag => {
                         return (
@@ -149,7 +148,7 @@ const post = ({ data }) => {
                     </Box>
                   </Grid>
                   <Grid item className={styles.box} key={'BoxShare'} xs={12}>
-                    <Icon className={styles.icon} path={mdiShareVariant} size={3} />
+                    <Icon className={styles.icon} path={mdiShareVariant} size={3} title={'シェア'} />
                     <Box className={styles.text}>
                       <ShareButton blog={blog} />
                     </Box>
@@ -179,32 +178,28 @@ const post = ({ data }) => {
         <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
           {prevArticle ? (
             <Grid item xs={12} md={6}>
-              <Tooltip title={'前の記事へ'} arrow>
-                <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId}>
-                  <Card className={styles.prev}>
-                    <Box className={styles.box}>
-                      <h5>{prevArticle.node.title}</h5>
-                    </Box>
-                    <img className={styles.image} src={prevImage} alt={prevArticle.node.title} />
-                  </Card>
-                </Link>
-              </Tooltip>
+              <Link key={prevArticle.node.blogId} to={'/post/' + prevArticle.node.blogId} title={'前の記事へ'}>
+                <Card className={styles.prev}>
+                  <Box className={styles.box}>
+                    <h5>{prevArticle.node.title}</h5>
+                  </Box>
+                  <img className={styles.image} src={prevImage} alt={prevArticle.node.title} />
+                </Card>
+              </Link>
             </Grid>
           ) : (
             <Grid item className={styles.nocard} xs={12} md={6} />
           )}
           {nextArticle ? (
             <Grid item xs={12} md={6}>
-              <Tooltip title={'次の記事へ'} arrow>
-                <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId}>
-                  <Card className={styles.next}>
-                    <img className={styles.image} src={nextImage} alt={nextArticle.node.title} />
-                    <Box className={styles.box}>
-                      <h5>{nextArticle.node.title}</h5>
-                    </Box>
-                  </Card>
-                </Link>
-              </Tooltip>
+              <Link key={nextArticle.node.blogId} to={'/post/' + nextArticle.node.blogId} title={'次の記事へ'}>
+                <Card className={styles.next}>
+                  <img className={styles.image} src={nextImage} alt={nextArticle.node.title} />
+                  <Box className={styles.box}>
+                    <h5>{nextArticle.node.title}</h5>
+                  </Box>
+                </Card>
+              </Link>
             </Grid>
           ) : (
             <Grid item className={styles.nocard} xs={12} md={6} />
