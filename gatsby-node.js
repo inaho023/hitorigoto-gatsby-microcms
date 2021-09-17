@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage, // The Gatsby `createPage` function
     items: result.data.allMicrocmsBlog.edges, // An array of objects
     itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
-    pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/page/'), // Creates pages like `/blog`, `/blog/2`, etc
+    pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/page'), // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve('src/templates/index.jsx'), // Just like `createPage()`
     context: { list: list }
   })
@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const from = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) - 1, 1)
     const to = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')) + 1 : Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? 0 : Number(moment(edge.node.datetime, 'YYYYMM').format('MM')), 1)
     context[index] = { list: list, id: id, name: name, from: from.toISOString(), to: to.toISOString() }
-    pathList[index] = '/' + list + '/' + id + '/'
+    pathList[index] = '/' + list + '/' + id
     // 記事リスト（アーカイブ）
     blogArchive[index] = graphql(`
       query archiveListQuery($from: Date = "${from.toISOString()}", $to: Date = "${to.toISOString()}") {
@@ -103,7 +103,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const id = node.categoriesId
     const name = node.name
     context[index] = { list: list, id: id, name: name }
-    pathList[index] = '/' + list + '/' + id + '/'
+    pathList[index] = '/' + list + '/' + id
     // 記事リスト（カテゴリー）
     blogCategory[index] = graphql(`
       query categoryListQuery($id: String = "${id}") {
@@ -150,7 +150,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const id = node.tagsId
     const name = node.name
     context[index] = { list: list, id: id, name: name }
-    pathList[index] = '/' + list + '/' + id + '/'
+    pathList[index] = '/' + list + '/' + id
     blogTag[index] = graphql(`
       query tagListQuery($id: String = "${id}") {
         allMicrocmsBlog(filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
