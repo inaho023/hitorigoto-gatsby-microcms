@@ -8,7 +8,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 
 // スタイルシート
-import * as styles from '../styles/{pade.id}.module.scss'
+import * as styles from '../styles/{page.id}.module.scss'
 
 // クエリー実行
 export const query = graphql`
