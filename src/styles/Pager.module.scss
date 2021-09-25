@@ -1,44 +1,18 @@
-.wrapper {
-  .MuiPagination {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    vertical-align: middle;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-top: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
+.pagination {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 
-    .MuiPaginationItem {
-      width: fit-content;
-      align-items: center;
-      justify-content: center;
-      vertical-align: middle;
-      position: relative;
-      border-radius: 8px;
-      margin: 8px;
-      padding: 8px;
-      background-color: #cc8500;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-align: center;
-      transition: color 0.15s ease, border-color 0.15s ease;
-      box-shadow: #332100 4px 4px 8px;
-    }
-
-    .MuiPaginationItem:hover,
-    .MuiPaginationItem:focus,
-    .MuiPaginationItem:active {
-      cursor: pointer;
-      background-color: orange;
-    }
+  .paginationitem {
+    font-size: 1.75rem;
+    font-weight: 700;
   }
 }

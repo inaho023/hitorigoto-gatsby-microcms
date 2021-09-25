@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import Fab from '@material-ui/core/Fab'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material//Box'
+import Fab from '@mui/material/Fab'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -23,6 +23,8 @@ import TagCloud from './TagCloud'
 
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
+
+// テーマ
 
 // Layout コンポーネント
 const Layout = ({ sitePosition, children }) => {
@@ -50,7 +52,7 @@ const Layout = ({ sitePosition, children }) => {
       </Helmet>
       <a id={'Header'} />
       <Menubar />
-      <Container className={styles.container} maxWidth={'xl'}>
+      <Container maxWidth={'xl'}>
         <header className={styles.header}>
           <Link key={'Header'} className={styles.title} to='/'>
             <a>
@@ -60,10 +62,8 @@ const Layout = ({ sitePosition, children }) => {
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
-        <article>
-          <Box className={styles.main}>{children}</Box>
-        </article>
-        <section id={'Bottom'} className={styles.bottom}>
+        <article>{children}</article>
+        <section id={'Bottom'}>
           <Grid container spacing={1}>
             <Grid item xs={12} md={3}>
               <ArchiveMenu />

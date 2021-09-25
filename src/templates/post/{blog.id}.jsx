@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 
 // Material-UI
-import Card from '@material-ui/core/Card'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
+import Card from '@mui/material/Card'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -122,7 +122,7 @@ const post = ({ data }) => {
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>
                     <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
                     <Box className={styles.text}>
-                      <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM') + '/'}>
+                      <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM')}>
                         {moment(blog.datetime).format('YYYY年MM月DD日')}
                       </Link>
                     </Box>
@@ -130,7 +130,7 @@ const post = ({ data }) => {
                   <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
                     <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
                     <Box className={styles.text}>
-                      <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id + '/'}>
+                      <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id}>
                         {blog.category.name}
                       </Link>
                     </Box>
@@ -140,7 +140,7 @@ const post = ({ data }) => {
                     <Box className={styles.text}>
                       {blog.tags.map(tag => {
                         return (
-                          <Link key={tag.tagsId} to={'/tag/' + tag.id + '/'}>
+                          <Link key={tag.tagsId} to={'/tag/' + tag.id}>
                             {tag.name}
                           </Link>
                         )

@@ -1,111 +1,91 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.list {
+  width: 100%;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+}
 
-  .list {
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    margin-left: auto;
-    margin-right: auto;
-    border-top: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
+.card {
+  position: relative;
+  width: auto;
+  height: 200px;
+  overflow: hidden;
+  border-left: 16px solid #332100;
 
-  .card {
-    position: relative;
+  .image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
     height: 200px;
     overflow: hidden;
+    object-fit: cover;
+  }
+
+  .content {
+    position: absolute;
+    top: 0px;
+    left: 200px;
+    width: auto;
+    height: 200px;
     background-color: #cc8500;
-    border: 1px solid #332100;
-    border-left: 16px solid #332100;
+    padding: 8px;
 
-    .image {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 200px;
-      height: 200px;
-      overflow: hidden;
-      object-fit: cover;
-    }
-
-    .title {
-      position: absolute;
-      top: 0px;
-      left: 200px;
-      width: auto;
-      height: 200px;
-      padding: 0rem;
-
-      h3 {
-        margin: 0.5rem;
-        line-height: 1.5rem;
-        font-size: 1.25rem;
-        font-weight: 700;
-        word-break: break-all;
-      }
+    .date {
+      width: calc(100% - 8px);
+      height: fit-content;
+      justify-content: center;
+      vertical-align: middle;
+      margin: 4px;
+      padding: 4px;
+      color: #332100;
+      background-color: orange;
+      border: 1px solid #332100;
+      border-left: 8px solid #332100;
+      box-shadow: #332100 1px 1px 2px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.75rem;
     }
 
     .category {
-      position: absolute;
-      top: 0px;
-      left: 4px;
-      width: fit-content;
+      width: calc(100% - 8px);
       height: fit-content;
-
-      p {
-        display: inline-block;
-        justify-content: right;
-        vertical-align: middle;
-        padding: 0.5em;
-        text-decoration: none;
-        color: #332100;
-        background-color: orange;
-        border: 1px solid #332100;
-        border-left: 8px solid #332100;
-        box-shadow: #332100 1px 1px 2px;
-        font-weight: 700;
-        font-size: 0.75rem;
-      }
+      justify-content: center;
+      vertical-align: middle;
+      margin: 4px;
+      padding: 4px;
+      color: #332100;
+      background-color: orange;
+      border: 1px solid #332100;
+      border-left: 8px solid #332100;
+      box-shadow: #332100 1px 1px 2px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.75rem;
     }
 
-    .date {
-      position: absolute;
-      bottom: 0px;
-      left: 96px;
-      width: fit-content;
-      height: fit-content;
-
-      p {
-        display: inline-block;
-        justify-content: right;
-        vertical-align: middle;
-        padding: 0.5em;
-        text-decoration: none;
-        color: #332100;
-        background-color: orange;
-        border: 1px solid #332100;
-        border-left: 8px solid #332100;
-        box-shadow: #332100 1px 1px 2px;
-        font-weight: 700;
-        font-size: 0.75rem;
-      }
+    .title {
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      justify-content: center;
+      vertical-align: middle;
+      margin: 4px;
+      padding: 4px;
+      line-height: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      word-break: break-all;
     }
-  }
-
-  .card:hover,
-  .card:focus,
-  .card:active {
-    cursor: pointer;
-    color: #332100;
-    background-color: orange;
   }
 }

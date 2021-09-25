@@ -5,10 +5,10 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
+import Box from '@mui/material/Box'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
 
 // Material Design Icons
 import Icon from '@mdi/react'

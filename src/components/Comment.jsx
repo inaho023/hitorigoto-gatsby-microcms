@@ -5,7 +5,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
+import Box from '@mui/material/Box'
 
 // その他モジュール
 import { Disqus } from 'gatsby-plugin-disqus'

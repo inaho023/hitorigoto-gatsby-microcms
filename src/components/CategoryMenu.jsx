@@ -5,9 +5,9 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -38,7 +38,7 @@ const CategoryMenu = () => {
       <ButtonGroup orientation={'vertical'} fullWidth>
         {data.allMicrocmsCategories.nodes.map(node => {
           return (
-            <Link key={node.categoriesId} to={'/category/' + node.categoriesId + '/'}>
+            <Link key={node.categoriesId} to={'/category/' + node.categoriesId}>
               <Button className={styles.button} size={'large'} variant={'contained'} fullWidth>
                 {node.name}
               </Button>

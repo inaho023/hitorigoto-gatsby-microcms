@@ -5,9 +5,9 @@ import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
-import Card from '@material-ui/core/Card'
-import Button from '@material-ui/core/Button'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import Button from '@mui/material/Button'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -38,7 +38,7 @@ const TagCloud = () => {
       <Card className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {
           return (
-            <Link key={node.tagsId} to={'/tag/' + node.tagsId + '/'}>
+            <Link key={node.tagsId} to={'/tag/' + node.tagsId}>
               <Button className={styles.button} size={'medium'} variant={'contained'}>
                 {node.name}
               </Button>

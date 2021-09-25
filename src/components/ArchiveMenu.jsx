@@ -5,12 +5,12 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Box from '@mui/material/Box'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -61,7 +61,7 @@ const ArchiveMenu = () => {
                   {siteMonth.map(siteMonth => {
                     return (
                       moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
-                        <Link key={siteMonth} to={'/archive/' + siteMonth + '/'}>
+                        <Link key={siteMonth} to={'/archive/' + siteMonth}>
                           <Button key={siteMonth} className={styles.button} size={'large'} variant={'contained'} fullWidth>
                             <a>{moment(siteMonth, 'YYYYMM').format('M月')}</a>
                           </Button>

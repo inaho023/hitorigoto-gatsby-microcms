@@ -2,10 +2,10 @@
 import React from 'react'
 
 // Material-UI
-import Grid from '@material-ui/core/Grid'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
+import Grid from '@mui/material/Grid'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
 
 // Material Design Icons
 import Icon from '@mdi/react'

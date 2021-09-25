@@ -5,11 +5,10 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 // Material-UI
-import Box from '@material-ui/core/Box'
-import Pagination from '@material-ui/lab/Pagination'
-import PaginationItem from '@material-ui/lab/PaginationItem'
+import Pagination from '@mui/material/Pagination'
+import PaginationItem from '@mui/material/PaginationItem'
 
-// 自作モジュール
+// スタイル
 import * as styles from '../styles/Pager.module.scss'
 
 // ページャー
@@ -32,11 +31,7 @@ const Pager = ({ pageContext }) => {
     }
   }
   // リターン
-  return (
-    <Box className={styles.wrapper}>
-      <Pagination className={styles.MuiPagination} page={pageContext.humanPageNumber} count={pageContext.numberOfPages} size={'large'} variant={'outlined'} shape={'rounded'} showFirstButton showLastButton renderItem={item => <PaginationItem className={styles.MuiPaginationItem} component={Link} to={path[item.page - 1]} {...item} />} />
-    </Box>
-  )
+  return <Pagination className={styles.pagination} page={pageContext.humanPageNumber} count={pageContext.numberOfPages} size={'large'} variant={'outlined'} shape={'rounded'} showFirstButton showLastButton renderItem={item => <PaginationItem className={styles.paginationitem} component={Link} to={path[item.page - 1]} {...item} />} />
 }
 
 export default Pager
