@@ -39,45 +39,9 @@
     background-color: #cc8500;
     padding: 8px;
 
-    .date {
-      width: calc(100% - 8px);
-      height: fit-content;
-      justify-content: center;
-      vertical-align: middle;
-      margin: 4px;
-      padding: 4px;
-      color: #332100;
-      background-color: orange;
-      border: 1px solid #332100;
-      border-left: 8px solid #332100;
-      box-shadow: #332100 1px 1px 2px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.75rem;
-    }
-
-    .category {
-      width: calc(100% - 8px);
-      height: fit-content;
-      justify-content: center;
-      vertical-align: middle;
-      margin: 4px;
-      padding: 4px;
-      color: #332100;
-      background-color: orange;
-      border: 1px solid #332100;
-      border-left: 8px solid #332100;
-      box-shadow: #332100 1px 1px 2px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.75rem;
-    }
-
     .title {
       width: calc(100% - 8px);
-      height: calc(100% - 8px);
+      height: calc(100% - 24px);
       justify-content: center;
       vertical-align: middle;
       margin: 4px;
@@ -86,6 +50,47 @@
       font-size: 1.25rem;
       font-weight: 700;
       word-break: break-all;
+    }
+
+    .box {
+      display: flex;
+      flex-direction: row;
+
+      .date {
+        width: calc(100% - 8px);
+        height: fit-content;
+        justify-content: center;
+        vertical-align: middle;
+        margin: 4px;
+        padding: 4px;
+        color: #332100;
+        background-color: orange;
+        border: 1px solid #332100;
+        border-left: 8px solid #332100;
+        box-shadow: #332100 1px 1px 2px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
+
+      .category {
+        width: calc(100% - 8px);
+        height: fit-content;
+        justify-content: center;
+        vertical-align: middle;
+        margin: 4px;
+        padding: 4px;
+        color: #332100;
+        background-color: orange;
+        border: 1px solid #332100;
+        border-left: 8px solid #332100;
+        box-shadow: #332100 1px 1px 2px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
     }
   }
 }

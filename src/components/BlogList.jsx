@@ -32,17 +32,11 @@ const BlogList = ({ title, blog }) => {
                 <Card className={styles.card}>
                   <CardMedia key={blog.node.blogId} className={styles.image} component={'img'} image={blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)} alt={blog.node.title} width={200} height={200} />
                   <CardContent className={styles.content}>
-                    <Grid container spacing={0}>
-                      <Grid item xs={6}>
-                        <p className={styles.date}>{blog.node.datetime && blog.node.datetime}</p>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <p className={styles.category}>{blog.node.category && blog.node.category.name}</p>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <p className={styles.title}>{blog.node.title && blog.node.title}</p>
-                      </Grid>
-                    </Grid>
+                    <p className={styles.title}>{blog.node.title && blog.node.title}</p>
+                    <Box className={styles.box}>
+                      <p className={styles.date}>{blog.node.datetime && blog.node.datetime}</p>
+                      <p className={styles.category}>{blog.node.category && blog.node.category.name}</p>
+                    </Box>
                   </CardContent>
                 </Card>
               </Link>
