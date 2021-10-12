@@ -1,5 +1,6 @@
 // React
 import React from 'react'
+import { useImage } from 'react-image'
 
 // Gatsby
 import { Link } from 'gatsby'
@@ -20,7 +21,7 @@ import { mdiCalendarToday, mdiShape } from '@mdi/js'
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_LIST } from './Constant'
+import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ブログリスト
 const BlogList = ({ title, blog }) => {
@@ -31,14 +32,17 @@ const BlogList = ({ title, blog }) => {
       <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
         {blog.map(blog => {
           // 画像URL生成
-          const image = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)
+          const { src } = useImage({
+            srcList: [blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm), blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm && '&' + blog.node.image_parm)],
+            useSuspense: false
+          })
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} ms={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
                 <Card className={styles.card} title={blog.node.title}>
                   <CardActionArea>
-                    <CardMedia component={'img'} height={250} image={image} title={blog.node.title} />
+                    <CardMedia component={'img'} height={250} src={src} alt={blog.node.title} />
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
                         <Grid item xs={12}>

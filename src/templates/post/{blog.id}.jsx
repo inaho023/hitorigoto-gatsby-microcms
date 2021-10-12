@@ -1,7 +1,7 @@
 // React
 import React from 'react'
 import { Helmet } from 'react-helmet'
-
+import { useImage } from 'react-image'
 // Gatsby
 import { Link, graphql } from 'gatsby'
 
@@ -26,8 +26,10 @@ import Comment from '../../components/Comment'
 
 // スタイルシート
 import * as styles from '../../styles/{blog.id}.module.scss'
+
 // 定数
-import { THUMB_IMG_OPT_DESKTOP_DETAIL, THUMB_IMG_OPT_MOBILE_DETAIL, THUMB_IMG_OPT_NAVI } from '../../components/Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
+
 // クエリー
 export const pageQuery = graphql`
   query postDetailQuery($id: String!) {
@@ -87,10 +89,11 @@ const post = ({ data }) => {
   const blog = data.microcmsBlog
   // 記事リスト
   const list = data.allMicrocmsBlog.edges
-  // 画像生成
-  const image = []
-  image[0] = blog.image.url + THUMB_IMG_OPT_MOBILE_DETAIL + (blog.image_parm && '&' + blog.image_parm)
-  image[1] = blog.image.url + THUMB_IMG_OPT_DESKTOP_DETAIL + (blog.image_parm && '&' + blog.image_parm)
+  // 画像URL生成
+  const { src } = useImage({
+    srcList: [blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm), blog.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm && '&' + blog.image_parm)],
+    useSuspense: false
+  })
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
   const prevArticle = current === 0 ? null : list[current - 1]
@@ -105,7 +108,7 @@ const post = ({ data }) => {
       <Helmet>
         <meta property='og:type' content='article' />
         <meta property='og:title' content={blog.title} />
-        <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_DESKTOP_DETAIL + '&' + blog.image_parm} />
+        <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_DETAIL + '&' + blog.image_parm} />
       </Helmet>
       <Box className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.title}>
@@ -116,7 +119,7 @@ const post = ({ data }) => {
             <Grid item className={styles.wrapper} xs={12}>
               <Grid container spacing={0}>
                 <Grid item xs={12} md={6}>
-                  <img src={image[0]} srcSet={image[0] + ' 600w,' + image[1]} alt={blog.title} />
+                  <img className={styles.image} src={src} alt={blog.title} width={960} height={960} />
                 </Grid>
                 <Grid item className={styles.wrapper} xs={12} md={6}>
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>
