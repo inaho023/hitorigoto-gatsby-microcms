@@ -14,80 +14,61 @@
 }
 
 .card {
-  position: relative;
-  width: auto;
-  height: 200px;
+  max-width: 400px;
+  margin: auto;
   overflow: hidden;
-  border-left: 16px solid #332100;
-
-  .image {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    object-fit: cover;
-  }
 
   .content {
-    position: absolute;
-    top: 0px;
-    left: 200px;
-    width: calc(100% - 200px);
-    height: 200px;
-    background-color: #cc8500;
-    padding: 8px;
+    background: #cc8500;
+    margin-top: 0px;
 
     .title {
-      width: calc(100% - 8px);
-      height: calc(100% - 24px);
-      justify-content: center;
-      vertical-align: middle;
-      margin: 4px;
-      padding: 4px;
-      line-height: 1.5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      word-break: break-all;
+      display: inline-flex;
+      width: 100%;
+      height: 7rem;
+
+      h3 {
+        color: #332100;
+        line-height: 1.5rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        word-break: break-all;
+        overflow: hidden;
+      }
     }
 
     .box {
-      display: flex;
-      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      color: #332100;
+      background: orange;
+      border: 1px solid #332100;
+      border-left: 8px solid #332100;
+      box-shadow: #332100 1px 1px 2px;
 
-      .date {
-        width: calc(100% - 8px);
-        height: fit-content;
+      .icon {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
         justify-content: center;
         vertical-align: middle;
-        margin: 4px;
-        padding: 4px;
+        padding-right: 2px;
         color: #332100;
-        background-color: orange;
-        border: 1px solid #332100;
-        border-left: 8px solid #332100;
-        box-shadow: #332100 1px 1px 2px;
-        text-align: center;
-        text-decoration: none;
+        line-height: 1.25rem;
         font-weight: 700;
-        font-size: 0.75rem;
+        font-size: 1rem;
       }
 
-      .category {
-        width: calc(100% - 8px);
-        height: fit-content;
-        justify-content: center;
+      .text {
+        width: auto;
+        align-items: center;
+        justify-content: left;
         vertical-align: middle;
-        margin: 4px;
-        padding: 4px;
-        color: #332100;
-        background-color: orange;
-        border: 1px solid #332100;
-        border-left: 8px solid #332100;
-        box-shadow: #332100 1px 1px 2px;
         text-align: center;
-        text-decoration: none;
+        color: #332100;
+        line-height: 1rem;
         font-weight: 700;
         font-size: 0.75rem;
       }

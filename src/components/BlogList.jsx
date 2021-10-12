@@ -10,6 +10,11 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import { CardActionArea } from '@mui/material'
+
+// Material Design Icons
+import Icon from '@mdi/react'
+import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
 // スタイルシート
 import * as styles from '../styles/BlogList.module.scss'
@@ -23,21 +28,43 @@ const BlogList = ({ title, blog }) => {
   return (
     <Box>
       {title && <h2 className={styles.list}>{title}</h2>}
-      <Grid container spacing={1}>
+      <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
         {blog.map(blog => {
+          // 画像URL生成
+          const image = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)
           // リターン
           return (
-            <Grid key={blog.node.blogId} item xs={12} md={6} lg={4} xl={3}>
+            <Grid key={blog.node.blogId} item xs={12} sm={6} ms={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
                 <Card className={styles.card}>
-                  <CardMedia key={blog.node.blogId} className={styles.image} component={'img'} image={blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm && '&' + blog.node.image_parm)} alt={blog.node.title} width={200} height={200} />
-                  <CardContent className={styles.content}>
-                    <p className={styles.title}>{blog.node.title && blog.node.title}</p>
-                    <Box className={styles.box}>
-                      <p className={styles.date}>{blog.node.datetime && blog.node.datetime}</p>
-                      <p className={styles.category}>{blog.node.category && blog.node.category.name}</p>
-                    </Box>
-                  </CardContent>
+                  <CardActionArea>
+                    <CardMedia component={'img'} height={250} image={image} />
+                    <CardContent className={styles.content}>
+                      <Grid container spacing={1} justifyContent={'center'}>
+                        <Grid item xs={12}>
+                          <Box className={styles.title}>
+                            <h3>{blog.node.title && blog.node.title}</h3>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box className={styles.box}>
+                            <span className={styles.icon}>
+                              <Icon path={mdiCalendarToday} size={1} title={'日付'} />
+                            </span>
+                            <span className={styles.text}>{blog.node.datetime && blog.node.datetime}</span>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box className={styles.box}>
+                            <span className={styles.icon}>
+                              <Icon path={mdiShape} size={1} title={'カテゴリー'} />
+                            </span>
+                            <span className={styles.text}>{blog.node.category && blog.node.category.name}</span>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </CardContent>
+                  </CardActionArea>
                 </Card>
               </Link>
             </Grid>
