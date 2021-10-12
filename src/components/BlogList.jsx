@@ -36,9 +36,9 @@ const BlogList = ({ title, blog }) => {
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} ms={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
-                <Card className={styles.card}>
+                <Card className={styles.card} title={blog.node.title}>
                   <CardActionArea>
-                    <CardMedia component={'img'} height={250} image={image} />
+                    <CardMedia component={'img'} height={250} image={image} title={blog.node.title} />
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
                         <Grid item xs={12}>
