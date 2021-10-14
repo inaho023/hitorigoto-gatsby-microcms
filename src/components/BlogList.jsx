@@ -29,7 +29,7 @@ const BlogList = ({ title, blog }) => {
   return (
     <Box>
       {title && <h2 className={styles.list}>{title}</h2>}
-      <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
+      <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像URL生成
           const { src } = useImage({
@@ -40,7 +40,7 @@ const BlogList = ({ title, blog }) => {
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} ms={6} lg={4} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
-                <Card className={styles.card} title={blog.node.title}>
+                <Card className={styles.card} title={blog.node.title} elevation={4}>
                   <CardActionArea>
                     <CardMedia component={'img'} height={250} src={src} alt={blog.node.title} />
                     <CardContent className={styles.content}>
