@@ -34,7 +34,6 @@
     "gatsby-plugin-sass": "^4.14.0",
     "gatsby-plugin-sharp": "^3.14.1",
     "gatsby-plugin-sitemap": "^4.10.0",
-    "gatsby-source-filesystem": "^3.14.0",
     "gatsby-source-microcms": "^1.2.1",
     "graphql": "^15.6.1",
     "moment": "^2.29.1",
