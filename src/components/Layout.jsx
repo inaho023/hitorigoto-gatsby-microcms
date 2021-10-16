@@ -50,15 +50,12 @@ const Layout = ({ sitePosition, children }) => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='description' content={data.site.siteMetadata.description} />
       </Helmet>
-      <a id={'Header'} />
-      <Menubar />
+      <Menubar id={'Header'} />
       <Container maxWidth={'xl'}>
         <header className={styles.header}>
           <Link key={'Header'} className={styles.title} to='/'>
-            <a>
-              <h1>{data.site.siteMetadata.title}</h1>
-              <h2>{data.site.siteMetadata.subtitle}</h2>
-            </a>
+            <h1>{data.site.siteMetadata.title}</h1>
+            <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
@@ -78,7 +75,7 @@ const Layout = ({ sitePosition, children }) => {
         </section>
         <footer className={styles.footer}>
           <Link key={'Footer'} to='/'>
-            <a>&copy; {data.site.siteMetadata.title}</a>
+            &copy; {data.site.siteMetadata.title}
           </Link>
         </footer>
       </Container>
