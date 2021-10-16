@@ -1,7 +1,8 @@
 // React
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useImage } from 'react-image'
+import { Img } from 'react-image'
+
 // Gatsby
 import { Link, graphql } from 'gatsby'
 
@@ -90,10 +91,10 @@ const post = ({ data }) => {
   // 記事リスト
   const list = data.allMicrocmsBlog.edges
   // 画像URL生成
-  const { src } = useImage({
-    srcList: [blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm && '&' + blog.image_parm), blog.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm && '&' + blog.image_parm)],
-    useSuspense: false
-  })
+  const src = blog.image.url + THUMB_IMG_OPT_DETAIL
+  const imgLorder = () => {
+    return <img src={blog.node.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={960} height={960} />
+  }
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
   const prevArticle = current === 0 ? null : list[current - 1]
@@ -119,7 +120,7 @@ const post = ({ data }) => {
             <Grid item className={styles.wrapper} xs={12}>
               <Grid container spacing={0}>
                 <Grid item xs={12} md={6}>
-                  <img className={styles.image} src={src} alt={blog.title} width={960} height={960} />
+                  <Img className={styles.image} src={src} alt={blog.title} width={960} height={960} loader={imgLorder} />
                 </Grid>
                 <Grid item className={styles.wrapper} xs={12} md={6}>
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>
