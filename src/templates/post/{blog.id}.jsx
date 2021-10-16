@@ -91,9 +91,9 @@ const post = ({ data }) => {
   // 記事リスト
   const list = data.allMicrocmsBlog.edges
   // 画像URL生成
-  const src = blog.image.url + THUMB_IMG_OPT_DETAIL
-  const imgLorder = () => {
-    return <img src={blog.node.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={960} height={960} />
+  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm != 'null' && '&' + blog.image_parm)
+  const imgLoader = () => {
+    return <img src={blog.node.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
   }
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
@@ -120,7 +120,7 @@ const post = ({ data }) => {
             <Grid item className={styles.wrapper} xs={12}>
               <Grid container spacing={0}>
                 <Grid item xs={12} md={6}>
-                  <Img className={styles.image} src={src} alt={blog.title} width={960} height={960} loader={imgLorder} />
+                  <Img className={styles.image} src={src} alt={blog.title} width={960} height={960} loader={imgLoader} />
                 </Grid>
                 <Grid item className={styles.wrapper} xs={12} md={6}>
                   <Grid item className={styles.box} key={'BoxDate'} xs={12}>

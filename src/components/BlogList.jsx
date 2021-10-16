@@ -32,10 +32,10 @@ const BlogList = ({ title, blog }) => {
       {title && <h2 className={styles.list}>{title}</h2>}
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
-          // 画像URL生成
-          const src = blog.node.image.url + THUMB_IMG_OPT_LIST
-          const imgLorder = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={400} height={250} />
+          // 画像生成
+          const src = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)
+          const imgLoader = () => {
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={400} height={250} />
           }
           // リターン
           return (
@@ -43,12 +43,14 @@ const BlogList = ({ title, blog }) => {
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
                 <Card className={styles.card} title={blog.node.title} elevation={4}>
                   <CardActionArea>
-                    <CardMedia component={'img'} height={250} image={src} alt={blog.node.title} loader={imgLorder} />
+                    <CardMedia className={styles.media}>
+                      <Img src={src} alt={blog.node.title} width={400} height={250} loader={imgLoader} />
+                    </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
                         <Grid item xs={12}>
                           <Box className={styles.title}>
-                            <h3>{blog.node.title && blog.node.title}</h3>
+                            <h3>{blog.node.title}</h3>
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
@@ -56,7 +58,7 @@ const BlogList = ({ title, blog }) => {
                             <span className={styles.icon}>
                               <Icon path={mdiCalendarToday} size={1} title={'日付'} />
                             </span>
-                            <span className={styles.text}>{blog.node.datetime && blog.node.datetime}</span>
+                            <span className={styles.text}>{blog.node.datetime}</span>
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
@@ -64,7 +66,7 @@ const BlogList = ({ title, blog }) => {
                             <span className={styles.icon}>
                               <Icon path={mdiShape} size={1} title={'カテゴリー'} />
                             </span>
-                            <span className={styles.text}>{blog.node.category && blog.node.category.name}</span>
+                            <span className={styles.text}>{blog.node.category.name}</span>
                           </Box>
                         </Grid>
                       </Grid>
