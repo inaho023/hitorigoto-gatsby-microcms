@@ -14,8 +14,9 @@
 }
 
 .card {
-  max-width: 420px;
-  margin: auto;
+  max-width: 272px;
+  margin-left: auto;
+  margin-right: auto;
   background: #cc8500;
   overflow: hidden;
 
@@ -23,7 +24,8 @@
     background: #cc8500;
 
     .media {
-      height: 280px;
+      height: 153px;
+      object-fit: cover;
     }
 
     .content {
@@ -35,7 +37,7 @@
         h3 {
           color: #332100;
           line-height: 1.5rem;
-          font-weight: 700;
+          font-weight: 500;
           font-size: 1.25rem;
           word-break: break-all;
           overflow: hidden;
@@ -62,7 +64,7 @@
           padding-right: 2px;
           color: #332100;
           line-height: 1.25rem;
-          font-weight: 700;
+          font-weight: 500;
           font-size: 1rem;
         }
 
@@ -74,7 +76,7 @@
           text-align: center;
           color: #332100;
           line-height: 1rem;
-          font-weight: 700;
+          font-weight: 500;
           font-size: 0.75rem;
         }
       }

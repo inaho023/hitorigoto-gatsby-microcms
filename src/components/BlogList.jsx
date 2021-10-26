@@ -35,16 +35,16 @@ const BlogList = ({ title, blog }) => {
           // 画像生成
           const src = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)
           const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={420} height={280} />
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={272} height={153} />
           }
           // リターン
           return (
-            <Grid key={blog.node.blogId} item xs={12} sm={6} ms={6} lg={4} xl={3}>
+            <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
               <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId}>
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <Img src={src} alt={blog.node.title} width={420} height={280} loader={imgLoader} />
+                      <Img src={src} alt={blog.node.title} width={272} height={153} loader={imgLoader} />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>

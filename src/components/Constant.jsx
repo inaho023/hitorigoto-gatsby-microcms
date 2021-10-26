@@ -1,5 +1,5 @@
 // 共通画像パラメーター
-export const THUMB_IMG_OPT_LIST = '?fit=crop&crop=faces&fm=webp&q=20&w=420&h=280' // 記事リスト用画像オプション
+export const THUMB_IMG_OPT_LIST = '?fit=crop&crop=faces&fm=webp&q=20&w=272&h=153' // 記事リスト用画像オプション
 export const THUMB_IMG_OPT_NAVI = '?fit=crop&crop=faces&fm=webp&q=20&w=128&h=128' // 前後記事用画像オプション
 export const THUMB_IMG_OPT_DETAIL = '?fit=crop&crop=faces&fm=webp&q=50&w=960&h=960' // 記事詳細用画像オプション
 export const THUMB_IMG_OPT_BLUR = '&blur=500'
