@@ -35,7 +35,7 @@ const BlogList = ({ title, blog }) => {
           // 画像生成
           const src = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)
           const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={400} height={250} />
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={420} height={280} />
           }
           // リターン
           return (
@@ -44,7 +44,7 @@ const BlogList = ({ title, blog }) => {
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <Img src={src} alt={blog.node.title} width={400} height={250} loader={imgLoader} />
+                      <Img src={src} alt={blog.node.title} width={420} height={280} loader={imgLoader} />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
