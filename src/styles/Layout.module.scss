@@ -1,15 +1,23 @@
 .header {
+  padding: 32px;
+
   .title {
     color: #332100;
     text-align: center;
     text-decoration: none;
 
     h1 {
+      padding: 16px;
+      line-height: 4rem;
       font-size: 3rem;
+      font-weight: 700;
     }
 
     h2 {
+      padding: 16px;
+      line-height: 3.5rem;
       font-size: 2.5rem;
+      font-weight: 700;
     }
   }
 
@@ -24,6 +32,7 @@
     text-align: center;
     line-height: 1.75;
     font-size: 1.5rem;
+    font-weight: 500;
   }
 }
 
