@@ -36,7 +36,7 @@
     "gatsby-plugin-sharp": "^4.0.1",
     "gatsby-plugin-sitemap": "^5.0.0",
     "gatsby-source-microcms": "^2.0.0",
-    "graphql": "^16.0.0",
+    "graphql": "^15.7.2",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
