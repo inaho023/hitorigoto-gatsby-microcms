@@ -44,7 +44,7 @@ const BlogList = ({ title, blog }) => {
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <Img src={src} alt={blog.node.title} width={272} height={153} loader={imgLoader} />
+                      <Img src={src} alt={blog.node.title} width={270} height={180} loader={imgLoader} />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
