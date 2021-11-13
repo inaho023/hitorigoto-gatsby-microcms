@@ -29,7 +29,7 @@ import Comment from '../../components/Comment'
 import * as styles from '../../styles/{blog.id}.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGIMAGE, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
 
 // クエリー
 export const pageQuery = graphql`
@@ -109,7 +109,7 @@ const post = ({ data }) => {
       <Helmet>
         <meta property='og:type' content='article' />
         <meta property='og:title' content={blog.title} />
-        <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_DETAIL + '&' + blog.image_parm} />
+        <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_OGIMAGE + (blog.image_parm && '&' + blog.image_parm)} />
       </Helmet>
       <Box className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.title}>

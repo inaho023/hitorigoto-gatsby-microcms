@@ -34,7 +34,7 @@ const BlogList = ({ title, blog }) => {
           // 画像生成
           const src = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)
           const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={272} height={153} />
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={270} height={180} />
           }
           // リターン
           return (
