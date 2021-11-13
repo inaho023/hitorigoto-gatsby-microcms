@@ -46,6 +46,7 @@ const Layout = ({ sitePosition, ogp, children }) => {
     }
   `)
   // OGP設定
+  const ogpUrl = data.site.siteMetadata.siteurl + ogp.url
   const ogpSiteName = data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
   const ogpTitle = ogp.type == 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) : ogp.title
   const ogpImage = ogp.type == 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
@@ -56,6 +57,7 @@ const Layout = ({ sitePosition, ogp, children }) => {
         <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta property='og:type' content={ogp.type} />
+        <meta property='og:url' content={ogpUrl} />
         <meta property='og:site_neme' content={ogpSiteName} />
         <meta property='og:title' content={ogpTitle} />
         <meta property='og:image' content={ogpImage} />

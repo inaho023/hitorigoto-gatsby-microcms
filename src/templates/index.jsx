@@ -40,7 +40,9 @@ const blogIndex = ({ data, pageContext }) => {
   // OGP設定
   const ogp = {
     type: 'website',
+    url: pageContext.pageNumber == 0 ? '' : '/page/' + pageContext.pageNumber,
     title: sitePosition,
+    description: 'トップページ',
     image: ''
   }
   // リターン
