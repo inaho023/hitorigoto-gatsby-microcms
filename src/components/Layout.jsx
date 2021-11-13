@@ -64,7 +64,7 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
         {ogp && <meta property='og:image:width' content='1200' />}
         {ogp && <meta property='og:image:height' content='630' />}
         {ogp && <meta property='og:image:alt' content={ogpTitle} />}
-        {ogp && <meta name='twitter:card' content='Summary' />}
+        {ogp && <meta name='twitter:card' content='summary' />}
         {ogp && <meta name='twitter:site' content='@inaho_lx' />}
       </Helmet>
       <Menubar id={'Header'} />
