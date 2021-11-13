@@ -48,8 +48,8 @@ const Layout = ({ sitePosition, ogp, children }) => {
   // OGP設定
   const ogpUrl = ogp && data.site.siteMetadata.siteurl + ogp.url
   const ogpSiteName = ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
-  const ogpTitle = ogp && ogp.type == 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) : ogp.title
-  const ogpImage = ogp && ogp.type == 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
+  const ogpTitle = ogp && ogp.type === 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) : ogp.title
+  const ogpImage = ogp && ogp.type === 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
   // リターン
   return (
     <>
