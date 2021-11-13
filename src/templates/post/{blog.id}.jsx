@@ -84,7 +84,7 @@ export const pageQuery = graphql`
   }
 `
 // 記事詳細
-const post = ({ data }) => {
+const post = ({ data, pageContext }) => {
   // 記事詳細
   const blog = data.microcmsBlog
   // 記事リスト
@@ -112,7 +112,7 @@ const post = ({ data }) => {
   const nextImage = nextArticle ? nextArticle.node.image.url + THUMB_IMG_OPT_NAVI + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm) : null
   // リターン
   return (
-    <Layout sitePosition={blog.title} ogp={ogp}>
+    <Layout sitePosition={blog.title} ogp={ogp} pageContext={pageContext}>
       <Box className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.title}>
           <Grid container className={styles.info} key={'Info'} spacing={0}>

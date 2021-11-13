@@ -42,12 +42,12 @@ const blogIndex = ({ data, pageContext }) => {
     type: 'website',
     url: pageContext.pageNumber == 0 ? '' : '/page/' + pageContext.pageNumber,
     title: sitePosition,
-    description: 'トップページ',
+    description: 'インデックス',
     image: ''
   }
   // リターン
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp}>
+    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
       <BlogList title={sitePosition} blog={data.allMicrocmsBlog.edges} />
       <Pager pageContext={pageContext} />
     </Layout>

@@ -30,7 +30,7 @@ import * as styles from '../styles/Layout.module.scss'
 // テーマ
 
 // Layout コンポーネント
-const Layout = ({ sitePosition, ogp, children }) => {
+const Layout = ({ sitePosition, ogp, pageContext, children }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -48,12 +48,12 @@ const Layout = ({ sitePosition, ogp, children }) => {
   // OGP設定
   const ogpUrl = ogp && data.site.siteMetadata.siteurl + ogp.url
   const ogpSiteName = ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
-  const ogpTitle = ogp && ogp.type === 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) : ogp.title
+  const ogpTitle = ogp && ogp.type === 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : ogp.title
   const ogpImage = ogp && ogp.type === 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
   // リターン
   return (
     <>
-      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#' }}>
+      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>
         <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         {ogp && <meta property='og:type' content={ogp.type} />}
@@ -61,7 +61,10 @@ const Layout = ({ sitePosition, ogp, children }) => {
         {ogp && <meta property='og:site_neme' content={ogpSiteName} />}
         {ogp && <meta property='og:title' content={ogpTitle} />}
         {ogp && <meta property='og:image' content={ogpImage} />}
-        {ogp && <meta name='twitter:card' content='Summary Card' />}
+        {ogp && <meta property='og:image:width' content='1200' />}
+        {ogp && <meta property='og:image:height' content='630' />}
+        {ogp && <meta property='og:image:alt' content={ogpTitle} />}
+        {ogp && <meta name='twitter:card' content='Summary' />}
         {ogp && <meta name='twitter:site' content='@inaho_lx' />}
       </Helmet>
       <Menubar id={'Header'} />

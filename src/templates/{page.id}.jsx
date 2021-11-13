@@ -35,7 +35,7 @@ export const query = graphql`
 `
 
 // /pages/profile.js
-const page = ({ data }) => {
+const page = ({ data, pageContext }) => {
   // ポジション
   const sitePosition = data.microcmsPage.title
   // OGP設定
@@ -53,7 +53,7 @@ const page = ({ data }) => {
   }
   // イメージ
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp}>
+    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
       <Box className={styles.wrapper}>
         <Box className={styles.title}>
           <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>

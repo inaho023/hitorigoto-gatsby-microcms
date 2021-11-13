@@ -8,7 +8,7 @@ import Layout from '../components/Layout'
 import * as styles from '../styles/404.module.scss'
 
 // 404ページ
-const E404 = () => {
+const E404 = ({ pageContext }) => {
   // ポジション
   const sitePosition = '404'
   // OGP設定
@@ -17,7 +17,7 @@ const E404 = () => {
     title: sitePosition
   }
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp}>
+    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
       <div className={styles.post}>
         <h2>404 | ページがありません</h2>
       </div>

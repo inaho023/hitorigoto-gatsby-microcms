@@ -47,7 +47,7 @@ const blogIndex = ({ data, pageContext }) => {
   }
   // リターン
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp}>
+    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
       <BlogList title={sitePosition} blog={data.allMicrocmsBlog.edges} />
       <Pager pageContext={pageContext} />
     </Layout>
