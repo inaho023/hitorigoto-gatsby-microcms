@@ -37,9 +37,15 @@ export const pageQuery = graphql`
 const blogIndex = ({ data, pageContext }) => {
   // ポジション
   const sitePosition = ''
+  // OGP設定
+  const ogp = {
+    type: 'website',
+    title: sitePosition,
+    image: ''
+  }
   // リターン
   return (
-    <Layout sitePosition={sitePosition}>
+    <Layout sitePosition={sitePosition} ogp={ogp}>
       <BlogList title={sitePosition} blog={data.allMicrocmsBlog.edges} />
       <Pager pageContext={pageContext} />
     </Layout>

@@ -21,13 +21,16 @@ import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
 
+// 定数
+import { BLOG_LOGO_URL, BLOG_LOGO_OGP } from './Constant'
+
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
 
 // テーマ
 
 // Layout コンポーネント
-const Layout = ({ sitePosition, children }) => {
+const Layout = ({ sitePosition, ogp, children }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
@@ -42,13 +45,22 @@ const Layout = ({ sitePosition, children }) => {
       }
     }
   `)
+  // OGP設定
+  const ogpSiteName = data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
+  const ogpTitle = ogp.type == 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) : ogp.title
+  const ogpImage = ogp.type == 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
   // リターン
   return (
     <>
       <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang }}>
         <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <meta name='description' content={data.site.siteMetadata.description} />
+        <meta property='og:type' content={ogp.type} />
+        <meta property='og:site_neme' content={ogpSiteName} />
+        <meta property='og:title' content={ogpTitle} />
+        <meta property='og:image' content={ogpImage} />
+        <meta name='twitter:card' content='Summary Card' />
+        <meta name='twitter:site' content='@inaho_lx' />
       </Helmet>
       <Menubar id={'Header'} />
       <Container maxWidth={'xl'}>

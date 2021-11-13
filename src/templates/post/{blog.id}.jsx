@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { Img } from 'react-image'
 
 // Gatsby
@@ -29,7 +28,7 @@ import Comment from '../../components/Comment'
 import * as styles from '../../styles/{blog.id}.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGIMAGE, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGP_IMAGE, THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from '../../components/Constant'
 
 // クエリー
 export const pageQuery = graphql`
@@ -93,7 +92,13 @@ const post = ({ data }) => {
   // 画像URL生成
   const src = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm != 'null' && '&' + blog.image_parm)
   const imgLoader = () => {
-    return <img src={blog.node.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
+    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
+  }
+  // OGP設定
+  const ogp = {
+    type: 'article',
+    title: blog.title,
+    image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP_IMAGE + (blog.image_parm != 'null' && '&' + blog.image_parm)
   }
   // 前後の記事
   const current = list.findIndex(list => list.node.blogId === blog.blogId)
@@ -105,12 +110,7 @@ const post = ({ data }) => {
   const nextImage = nextArticle ? nextArticle.node.image.url + THUMB_IMG_OPT_NAVI + (nextArticle.node.image_parm && '&' + nextArticle.node.image_parm) : null
   // リターン
   return (
-    <Layout sitePosition={blog.title}>
-      <Helmet>
-        <meta property='og:type' content='article' />
-        <meta property='og:title' content={blog.title} />
-        <meta property='og:image' content={blog.image.url + THUMB_IMG_OPT_OGIMAGE + (blog.image_parm && '&' + blog.image_parm)} />
-      </Helmet>
+    <Layout sitePosition={blog.title} ogp={ogp}>
       <Box className={styles.wrapper} key={'wrapper'}>
         <section id={'PageTitle'} className={styles.title}>
           <Grid container className={styles.info} key={'Info'} spacing={0}>
