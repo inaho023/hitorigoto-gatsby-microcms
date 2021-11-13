@@ -53,16 +53,16 @@ const Layout = ({ sitePosition, ogp, children }) => {
   // リターン
   return (
     <>
-      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang }}>
+      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#' }}>
         <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <meta property='og:type' content={ogp.type} />
-        <meta property='og:url' content={ogpUrl} />
-        <meta property='og:site_neme' content={ogpSiteName} />
-        <meta property='og:title' content={ogpTitle} />
-        <meta property='og:image' content={ogpImage} />
-        <meta name='twitter:card' content='Summary Card' />
-        <meta name='twitter:site' content='@inaho_lx' />
+        {ogp && <meta property='og:type' content={ogp.type} />}
+        {ogp && <meta property='og:url' content={ogpUrl} />}
+        {ogp && <meta property='og:site_neme' content={ogpSiteName} />}
+        {ogp && <meta property='og:title' content={ogpTitle} />}
+        {ogp && <meta property='og:image' content={ogpImage} />}
+        {ogp && <meta name='twitter:card' content='Summary Card' />}
+        {ogp && <meta name='twitter:site' content='@inaho_lx' />}
       </Helmet>
       <Menubar id={'Header'} />
       <Container maxWidth={'xl'}>
