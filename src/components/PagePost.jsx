@@ -20,7 +20,7 @@ const PagePost = ({ data, pageContext }) => {
   // OGP設定
   const ogp = {
     type: 'article',
-    url: '/' + data.microcmsPage.pageId,
+    url: '/' + (data.microcmsPage.pageId ? data.microcmsPage.pageId : data.microcmsPage.id),
     title: data.microcmsPage.title,
     description: data.microcmsPage.body,
     image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP_IMAGE + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
