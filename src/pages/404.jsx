@@ -16,6 +16,7 @@ const E404 = ({ pageContext }) => {
     type: 'article',
     title: sitePosition
   }
+  // リターン
   return (
     <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
       <div className={styles.post}>
