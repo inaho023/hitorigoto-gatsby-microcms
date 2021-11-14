@@ -44,20 +44,6 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
-      edges {
-        node {
-          blogId
-          title
-          image {
-            url
-            width
-            height
-          }
-          image_parm
-        }
-      }
-    }
   }
 `
 // 記事詳細
