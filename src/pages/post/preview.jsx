@@ -15,7 +15,8 @@ const PagePreview = ({ location }) => {
   useEffect(() => {
     fetch(`https://inaho.microcms.io/api/blog/${contentId}?draftKey=${draftKey}`, {
       headers: {
-        'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
+        'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY,
+        'Access-Control-Allow-Origin': '*'
       }
     })
       .then(res => {
@@ -23,9 +24,6 @@ const PagePreview = ({ location }) => {
       })
       .then(res => {
         return setData({ microcmsBlog: res })
-      })
-      .then(res => {
-        return console.log(res)
       })
   }, [])
   // リターン
