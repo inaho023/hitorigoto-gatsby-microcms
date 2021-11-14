@@ -24,7 +24,7 @@ const BlogPost = ({ data, pageContext }) => {
   // OGP設定
   const ogp = {
     type: 'article',
-    url: '/post/' + blog.blogId,
+    url: '/post/' + (blog.blogId ? blog.blogId : blog.id),
     title: blog.title,
     description: blog.body,
     image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP_IMAGE + (blog.image_parm != 'null' && '&' + blog.image_parm)
