@@ -48,7 +48,7 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
   // OGP設定
   const ogpUrl = ogp && data.site.siteMetadata.siteurl + ogp.url
   const ogpSiteName = ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
-  const ogpTitle = ogp && ogp.type === 'website' ? 'インデックス' + (ogp.title && ' ' + ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : ogp.title
+  const ogpTitle = ogp && ogp.type === 'website' ? data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle + (ogp.title && ' ' + ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : ogp.title
   const ogpImage = ogp && ogp.type === 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
   // リターン
   return (
@@ -60,6 +60,7 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
         {ogp && <meta property='og:url' content={ogpUrl} />}
         {ogp && <meta property='og:site_neme' content={ogpSiteName} />}
         {ogp && <meta property='og:title' content={ogpTitle} />}
+        {ogp && <meta property='og:description' content={ogp.description} />}
         {ogp && <meta property='og:image' content={ogpImage} />}
         {ogp && <meta property='og:image:alt' content={ogpTitle} />}
         {ogp && <meta name='twitter:card' content='summary' />}
