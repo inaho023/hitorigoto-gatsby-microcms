@@ -79,17 +79,12 @@
     code {
       max-width: 94%;
       overflow-x: scroll;
-      display: flex;
-      flex: auto;
-      color: white;
-      background: #332100;
-      border-radius: 4px;
       margin-left: auto;
       margin-right: auto;
       padding: 1rem;
       box-shadow: #332100 4px 4px 4px;
-      line-height: 1.75rem;
-      font-size: 0.75rem;
+      line-height: 1.25rem;
+      font-size: 1rem;
       font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
     }
   }
@@ -97,18 +92,6 @@
   code {
     color: white;
     background: #332100;
-    border-radius: 8px;
-    padding: 0.25rem;
     word-break: break-all;
   }
-}
-
-.gallery {
-  width: 100%;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  justify-content: center;
 }

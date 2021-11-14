@@ -20,7 +20,7 @@ import { THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from './Constant'
 const BlogNavi = ({ blog }) => {
   // 記事リストクエリー
   const data = useStaticQuery(graphql`
-    {
+    query blogListQuery {
       allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
         edges {
           node {
