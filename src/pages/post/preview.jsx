@@ -8,9 +8,9 @@ import queryString from 'query-string'
 import PagePost from '../../components/PagePost'
 
 const PagePreview = ({ location }) => {
+  // コンテンツIDおよびドラフトキーを取得
   const { contentId, draftKey } = queryString.parse(location.search)
   const [data, setData] = useState(null)
-
   // 記事詳細取得
   useEffect(() => {
     fetch(`https://inaho.microcms.io/api/page/${contentId}?draftKey=${draftKey}`, {

@@ -3,7 +3,7 @@ import React from 'react'
 import { Img } from 'react-image'
 
 // Gatsby
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
 import Card from '@mui/material/Card'
@@ -11,13 +11,37 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 
 // スタイルシート
-import * as styles from '../styles/BlogPost.module.scss'
+import * as styles from '../styles/BlogNavi.module.scss'
 
 // 定数
 import { THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ブログリスト
-const BlogNavi = ({ prev, next }) => {
+const BlogNavi = ({ blog }) => {
+  // 記事リストクエリー
+  const data = useStaticQuery(graphql`
+    {
+      allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+        edges {
+          node {
+            blogId
+            title
+            image {
+              url
+              width
+              height
+            }
+            image_parm
+          }
+        }
+      }
+    }
+  `)
+  // 前後の記事
+  const list = data.allMicrocmsBlog.edges
+  const current = list.findIndex(list => list.node.blogId === blog.blogId)
+  const prev = current === 0 ? null : list[current - 1]
+  const next = current === list.length - 1 ? null : list[current + 1]
   // 前記事の画像
   const prevImage = prev ? prev.node.image.url + THUMB_IMG_OPT_NAVI + (prev.node.image_parm && '&' + prev.node.image_parm) : null
   const prevLoader = () => {
