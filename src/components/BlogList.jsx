@@ -17,6 +17,10 @@ import { CardActionArea } from '@mui/material'
 import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
+// コンポーネント
+import Layout from './Layout'
+import Pager from './Pager'
+
 // スタイルシート
 import * as styles from '../styles/BlogList.module.scss'
 
@@ -24,11 +28,67 @@ import * as styles from '../styles/BlogList.module.scss'
 import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ブログリスト
-const BlogList = ({ title, blog }) => {
+const BlogList = ({ data, pageContext }) => {
+  // 定数定義
+  const blog = data.allMicrocmsBlog.edges
+  // 変数定義
+  let sitePosition
+  let ogp
+  // 記事リスト種別による場合分け
+  switch (pageContext.list) {
+    case 'archive':
+      // ポジション
+      sitePosition = 'アーカイブ：' + pageContext.name
+      // OGP設定
+      ogp = {
+        type: 'website',
+        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber,
+        title: sitePosition,
+        description: 'トップページ',
+        image: ''
+      }
+      break
+    case 'category':
+      // ポジション
+      sitePosition = 'カテゴリー：' + pageContext.name
+      // OGP設定
+      ogp = {
+        type: 'website',
+        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber,
+        title: sitePosition,
+        description: 'トップページ',
+        image: ''
+      }
+      break
+    case 'tag':
+      // ポジション
+      sitePosition = 'タグ：' + pageContext.name
+      // OGP設定
+      ogp = {
+        type: 'website',
+        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber,
+        title: sitePosition,
+        description: 'トップページ',
+        image: ''
+      }
+      break
+    default:
+      // ポジション
+      sitePosition = ''
+      // OGP設定
+      ogp = {
+        type: 'website',
+        url: pageContext.pageNumber == 0 ? '' : '/page/' + pageContext.pageNumber,
+        title: sitePosition,
+        description: 'インデックス',
+        image: ''
+      }
+      break
+  }
   // リターン
   return (
-    <Box>
-      {title && <h2 className={styles.list}>{title}</h2>}
+    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
+      {sitePosition && <h2 className={styles.list}>{sitePosition}</h2>}
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
@@ -77,7 +137,8 @@ const BlogList = ({ title, blog }) => {
           )
         })}
       </Grid>
-    </Box>
+      <Pager pageContext={pageContext} />
+    </Layout>
   )
 }
 

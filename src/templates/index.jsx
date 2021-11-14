@@ -5,9 +5,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 // 自作モジュール
-import Layout from '../components/Layout'
 import BlogList from '../components/BlogList'
-import Pager from '../components/Pager'
 
 // ページクエリー
 export const pageQuery = graphql`
@@ -34,24 +32,9 @@ export const pageQuery = graphql`
 `
 
 // インデックスページ
-const blogIndex = ({ data, pageContext }) => {
-  // ポジション
-  const sitePosition = ''
-  // OGP設定
-  const ogp = {
-    type: 'website',
-    url: pageContext.pageNumber == 0 ? '' : '/page/' + pageContext.pageNumber,
-    title: sitePosition,
-    description: 'インデックス',
-    image: ''
-  }
+const PageTemplate = ({ data, pageContext }) => {
   // リターン
-  return (
-    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
-      <BlogList title={sitePosition} blog={data.allMicrocmsBlog.edges} />
-      <Pager pageContext={pageContext} />
-    </Layout>
-  )
+  return <BlogList data={data} pageContext={pageContext} />
 }
 
-export default blogIndex
+export default PageTemplate
