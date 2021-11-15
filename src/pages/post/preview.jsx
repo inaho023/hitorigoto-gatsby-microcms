@@ -15,8 +15,6 @@ const PagePreview = ({ location }) => {
   // 記事詳細取得
   useEffect(() => {
     fetch(`https://inaho.microcms.io/api/blog/${contentId}?draftKey=${draftKey}`, {
-      mode: 'cors',
-      credentials: 'include',
       headers: {
         'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
       }
