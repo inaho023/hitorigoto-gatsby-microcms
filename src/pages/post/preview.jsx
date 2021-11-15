@@ -10,11 +10,13 @@ import BlogPost from '../../components/BlogPost'
 const PagePreview = ({ location }) => {
   // コンテンツIDおよびドラフトキーを取得
   const { contentId, draftKey } = queryString.parse(location.search)
+  //
   const [data, setData] = useState(null)
   // 記事詳細取得
   useEffect(() => {
     fetch(`https://inaho.microcms.io/api/blog/${contentId}?draftKey=${draftKey}`, {
       mode: 'no-cors',
+      credentials: 'include',
       headers: {
         'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
       }
