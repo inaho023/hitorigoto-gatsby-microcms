@@ -21,8 +21,12 @@ const PagePreview = ({ location }) => {
         'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
       }
     })
-      .then(res => res.json())
-      .then(res => setData({ microcmsPage: res }))
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        return setData({ microcmsPage: res })
+      })
   }, [])
   // リターン
   if (data === null) {
