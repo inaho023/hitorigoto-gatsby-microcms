@@ -14,10 +14,9 @@ const PagePreview = ({ location }) => {
   const [data, setData] = useState(null)
   // 記事詳細取得
   useEffect(() => {
-    fetch(`https://inaho.microcms.io/api/blog/${contentId}?draftKey=${draftKey}`, {
-      mode: 'cors',
+    fetch(`https://inaho.microcms.io/api/v1/blog/${contentId}?draftKey=${draftKey}`, {
       headers: {
-        'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
+        'X-MICROCMS-API-KEY': process.env.GATSBY_MICROCMS_API_KEY
       }
     })
       .then(res => {
