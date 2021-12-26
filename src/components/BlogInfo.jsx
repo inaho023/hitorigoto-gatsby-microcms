@@ -25,7 +25,7 @@ import * as styles from '../styles/BlogInfo.module.scss'
 // 定数
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_BLUR } from './Constant'
 
-// ブログリスト
+// 記事詳細
 const BlogInfo = ({ data }) => {
   // 記事詳細
   const blog = data.microcmsBlog
