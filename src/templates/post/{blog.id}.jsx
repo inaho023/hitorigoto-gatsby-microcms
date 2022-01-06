@@ -27,7 +27,6 @@ export const pageQuery = graphql`
         width
         height
       }
-      image_parm
       body
       galleries {
         gallery {

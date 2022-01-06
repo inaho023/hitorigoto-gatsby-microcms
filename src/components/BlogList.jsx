@@ -92,9 +92,9 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + THUMB_IMG_OPT_LIST + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)
+          const src = blog.node.image.url + THUMB_IMG_OPT_LIST
           const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR + (blog.node.image_parm != 'null' && '&' + blog.node.image_parm)} alt={blog.node.title} width={270} height={180} />
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={270} height={180} />
           }
           // リターン
           return (
