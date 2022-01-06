@@ -31,7 +31,6 @@ const BlogNavi = ({ blog }) => {
               width
               height
             }
-            image_parm
           }
         }
       }
@@ -43,14 +42,14 @@ const BlogNavi = ({ blog }) => {
   const prev = current === 0 ? null : list[current - 1]
   const next = current === list.length - 1 ? null : list[current + 1]
   // 前記事の画像
-  const prevImage = prev ? prev.node.image.url + THUMB_IMG_OPT_NAVI + (prev.node.image_parm && '&' + prev.node.image_parm) : null
+  const prevImage = prev ? prev.node.image.url + THUMB_IMG_OPT_NAVI : null
   const prevLoader = () => {
-    return <img src={prev.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR + (prev.node.image_parm != 'null' && '&' + prev.node.image_parm)} alt={prev.node.node.title} width={96} height={96} />
+    return <img src={prev.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={prev.node.node.title} width={96} height={96} />
   }
   // 次記事の画像
-  const nextImage = next ? next.node.image.url + THUMB_IMG_OPT_NAVI + (next.node.image_parm && '&' + next.node.image_parm) : null
+  const nextImage = next ? next.node.image.url + THUMB_IMG_OPT_NAVI : null
   const nextLoader = () => {
-    return <img src={next.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR + (next.node.image_parm != 'null' && '&' + next.node.image_parm)} alt={next.node.node.title} width={96} height={96} />
+    return <img src={next.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={next.node.node.title} width={96} height={96} />
   }
   // リターン
   return (
