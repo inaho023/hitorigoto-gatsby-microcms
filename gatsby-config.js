@@ -66,6 +66,9 @@ module.exports = {
           },
           {
             endpoint: 'tags'
+          },
+          {
+            endpoint: 'picture'
           }
         ]
       }
