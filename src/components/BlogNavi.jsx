@@ -3,7 +3,7 @@ import React from 'react'
 import { Img } from 'react-image'
 
 // Gatsby
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 // Material-UI
 import Card from '@mui/material/Card'
@@ -17,36 +17,15 @@ import * as styles from '../styles/BlogNavi.module.scss'
 import { THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from './Constant'
 
 // ブログリスト
-const BlogNavi = ({ blog }) => {
-  // 記事リストクエリー
-  const data = useStaticQuery(graphql`
-    query blogListQuery {
-      allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
-        edges {
-          node {
-            blogId
-            title
-            image {
-              url
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-  `)
-  // 前後の記事
-  const list = data.allMicrocmsBlog.edges
-  const current = list.findIndex(list => list.node.blogId === blog.blogId)
-  const prev = current === 0 ? null : list[current - 1]
-  const next = current === list.length - 1 ? null : list[current + 1]
+const BlogNavi = ({ pageContext }) => {
   // 前記事の画像
+  const prev = pageContext.prev
   const prevImage = prev ? prev.node.image.url + THUMB_IMG_OPT_NAVI : null
   const prevLoader = () => {
     return <img src={prev.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={prev.node.node.title} width={96} height={96} />
   }
   // 次記事の画像
+  const next = pageContext.next
   const nextImage = next ? next.node.image.url + THUMB_IMG_OPT_NAVI : null
   const nextLoader = () => {
     return <img src={next.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={next.node.node.title} width={96} height={96} />
@@ -55,7 +34,7 @@ const BlogNavi = ({ blog }) => {
   return (
     <nav className={styles.nav}>
       <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
-        {prev ? (
+        {pageContext.prev ? (
           <Grid item xs={12} md={6}>
             <Link key={prev.node.blogId} to={'/post/' + prev.node.blogId} title={'前の記事へ'}>
               <Card className={styles.prev}>
@@ -69,7 +48,7 @@ const BlogNavi = ({ blog }) => {
         ) : (
           <Grid item className={styles.nocard} xs={12} md={6} />
         )}
-        {next ? (
+        {pageContext.next ? (
           <Grid item xs={12} md={6}>
             <Link key={next.node.blogId} to={'/post/' + next.node.blogId} title={'次の記事へ'}>
               <Card className={styles.next}>

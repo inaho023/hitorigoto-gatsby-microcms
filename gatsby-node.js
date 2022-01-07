@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
   list = 'all'
   result = await graphql(`
     query {
-      allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+      allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }) {
         edges {
           node {
             blogId
@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogArchive = []
   result = await graphql(`
     query {
-      allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }) {
+      allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }) {
         edges {
           node {
             datetime(formatString: "YYYYMM")
@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // 記事リスト（アーカイブ）
     blogArchive[index] = graphql(`
       query archiveListQuery($from: Date = "${from.toISOString()}", $to: Date = "${to.toISOString()}") {
-        allMicrocmsBlog(limit: 1000, sort: { fields: datetime, order: DESC }, filter: { datetime: { gte: $from, lt: $to } }) {
+        allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }, filter: { datetime: { gte: $from, lt: $to } }) {
           edges {
             node {
               blogId
@@ -91,7 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogCategory = []
   result = await graphql(`
     query categoryQuery {
-      allMicrocmsCategories(limit: 1000) {
+      allMicrocmsCategories(limit: 1024) {
         nodes {
           categoriesId
           name
@@ -137,7 +137,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogTag = []
   result = await graphql(`
     query tagQuery {
-      allMicrocmsTags(limit: 1000) {
+      allMicrocmsTags(limit: 1024) {
         nodes {
           tagsId
           name
@@ -153,7 +153,7 @@ exports.createPages = async ({ graphql, actions }) => {
     pathList[index] = '/' + list + '/' + id
     blogTag[index] = graphql(`
       query tagListQuery($id: String = "${id}") {
-        allMicrocmsBlog(filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
+        allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }, filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
           edges {
             node {
               blogId
@@ -179,25 +179,37 @@ exports.createPages = async ({ graphql, actions }) => {
   // 記事詳細
   result = await graphql(`
     query postQuery {
-      allMicrocmsBlog(limit: 1000) {
-        nodes {
-          blogId
+      allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }) {
+        edges {
+          node {
+            blogId
+            title
+            image {
+              url
+              width
+              height
+            }
+          }
         }
       }
     }
   `)
-  result.data.allMicrocmsBlog.nodes.forEach(node => {
-    const id = node.blogId
+  result.data.allMicrocmsBlog.edges.forEach(edge => {
+    const id = edge.node.blogId
+    const post = result.data.allMicrocmsBlog.edges
+    const current = post.findIndex(post => post.node.blogId === id)
+    const prev = current === 0 ? null : post[current - 1]
+    const next = current === post.length - 1 ? null : post[current + 1]
     actions.createPage({
       path: '/post/' + id,
       component: path.resolve('src/templates/post/{blog.id}.jsx'),
-      context: { id: id }
+      context: { id: id, next: next, prev: prev }
     })
   })
   // ページリスト
   result = await graphql(`
     query pageQuery {
-      allMicrocmsPage(limit: 1000) {
+      allMicrocmsPage(limit: 1024) {
         nodes {
           pageId
         }

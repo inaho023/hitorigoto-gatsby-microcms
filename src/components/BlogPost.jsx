@@ -46,7 +46,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // 前後の記事へ移動
       }
-      <BlogNavi blog={blog} />
+      <BlogNavi pageContext={pageContext} />
     </Layout>
   )
 }
