@@ -67,7 +67,8 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
         {ogp && <meta name='twitter:site' content='@inaho_lx' />}
         {ogp && <meta name='twitter:creator' content='@inaho_lx' />}
       </Helmet>
-      <Menubar id={'Header'} />
+      <a id={'Header'} />
+      <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header}>
           <Link key={'Header'} className={styles.title} to='/'>
