@@ -21,9 +21,6 @@ import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
 
-// 定数
-import { BLOG_LOGO_URL, BLOG_LOGO_OGP } from './Constant'
-
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
 
@@ -43,13 +40,23 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
           lang
         }
       }
+      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
+        pictureId
+        title
+        picture {
+          url
+          width
+          height
+        }
+        parameter
+      }
     }
   `)
   // OGP設定
   const ogpUrl = ogp && data.site.siteMetadata.siteurl + ogp.url
   const ogpSiteName = ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
   const ogpTitle = ogp && ogp.type === 'website' ? data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle + (ogp.title && ' ' + ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : ogp.title
-  const ogpImage = ogp && ogp.type === 'website' ? BLOG_LOGO_URL + BLOG_LOGO_OGP : ogp.image
+  const ogpImage = ogp && ogp.type === 'website' ? data.microcmsPicture.picture.url + '?' + data.microcmsPicture.parameter : ogp.image
   // リターン
   return (
     <>

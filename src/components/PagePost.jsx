@@ -12,7 +12,7 @@ import Layout from './Layout'
 import * as styles from '../styles/PagePost.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGP_IMAGE, THUMB_IMG_OPT_BLUR } from './Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGP, THUMB_IMG_OPT_BLUR } from './Constant'
 
 const PagePost = ({ data, pageContext }) => {
   // ポジション
@@ -23,7 +23,7 @@ const PagePost = ({ data, pageContext }) => {
     url: '/' + (data.microcmsPage.pageId ? data.microcmsPage.pageId : data.microcmsPage.id),
     title: data.microcmsPage.title,
     description: data.microcmsPage.body,
-    image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP_IMAGE + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
+    image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
   }
   // 画像URL生成
   const src = data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
