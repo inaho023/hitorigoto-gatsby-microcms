@@ -1,9 +1,6 @@
 // React
 import React from 'react'
 
-// Gatsby
-import { useStaticQuery, graphql } from 'gatsby'
-
 // Material-UI
 import Box from '@mui/material/Box'
 
@@ -11,29 +8,15 @@ import Box from '@mui/material/Box'
 import { Disqus } from 'gatsby-plugin-disqus'
 
 // スタイルシート
-import * as styles from '../styles/Disqus.module.scss'
+import * as styles from '../styles/Comment.module.scss'
 
-const Comment = props => {
-  // クエリー実行
-  const data = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          siteUrl
-          title
-          subtitle
-          description
-          lang
-        }
-      }
-    }
-  `)
+const Comment = ({ pageContext }) => {
   // URL組み立て
-  const url = data.site.siteMetadata.siteUrl + '/post/' + props.blog.blogId
+  const url = pageContext.info.site.siteUrl + '/post/' + pageContext.id
   // リターン
   return (
-    <Box className={styles.disqus}>
-      <Disqus config={{ url: url, identifier: props.blog.blogId, title: props.blog.title }} />
+    <Box className={styles.comment}>
+      <Disqus config={{ url: url, identifier: pageContext.id, title: pageContext.current.title }} />
     </Box>
   )
 }
