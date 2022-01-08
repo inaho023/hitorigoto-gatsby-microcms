@@ -1,30 +1,30 @@
-.wrapper {
+.appbar {
   width: 100%;
   top: 0px;
   position: sticky;
   display: flex;
   z-index: 999;
 
-  .AppBar {
+  .toolbar {
     background: #332100;
-  }
 
-  .grow {
-    flex-grow: 1;
-  }
+    .grow {
+      flex-grow: 1;
+    }
 
-  p {
-    cursor: pointer;
-    color: orange;
-    font-weight: 700;
-    font-size: 1.25rem;
-    text-decoration: none;
-  }
+    p {
+      cursor: pointer;
+      color: orange;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
 
-  .icon {
-    color: orange;
-    font-weight: 700;
-    font-size: 1.25rem;
-    text-decoration: none;
+    .icon {
+      color: orange;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
   }
 }
