@@ -29,7 +29,6 @@ const Layout = ({ misc, pageContext, children }) => {
   // リターン
   return (
     <>
-      {' '}
       <SEO misc={misc} pageContext={pageContext} />
       <Menubar />
       <Container maxWidth={'xl'}>
