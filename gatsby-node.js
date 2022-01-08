@@ -37,10 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  const info = { site: JSON.parse(result.data.site.siteMetadata), image: JSON.parse(result.data.microcmsPicture) }
-
-  console.log(info)
-
+  const info = { site: result.data.site.siteMetadata, image: result.data.microcmsPicture }
   // 記事リスト
   list = 'all'
   result = await graphql(`
