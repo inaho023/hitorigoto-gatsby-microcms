@@ -6,9 +6,11 @@ import { Img } from 'react-image'
 import { Link } from 'gatsby'
 
 // Material-UI
-import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import { CardActionArea } from '@mui/material'
 
 // スタイルシート
 import * as styles from '../styles/BlogNavi.module.scss'
@@ -38,10 +40,14 @@ const BlogNavi = ({ pageContext }) => {
           <Grid item xs={12} md={6}>
             <Link key={prev.node.blogId} to={'/post/' + prev.node.blogId} title={'前の記事へ'}>
               <Card className={styles.prev}>
-                <Box className={styles.box}>
-                  <h5>{prev.node.title}</h5>
-                </Box>
-                <Img className={styles.image} src={prevImage} alt={prev.node.title} width={96} height={96} loader={prevLoader} />
+                <CardActionArea className={styles.area}>
+                  <CardContent className={styles.content}>
+                    <h5>{prev.node.title}</h5>
+                  </CardContent>
+                  <CardMedia className={styles.media}>
+                    <Img src={prevImage} alt={prev.node.title} width={96} height={96} loader={prevLoader} />
+                  </CardMedia>
+                </CardActionArea>
               </Card>
             </Link>
           </Grid>
@@ -52,10 +58,14 @@ const BlogNavi = ({ pageContext }) => {
           <Grid item xs={12} md={6}>
             <Link key={next.node.blogId} to={'/post/' + next.node.blogId} title={'次の記事へ'}>
               <Card className={styles.next}>
-                <Img className={styles.image} src={nextImage} alt={next.node.title} width={96} height={96} loader={nextLoader} />
-                <Box className={styles.box}>
-                  <h5>{next.node.title}</h5>
-                </Box>
+                <CardActionArea className={styles.area}>
+                  <CardMedia className={styles.media}>
+                    <Img src={nextImage} alt={next.node.title} width={96} height={96} loader={nextLoader} />
+                  </CardMedia>
+                  <CardContent className={styles.content}>
+                    <h5>{next.node.title}</h5>
+                  </CardContent>
+                </CardActionArea>
               </Card>
             </Link>
           </Grid>

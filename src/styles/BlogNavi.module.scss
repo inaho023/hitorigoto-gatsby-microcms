@@ -13,45 +13,48 @@
     }
 
     .prev {
-      cursor: pointer;
-      height: 96px;
-      position: relative;
-      background: #cc8500;
-      border: 1px solid #332100;
-      border-left: 16px solid #332100;
-
-      .image {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        width: 96px;
+      .area {
+        cursor: pointer;
         height: 96px;
-        overflow: hidden;
-        object-fit: cover;
-      }
+        position: relative;
+        background: #cc8500;
+        margin: 0px;
+        padding: 0px;
+        border-left: 16px solid #332100;
 
-      .box {
-        width: auto;
-        height: 96px;
-        position: absolute;
-        top: 0px;
-        right: 96px;
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
+        .media {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          width: 96px;
+          height: 96px;
+          overflow: hidden;
+          object-fit: cover;
+        }
 
-        h5 {
-          position: relative;
+        .content {
+          width: auto;
+          height: 96px;
+          position: absolute;
+          top: 0px;
+          right: 96px;
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
           justify-content: center;
-          vertical-align: middle;
-          text-align: left;
-          padding: 0.25rem;
-          line-height: 1.25rem;
-          font-size: 1rem;
-          font-weight: 500;
-          word-break: break-all;
+          padding: 8px;
+
+          h5 {
+            position: relative;
+            justify-content: center;
+            vertical-align: middle;
+            text-align: left;
+            padding: 0.25rem;
+            line-height: 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            word-break: break-all;
+          }
         }
       }
     }
@@ -63,45 +66,48 @@
     }
 
     .next {
-      cursor: pointer;
-      height: 96px;
-      position: relative;
-      background: #cc8500;
-      border: 1px solid #332100;
-      border-right: 16px solid #332100;
-
-      .image {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 96px;
+      .area {
+        cursor: pointer;
         height: 96px;
-        overflow: hidden;
-        object-fit: cover;
-      }
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+        background: #cc8500;
+        border-right: 16px solid #332100;
 
-      .box {
-        width: auto;
-        height: 96px;
-        position: absolute;
-        top: 0px;
-        left: 96px;
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
+        .media {
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 96px;
+          height: 96px;
+          overflow: hidden;
+          object-fit: cover;
+        }
 
-        h5 {
-          position: relative;
+        .content {
+          width: auto;
+          height: 96px;
+          position: absolute;
+          top: 0px;
+          left: 96px;
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
           justify-content: center;
-          vertical-align: middle;
-          text-align: left;
-          padding: 0.25rem;
-          line-height: 1.25rem;
-          font-size: 1rem;
-          font-weight: 500;
-          word-break: break-all;
+          padding: 8px;
+
+          h5 {
+            position: relative;
+            justify-content: center;
+            vertical-align: middle;
+            text-align: left;
+            padding: 0.25rem;
+            line-height: 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            word-break: break-all;
+          }
         }
       }
     }

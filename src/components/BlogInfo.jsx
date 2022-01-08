@@ -8,6 +8,7 @@ import { Link } from 'gatsby'
 // Material-UI
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 
 // Material Design Icons
 import Icon from '@mdi/react'
@@ -48,27 +49,27 @@ const BlogInfo = ({ data }) => {
           <Grid item className={styles.wrapper} xs={12} md={6}>
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
-              <Box className={styles.text}>
+              <Box>
                 <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM')}>
-                  {moment(blog.datetime).format('YYYY年MM月DD日')}
+                  <Button className={styles.button}>{moment(blog.datetime).format('YYYY年MM月DD日')}</Button>
                 </Link>
               </Box>
             </Grid>
             <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
               <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
-              <Box className={styles.text}>
+              <Box>
                 <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id}>
-                  {blog.category.name}
+                  <Button className={styles.button}>{blog.category.name}</Button>
                 </Link>
               </Box>
             </Grid>
             <Grid item className={styles.box} key={'BoxTags'} xs={12}>
               <Icon className={styles.icon} path={mdiTag} size={3} title={'タグ'} />
-              <Box className={styles.text}>
+              <Box>
                 {blog.tags.map(tag => {
                   return (
                     <Link key={tag.tagsId} to={'/tag/' + tag.id}>
-                      {tag.name}
+                      <Button className={styles.button}>{tag.name}</Button>
                     </Link>
                   )
                 })}
@@ -76,7 +77,7 @@ const BlogInfo = ({ data }) => {
             </Grid>
             <Grid item className={styles.box} key={'BoxShare'} xs={12}>
               <Icon className={styles.icon} path={mdiShareVariant} size={3} title={'シェア'} />
-              <Box className={styles.text}>
+              <Box>
                 <ShareButton blog={blog} />
               </Box>
             </Grid>
