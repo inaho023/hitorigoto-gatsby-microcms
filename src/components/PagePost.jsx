@@ -15,8 +15,6 @@ import * as styles from '../styles/PagePost.module.scss'
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_OGP, THUMB_IMG_OPT_BLUR } from './Constant'
 
 const PagePost = ({ data, pageContext }) => {
-  // ポジション
-  const sitePosition = data.microcmsPage.title
   // OGP設定
   const ogp = {
     type: 'article',
@@ -25,6 +23,8 @@ const PagePost = ({ data, pageContext }) => {
     description: data.microcmsPage.body,
     image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
   }
+  // ページ情報設定
+  const misc = { position: data.microcmsPage.title, ogp: ogp }
   // 画像URL生成
   const src = data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
   const imgLoader = () => {
@@ -32,7 +32,7 @@ const PagePost = ({ data, pageContext }) => {
   }
   // イメージ
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext}>
       <Box className={styles.wrapper}>
         <Box className={styles.title}>
           <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>

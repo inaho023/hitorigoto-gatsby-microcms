@@ -1,9 +1,8 @@
 // React
 import React from 'react'
-import { Helmet } from 'react-helmet'
 
 // Gatsby
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 // Material-UI
 import Container from '@mui/material/Container'
@@ -20,69 +19,27 @@ import Menubar from './Menubar'
 import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
+import SEO from './SEO'
 
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
 
-// テーマ
-
 // Layout コンポーネント
-const Layout = ({ sitePosition, ogp, pageContext, children }) => {
-  // クエリー実行
-  const data = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          siteUrl
-          title
-          subtitle
-          description
-          lang
-        }
-      }
-      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
-        pictureId
-        title
-        picture {
-          url
-          width
-          height
-        }
-        parameter
-      }
-    }
-  `)
-  // OGP設定
-  const ogpUrl = ogp && data.site.siteMetadata.siteurl + ogp.url
-  const ogpSiteName = ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
-  const ogpTitle = ogp && ogp.type === 'website' ? data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle + (ogp.title && ' ' + ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : ogp.title
-  const ogpImage = ogp && ogp.type === 'website' ? data.microcmsPicture.picture.url + '?' + data.microcmsPicture.parameter : ogp.image
+const Layout = ({ misc, pageContext, children }) => {
   // リターン
   return (
     <>
-      <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>
-        <title>{(sitePosition && sitePosition + ' - ') + data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        {ogp && <meta property='og:type' content={ogp.type} />}
-        {ogp && <meta property='og:url' content={ogpUrl} />}
-        {ogp && <meta property='og:site_neme' content={ogpSiteName} />}
-        {ogp && <meta property='og:title' content={ogpTitle} />}
-        {ogp && <meta property='og:description' content={ogp.description} />}
-        {ogp && <meta property='og:image' content={ogpImage} />}
-        {ogp && <meta property='og:image:alt' content={ogpTitle} />}
-        {ogp && <meta name='twitter:card' content='summary_large_image' />}
-        {ogp && <meta name='twitter:site' content='@inaho_lx' />}
-        {ogp && <meta name='twitter:creator' content='@inaho_lx' />}
-      </Helmet>
-      <a id={'Header'} href={'/'} />
+      {' '}
+      <SEO misc={misc} pageContext={pageContext} />
       <Menubar />
       <Container maxWidth={'xl'}>
+        <a id={'Header'} href={'/'} />
         <header className={styles.header}>
           <Link key={'Header'} className={styles.title} to='/'>
-            <h1>{data.site.siteMetadata.title}</h1>
-            <h2>{data.site.siteMetadata.subtitle}</h2>
+            <h1>{pageContext.info.site.title}</h1>
+            <h2>{pageContext.info.site.subtitle}</h2>
           </Link>
-          <p className={styles.description}>{data.site.siteMetadata.description}</p>
+          <p className={styles.description}>{pageContext.info.site.description}</p>
         </header>
         <article>{children}</article>
         <section id={'Bottom'}>
@@ -100,15 +57,15 @@ const Layout = ({ sitePosition, ogp, pageContext, children }) => {
         </section>
         <footer className={styles.footer}>
           <Link key={'Footer'} to='/'>
-            &copy; {data.site.siteMetadata.title}
+            &copy; {pageContext.info.site.title}
           </Link>
         </footer>
+        <Box className={styles.float}>
+          <Fab href={'#Header'}>
+            <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
+          </Fab>
+        </Box>
       </Container>
-      <Box className={styles.float}>
-        <Fab href={'#Header'}>
-          <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
-        </Fab>
-      </Box>
     </>
   )
 }

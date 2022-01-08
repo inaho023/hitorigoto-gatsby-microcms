@@ -9,16 +9,16 @@ import * as styles from '../styles/404.module.scss'
 
 // 404ページ
 const E404 = ({ pageContext }) => {
-  // ポジション
-  const sitePosition = '404'
   // OGP設定
   const ogp = {
     type: 'article',
-    title: sitePosition
+    title: '404'
   }
+  // ページ情報設定
+  const misc = { position: '404', ogp: ogp }
   // リターン
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
+    <Layout data={misc} pageContext={pageContext}>
       <div className={styles.post}>
         <h2>404 | ページがありません</h2>
       </div>

@@ -85,9 +85,10 @@ const BlogList = ({ data, pageContext }) => {
       }
       break
   }
+  const misc = { position: sitePosition, ogp: ogp }
   // リターン
   return (
-    <Layout sitePosition={sitePosition} ogp={ogp} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext}>
       {sitePosition && <h2 className={styles.list}>{sitePosition}</h2>}
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {

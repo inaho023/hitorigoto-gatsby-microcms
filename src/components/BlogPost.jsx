@@ -24,9 +24,11 @@ const BlogPost = ({ data, pageContext }) => {
     description: blog.body,
     image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP + (blog.image_parm != 'null' && '&' + blog.image_parm)
   }
+  // ページ情報設定
+  const misc = { position: blog.title, ogp: ogp }
   // リターン
   return (
-    <Layout sitePosition={blog.title} ogp={ogp} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext}>
       {
         // 記事情報
       }
@@ -42,7 +44,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // コメント欄
       }
-      <Comment blog={blog} />
+      <Comment pageContext={pageContext} />
       {
         // 前後の記事へ移動
       }
