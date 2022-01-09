@@ -76,14 +76,6 @@ a {
 
 .float {
   position: fixed;
-  top: auto;
   bottom: 16px;
-  left: auto;
   right: 16px;
-}
-
-.float:active,
-.float:focus,
-.float:hover {
-  text-decoration: underline;
 }
