@@ -39,6 +39,7 @@
     "gatsby-source-microcms": "^2.0.0",
     "graphql": "^15.7.2",
     "highlight.js": "^11.3.1",
+    "js-base64": "^3.7.2",
     "microcms-richedit-processer": "^1.0.4",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
