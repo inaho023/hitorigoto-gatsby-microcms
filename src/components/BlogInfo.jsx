@@ -16,6 +16,7 @@ import { mdiCalendarToday, mdiShape, mdiTag, mdiShareVariant } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'
+import { Base64 } from 'js-base64'
 
 // 自作コンポーネント
 import ShareButton from './ShareButton'
@@ -24,16 +25,19 @@ import ShareButton from './ShareButton'
 import * as styles from '../styles/BlogInfo.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_BLUR } from './Constant'
+import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_BLUR, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_LARGE } from './Constant'
 
 // 記事詳細
 const BlogInfo = ({ data }) => {
   // 記事詳細
   const blog = data.microcmsBlog
+  // コピーライトテキスト生成
+  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
+  const paramText = IMGIX_COPYRIGHT_OPT_LARGE + '&txt64=' + b64Text
   // 画像URL生成
-  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + (blog.image_parm != 'null' && '&' + blog.image_parm)
+  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + (blog.image_parm != 'null' && '&' + blog.image_parm)
   const imgLoader = () => {
-    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
+    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
   }
   // リターン
   return (

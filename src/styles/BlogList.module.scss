@@ -35,6 +35,7 @@
         width: 100%;
         height: 8rem;
         margin: 0px;
+        overflow: hidden;
 
         h3 {
           color: #332100;
@@ -42,7 +43,6 @@
           font-weight: 500;
           font-size: 1.25rem;
           word-break: break-all;
-          overflow: hidden;
         }
       }
 

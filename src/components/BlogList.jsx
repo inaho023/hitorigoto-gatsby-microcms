@@ -17,7 +17,10 @@ import { CardActionArea } from '@mui/material'
 import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
-// コンポーネント
+// その他コンポーネント
+import { Base64 } from 'js-base64'
+
+// 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
 
@@ -25,7 +28,7 @@ import Pager from './Pager'
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR } from './Constant'
+import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_SMALL } from './Constant'
 
 // ブログリスト
 const BlogList = ({ data, pageContext }) => {
@@ -86,6 +89,9 @@ const BlogList = ({ data, pageContext }) => {
       break
   }
   const misc = { position: sitePosition, ogp: ogp }
+  // コピーライトテキスト生成
+  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
+  const paramText = IMGIX_COPYRIGHT_OPT_SMALL + '&txt64=' + b64Text
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
@@ -93,9 +99,9 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + THUMB_IMG_OPT_LIST
+          const src = blog.node.image.url + THUMB_IMG_OPT_LIST + paramText
           const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={270} height={180} />
+            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + paramText + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={270} height={180} />
           }
           // リターン
           return (

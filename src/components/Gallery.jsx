@@ -13,15 +13,20 @@ import { mdiChevronDown, mdiCamera } from '@mdi/js'
 
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
+import { Base64 } from 'js-base64'
 
 // スタイルシート
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DESKTOP_GALLERY, THUMB_IMG_OPT_MOBILE_GALLERY } from './Constant'
+import { THUMB_IMG_OPT_DESKTOP_GALLERY, THUMB_IMG_OPT_MOBILE_GALLERY, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_FULL, IMGIX_COPYRIGHT_OPT_SMALL } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
+  // コピーライトテキスト生成
+  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
+  const paramTextFull = IMGIX_COPYRIGHT_OPT_FULL + '&txt64=' + b64Text
+  const paramTextSmall = IMGIX_COPYRIGHT_OPT_SMALL + '&txt64=' + b64Text
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -46,8 +51,8 @@ const Gallery = ({ galleries }) => {
                       // リターン
                       return (
                         <Grid item key={image.image.url} xs={6} sm={3}>
-                          <a key={image.image.url} href={image.image.url}>
-                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY} srcSet={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + ' 960w,' + image.image.url + THUMB_IMG_OPT_DESKTOP_GALLERY} alt={title} loading={'lazy'} />
+                          <a key={image.image.url} href={image.image.url + '?' + paramTextFull}>
+                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + paramTextSmall} srcSet={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + paramTextSmall + ' 960w,' + image.image.url + THUMB_IMG_OPT_DESKTOP_GALLERY + paramTextSmall} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>
                       )
