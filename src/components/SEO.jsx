@@ -13,6 +13,7 @@ const SEO = ({ misc, pageContext }) => {
   return (
     <Helmet htmlAttributes={{ lang: pageContext.info.site.lang, prefix: 'og: http://ogp.me/ns#' }}>
       <title>{(misc.position && misc.position + ' - ') + pageContext.info.site.title + ' ' + pageContext.info.site.subtitle}</title>
+      <meta name='description' content={ogpTitle} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       {misc.ogp && <meta property='og:type' content={misc.ogp.type} />}
       {misc.ogp && <meta property='og:url' content={ogpUrl} />}
