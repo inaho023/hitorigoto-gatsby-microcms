@@ -32,8 +32,7 @@ const Layout = ({ misc, pageContext, children }) => {
       <SEO misc={misc} pageContext={pageContext} />
       <Menubar />
       <Container maxWidth={'xl'}>
-        <a id={'Header'} href={'/'} />
-        <header className={styles.header}>
+        <header className={styles.header} id={'Header'} key={'Header'}>
           <Link key={'Header'} className={styles.title} to='/'>
             <h1>{pageContext.info.site.title}</h1>
             <h2>{pageContext.info.site.subtitle}</h2>
