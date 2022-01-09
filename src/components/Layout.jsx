@@ -7,7 +7,6 @@ import { Link } from 'gatsby'
 // Material-UI
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import Box from '@mui/material//Box'
 import Fab from '@mui/material/Fab'
 
 // Material Design Icons
@@ -15,11 +14,11 @@ import Icon from '@mdi/react'
 import { mdiNavigation } from '@mdi/js'
 
 // 自作コンポーネント
+import SEO from './SEO'
 import Menubar from './Menubar'
 import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
-import SEO from './SEO'
 
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
@@ -58,11 +57,9 @@ const Layout = ({ misc, pageContext, children }) => {
             &copy; {pageContext.info.site.title}
           </Link>
         </footer>
-        <Box className={styles.float}>
-          <Fab href={'#Header'}>
-            <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
-          </Fab>
-        </Box>
+        <Fab className={styles.float} href={'#Header'}>
+          <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
+        </Fab>
       </Container>
     </>
   )
