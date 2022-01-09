@@ -7,6 +7,7 @@ import { Link } from 'gatsby'
 // Material-UI
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 
 // Material Design Icons
@@ -58,9 +59,11 @@ const Layout = ({ misc, pageContext, children }) => {
           </Link>
         </footer>
       </Container>
-      <Fab className={styles.float} href={'#Header'}>
-        <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
-      </Fab>
+      <Box className={styles.float}>
+        <Fab className={styles.fab} href={'#Header'}>
+          <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
+        </Fab>
+      </Box>
     </>
   )
 }
