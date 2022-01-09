@@ -33,13 +33,11 @@ const PagePost = ({ data, pageContext }) => {
   // イメージ
   return (
     <Layout misc={misc} pageContext={pageContext}>
-      <Box className={styles.wrapper}>
-        <Box className={styles.title}>
-          <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
-        </Box>
-        <Img className={styles.image} src={src} alt={data.microcmsPage.title} width={960} height={960} loader={imgLoader} />
-        <Box className={styles.post} key={data.microcmsPage.pageId} dangerouslySetInnerHTML={{ __html: data.microcmsPage.body }} />
+      <Box className={styles.title}>
+        <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
       </Box>
+      <Img className={styles.image} src={src} alt={data.microcmsPage.title} width={960} height={960} loader={imgLoader} />
+      <Box className={styles.post} key={data.microcmsPage.pageId} dangerouslySetInnerHTML={{ __html: data.microcmsPage.body }} />
     </Layout>
   )
 }
