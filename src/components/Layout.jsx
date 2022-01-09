@@ -57,10 +57,10 @@ const Layout = ({ misc, pageContext, children }) => {
             &copy; {pageContext.info.site.title}
           </Link>
         </footer>
-        <Fab className={styles.float} href={'#Header'}>
-          <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
-        </Fab>
       </Container>
+      <Fab className={styles.float} href={'#Header'}>
+        <Icon path={mdiNavigation} size={1} title={'先頭へ'} />
+      </Fab>
     </>
   )
 }
