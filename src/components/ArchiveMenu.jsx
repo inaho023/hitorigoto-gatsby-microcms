@@ -63,7 +63,7 @@ const ArchiveMenu = () => {
                       moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
                         <Link key={siteMonth} to={'/archive/' + siteMonth}>
                           <Button key={siteMonth} className={styles.button} size={'large'} variant={'contained'} fullWidth>
-                            <a>{moment(siteMonth, 'YYYYMM').format('M月')}</a>
+                            {moment(siteMonth, 'YYYYMM').format('M月')}
                           </Button>
                         </Link>
                       )
