@@ -45,7 +45,7 @@ const Menubar = () => {
         <Box className={styles.grow} />
         <Box className={styles.icon}>
           <IconButton color={'inherit'}>
-            <Link key={'Profile'} to={'/profile'}>
+            <Link key={'Profile'} to={'/profile/'}>
               <Icon path={mdiAccount} size={1} title={'プロフィール'} />
             </Link>
           </IconButton>

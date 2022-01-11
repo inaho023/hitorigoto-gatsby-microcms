@@ -54,7 +54,7 @@ const BlogInfo = ({ data }) => {
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
               <Box>
-                <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM')}>
+                <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM') + '/'}>
                   <Button className={styles.button}>{moment(blog.datetime).format('YYYY年MM月DD日')}</Button>
                 </Link>
               </Box>
@@ -62,7 +62,7 @@ const BlogInfo = ({ data }) => {
             <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
               <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
               <Box>
-                <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id}>
+                <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id + '/'}>
                   <Button className={styles.button}>{blog.category.name}</Button>
                 </Link>
               </Box>
@@ -72,7 +72,7 @@ const BlogInfo = ({ data }) => {
               <Box>
                 {blog.tags.map(tag => {
                   return (
-                    <Link key={tag.tagsId} to={'/tag/' + tag.id}>
+                    <Link key={tag.tagsId} to={'/tag/' + tag.id + '/'}>
                       <Button className={styles.button}>{tag.name}</Button>
                     </Link>
                   )
