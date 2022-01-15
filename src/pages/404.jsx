@@ -40,7 +40,8 @@ const E404 = () => {
   // OGP設定
   const ogp = {
     type: 'article',
-    title: '404'
+    title: '404',
+    description: 'ページがありません。'
   }
   // ページ情報設定
   const misc = { position: '404', ogp: ogp }
