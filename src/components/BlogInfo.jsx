@@ -35,9 +35,9 @@ const BlogInfo = ({ data }) => {
   const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
   const paramText = IMGIX_COPYRIGHT_OPT_LARGE + '&txt64=' + b64Text
   // 画像URL生成
-  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + (blog.image_parm != 'null' && '&' + blog.image_parm)
+  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + paramText
   const imgLoader = () => {
-    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + THUMB_IMG_OPT_BLUR + (blog.image_parm != 'null' && '&' + blog.image_parm)} alt={blog.node.title} width={960} height={960} />
+    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={960} height={960} />
   }
   // リターン
   return (
