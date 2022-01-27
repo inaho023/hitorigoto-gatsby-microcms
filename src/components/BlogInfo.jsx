@@ -28,9 +28,7 @@ import * as styles from '../styles/BlogInfo.module.scss'
 import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_BLUR, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_LARGE } from './Constant'
 
 // 記事詳細
-const BlogInfo = ({ data }) => {
-  // 記事詳細
-  const blog = data.microcmsBlog
+const BlogInfo = ({ blog }) => {
   // コピーライトテキスト生成
   const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
   const paramText = IMGIX_COPYRIGHT_OPT_LARGE + '&txt64=' + b64Text

@@ -32,7 +32,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // 記事情報
       }
-      <BlogInfo data={data} />
+      <BlogInfo blog={blog} />
       {
         // ボディ
       }
@@ -44,7 +44,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // コメント欄
       }
-      <Comment pageContext={pageContext} />
+      <Comment blog={blog} />
       {
         // 前後の記事へ移動
       }

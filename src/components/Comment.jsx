@@ -13,7 +13,7 @@ import { Disqus } from 'gatsby-plugin-disqus'
 // スタイルシート
 import * as styles from '../styles/Comment.module.scss'
 
-const Comment = ({ pageContext }) => {
+const Comment = ({ blog }) => {
   // サイト情報
   const data = useStaticQuery(graphql`
     query {
@@ -29,11 +29,11 @@ const Comment = ({ pageContext }) => {
     }
   `)
   // URL組み立て
-  const url = data.site.siteMetadata.siteUrl + '/post/' + pageContext.id + '/'
+  const url = data.site.siteMetadata.siteUrl + '/post/' + blog.blogId + '/'
   // リターン
   return (
     <Box className={styles.comment}>
-      <Disqus config={{ url: url, identifier: pageContext.id, title: pageContext.current.title }} />
+      <Disqus config={{ url: url, identifier: blog.blogId, title: blog.title }} />
     </Box>
   )
 }
