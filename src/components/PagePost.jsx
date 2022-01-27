@@ -21,14 +21,14 @@ const PagePost = ({ data, pageContext }) => {
     url: '/' + (data.microcmsPage.pageId ? data.microcmsPage.pageId : data.microcmsPage.id),
     title: data.microcmsPage.title,
     description: data.microcmsPage.body,
-    image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
+    image: data.microcmsPage.image && data.microcmsPage.image.url + THUMB_IMG_OPT_OGP
   }
   // ページ情報設定
   const misc = { position: data.microcmsPage.title, ogp: ogp }
   // 画像URL生成
-  const src = data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)
+  const src = data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL
   const imgLoader = () => {
-    return <img src={data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR + (data.microcmsPage.image_parm != 'null' && '&' + data.microcmsPage.image_parm)} alt={data.microcmsPage.title} width={960} height={960} />
+    return <img src={data.microcmsPage.image.url + THUMB_IMG_OPT_DETAIL + THUMB_IMG_OPT_BLUR} alt={data.microcmsPage.title} width={960} height={960} />
   }
   // イメージ
   return (

@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Gatsby
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 // Material-UI
 import Container from '@mui/material/Container'
@@ -26,18 +26,43 @@ import * as styles from '../styles/Layout.module.scss'
 
 // Layout コンポーネント
 const Layout = ({ misc, pageContext, children }) => {
+  // サイト情報
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+          title
+          subtitle
+          description
+          lang
+        }
+      }
+      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
+        pictureId
+        title
+        picture {
+          url
+          width
+          height
+        }
+        parameter
+      }
+    }
+  `)
+  const info = { site: data.site.siteMetadata, image: data.microcmsPicture }
   // リターン
   return (
     <>
-      <SEO misc={misc} pageContext={pageContext} />
+      <SEO info={info} misc={misc} pageContext={pageContext} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header} id={'Header'} key={'Header'}>
           <Link key={'Header'} className={styles.title} to='/'>
-            <h1>{pageContext.info.site.title}</h1>
-            <h2>{pageContext.info.site.subtitle}</h2>
+            <h1>{info.site.title}</h1>
+            <h2>{info.site.subtitle}</h2>
           </Link>
-          <p className={styles.description}>{pageContext.info.site.description}</p>
+          <p className={styles.description}>{info.site.description}</p>
         </header>
         <article>{children}</article>
         <section id={'Bottom'}>
@@ -55,7 +80,7 @@ const Layout = ({ misc, pageContext, children }) => {
         </section>
         <footer className={styles.footer}>
           <Link key={'Footer'} to='/'>
-            &copy; {pageContext.info.site.title}
+            &copy; {info.site.title}
           </Link>
         </footer>
       </Container>
