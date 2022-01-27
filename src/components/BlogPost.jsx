@@ -19,10 +19,10 @@ const BlogPost = ({ data, pageContext }) => {
   // OGP設定
   const ogp = {
     type: 'article',
-    url: '/post/' + (blog.blogId === undefined ? blog.id : blog.blogId),
+    url: '/post/' + (blog.blogId ? blog.blogId : blog.id) + '/',
     title: blog.title,
     description: blog.body,
-    image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP + (blog.image_parm != 'null' && '&' + blog.image_parm)
+    image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP
   }
   // ページ情報設定
   const misc = { position: blog.title, ogp: ogp }
