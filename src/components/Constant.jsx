@@ -5,7 +5,7 @@ export const IMGIX_COPYRIGHT_OPT_LARGE = '&txt-align=bottom,center&txt-size=64&t
 export const IMGIX_COPYRIGHT_OPT_SMALL = '&txt-align=bottom,center&txt-size=16&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=10'
 // 共通サムネイル画像パラメーター
 export const THUMB_IMG_OPT_LIST = '?fit=crop&crop=faces&fm=webp&q=20&w=270&h=180' // 記事リスト用画像オプション
-export const THUMB_IMG_OPT_NAVI = '?fit=crop&crop=faces&fm=webp&q=20&w=128&h=128' // 前後記事用画像オプション
+export const THUMB_IMG_OPT_NAVI = '?fit=crop&crop=faces&fm=webp&q=20&w=96&h=96' // 前後記事用画像オプション
 export const THUMB_IMG_OPT_DETAIL = '?fit=crop&crop=faces&fm=webp&q=50&w=960&h=960' // 記事詳細用画像オプション
 export const THUMB_IMG_OPT_OGP = '?fit=crop&crop=faces&fm=webp&q=50&w=1200&h=630' // OGP用画像オプション
 export const THUMB_IMG_OPT_BLUR = '&blur=1000'
