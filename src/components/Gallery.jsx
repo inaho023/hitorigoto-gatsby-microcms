@@ -19,14 +19,14 @@ import { Base64 } from 'js-base64'
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DESKTOP_GALLERY, THUMB_IMG_OPT_MOBILE_GALLERY, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_FULL, IMGIX_COPYRIGHT_OPT_SMALL } from './Constant'
+import { IMGIX_IMG_OPT_GALLERY_L, IMGIX_IMG_OPT_GALLERY_M, IMGIX_IMG_OPT_GALLERY_S, IMGIX_COPYRIGHT_OPT_F, IMGIX_COPYRIGHT_OPT_S, IMGIX_COPYRIGHT_TEXT } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
   // コピーライトテキスト生成
   const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
-  const paramTextFull = IMGIX_COPYRIGHT_OPT_FULL + '&txt64=' + b64Text
-  const paramTextSmall = IMGIX_COPYRIGHT_OPT_SMALL + '&txt64=' + b64Text
+  const copyrightTextFull = IMGIX_COPYRIGHT_OPT_F + '&txt64=' + b64Text
+  const copyrightTextSmall = IMGIX_COPYRIGHT_OPT_S + '&txt64=' + b64Text
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -48,11 +48,19 @@ const Gallery = ({ galleries }) => {
                     gallery.images.map((image, index) => {
                       // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
+                      // 画像URL生成
+                      const src = image.image.url + IMGIX_IMG_OPT_GALLERY_M + copyrightTextSmall
+                      let srcSet = ''
+                      srcSet = image.image.url + IMGIX_IMG_OPT_GALLERY_S + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 280w'
+                      srcSet = srcSet + ',' + image.image.url + IMGIX_IMG_OPT_GALLERY_M + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 380w'
+                      srcSet = srcSet + ',' + image.image.url + IMGIX_IMG_OPT_GALLERY_L + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 480w'
+                      const sizes = '(max-width:900px) 50vw, 25vw'
+
                       // リターン
                       return (
                         <Grid item key={image.image.url} xs={6} sm={3}>
-                          <a key={image.image.url} href={image.image.url + '?' + paramTextFull}>
-                            <img className={styles.img} src={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + paramTextSmall} srcSet={image.image.url + THUMB_IMG_OPT_MOBILE_GALLERY + paramTextSmall + ' 960w,' + image.image.url + THUMB_IMG_OPT_DESKTOP_GALLERY + paramTextSmall} alt={title} loading={'lazy'} />
+                          <a key={image.image.url} href={image.image.url + '?' + copyrightTextFull}>
+                            <img className={styles.img} src={src} srcSet={srcSet} sizes={sizes} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>
                       )

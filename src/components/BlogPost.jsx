@@ -10,7 +10,7 @@ import Gallery from './Gallery'
 import Comment from './Comment'
 
 // 定数
-import { THUMB_IMG_OPT_OGP } from './Constant'
+import { IMGIX_IMG_OPT_OGP } from './Constant'
 
 // ブログリスト
 const BlogPost = ({ data, pageContext }) => {
@@ -22,7 +22,7 @@ const BlogPost = ({ data, pageContext }) => {
     url: '/post/' + (blog.blogId ? blog.blogId : blog.id) + '/',
     title: blog.title,
     description: blog.body,
-    image: blog.image && blog.image.url + THUMB_IMG_OPT_OGP
+    image: blog.image && blog.image.url + IMGIX_IMG_OPT_OGP
   }
   // ページ情報設定
   const misc = { position: blog.title, ogp: ogp }

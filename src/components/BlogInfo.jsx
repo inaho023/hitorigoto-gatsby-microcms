@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Img } from 'react-image'
 
 // Gatsby
 import { Link } from 'gatsby'
@@ -25,18 +24,20 @@ import ShareButton from './ShareButton'
 import * as styles from '../styles/BlogInfo.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_DETAIL, THUMB_IMG_OPT_BLUR, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_LARGE } from './Constant'
+import { IMGIX_IMG_OPT_DETAIL_L, IMGIX_IMG_OPT_DETAIL_M, IMGIX_IMG_OPT_DETAIL_S, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_L, IMGIX_COPYRIGHT_OPT_M, IMGIX_COPYRIGHT_OPT_S } from './Constant'
 
 // 記事詳細
 const BlogInfo = ({ blog }) => {
   // コピーライトテキスト生成
   const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
-  const paramText = IMGIX_COPYRIGHT_OPT_LARGE + '&txt64=' + b64Text
+  const copyrightText = '&txt64=' + b64Text
   // 画像URL生成
-  const src = blog.image.url + THUMB_IMG_OPT_DETAIL + paramText
-  const imgLoader = () => {
-    return <img src={blog.image.url + THUMB_IMG_OPT_DETAIL + paramText + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={960} height={960} />
-  }
+  const src = blog.image.url + IMGIX_IMG_OPT_DETAIL_M + IMGIX_COPYRIGHT_OPT_M + copyrightText
+  let srcSet = ''
+  srcSet = blog.image.url + IMGIX_IMG_OPT_DETAIL_S + IMGIX_COPYRIGHT_OPT_S + copyrightText + ' 480w'
+  srcSet = srcSet + ',' + blog.image.url + IMGIX_IMG_OPT_DETAIL_M + IMGIX_COPYRIGHT_OPT_M + copyrightText + ' 640w'
+  srcSet = srcSet + ',' + blog.image.url + IMGIX_IMG_OPT_DETAIL_L + IMGIX_COPYRIGHT_OPT_L + copyrightText + ' 960w'
+  const sizes = '(max-width:900px) 100vw, 50vw'
   // リターン
   return (
     <Grid container className={styles.info} key={'Info'} spacing={0}>
@@ -46,7 +47,7 @@ const BlogInfo = ({ blog }) => {
       <Grid item className={styles.wrapper} xs={12}>
         <Grid container spacing={0}>
           <Grid item xs={12} md={6}>
-            <Img className={styles.image} src={src} alt={blog.title} width={960} height={960} loader={imgLoader} />
+            <img className={styles.image} src={src} srcSet={srcSet} sizes={sizes} alt={blog.title} />
           </Grid>
           <Grid item className={styles.wrapper} xs={12} md={6}>
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>

@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Img } from 'react-image'
 
 // Gatsby
 import { Link } from 'gatsby'
@@ -28,7 +27,7 @@ import Pager from './Pager'
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_LIST, THUMB_IMG_OPT_BLUR, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_SMALL } from './Constant'
+import { IMGIX_IMG_OPT_LIST, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_S } from './Constant'
 
 // ブログリスト
 const BlogList = ({ data, pageContext }) => {
@@ -91,7 +90,7 @@ const BlogList = ({ data, pageContext }) => {
   const misc = { position: sitePosition, ogp: ogp }
   // コピーライトテキスト生成
   const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
-  const paramText = IMGIX_COPYRIGHT_OPT_SMALL + '&txt64=' + b64Text
+  const copyrightText = '&txt64=' + b64Text
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
@@ -99,10 +98,7 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + THUMB_IMG_OPT_LIST + paramText
-          const imgLoader = () => {
-            return <img src={blog.node.image.url + THUMB_IMG_OPT_LIST + paramText + THUMB_IMG_OPT_BLUR} alt={blog.node.title} width={270} height={180} />
-          }
+          const src = blog.node.image.url + IMGIX_IMG_OPT_LIST + IMGIX_COPYRIGHT_OPT_S + copyrightText
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
@@ -110,7 +106,7 @@ const BlogList = ({ data, pageContext }) => {
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <Img src={src} alt={blog.node.title} width={270} height={180} loader={imgLoader} />
+                      <img src={src} alt={blog.node.title} width={270} height={180} loading={'lazy'} />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>

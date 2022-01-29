@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Img } from 'react-image'
 
 // Gatsby
 import { Link } from 'gatsby'
@@ -16,22 +15,16 @@ import { CardActionArea } from '@mui/material'
 import * as styles from '../styles/BlogNavi.module.scss'
 
 // 定数
-import { THUMB_IMG_OPT_NAVI, THUMB_IMG_OPT_BLUR } from './Constant'
+import { IMGIX_IMG_OPT_NAVI } from './Constant'
 
 // ブログリスト
 const BlogNavi = ({ pageContext }) => {
   // 前記事の画像
   const prev = pageContext?.prev && pageContext.prev
-  const prevImage = prev ? prev.node.image.url + THUMB_IMG_OPT_NAVI : null
-  const prevLoader = () => {
-    return <img src={prev.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={prev.node.node.title} width={96} height={96} />
-  }
+  const prevImage = prev ? prev.node.image.url + IMGIX_IMG_OPT_NAVI : null
   // 次記事の画像
   const next = pageContext?.next && pageContext.next
-  const nextImage = next ? next.node.image.url + THUMB_IMG_OPT_NAVI : null
-  const nextLoader = () => {
-    return <img src={next.node.image.url + THUMB_IMG_OPT_NAVI + THUMB_IMG_OPT_BLUR} alt={next.node.node.title} width={96} height={96} />
-  }
+  const nextImage = next ? next.node.image.url + IMGIX_IMG_OPT_NAVI : null
   // リターン
   return (
     <nav className={styles.nav}>
@@ -45,7 +38,7 @@ const BlogNavi = ({ pageContext }) => {
                     <h5>{prev.node.title}</h5>
                   </CardContent>
                   <CardMedia className={styles.media}>
-                    <Img src={prevImage} alt={prev.node.title} width={96} height={96} loader={prevLoader} />
+                    <img src={prevImage} alt={prev.node.title} width={96} height={96} />
                   </CardMedia>
                 </CardActionArea>
               </Card>
@@ -60,7 +53,7 @@ const BlogNavi = ({ pageContext }) => {
               <Card className={styles.next}>
                 <CardActionArea className={styles.area}>
                   <CardMedia className={styles.media}>
-                    <Img src={nextImage} alt={next.node.title} width={96} height={96} loader={nextLoader} />
+                    <img src={nextImage} alt={next.node.title} width={96} height={96} />
                   </CardMedia>
                   <CardContent className={styles.content}>
                     <h5>{next.node.title}</h5>
