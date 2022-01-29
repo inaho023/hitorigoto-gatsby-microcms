@@ -23,13 +23,6 @@ module.exports = {
         }
       }
     },
-    // {
-    //   resolve: 'gatsby-plugin-google-fonts',
-    //   options: {
-    //     fonts: ['Noto Sans JP:500,700'],
-    //     display: 'swap'
-    //   }
-    // },
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
