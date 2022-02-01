@@ -133,7 +133,8 @@
       box-shadow: #332100 4px 4px 4px;
       line-height: 1.25rem;
       font-size: 1rem;
-      font-family: monospace;
+      font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+      white-space: pre;
     }
   }
 
@@ -146,7 +147,7 @@
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 2px;
-    font-family: monospace;
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
     word-break: break-all;
   }
 }
