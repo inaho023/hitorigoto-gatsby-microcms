@@ -203,7 +203,7 @@ exports.createPages = async ({ graphql, actions }) => {
     actions.createPage({
       path: '/post/' + id,
       component: path.resolve('src/templates/post/{blog.id}.jsx'),
-      context: { id: id, current: current, next: next, prev: prev }
+      context: { id: id, prev: prev, next: next }
     })
   })
   // ページリスト
