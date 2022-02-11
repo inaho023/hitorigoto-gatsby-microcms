@@ -22,8 +22,12 @@
 
 .image {
   width: 100%;
+  max-width: 960px;
   height: 100%;
-  margin: auto;
+  max-height: 960px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 8px;
   margin-bottom: 8px;
   overflow: hidden;
@@ -41,7 +45,7 @@
   margin: auto;
   margin-top: 8px;
   margin-bottom: 8px;
-  padding: 8px;
+  padding: 16px;
   box-shadow: #332100 4px 4px 4px;
   box-sizing: border-box;
 
@@ -96,8 +100,7 @@
     background-image: url('data:image/svg+xml;charset=utf8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M14%2C3V5H17.59L7.76%2C14.83L9.17%2C16.24L19%2C6.41V10H21V3M19%2C19H5V5H12V3H5C3.89%2C3%203%2C3.9%203%2C5V19C3%2C20.1%203.9%2C21%205%2C21H19C20.1%2C21%2021%2C20.1%2021%2C19V12H19V19Z%22%20%2F%3E%3C%2Fsvg%3E');
   }
 
-  a[href^='https://blog.inaho.space/']
-  {
+  a[href^='/'] {
     display: inline-block;
     padding-right: 32px;
     text-decoration: underline;
@@ -105,7 +108,7 @@
     background-repeat: no-repeat;
     background-origin: border-box;
     background-size: 32px;
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M3.9%2C12C3.9%2C10.29%205.29%2C8.9%207%2C8.9H11V7H7A5%2C5%200%200%2C0%202%2C12A5%2C5%200%200%2C0%207%2C17H11V15.1H7C5.29%2C15.1%203.9%2C13.71%203.9%2C12M8%2C13H16V11H8V13M17%2C7H13V8.9H17C18.71%2C8.9%2020.1%2C10.29%2020.1%2C12C20.1%2C13.71%2018.71%2C15.1%2017%2C15.1H13V17H17A5%2C5%200%200%2C0%2022%2C12A5%2C5%200%200%2C0%2017%2C7Z%22%20%2F%3E%3C%2Fsvg%3E');
+    background-image: url('data:image/svg+xml;charset=utf8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M10.59%2C13.41C11%2C13.8%2011%2C14.44%2010.59%2C14.83C10.2%2C15.22%209.56%2C15.22%209.17%2C14.83C7.22%2C12.88%207.22%2C9.71%209.17%2C7.76V7.76L12.71%2C4.22C14.66%2C2.27%2017.83%2C2.27%2019.78%2C4.22C21.73%2C6.17%2021.73%2C9.34%2019.78%2C11.29L18.29%2C12.78C18.3%2C11.96%2018.17%2C11.14%2017.89%2C10.36L18.36%2C9.88C19.54%2C8.71%2019.54%2C6.81%2018.36%2C5.64C17.19%2C4.46%2015.29%2C4.46%2014.12%2C5.64L10.59%2C9.17C9.41%2C10.34%209.41%2C12.24%2010.59%2C13.41M13.41%2C9.17C13.8%2C8.78%2014.44%2C8.78%2014.83%2C9.17C16.78%2C11.12%2016.78%2C14.29%2014.83%2C16.24V16.24L11.29%2C19.78C9.34%2C21.73%206.17%2C21.73%204.22%2C19.78C2.27%2C17.83%202.27%2C14.66%204.22%2C12.71L5.71%2C11.22C5.7%2C12.04%205.83%2C12.86%206.11%2C13.65L5.64%2C14.12C4.46%2C15.29%204.46%2C17.19%205.64%2C18.36C6.81%2C19.54%208.71%2C19.54%209.88%2C18.36L13.41%2C14.83C14.59%2C13.66%2014.59%2C11.76%2013.41%2C10.59C13%2C10.2%2013%2C9.56%2013.41%2C9.17Z%22%20%2F%3E%0A%3C%2Fsvg%3E');
   }
 
   a[href^='https://twitter.com/']
@@ -133,6 +136,7 @@
   }
 
   p {
+    padding: 16px;
     font-size: 1.25rem;
     line-height: 1.75rem;
     letter-spacing: 1px;
@@ -162,7 +166,7 @@
 
   pre {
     code {
-      max-width: 94%;
+      max-width: 98%;
       overflow-x: scroll;
       display: flex;
       flex: auto;
