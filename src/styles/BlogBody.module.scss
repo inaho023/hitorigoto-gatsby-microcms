@@ -127,21 +127,25 @@
 
   img {
     display: flex;
-    width: 98%;
-    height: 98%;
+    width: 100%;
+    height: 100%;
     margin: auto;
+    padding: 16px;
     border-radius: 8px;
     overflow: hidden;
     object-fit: scale-down;
   }
 
   pre {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px;
+
     code {
-      max-width: 98%;
-      overflow-x: scroll;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%;
       padding: 1rem;
+      overflow-x: scroll;
       box-shadow: #332100 4px 4px 4px;
       line-height: 1.25rem;
       font-size: 1rem;
@@ -161,5 +165,6 @@
     border-radius: 2px;
     font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
     word-break: break-all;
+    white-space: pre;
   }
 }
