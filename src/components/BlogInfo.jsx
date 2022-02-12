@@ -71,7 +71,7 @@ const BlogInfo = ({ blog }) => {
               <Box>
                 {blog.tags.map(tag => {
                   return (
-                    <Link key={tag.tagsId} to={'/tag/' + tag.id + '/'}>
+                    <Link key={tag.id} to={'/tag/' + tag.id + '/'}>
                       <Button className={styles.button}>{tag.name}</Button>
                     </Link>
                   )
