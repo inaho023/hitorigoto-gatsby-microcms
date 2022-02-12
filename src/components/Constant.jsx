@@ -10,10 +10,10 @@ export const IMGIX_IMG_OPT_GALLERY_M = '?fit=crop&crop=faces&fm=webp&q=20&w=380&
 export const IMGIX_IMG_OPT_GALLERY_S = '?fit=crop&crop=faces&fm=webp&q=20&w=280&h=280' // ギャラリー用画像オプション
 // 画像用コピーライト
 export const IMGIX_COPYRIGHT_TEXT = '©いなほちゅんのひとりごと'
-export const IMGIX_COPYRIGHT_OPT_F = '&txt-align=bottom,center&txt-size=96&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=10'
-export const IMGIX_COPYRIGHT_OPT_L = '&txt-align=bottom,center&txt-size=64&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=10'
-export const IMGIX_COPYRIGHT_OPT_M = '&txt-align=bottom,center&txt-size=32&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=10'
-export const IMGIX_COPYRIGHT_OPT_S = '&txt-align=bottom,center&txt-size=16&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=10'
+export const IMGIX_COPYRIGHT_OPT_F = '&txt-align=bottom,center&txt-size=96&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=8&txt-line-color=40332100&txt-shad=8'
+export const IMGIX_COPYRIGHT_OPT_L = '&txt-align=bottom,center&txt-size=64&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=6&txt-line-color=40332100&txt-shad=6'
+export const IMGIX_COPYRIGHT_OPT_M = '&txt-align=bottom,center&txt-size=32&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=4&txt-line-color=40332100&txt-shad=4'
+export const IMGIX_COPYRIGHT_OPT_S = '&txt-align=bottom,center&txt-size=16&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt-shad=2'
 // シェアボタン用設定
 export const SHARE_BUTTON_SIZE = 40 // シェアボタンサイズ
 // 外部リンク
