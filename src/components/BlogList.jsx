@@ -118,7 +118,7 @@ const BlogList = ({ data, pageContext }) => {
                         <Grid item xs={6}>
                           <Box className={styles.box}>
                             <span className={styles.icon}>
-                              <Icon path={mdiCalendarToday} size={1} title={'日付'} />
+                              <Icon path={mdiCalendarToday} size={0.75} title={'日付'} />
                             </span>
                             <span className={styles.text}>{blog.node.datetime}</span>
                           </Box>
@@ -126,7 +126,7 @@ const BlogList = ({ data, pageContext }) => {
                         <Grid item xs={6}>
                           <Box className={styles.box}>
                             <span className={styles.icon}>
-                              <Icon path={mdiShape} size={1} title={'カテゴリー'} />
+                              <Icon path={mdiShape} size={0.75} title={'カテゴリー'} />
                             </span>
                             <span className={styles.text}>{blog.node.category.name}</span>
                           </Box>

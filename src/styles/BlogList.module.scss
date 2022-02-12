@@ -56,6 +56,7 @@
         border: 1px solid #332100;
         border-left: 8px solid #332100;
         box-shadow: #332100 1px 1px 2px;
+        overflow: hidden;
 
         .icon {
           display: inline-flex;
@@ -65,21 +66,23 @@
           vertical-align: middle;
           padding-right: 2px;
           color: #332100;
-          line-height: 1.25rem;
+          line-height: 1.5rem;
           font-weight: 500;
-          font-size: 1rem;
+          font-size: 0.75rem;
         }
 
         .text {
+          display: inline-flex;
           width: auto;
           align-items: center;
           justify-content: left;
           vertical-align: middle;
           text-align: center;
           color: #332100;
-          line-height: 1rem;
+          line-height: 1.5rem;
           font-weight: 500;
           font-size: 0.75rem;
+          word-break: keep-all;
         }
       }
     }
