@@ -18,7 +18,7 @@ import { mdiAccount, mdiTwitter, mdiInstagram, mdiBroadcast } from '@mdi/js'
 import * as styles from '../styles/Menubar.module.scss'
 
 // 定数
-import { URL_MY_TWITTER, URL_MY_INSTAGRAM, URL_MY_TWITCASTING } from './Constant'
+import { socialAccount } from './Constant'
 
 const Menubar = () => {
   // クエリー実行
@@ -50,17 +50,17 @@ const Menubar = () => {
             </Link>
           </IconButton>
           <IconButton color={'inherit'}>
-            <a key={'Twitter'} href={URL_MY_TWITTER} target={'_blank'} rel={'noreferrer'}>
+            <a key={'Twitter'} href={socialAccount.twitter.url} target={'_blank'} rel={'noreferrer'}>
               <Icon path={mdiTwitter} size={1} title={'Twitter'} />
             </a>
           </IconButton>
           <IconButton color={'inherit'}>
-            <a key={'Instagram'} href={URL_MY_INSTAGRAM} target={'_blank'} rel={'noreferrer'}>
+            <a key={'Instagram'} href={socialAccount.instagram.url} target={'_blank'} rel={'noreferrer'}>
               <Icon path={mdiInstagram} size={1} title={'Instagram'} />
             </a>
           </IconButton>
           <IconButton color={'inherit'}>
-            <a key={'TwitCasting'} href={URL_MY_TWITCASTING} target={'_blank'} rel={'noreferrer'}>
+            <a key={'TwitCasting'} href={socialAccount.twitcasting.url} target={'_blank'} rel={'noreferrer'}>
               <Icon path={mdiBroadcast} size={1} title={'ツイキャス'} />
             </a>
           </IconButton>

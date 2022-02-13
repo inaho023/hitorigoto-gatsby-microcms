@@ -14,7 +14,7 @@ import Layout from './Layout'
 import * as styles from '../styles/PagePost.module.scss'
 
 // 定数
-import { IMGIX_IMG_OPT_DETAIL_L, IMGIX_IMG_OPT_DETAIL_M, IMGIX_IMG_OPT_DETAIL_S, IMGIX_COPYRIGHT_OPT_L, IMGIX_COPYRIGHT_OPT_M, IMGIX_COPYRIGHT_OPT_S, IMGIX_COPYRIGHT_TEXT, IMGIX_IMG_OPT_OGP } from './Constant'
+import { imgixImageOption, imgixCopyright } from './Constant'
 
 const PagePost = ({ data, pageContext }) => {
   // ページ詳細
@@ -25,19 +25,21 @@ const PagePost = ({ data, pageContext }) => {
     url: '/' + (page.pageId ? page.pageId : page.id),
     title: page.title,
     description: page.body,
-    image: page.image && page.image.url + IMGIX_IMG_OPT_OGP
+    image: page.image && page.image.url + imgixImageOption.ogp
   }
   // ページ情報設定
   const misc = { position: page.title, ogp: ogp }
   // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
+  const b64Text = Base64.encodeURI(imgixCopyright.text)
   const copyrightText = '&txt64=' + b64Text
   // 画像URL生成
-  const src = page.image.url + IMGIX_IMG_OPT_DETAIL_M + IMGIX_COPYRIGHT_OPT_M + copyrightText
+  const src = page.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + copyrightText
   let srcSet = ''
-  srcSet = page.image.url + IMGIX_IMG_OPT_DETAIL_S + IMGIX_COPYRIGHT_OPT_S + copyrightText + ' 480w'
-  srcSet = srcSet + ',' + page.image.url + IMGIX_IMG_OPT_DETAIL_M + IMGIX_COPYRIGHT_OPT_M + copyrightText + ' 640w'
-  srcSet = srcSet + ',' + page.image.url + IMGIX_IMG_OPT_DETAIL_L + IMGIX_COPYRIGHT_OPT_L + copyrightText + ' 960w'
+  srcSet = page.image.url + imgixImageOption.detail.xs + imgixCopyright.option.xs + copyrightText + ' 320w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.s + imgixCopyright.option.s + copyrightText + ' 480w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + copyrightText + ' 640w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.l + imgixCopyright.option.l + copyrightText + ' 800w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.xl + imgixCopyright.option.xl + copyrightText + ' 960w'
   const sizes = '100vw'
   // イメージ
   return (

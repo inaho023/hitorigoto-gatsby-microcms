@@ -31,7 +31,20 @@ const Pager = ({ pageContext }) => {
     }
   }
   // リターン
-  return <Pagination className={styles.pagination} page={pageContext.humanPageNumber} count={pageContext.numberOfPages} boundaryCount={2} size={'large'} variant={'outlined'} shape={'rounded'} showFirstButton showLastButton renderItem={item => <PaginationItem className={styles.paginationitem} component={Link} to={path[item.page - 1]} {...item} />} />
+  return (
+    <Pagination
+      className={styles.pagination}
+      page={pageContext.humanPageNumber}
+      count={pageContext.numberOfPages}
+      boundaryCount={2}
+      size={'large'}
+      variant={'outlined'}
+      shape={'rounded'}
+      showFirstButton
+      showLastButton
+      renderItem={item => <PaginationItem className={styles.paginationitem} component={Link} to={path[item.page - 1]} {...item} />}
+    />
+  )
 }
 
 export default Pager

@@ -27,7 +27,7 @@ import Pager from './Pager'
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { IMGIX_IMG_OPT_LIST, IMGIX_COPYRIGHT_TEXT, IMGIX_COPYRIGHT_OPT_S } from './Constant'
+import { imgixImageOption, imgixCopyright } from './Constant'
 
 // ブログリスト
 const BlogList = ({ data, pageContext }) => {
@@ -89,8 +89,8 @@ const BlogList = ({ data, pageContext }) => {
   }
   const misc = { position: sitePosition, ogp: ogp }
   // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
-  const copyrightText = '&txt64=' + b64Text
+  const b64Text = Base64.encodeURI(imgixCopyright.text)
+  const copyrightText = imgixCopyright.option.xs + '&txt64=' + b64Text
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
@@ -98,7 +98,7 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + IMGIX_IMG_OPT_LIST + IMGIX_COPYRIGHT_OPT_S + copyrightText
+          const src = blog.node.image.url + imgixImageOption.list + copyrightText
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>

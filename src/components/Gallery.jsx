@@ -19,14 +19,14 @@ import { Base64 } from 'js-base64'
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { IMGIX_IMG_OPT_GALLERY_L, IMGIX_IMG_OPT_GALLERY_M, IMGIX_IMG_OPT_GALLERY_S, IMGIX_COPYRIGHT_OPT_F, IMGIX_COPYRIGHT_OPT_S, IMGIX_COPYRIGHT_TEXT } from './Constant'
+import { imgixImageOption, imgixCopyright } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
   // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(IMGIX_COPYRIGHT_TEXT)
-  const copyrightTextFull = IMGIX_COPYRIGHT_OPT_F + '&txt64=' + b64Text
-  const copyrightTextSmall = IMGIX_COPYRIGHT_OPT_S + '&txt64=' + b64Text
+  const b64Text = Base64.encodeURI(imgixCopyright.text)
+  const copyrightTextFull = imgixCopyright.option.full + '&txt64=' + b64Text
+  const copyrightTextSmall = imgixCopyright.option.s + '&txt64=' + b64Text
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -45,21 +45,22 @@ const Gallery = ({ galleries }) => {
                 <Grid container className={styles.details} spacing={0}>
                   {
                     // 画像を配置
-                    gallery.images.map((image, index) => {
+                    gallery.images.map((images, index) => {
                       // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                       // 画像URL生成
-                      const src = image.image.url + IMGIX_IMG_OPT_GALLERY_M + copyrightTextSmall
+                      const src = images.image.url + imgixImageOption.gallery.m + copyrightTextSmall
                       let srcSet = ''
-                      srcSet = image.image.url + IMGIX_IMG_OPT_GALLERY_S + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 280w'
-                      srcSet = srcSet + ',' + image.image.url + IMGIX_IMG_OPT_GALLERY_M + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 380w'
-                      srcSet = srcSet + ',' + image.image.url + IMGIX_IMG_OPT_GALLERY_L + IMGIX_COPYRIGHT_OPT_S + copyrightTextSmall + ' 480w'
+                      srcSet = images.image.url + imgixImageOption.gallery.xs + copyrightTextSmall + ' 280w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.s + copyrightTextSmall + ' 330w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.m + copyrightTextSmall + ' 380w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.l + copyrightTextSmall + ' 430w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.xl + copyrightTextSmall + ' 480w'
                       const sizes = '(max-width:900px) 50vw, 25vw'
-
                       // リターン
                       return (
-                        <Grid item key={image.image.url} xs={6} sm={3}>
-                          <a key={image.image.url} href={image.image.url + '?' + copyrightTextFull}>
+                        <Grid item key={images.image.url} xs={6} sm={3}>
+                          <a key={images.image.url} href={images.image.url + '?' + copyrightTextFull}>
                             <img className={styles.img} src={src} srcSet={srcSet} sizes={sizes} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>

@@ -3,7 +3,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 // 定数
-import { ACCOUNT_MY_TWITTER } from './Constant'
+import { socialAccount } from './Constant'
 
 // SEO コンポーネント
 const SEO = ({ info, misc, pageContext }) => {
@@ -26,8 +26,8 @@ const SEO = ({ info, misc, pageContext }) => {
       {misc.ogp && <meta property='og:image' content={ogpImage} />}
       {misc.ogp && <meta property='og:image:alt' content={ogpTitle} />}
       {misc.ogp && <meta name='twitter:card' content='summary_large_image' />}
-      {misc.ogp && <meta name='twitter:site' content={ACCOUNT_MY_TWITTER} />}
-      {misc.ogp && <meta name='twitter:creator' content={ACCOUNT_MY_TWITTER} />}
+      {misc.ogp && <meta name='twitter:site' content={socialAccount.twitter.account} />}
+      {misc.ogp && <meta name='twitter:creator' content={socialAccount.twitter.account} />}
     </Helmet>
   )
 }

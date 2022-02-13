@@ -15,16 +15,16 @@ import { CardActionArea } from '@mui/material'
 import * as styles from '../styles/BlogNavi.module.scss'
 
 // 定数
-import { IMGIX_IMG_OPT_NAVI } from './Constant'
+import { imgixImageOption } from './Constant'
 
 // ブログリスト
 const BlogNavi = ({ pageContext }) => {
   // 前記事の画像
   const prev = pageContext?.prev && pageContext.prev
-  const prevImage = prev ? prev.node.image.url + IMGIX_IMG_OPT_NAVI : null
+  const prevImage = prev ? prev.node.image.url + imgixImageOption.navi : null
   // 次記事の画像
   const next = pageContext?.next && pageContext.next
-  const nextImage = next ? next.node.image.url + IMGIX_IMG_OPT_NAVI : null
+  const nextImage = next ? next.node.image.url + imgixImageOption.navi : null
   // リターン
   return (
     <nav className={styles.nav}>
