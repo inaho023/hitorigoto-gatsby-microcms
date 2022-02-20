@@ -16,9 +16,6 @@ import { CardActionArea } from '@mui/material'
 import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
-// その他コンポーネント
-import { Base64 } from 'js-base64'
-
 // 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
@@ -88,9 +85,6 @@ const BlogList = ({ data, pageContext }) => {
       break
   }
   const misc = { position: sitePosition, ogp: ogp }
-  // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(imgixCopyright.text)
-  const copyrightText = imgixCopyright.option.xs + '&txt64=' + b64Text
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
@@ -98,7 +92,7 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + imgixImageOption.list + copyrightText
+          const src = blog.node.image.url + imgixImageOption.list + imgixCopyright.xs
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>

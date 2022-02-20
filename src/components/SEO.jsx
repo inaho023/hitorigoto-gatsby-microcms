@@ -3,7 +3,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 // 定数
-import { socialAccount } from './Constant'
+import { socialAccount, imgixCopyright } from './Constant'
 
 // SEO コンポーネント
 const SEO = ({ info, misc, pageContext }) => {
@@ -11,7 +11,7 @@ const SEO = ({ info, misc, pageContext }) => {
   const ogpUrl = misc.ogp && info.site.siteurl + misc.ogp.url
   const ogpSiteName = misc.ogp && info.site.title + ' ' + info.site.subtitle
   const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? info.site.title + ' ' + info.site.subtitle + (misc.ogp.title && ' ' + misc.ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? info.image.picture.url + '?' + info.image.parameter : misc.ogp.image
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? info.image.picture.url + '?' + info.image.parameter + imgixCopyright.xl : misc.ogp.image
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: info.site.lang, prefix: 'og: http://ogp.me/ns#' }}>

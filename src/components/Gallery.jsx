@@ -13,7 +13,6 @@ import { mdiChevronDown, mdiCamera } from '@mdi/js'
 
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
-import { Base64 } from 'js-base64'
 
 // スタイルシート
 import * as styles from '../styles/Gallery.module.scss'
@@ -23,10 +22,6 @@ import { imgixImageOption, imgixCopyright } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
-  // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(imgixCopyright.text)
-  const copyrightTextFull = imgixCopyright.option.full + '&txt64=' + b64Text
-  const copyrightTextSmall = imgixCopyright.option.s + '&txt64=' + b64Text
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -49,18 +44,18 @@ const Gallery = ({ galleries }) => {
                       // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                       // 画像URL生成
-                      const src = images.image.url + imgixImageOption.gallery.m + copyrightTextSmall
+                      const src = images.image.url + imgixImageOption.gallery.m + imgixCopyright.m
                       let srcSet = ''
-                      srcSet = images.image.url + imgixImageOption.gallery.xs + copyrightTextSmall + ' 280w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.s + copyrightTextSmall + ' 330w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.m + copyrightTextSmall + ' 380w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.l + copyrightTextSmall + ' 430w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.xl + copyrightTextSmall + ' 480w'
+                      srcSet = images.image.url + imgixImageOption.gallery.xs + imgixCopyright.xs + ' 280w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.s + imgixCopyright.xs + ' 330w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.m + imgixCopyright.xs + ' 380w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.l + imgixCopyright.xs + ' 430w'
+                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.xl + imgixCopyright.xs + ' 480w'
                       const sizes = '(max-width:900px) 50vw, 25vw'
                       // リターン
                       return (
                         <Grid item key={images.image.url} xs={6} sm={3}>
-                          <a key={images.image.url} href={images.image.url + '?' + copyrightTextFull}>
+                          <a key={images.image.url} href={images.image.url + '?' + imgixCopyright.full}>
                             <img className={styles.img} src={src} srcSet={srcSet} sizes={sizes} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>

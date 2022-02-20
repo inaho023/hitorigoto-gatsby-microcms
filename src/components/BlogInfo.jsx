@@ -15,7 +15,6 @@ import { mdiCalendarToday, mdiShape, mdiTag, mdiShareVariant } from '@mdi/js'
 
 // その他モジュール
 import moment from 'moment'
-import { Base64 } from 'js-base64'
 
 // 自作コンポーネント
 import ShareButton from './ShareButton'
@@ -28,17 +27,14 @@ import { imgixImageOption, imgixCopyright } from './Constant'
 
 // 記事詳細
 const BlogInfo = ({ blog }) => {
-  // コピーライトテキスト生成
-  const b64Text = Base64.encodeURI(imgixCopyright.text)
-  const copyrightText = '&txt64=' + b64Text
   // 画像URL生成
-  const src = blog.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + copyrightText
+  const src = blog.image.url + imgixImageOption.detail.m + imgixCopyright.m
   let srcSet = ''
-  srcSet = blog.image.url + imgixImageOption.detail.xs + imgixCopyright.option.xs + copyrightText + ' 320w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.s + imgixCopyright.option.s + copyrightText + ' 480w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + copyrightText + ' 640w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.l + imgixCopyright.option.l + copyrightText + ' 800w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.xl + imgixCopyright.option.xl + copyrightText + ' 960w'
+  srcSet = blog.image.url + imgixImageOption.detail.xs + imgixCopyright.xs + ' 320w'
+  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.s + imgixCopyright.s + ' 480w'
+  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.m + imgixCopyright.m + ' 640w'
+  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.l + imgixCopyright.l + ' 800w'
+  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.xl + imgixCopyright.xl + ' 960w'
   const sizes = '(max-width:900px) 100vw, 50vw'
   // リターン
   return (

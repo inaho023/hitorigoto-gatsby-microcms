@@ -23,16 +23,27 @@ export const imgixImageOption = {
   }
 }
 // 画像用コピーライト
+import { Base64 } from 'js-base64'
+const b64Text = Base64.encodeURI('©いなほちゅんのひとりごと')
 export const imgixCopyright = {
-  text: '©いなほちゅんのひとりごと',
-  option: {
-    full: '&txt-align=bottom,center&txt-size=96&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100',
-    xl: '&txt-align=bottom,center&txt-size=48&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100',
-    l: '&txt-align=bottom,center&txt-size=40&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100',
-    m: '&txt-align=bottom,center&txt-size=32&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100',
-    s: '&txt-align=bottom,center&txt-size=24&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100',
-    xs: '&txt-align=bottom,center&txt-size=16&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100'
-  }
+  full: '&txt-align=bottom,center&txt-size=96&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  xl: '&txt-align=bottom,center&txt-size=48&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  l: '&txt-align=bottom,center&txt-size=40&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  m: '&txt-align=bottom,center&txt-size=32&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  s: '&txt-align=bottom,center&txt-size=24&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  xs: '&txt-align=bottom,center&txt-size=16&txt-font=sans-serif,bold&txt-color=40FFFFFF&txt-line=2&txt-line-color=40332100&txt64=' + b64Text,
+  icon: '&txt-align=bottom,center&txt-size=4&txt-font=sans-serif&txt-color=40FFFFFF&txt-line-color=40332100&txt64=' + b64Text
 }
 // ソーシャルアカウント
-export const socialAccount = { twitter: { url: 'https://twitter.com/inaho_lx/', account: '@inaho_lx' }, instagram: { url: 'https://www.instagram.com/inaho_lx/' }, twitcasting: { url: 'https://twitcasting.tv/inaho_lx/' } }
+export const socialAccount = {
+  twitter: {
+    url: 'https://twitter.com/inaho_lx/',
+    account: '@inaho_lx'
+  },
+  instagram: {
+    url: 'https://www.instagram.com/inaho_lx/'
+  },
+  twitcasting: {
+    url: 'https://twitcasting.tv/inaho_lx/'
+  }
+}
