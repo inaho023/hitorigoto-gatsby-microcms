@@ -61,7 +61,7 @@ const ArchiveMenu = () => {
                   {siteMonth.map(siteMonth => {
                     return (
                       moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
-                        <Link key={siteMonth} to={'/archive/' + siteMonth + '/'}>
+                        <Link key={siteMonth} to={`/archive/${siteMonth}/`}>
                           <Button key={siteMonth} className={styles.button} size={'large'} variant={'contained'} fullWidth>
                             {moment(siteMonth, 'YYYYMM').format('M月')}
                           </Button>

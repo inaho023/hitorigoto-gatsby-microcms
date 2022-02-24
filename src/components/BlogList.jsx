@@ -41,7 +41,7 @@ const BlogList = ({ data, pageContext }) => {
       // OGP設定
       ogp = {
         type: 'website',
-        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id + '/' : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber + '/',
+        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
         description: 'トップページ',
         image: ''
@@ -53,7 +53,7 @@ const BlogList = ({ data, pageContext }) => {
       // OGP設定
       ogp = {
         type: 'website',
-        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id + '/' : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber + '/',
+        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
         description: 'トップページ',
         image: ''
@@ -65,7 +65,7 @@ const BlogList = ({ data, pageContext }) => {
       // OGP設定
       ogp = {
         type: 'website',
-        url: pageContext.pageNumber == 0 ? '/' + pageContext.list + '/' + pageContext.id + '/' : '/' + pageContext.list + '/' + pageContext.id + '/' + pageContext.pageNumber + '/',
+        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
         description: 'トップページ',
         image: ''
@@ -77,7 +77,7 @@ const BlogList = ({ data, pageContext }) => {
       // OGP設定
       ogp = {
         type: 'website',
-        url: pageContext.pageNumber == 0 ? '/' : '/page/' + pageContext.pageNumber + '/',
+        url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
         title: sitePosition,
         description: 'インデックス',
         image: ''
@@ -96,7 +96,7 @@ const BlogList = ({ data, pageContext }) => {
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
-              <Link key={blog.node.blogId} to={'/post/' + blog.node.blogId + '/'}>
+              <Link key={blog.node.blogId} to={`/post/${blog.node.blogId}/`}>
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>

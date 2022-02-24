@@ -31,7 +31,7 @@ const BlogNavi = ({ pageContext }) => {
       <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
         {prev ? (
           <Grid item xs={12} md={6}>
-            <Link key={prev.node.blogId} to={'/post/' + prev.node.blogId + '/'} title={'前の記事へ'}>
+            <Link key={prev.node.blogId} to={`/post/${prev.node.blogId}/`} title={'前の記事へ'}>
               <Card className={styles.prev}>
                 <CardActionArea className={styles.area}>
                   <CardContent className={styles.content}>
@@ -49,7 +49,7 @@ const BlogNavi = ({ pageContext }) => {
         )}
         {next ? (
           <Grid item xs={12} md={6}>
-            <Link key={next.node.blogId} to={'/post/' + next.node.blogId + '/'} title={'次の記事へ'}>
+            <Link key={next.node.blogId} to={`/post/${next.node.blogId}/`} title={'次の記事へ'}>
               <Card className={styles.next}>
                 <CardActionArea className={styles.area}>
                   <CardMedia className={styles.media}>

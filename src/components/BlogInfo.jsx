@@ -29,12 +29,11 @@ import { imgixImageOption, imgixCopyright } from './Constant'
 const BlogInfo = ({ blog }) => {
   // 画像URL生成
   const src = blog.image.url + imgixImageOption.detail.m + imgixCopyright.m
-  let srcSet = ''
-  srcSet = blog.image.url + imgixImageOption.detail.xs + imgixCopyright.xs + ' 320w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.s + imgixCopyright.s + ' 480w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.m + imgixCopyright.m + ' 640w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.l + imgixCopyright.l + ' 800w'
-  srcSet = srcSet + ',' + blog.image.url + imgixImageOption.detail.xl + imgixCopyright.xl + ' 960w'
+  const srcSet = `${blog.image.url}${imgixImageOption.detail.xs}${imgixCopyright.xs} 320w,
+                  ${blog.image.url}${imgixImageOption.detail.s}${imgixCopyright.s} 480w,
+                  ${blog.image.url}${imgixImageOption.detail.m}${imgixCopyright.m} 640w,
+                  ${blog.image.url}${imgixImageOption.detail.l}${imgixCopyright.l} 800w,
+                  ${blog.image.url}${imgixImageOption.detail.xl}${imgixCopyright.xl} 960w`
   const sizes = '(max-width:900px) 100vw, 50vw'
   // リターン
   return (
@@ -51,7 +50,7 @@ const BlogInfo = ({ blog }) => {
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
               <Box>
-                <Link key={moment(blog.datetime).format('YYYYMM')} to={'/archive/' + moment(blog.datetime).format('YYYYMM') + '/'}>
+                <Link key={moment(blog.datetime).format('YYYYMM')} to={`/archive/${moment(blog.datetime).format('YYYYMM')}/`}>
                   <Button className={styles.button}>{moment(blog.datetime).format('YYYY年MM月DD日')}</Button>
                 </Link>
               </Box>
@@ -59,7 +58,7 @@ const BlogInfo = ({ blog }) => {
             <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
               <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
               <Box>
-                <Link key={blog.category.categoriesId} to={'/category/' + blog.category.id + '/'}>
+                <Link key={blog.category.categoriesId} to={`/category/${blog.category.id}/`}>
                   <Button className={styles.button}>{blog.category.name}</Button>
                 </Link>
               </Box>
@@ -69,7 +68,7 @@ const BlogInfo = ({ blog }) => {
               <Box>
                 {blog.tags.map(tag => {
                   return (
-                    <Link key={tag.id} to={'/tag/' + tag.id + '/'}>
+                    <Link key={tag.id} to={`/tag/${tag.id}/`}>
                       <Button className={styles.button}>{tag.name}</Button>
                     </Link>
                   )

@@ -29,7 +29,7 @@ const Comment = ({ blog }) => {
     }
   `)
   // URL組み立て
-  const url = data.site.siteMetadata.siteUrl + '/post/' + blog.blogId + '/'
+  const url = `${data.site.siteMetadata.siteUrl}/post/${blog.blogId}/`
   // リターン
   return (
     <Box className={styles.comment}>

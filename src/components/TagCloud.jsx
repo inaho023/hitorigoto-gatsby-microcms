@@ -38,7 +38,7 @@ const TagCloud = () => {
       <Card className={styles.tagcloud}>
         {data.allMicrocmsTags.nodes.map(node => {
           return (
-            <Link key={node.tagsId} to={'/tag/' + node.tagsId + '/'}>
+            <Link key={node.tagsId} to={`/tag/${node.tagsId}/`}>
               <Button className={styles.button} size={'medium'} variant={'contained'}>
                 {node.name}
               </Button>

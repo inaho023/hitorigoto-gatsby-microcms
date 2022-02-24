@@ -10,12 +10,12 @@ const SEO = ({ info, misc, pageContext }) => {
   // OGP設定
   const ogpUrl = misc.ogp && info.site.siteurl + misc.ogp.url
   const ogpSiteName = misc.ogp && info.site.title + ' ' + info.site.subtitle
-  const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? info.site.title + ' ' + info.site.subtitle + (misc.ogp.title && ' ' + misc.ogp.title) + (pageContext.pageNumber == 0 ? '' : ' ' + pageContext.pageNumber + 'ページ') : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? info.image.picture.url + '?' + info.image.parameter + imgixCopyright.xl : misc.ogp.image
+  const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? `${info.site.title} ${info.site.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${info.image.picture.url}?${info.image.parameter}${imgixCopyright.xl}` : misc.ogp.image
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: info.site.lang, prefix: 'og: http://ogp.me/ns#' }}>
-      <title>{(misc.position && misc.position + ' - ') + info.site.title + ' ' + info.site.subtitle}</title>
+      <title>{`${(misc.position && misc.position + ' - ') + info.site.title} ${info.site.subtitle}`}</title>
       <meta name='description' content={ogpTitle} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       {misc.ogp && <meta property='og:type' content={misc.ogp.type} />}

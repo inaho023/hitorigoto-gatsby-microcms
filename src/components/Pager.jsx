@@ -20,13 +20,13 @@ const Pager = ({ pageContext }) => {
       if (pageContext.list == 'all') {
         path[index] = '/'
       } else {
-        path[index] = '/' + pageContext.list + '/' + pageContext.id + '/'
+        path[index] = `/${pageContext.list}/${pageContext.id}/`
       }
     } else {
       if (pageContext.list == 'all') {
-        path[index] = '/page/' + (index + 1).toString() + '/'
+        path[index] = `/page/${(index + 1).toString()}/`
       } else {
-        path[index] = '/' + pageContext.list + '/' + pageContext.id + '/' + (index + 1).toString() + '/'
+        path[index] = `/${pageContext.list}/${pageContext.id}/${(index + 1).toString()}/`
       }
     }
   }

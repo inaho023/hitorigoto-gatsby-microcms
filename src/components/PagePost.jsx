@@ -19,7 +19,7 @@ const PagePost = ({ data, pageContext }) => {
   // OGP設定
   const ogp = {
     type: 'article',
-    url: '/' + (page.pageId ? page.pageId : page.id),
+    url: `/${page.pageId ? page.pageId : page.id}`,
     title: page.title,
     description: page.body,
     image: page.image && page.image.url + imgixImageOption.ogp + imgixCopyright.xl
@@ -28,12 +28,11 @@ const PagePost = ({ data, pageContext }) => {
   const misc = { position: page.title, ogp: ogp }
   // 画像URL生成
   const src = page.image.url + imgixImageOption.detail.m + imgixCopyright.m
-  let srcSet = ''
-  srcSet = page.image.url + imgixImageOption.detail.xs + imgixCopyright.xs + ' 320w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.s + imgixCopyright.s + ' 480w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.m + imgixCopyright.m + ' 640w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.l + imgixCopyright.l + ' 800w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.xl + imgixCopyright.xl + ' 960w'
+  const srcSet = `${page.image.url + imgixImageOption.detail.xs + imgixCopyright.xs} 320w,
+                  ${page.image.url}${imgixImageOption.detail.s}${imgixCopyright.s} 480w,
+                  ${page.image.url}${imgixImageOption.detail.m}${imgixCopyright.m} 640w,
+                  ${page.image.url}${imgixImageOption.detail.l}${imgixCopyright.l} 800w,
+                  ${page.image.url}${imgixImageOption.detail.xl}${imgixCopyright.xl} 960w`
   const sizes = '100vw'
   // イメージ
   return (

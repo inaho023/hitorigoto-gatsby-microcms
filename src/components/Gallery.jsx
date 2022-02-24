@@ -45,12 +45,11 @@ const Gallery = ({ galleries }) => {
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                       // 画像URL生成
                       const src = images.image.url + imgixImageOption.gallery.m + imgixCopyright.m
-                      let srcSet = ''
-                      srcSet = images.image.url + imgixImageOption.gallery.xs + imgixCopyright.xs + ' 280w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.s + imgixCopyright.xs + ' 330w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.m + imgixCopyright.xs + ' 380w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.l + imgixCopyright.xs + ' 430w'
-                      srcSet = srcSet + ',' + images.image.url + imgixImageOption.gallery.xl + imgixCopyright.xs + ' 480w'
+                      const srcSet = `${images.image.url}${imgixImageOption.gallery.xs}${imgixCopyright.xs} 280w,
+                                      ${images.image.url}${imgixImageOption.gallery.s}${imgixCopyright.xs} 330w,
+                                      ${images.image.url}${imgixImageOption.gallery.m}${imgixCopyright.xs} 380w,
+                                      ${images.image.url}${imgixImageOption.gallery.l}${imgixCopyright.xs} 430w,
+                                      ${images.image.url}${imgixImageOption.gallery.xl}${imgixCopyright.xs} 480w`
                       const sizes = '(max-width:900px) 50vw, 25vw'
                       // リターン
                       return (
