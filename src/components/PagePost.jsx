@@ -27,13 +27,13 @@ const PagePost = ({ data, pageContext }) => {
   // ページ情報設定
   const misc = { position: page.title, ogp: ogp }
   // 画像URL生成
-  const src = page.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + imgixCopyright.m
+  const src = page.image.url + imgixImageOption.detail.m + imgixCopyright.m
   let srcSet = ''
-  srcSet = page.image.url + imgixImageOption.detail.xs + imgixCopyright.option.xs + imgixCopyright.xs + ' 320w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.s + imgixCopyright.option.s + imgixCopyright.s + ' 480w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.m + imgixCopyright.option.m + imgixCopyright.m + ' 640w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.l + imgixCopyright.option.l + imgixCopyright.l + ' 800w'
-  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.xl + imgixCopyright.option.xl + imgixCopyright.xl + ' 960w'
+  srcSet = page.image.url + imgixImageOption.detail.xs + imgixCopyright.xs + ' 320w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.s + imgixCopyright.s + ' 480w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.m + imgixCopyright.m + ' 640w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.l + imgixCopyright.l + ' 800w'
+  srcSet = srcSet + ',' + page.image.url + imgixImageOption.detail.xl + imgixCopyright.xl + ' 960w'
   const sizes = '100vw'
   // イメージ
   return (
