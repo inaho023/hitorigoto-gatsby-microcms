@@ -38,16 +38,18 @@
     "gatsby-source-microcms": "^2.0.0",
     "highlight.js": "^11.3.1",
     "js-base64": "^3.7.2",
-    "microcms-richedit-processer": "^1.0.4",
+    "microcms-richedit-processer": "^1.0.5",
     "moment": "^2.29.1",
     "node-sass": "^7.0.1",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-share": "^4.4.0",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
-    "simple-react-lightbox": "^3.6.9-0"
+    "simple-react-lightbox": "^3.6.9-0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
