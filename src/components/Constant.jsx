@@ -40,6 +40,9 @@ export const socialAccount = {
     url: 'https://twitter.com/inaho_lx/',
     account: '@inaho_lx'
   },
+  twilog: {
+    url: 'https://twilog.org/inaho_lx'
+  },
   instagram: {
     url: 'https://www.instagram.com/inaho_lx/'
   },
