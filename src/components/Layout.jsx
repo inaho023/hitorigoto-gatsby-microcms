@@ -38,6 +38,16 @@ const Layout = ({ misc, pageContext, children }) => {
           lang
         }
       }
+      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
+        pictureId
+        title
+        picture {
+          url
+          width
+          height
+        }
+        parameter
+      }
     }
   `)
   // リターン

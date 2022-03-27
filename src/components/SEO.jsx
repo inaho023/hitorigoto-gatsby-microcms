@@ -34,7 +34,7 @@ const SEO = ({ misc, pageContext }) => {
     }
   `)
   // OGP設定
-  const ogpUrl = misc.ogp && data.site.siteMetadata.siteurl + misc.ogp.url
+  const ogpUrl = misc.ogp && data.site.siteMetadata.siteUrl + misc.ogp.url
   const ogpSiteName = misc.ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
   const ogpTitle =
     misc.ogp && misc.ogp.type === 'website' ? `${data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
