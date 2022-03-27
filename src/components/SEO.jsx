@@ -2,20 +2,47 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
+// Gatsby
+import { useStaticQuery, graphql } from 'gatsby'
+
 // 定数
 import { socialAccount, imgixCopyright } from './Constant'
 
 // SEO コンポーネント
-const SEO = ({ info, misc, pageContext }) => {
+const SEO = ({ misc, pageContext }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+          title
+          subtitle
+          description
+          lang
+        }
+      }
+      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
+        pictureId
+        title
+        picture {
+          url
+          width
+          height
+        }
+        parameter
+      }
+    }
+  `)
   // OGP設定
-  const ogpUrl = misc.ogp && info.site.siteurl + misc.ogp.url
-  const ogpSiteName = misc.ogp && info.site.title + ' ' + info.site.subtitle
-  const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? `${info.site.title} ${info.site.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${info.image.picture.url}?${info.image.parameter}${imgixCopyright.xl}` : misc.ogp.image
+  const ogpUrl = misc.ogp && data.site.siteMetadata.siteurl + misc.ogp.url
+  const ogpSiteName = misc.ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
+  const ogpTitle =
+    misc.ogp && misc.ogp.type === 'website' ? `${data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imgixCopyright.xl}` : misc.ogp.image
   // リターン
   return (
-    <Helmet htmlAttributes={{ lang: info.site.lang, prefix: 'og: http://ogp.me/ns#' }}>
-      <title>{`${(misc.position && misc.position + ' - ') + info.site.title} ${info.site.subtitle}`}</title>
+    <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>
+      <title>{`${(misc.position && misc.position + ' - ') + data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}`}</title>
       <meta name='description' content={ogpTitle} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       {misc.ogp && <meta property='og:type' content={misc.ogp.type} />}

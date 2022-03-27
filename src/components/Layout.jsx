@@ -38,31 +38,20 @@ const Layout = ({ misc, pageContext, children }) => {
           lang
         }
       }
-      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
-        pictureId
-        title
-        picture {
-          url
-          width
-          height
-        }
-        parameter
-      }
     }
   `)
-  const info = { site: data.site.siteMetadata, image: data.microcmsPicture }
   // リターン
   return (
     <>
-      <SEO info={info} misc={misc} pageContext={pageContext} />
+      <SEO misc={misc} pageContext={pageContext} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header} id={'Header'} key={'Header'}>
           <Link key={'Header'} className={styles.title} to='/'>
-            <h1>{info.site.title}</h1>
-            <h2>{info.site.subtitle}</h2>
+            <h1>{data.site.siteMetadata.title}</h1>
+            <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
-          <p className={styles.description}>{info.site.description}</p>
+          <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
         <article>{children}</article>
         <section id={'Bottom'}>
@@ -80,7 +69,7 @@ const Layout = ({ misc, pageContext, children }) => {
         </section>
         <footer className={styles.footer}>
           <Link key={'Footer'} to='/'>
-            &copy; {info.site.title}
+            &copy; {data.site.siteMetadata.title}
           </Link>
         </footer>
       </Container>
