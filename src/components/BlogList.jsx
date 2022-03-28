@@ -19,17 +19,20 @@ import { mdiCalendarToday, mdiShape } from '@mdi/js'
 // 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
+import { imgixWatermark } from './Util'
 
 // スタイルシート
 import * as styles from '../styles/BlogList.module.scss'
 
 // 定数
-import { imgixImageOption, imgixCopyright } from './Constant'
+import { imgixImageOption } from './Constant'
 
 // ブログリスト
 const BlogList = ({ data, pageContext }) => {
   // 定数定義
   const blog = data.allMicrocmsBlog.edges
+  // ウォーターマークURL取得
+  const imageWatermark = imgixWatermark()
   // 変数定義
   let sitePosition
   let ogp
@@ -92,7 +95,7 @@ const BlogList = ({ data, pageContext }) => {
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
-          const src = blog.node.image.url + imgixImageOption.list + imgixCopyright.xs
+          const src = blog.node.image.url + imgixImageOption.list + imageWatermark.xs
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>

@@ -14,14 +14,19 @@ import { mdiChevronDown, mdiCamera } from '@mdi/js'
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
+// 自作コンポーネント
+import { imgixWatermark } from './Util'
+
 // スタイルシート
 import * as styles from '../styles/Gallery.module.scss'
 
 // 定数
-import { imgixImageOption, imgixCopyright } from './Constant'
+import { imgixImageOption } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {
+  // ウォーターマークURL取得
+  const imageWatermark = imgixWatermark()
   // リターン
   return galleries.map(galleries => {
     return galleries.gallery.map((gallery, index) => {
@@ -44,17 +49,17 @@ const Gallery = ({ galleries }) => {
                       // キャプション生成
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                       // 画像URL生成
-                      const src = images.image.url + imgixImageOption.gallery.m + imgixCopyright.m
-                      const srcSet = `${images.image.url}${imgixImageOption.gallery.xs}${imgixCopyright.xs} 280w,
-                                      ${images.image.url}${imgixImageOption.gallery.s}${imgixCopyright.xs} 330w,
-                                      ${images.image.url}${imgixImageOption.gallery.m}${imgixCopyright.xs} 380w,
-                                      ${images.image.url}${imgixImageOption.gallery.l}${imgixCopyright.xs} 430w,
-                                      ${images.image.url}${imgixImageOption.gallery.xl}${imgixCopyright.xs} 480w`
+                      const src = images.image.url + imgixImageOption.gallery.m + imageWatermark.m
+                      const srcSet = `${images.image.url}${imgixImageOption.gallery.xs}${imageWatermark.s} 280w,
+                                      ${images.image.url}${imgixImageOption.gallery.s}${imageWatermark.s} 330w,
+                                      ${images.image.url}${imgixImageOption.gallery.m}${imageWatermark.s} 380w,
+                                      ${images.image.url}${imgixImageOption.gallery.l}${imageWatermark.s} 430w,
+                                      ${images.image.url}${imgixImageOption.gallery.xl}${imageWatermark.s} 480w`
                       const sizes = '(max-width:900px) 50vw, 25vw'
                       // リターン
                       return (
                         <Grid item key={images.image.url} xs={6} sm={3}>
-                          <a key={images.image.url} href={images.image.url + '?' + imgixCopyright.full}>
+                          <a key={images.image.url} href={images.image.url + '?' + imageWatermark.full}>
                             <img className={styles.img} src={src} srcSet={srcSet} sizes={sizes} alt={title} loading={'lazy'} />
                           </a>
                         </Grid>

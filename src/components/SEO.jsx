@@ -5,11 +5,15 @@ import { Helmet } from 'react-helmet'
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
 
+// 自作コンポーネント
+import { imgixWatermark } from './Util'
+
 // 定数
-import { socialAccount, imgixCopyright } from './Constant'
+import { socialAccount } from './Constant'
 
 // SEO コンポーネント
 const SEO = ({ misc, pageContext }) => {
+  // クエリー実行
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -33,12 +37,14 @@ const SEO = ({ misc, pageContext }) => {
       }
     }
   `)
+  // ウォーターマークURL取得
+  const imageWatermark = imgixWatermark()
   // OGP設定
   const ogpUrl = misc.ogp && data.site.siteMetadata.siteUrl + misc.ogp.url
   const ogpSiteName = misc.ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
   const ogpTitle =
     misc.ogp && misc.ogp.type === 'website' ? `${data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imgixCopyright.xl}` : misc.ogp.image
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imageWatermark.xl}` : misc.ogp.image
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>

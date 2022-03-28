@@ -18,22 +18,25 @@ import moment from 'moment'
 
 // 自作コンポーネント
 import ShareButton from './ShareButton'
+import { imgixWatermark } from './Util'
 
 // スタイルシート
 import * as styles from '../styles/BlogInfo.module.scss'
 
 // 定数
-import { imgixImageOption, imgixCopyright } from './Constant'
+import { imgixImageOption } from './Constant'
 
 // 記事詳細
 const BlogInfo = ({ blog }) => {
+  // ウォーターマークURL取得
+  const imageWatermark = imgixWatermark()
   // 画像URL生成
-  const src = blog.image.url + imgixImageOption.detail.m + imgixCopyright.m
-  const srcSet = `${blog.image.url}${imgixImageOption.detail.xs}${imgixCopyright.xs} 320w,
-                  ${blog.image.url}${imgixImageOption.detail.s}${imgixCopyright.s} 480w,
-                  ${blog.image.url}${imgixImageOption.detail.m}${imgixCopyright.m} 640w,
-                  ${blog.image.url}${imgixImageOption.detail.l}${imgixCopyright.l} 800w,
-                  ${blog.image.url}${imgixImageOption.detail.xl}${imgixCopyright.xl} 960w`
+  const src = blog.image.url + imgixImageOption.detail.m + imageWatermark.m
+  const srcSet = `${blog.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,
+                  ${blog.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,
+                  ${blog.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,
+                  ${blog.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,
+                  ${blog.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '(max-width:900px) 100vw, 50vw'
   // リターン
   return (

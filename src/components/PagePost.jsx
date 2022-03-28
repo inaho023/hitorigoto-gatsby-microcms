@@ -6,33 +6,36 @@ import Box from '@mui/material/Box'
 
 // 自作モジュール
 import Layout from './Layout'
+import { imgixWatermark } from './Util'
 
 // スタイルシート
 import * as styles from '../styles/PagePost.module.scss'
 
 // 定数
-import { imgixImageOption, imgixCopyright } from './Constant'
+import { imgixImageOption } from './Constant'
 
 const PagePost = ({ data, pageContext }) => {
   // ページ詳細
   const page = data.microcmsPage
+  // ウォーターマークURL取得
+  const imageWatermark = imgixWatermark()
   // OGP設定
   const ogp = {
     type: 'article',
     url: `/${page.pageId ? page.pageId : page.id}`,
     title: page.title,
     description: page.body,
-    image: page.image && page.image.url + imgixImageOption.ogp + imgixCopyright.xl
+    image: page.image && page.image.url + imgixImageOption.ogp + imageWatermark.xl
   }
   // ページ情報設定
   const misc = { position: page.title, ogp: ogp }
   // 画像URL生成
-  const src = page.image.url + imgixImageOption.detail.m + imgixCopyright.m
-  const srcSet = `${page.image.url + imgixImageOption.detail.xs + imgixCopyright.xs} 320w,
-                  ${page.image.url}${imgixImageOption.detail.s}${imgixCopyright.s} 480w,
-                  ${page.image.url}${imgixImageOption.detail.m}${imgixCopyright.m} 640w,
-                  ${page.image.url}${imgixImageOption.detail.l}${imgixCopyright.l} 800w,
-                  ${page.image.url}${imgixImageOption.detail.xl}${imgixCopyright.xl} 960w`
+  const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
+  const srcSet = `${page.image.url + imgixImageOption.detail.xs + imageWatermark.xs} 320w,
+                  ${page.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,
+                  ${page.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,
+                  ${page.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,
+                  ${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '100vw'
   // イメージ
   return (
