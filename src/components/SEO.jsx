@@ -44,7 +44,7 @@ const SEO = ({ misc, pageContext }) => {
   const ogpSiteName = misc.ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
   const ogpTitle =
     misc.ogp && misc.ogp.type === 'website' ? `${data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imageWatermark.xl}` : misc.ogp.image
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imageWatermark.xl}` : misc.ogp.image + imageWatermark.xl
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>
