@@ -36,7 +36,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // ボディ
       }
-      <BlogBody body={blog.body} />
+      <BlogBody blog={blog} />
       {
         // ギャラリー
       }

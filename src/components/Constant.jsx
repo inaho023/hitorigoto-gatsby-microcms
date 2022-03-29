@@ -20,6 +20,14 @@ export const imgixImageOption = {
     m: '?fit=crop&crop=faces&fm=webp&q=20&w=380&h=380',
     s: '?fit=crop&crop=faces&fm=webp&q=20&w=330&h=330',
     xs: '?fit=crop&crop=faces&fm=webp&q=20&w=280&h=280'
+  },
+  body: {
+    // 記事本文用画像オプション
+    xl: '?fm=webp&q=30&max-w=1920',
+    l: '?fm=webp&q=30&max-w=1536',
+    m: '?fm=webp&q=30&max-w=1200',
+    s: '?fm=webp&q=30&max-w=900',
+    xs: '?fm=webp&q=30&max-w=600'
   }
 }
 // ソーシャルアカウント
