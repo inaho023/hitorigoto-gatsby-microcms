@@ -31,11 +31,11 @@ export const imgixWatermark = () => {
     xs: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=50&h=10&fm=png`)
   }
   return {
-    full: `&mark-w=400&mark-h=80&mark-align=bottom,right&mark64=${b64Image.full}`,
-    xl: `&mark-w=250&mark-h=50&mark-align=bottom,right&mark64=${b64Image.xl}`,
-    l: `&mark-w=200&mark-h=40&mark-align=bottom,right&mark64=${b64Image.l}`,
-    m: `&mark-w=150&mark-h=30&mark-align=bottom,right&mark64=${b64Image.m}`,
-    s: `&mark-w=100&mark-h=20&mark-align=bottom,right&mark64=${b64Image.s}`,
-    xs: `&mark-w=50&mark-h=10&mark-align=bottom,right&mark64=${b64Image.xs}`
+    full: `&mark-w=400&mark-h=80&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.full}`,
+    xl: `&mark-w=250&mark-h=50&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.xl}`,
+    l: `&mark-w=200&mark-h=40&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.l}`,
+    m: `&mark-w=150&mark-h=30&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.m}`,
+    s: `&mark-w=100&mark-h=20&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.s}`,
+    xs: `&mark-w=50&mark-h=10&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.xs}`
   }
 }
