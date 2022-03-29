@@ -37,18 +37,19 @@ const SEO = ({ misc, pageContext }) => {
       }
     }
   `)
-  // ウォーターマークURL取得
+  const site = data.site.siteMetadata
+  const image = data.microcmsPicture
+  // ウォーターマーク取得
   const imageWatermark = imgixWatermark()
   // OGP設定
-  const ogpUrl = misc.ogp && data.site.siteMetadata.siteUrl + misc.ogp.url
-  const ogpSiteName = misc.ogp && data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle
-  const ogpTitle =
-    misc.ogp && misc.ogp.type === 'website' ? `${data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${data.microcmsPicture.picture.url}?${data.microcmsPicture.parameter}${imageWatermark.xl}` : misc.ogp.image + imageWatermark.xl
+  const ogpUrl = misc.ogp && site.siteUrl + misc.ogp.url
+  const ogpSiteName = misc.ogp && site.title + ' ' + site.subtitle
+  const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
+  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogp.image + imageWatermark.xl
   // リターン
   return (
-    <Helmet htmlAttributes={{ lang: data.site.siteMetadata.lang, prefix: 'og: http://ogp.me/ns#' }}>
-      <title>{`${(misc.position && misc.position + ' - ') + data.site.siteMetadata.title} ${data.site.siteMetadata.subtitle}`}</title>
+    <Helmet htmlAttributes={{ lang: site.lang, prefix: 'og: http://ogp.me/ns#' }}>
+      <title>{`${(misc.position && misc.position + ' - ') + site.title} ${site.subtitle}`}</title>
       <meta name='description' content={ogpTitle} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       {misc.ogp && <meta property='og:type' content={misc.ogp.type} />}
