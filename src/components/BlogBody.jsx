@@ -19,8 +19,9 @@ import * as styles from '../styles/BlogBody.module.scss'
 const BlogBody = ({ body }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
-  // シンタックスハイライト処理
+  // 本文をロード
   const cheerioBody = cheerio.load(body)
+  // シンタックスハイライト処理
   cheerioBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(cheerioBody(elm).text())
     cheerioBody(elm).html(result.value)
