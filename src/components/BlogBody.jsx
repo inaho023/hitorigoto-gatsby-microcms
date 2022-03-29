@@ -62,6 +62,7 @@ const BlogBody = ({ blog }) => {
     const sizes = '(max-width: 600px) 600px,' + '(max-width: 900px) 900px,' + '(max-width: 600px) 1200px,' + '(max-width: 900px) 1536px,' + '1920px'
     $(elm).attr('srcSet', srcSet)
     $(elm).attr('sizes', sizes)
+    // 属性削除
     $(elm).removeAttr('width')
     $(elm).removeAttr('height')
   })
