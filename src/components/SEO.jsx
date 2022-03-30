@@ -5,6 +5,9 @@ import { Helmet } from 'react-helmet'
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
 
+// その他
+import striptags from 'striptags'
+
 // 自作コンポーネント
 import { imgixWatermark } from './Util'
 
@@ -46,6 +49,7 @@ const SEO = ({ misc, pageContext }) => {
   const ogpSiteName = misc.ogp && site.title + ' ' + site.subtitle
   const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
   const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogp.image + imageWatermark.xl
+  const ogpDescription = misc.ogp && striptags(misc.ogp.description)
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: site.lang, prefix: 'og: http://ogp.me/ns#' }}>
@@ -56,7 +60,7 @@ const SEO = ({ misc, pageContext }) => {
       {misc.ogp && <meta property='og:url' content={ogpUrl} />}
       {misc.ogp && <meta property='og:site_neme' content={ogpSiteName} />}
       {misc.ogp && <meta property='og:title' content={ogpTitle} />}
-      {misc.ogp && <meta property='og:description' content={misc.ogp.description} />}
+      {misc.ogp && <meta property='og:description' content={ogpDescription} />}
       {misc.ogp && <meta property='og:image' content={ogpImage} />}
       {misc.ogp && <meta property='og:image:alt' content={ogpTitle} />}
       {misc.ogp && <meta name='twitter:card' content='summary_large_image' />}
