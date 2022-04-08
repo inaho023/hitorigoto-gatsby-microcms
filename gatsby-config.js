@@ -43,7 +43,7 @@ module.exports = {
       resolve: 'gatsby-source-microcms',
       options: {
         apiKey: process.env.GATSBY_MICROCMS_API_KEY,
-        serviceId: 'inaho',
+        serviceId: process.env.MICROCMS_SERVICE_ID,
         apis: [
           {
             endpoint: 'blog',
@@ -69,7 +69,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-disqus',
       options: {
-        shortname: 'blog-inaho-space-disqus'
+        shortname: process.env.DISQUS_SHORTNAME
       }
     },
     {
