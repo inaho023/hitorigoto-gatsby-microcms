@@ -1,6 +1,9 @@
 .cache
 .vscode
 node_modules
+public
 .eslintrc.json
 .prettier.json
 tsconfig.json
+package-lock.json
+package.json
