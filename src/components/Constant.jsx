@@ -1,28 +1,31 @@
 // シェアボタン用設定
 export const sizeShareButton = 40 // シェアボタンサイズ
-// サムネイル画像パラメーター
+// 画像用パラメーター
 export const imgixImageOption = {
-  list: '?fit=crop&crop=faces&fm=webp&q=20&w=270&h=180', // 記事リスト用画像オプション
-  navi: '?fit=crop&crop=faces&fm=webp&q=20&w=96&h=96', // ナビゲーション用画像オプション
-  ogp: '?fit=crop&crop=faces&fm=webp&q=50&w=1200&h=630', // OGP用画像オプション
+  // 記事リスト用画像オプション
+  list: '?fit=crop&crop=faces&fm=webp&q=20&w=270&h=180',
+  // ナビゲーション用画像オプション
+  navi: '?fit=crop&crop=faces&fm=webp&q=20&w=96&h=96',
+  // OGP用画像オプション
+  ogp: '?fit=crop&crop=faces&fm=webp&q=50&w=1200&h=630',
+  // 記事詳細用画像オプション
   detail: {
-    // 記事詳細用画像オプション
     xl: '?fit=crop&crop=faces&fm=webp&q=50&w=960&h=960',
     l: '?fit=crop&crop=faces&fm=webp&q=50&w=800&h=800',
     m: '?fit=crop&crop=faces&fm=webp&q=50&w=640&h=640',
     s: '?fit=crop&crop=faces&fm=webp&q=50&w=480&h=480',
     xs: '?fit=crop&crop=faces&fm=webp&q=50&w=320&h=320'
   },
+  // ギャラリー用画像オプション
   gallery: {
-    // ギャラリー用画像オプション
     xl: '?fit=crop&crop=faces&fm=webp&q=20&w=480&h=480',
     l: '?fit=crop&crop=faces&fm=webp&q=20&w=430&h=430',
     m: '?fit=crop&crop=faces&fm=webp&q=20&w=380&h=380',
     s: '?fit=crop&crop=faces&fm=webp&q=20&w=330&h=330',
     xs: '?fit=crop&crop=faces&fm=webp&q=20&w=280&h=280'
   },
+  // 記事本文用画像オプション
   body: {
-    // 記事本文用画像オプション
     xl: '?fm=webp&q=30&max-w=1920',
     l: '?fm=webp&q=30&max-w=1536',
     m: '?fm=webp&q=30&max-w=1200',
