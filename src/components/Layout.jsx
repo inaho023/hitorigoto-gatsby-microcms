@@ -43,16 +43,12 @@ const Layout = ({ misc, pageContext, crumbLabel, children }) => {
     }
   `)
   // パンくずリスト
-  const {
-    breadcrumb: { crumbs }
-  } = pageContext
-  // パンくずリスト
   const disableLinks = ['/archive', '/category', '/tag']
   const hiddenCrumbs = ['/page', '/post']
   // リターン
   return (
     <>
-      <SEO misc={misc} pageContext={pageContext} />
+      <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header} id={'Header'} key={'Header'}>
@@ -62,11 +58,13 @@ const Layout = ({ misc, pageContext, crumbLabel, children }) => {
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
-        <Box className={styles.minibar}>
-          <Breadcrumb crumbs={crumbs} crumbLabel={crumbLabel} crumbSeparator={' / '} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
-          <Box className={styles.grow} />
-          {misc.ogp.type === 'website' && <MiniPager className={styles.pager} pageContext={pageContext} />}
-        </Box>
+        {pageContext && (
+          <Box className={styles.minibar}>
+            <Breadcrumb crumbs={pageContext.breadcrumb.crumbs} crumbLabel={crumbLabel} crumbSeparator={' / '} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
+            <Box className={styles.grow} />
+            {misc.ogp.type === 'website' && <MiniPager className={styles.pager} pageContext={pageContext} />}
+          </Box>
+        )}
         <article>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>

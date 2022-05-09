@@ -100,7 +100,6 @@ const BlogList = ({ data, pageContext }) => {
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext} crumbLabel={crumbLabel}>
-      {sitePosition && <h2 className={styles.list}>{sitePosition}</h2>}
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像生成
