@@ -40,6 +40,13 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-breadcrumb',
+      options: {
+        useAutoGen: true,
+        autoGenHomeLabel: 'インデックス'
+      }
+    },
+    {
       resolve: 'gatsby-source-microcms',
       options: {
         apiKey: process.env.GATSBY_MICROCMS_API_KEY,
