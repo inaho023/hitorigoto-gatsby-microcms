@@ -31,11 +31,12 @@ const PagePost = ({ data, pageContext }) => {
   const misc = { position: page.title, ogp: ogp }
   // 画像URL生成
   const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
-  const srcSet = `${page.image.url + imgixImageOption.detail.xs + imageWatermark.xs} 320w,
-                  ${page.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,
-                  ${page.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,
-                  ${page.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,
-                  ${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
+  const srcSet =
+    `${page.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,` +
+    `${page.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,` +
+    `${page.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,` +
+    `${page.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
+    `${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '100vw'
   // イメージ
   return (

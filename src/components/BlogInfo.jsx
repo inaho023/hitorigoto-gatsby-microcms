@@ -32,11 +32,12 @@ const BlogInfo = ({ blog }) => {
   const imageWatermark = imgixWatermark()
   // 画像URL生成
   const src = blog.image.url + imgixImageOption.detail.m + imageWatermark.m
-  const srcSet = `${blog.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,
-                  ${blog.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,
-                  ${blog.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,
-                  ${blog.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,
-                  ${blog.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
+  const srcSet =
+    `${blog.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,` +
+    `${blog.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,` +
+    `${blog.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,` +
+    `${blog.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
+    `${blog.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '(max-width:900px) 100vw, 50vw'
   // リターン
   return (
