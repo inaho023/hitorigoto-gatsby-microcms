@@ -35,12 +35,15 @@ const BlogList = ({ data, pageContext }) => {
   const imageWatermark = imgixWatermark()
   // 変数定義
   let sitePosition
+  let crumbLabel
   let ogp
   // 記事リスト種別による場合分け
   switch (pageContext.list) {
     case 'archive':
       // ポジション
-      sitePosition = 'アーカイブ：' + pageContext.name
+      sitePosition = pageContext.name
+      // パンくずラベル
+      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
       ogp = {
         type: 'website',
@@ -52,7 +55,9 @@ const BlogList = ({ data, pageContext }) => {
       break
     case 'category':
       // ポジション
-      sitePosition = 'カテゴリー：' + pageContext.name
+      sitePosition = pageContext.name
+      // パンくずラベル
+      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
       ogp = {
         type: 'website',
@@ -64,7 +69,9 @@ const BlogList = ({ data, pageContext }) => {
       break
     case 'tag':
       // ポジション
-      sitePosition = 'タグ：' + pageContext.name
+      sitePosition = pageContext.name
+      // パンくずラベル
+      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
       ogp = {
         type: 'website',
@@ -77,12 +84,14 @@ const BlogList = ({ data, pageContext }) => {
     default:
       // ポジション
       sitePosition = ''
+      // パンくずラベル
+      crumbLabel = pageContext.pageNumber == 0 ? 'ホーム' : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
       ogp = {
         type: 'website',
         url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
         title: sitePosition,
-        description: 'インデックス',
+        description: 'トップページ',
         image: ''
       }
       break
@@ -90,7 +99,7 @@ const BlogList = ({ data, pageContext }) => {
   const misc = { position: sitePosition, ogp: ogp }
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext} crumbLabel={crumbLabel}>
       {sitePosition && <h2 className={styles.list}>{sitePosition}</h2>}
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {

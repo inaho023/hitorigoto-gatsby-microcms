@@ -10,9 +10,15 @@
   margin-bottom: 16px;
   padding-top: 16px;
   padding-bottom: 16px;
+  border-radius: 8px;
+  color: #332100;
+  background-color: #cc8500;
+  box-shadow: #332100 4px 4px 4px;
 
   .paginationitem {
+    margin: 0px;
+    padding: 0px;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 900;
   }
 }

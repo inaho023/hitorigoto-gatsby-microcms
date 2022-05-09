@@ -81,6 +81,7 @@ a {
   .fab {
     color: #332100;
     background-color: #cc8500;
+    margin: 8px;
   }
 
   .fab:hover,
@@ -88,5 +89,54 @@ a {
   .fab:active {
     color: #332100;
     background-color: orange;
+  }
+}
+
+.minibar {
+  display: flex;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  color: #332100;
+  background-color: #cc8500;
+  box-shadow: #332100 4px 4px 4px;
+
+  nav {
+    ol {
+      margin-left: 0px;
+      margin-right: 0px;
+      list-style-type: none;
+      list-style-position: inside;
+
+      li {
+        background-color: #cc8500;
+        display: inline-block;
+        width: fit-content;
+        vertical-align: middle;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 8px;
+        padding: 0.25em;
+        text-decoration: none;
+        text-transform: none;
+        color: #332100;
+        background: orange;
+        border: 1px solid #332100;
+        border-left: 16px solid #332100;
+        box-shadow: #332100 1px 1px 2px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .grow {
+    flex-grow: 1;
+  }
+
+  .pager {
+    flex: auto;
   }
 }

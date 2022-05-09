@@ -95,16 +95,16 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogCategory = []
   result = await graphql(`
     query categoryQuery {
-      allMicrocmsCategories(limit: 1024) {
+      allMicrocmsCategory(limit: 1024) {
         nodes {
-          categoriesId
+          categoryId
           name
         }
       }
     }
   `)
-  result.data.allMicrocmsCategories.nodes.forEach((node, index) => {
-    const id = node.categoriesId
+  result.data.allMicrocmsCategory.nodes.forEach((node, index) => {
+    const id = node.categoryId
     const name = node.name
     context[index] = { list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id
@@ -141,17 +141,17 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogTag = []
   result = await graphql(`
     query tagQuery {
-      allMicrocmsTags(limit: 1024) {
+      allMicrocmsTag(limit: 1024) {
         nodes {
-          tagsId
+          tagId
           name
         }
       }
     }
   `)
-  result.data.allMicrocmsTags.nodes.forEach((node, index) => {
+  result.data.allMicrocmsTag.nodes.forEach((node, index) => {
     const list = 'tag'
-    const id = node.tagsId
+    const id = node.tagId
     const name = node.name
     context[index] = { list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id

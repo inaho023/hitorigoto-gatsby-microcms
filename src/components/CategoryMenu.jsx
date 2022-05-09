@@ -20,9 +20,9 @@ const CategoryMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsCategories(limit: 1024) {
+      allMicrocmsCategory(limit: 1024) {
         nodes {
-          categoriesId
+          categoryId
           name
         }
       }
@@ -36,9 +36,9 @@ const CategoryMenu = () => {
         <p>カテゴリー</p>
       </Box>
       <ButtonGroup orientation={'vertical'} fullWidth>
-        {data.allMicrocmsCategories.nodes.map(node => {
+        {data.allMicrocmsCategory.nodes.map(node => {
           return (
-            <Link key={node.categoriesId} to={`/category/${node.categoriesId}/`}>
+            <Link key={node.categoryId} to={`/category/${node.categoryId}/`}>
               <Button className={styles.button} size={'large'} variant={'contained'} fullWidth>
                 {node.name}
               </Button>

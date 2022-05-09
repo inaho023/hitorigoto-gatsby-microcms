@@ -28,7 +28,7 @@ const BlogPost = ({ data, pageContext }) => {
   const misc = { position: blog.title, ogp: ogp }
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext} crumbLabel={blog.title}>
       {
         // 記事情報
       }

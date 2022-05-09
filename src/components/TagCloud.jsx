@@ -20,9 +20,9 @@ const TagCloud = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsTags(limit: 1024, sort: { fields: name, order: ASC }) {
+      allMicrocmsTag(limit: 1024, sort: { fields: name, order: ASC }) {
         nodes {
-          tagsId
+          tagId
           name
         }
       }
@@ -36,9 +36,9 @@ const TagCloud = () => {
         <p>タグ</p>
       </Box>
       <Card className={styles.tagcloud}>
-        {data.allMicrocmsTags.nodes.map(node => {
+        {data.allMicrocmsTag.nodes.map(node => {
           return (
-            <Link key={node.tagsId} to={`/tag/${node.tagsId}/`}>
+            <Link key={node.tagId} to={`/tag/${node.tagId}/`}>
               <Button className={styles.button} size={'medium'} variant={'contained'}>
                 {node.name}
               </Button>

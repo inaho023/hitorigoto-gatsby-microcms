@@ -39,7 +39,7 @@ const PagePost = ({ data, pageContext }) => {
   const sizes = '100vw'
   // イメージ
   return (
-    <Layout misc={misc} pageContext={pageContext}>
+    <Layout misc={misc} pageContext={pageContext} crumbLabel={page.title}>
       <Box className={styles.title}>
         <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
       </Box>
