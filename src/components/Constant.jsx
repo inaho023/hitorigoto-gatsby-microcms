@@ -3,7 +3,11 @@ export const sizeShareButton = 40 // シェアボタンサイズ
 // 画像用パラメーター
 export const imgixImageOption = {
   // 記事リスト用画像オプション
-  list: '?fit=crop&crop=faces&fm=webp&q=20&w=270&h=180',
+  list: {
+    l: '?fit=crop&crop=faces&fm=webp&q=20&w=480&h=320',
+    m: '?fit=crop&crop=faces&fm=webp&q=20&w=360&h=240',
+    s: '?fit=crop&crop=faces&fm=webp&q=20&w=240&h=160'
+  },
   // ナビゲーション用画像オプション
   navi: '?fit=crop&crop=faces&fm=webp&q=20&w=96&h=96',
   // OGP用画像オプション

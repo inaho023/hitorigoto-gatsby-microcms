@@ -68,13 +68,13 @@ const Layout = ({ misc, pageContext, crumbLabel, children }) => {
         <article>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <ArchiveMenu />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <CategoryMenu />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={12} md={6}>
               <TagCloud />
             </Grid>
           </Grid>

@@ -102,8 +102,11 @@ const BlogList = ({ data, pageContext }) => {
     <Layout misc={misc} pageContext={pageContext} crumbLabel={crumbLabel}>
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
-          // 画像生成
-          const src = blog.node.image.url + imgixImageOption.list + imageWatermark.xs
+          // 画像URL生成
+          const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
+          const srcSet =
+            `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 600w,` + `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 960w,` + `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 1280w,`
+          const sizes = '100vw'
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
@@ -111,7 +114,7 @@ const BlogList = ({ data, pageContext }) => {
                 <Card className={styles.card} title={blog.node.title} elevation={8}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <img src={src} alt={blog.node.title} width={270} height={180} loading={'lazy'} />
+                      <img srcSet={srcSet} sizes={sizes} src={src} alt={blog.node.title} loading={'lazy'} />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'}>
