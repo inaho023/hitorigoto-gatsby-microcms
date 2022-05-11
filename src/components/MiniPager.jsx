@@ -11,6 +11,9 @@ import IconButton from '@mui/material/IconButton'
 import Icon from '@mdi/react'
 import { mdiPageFirst, mdiChevronLeft, mdiChevronRight, mdiPageLast } from '@mdi/js'
 
+// スタイルシート
+import * as styles from '../styles/MiniPager.module.scss'
+
 //
 const MiniPager = ({ pageContext }) => {
   // パス設定
@@ -19,24 +22,24 @@ const MiniPager = ({ pageContext }) => {
   // リターン
   return (
     <>
-      <IconButton disabled={pageContext.humanPageNumber === 1}>
+      <IconButton className={styles.button} disabled={pageContext.humanPageNumber === 1}>
         <Link href={pathFirst}>
-          <Icon path={mdiPageFirst} size={1.5} title={'最初のページへ'} />
+          <Icon className={styles.icon} path={mdiPageFirst} size={1} title={'最初のページへ'} />
         </Link>
       </IconButton>
-      <IconButton disabled={pageContext.humanPageNumber === 1}>
+      <IconButton className={styles.button} disabled={pageContext.humanPageNumber === 1}>
         <Link href={pageContext.previousPagePath}>
-          <Icon path={mdiChevronLeft} size={1.5} title={'前のページへ'} />
+          <Icon className={styles.icon} path={mdiChevronLeft} size={1} title={'前のページへ'} />
         </Link>
       </IconButton>
-      <IconButton disabled={pageContext.humanPageNumber === pageContext.numberOfPages}>
+      <IconButton className={styles.button} disabled={pageContext.humanPageNumber === pageContext.numberOfPages}>
         <Link href={pageContext.nextPagePath}>
-          <Icon path={mdiChevronRight} size={1.5} title={'次のページへ'} />
+          <Icon className={styles.icon} path={mdiChevronRight} size={1} title={'次のページへ'} />
         </Link>
       </IconButton>
-      <IconButton disabled={pageContext.humanPageNumber === pageContext.numberOfPages}>
+      <IconButton className={styles.button} disabled={pageContext.humanPageNumber === pageContext.numberOfPages}>
         <Link href={pathLast}>
-          <Icon path={mdiPageLast} size={1.5} title={'最後のページへ'} />
+          <Icon className={styles.icon} path={mdiPageLast} size={1} title={'最後のページへ'} />
         </Link>
       </IconButton>
     </>

@@ -1,4 +1,11 @@
 .Pager {
   margin: 8px;
   padding: 0.25em;
+
+  .button {
+    .icon {
+      margin: 0px;
+      padding: 0px;
+    }
+  }
 }
