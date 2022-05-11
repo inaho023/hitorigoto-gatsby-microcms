@@ -55,11 +55,6 @@ const Menubar = () => {
             </a>
           </IconButton>
           <IconButton color={'inherit'}>
-            <a key={'Twilog'} href={socialAccount.twilog.url} target={'_blank'} rel={'noreferrer'}>
-              <Icon path={mdiTwitter} size={1} title={'Twilog'} />
-            </a>
-          </IconButton>
-          <IconButton color={'inherit'}>
             <a key={'Instagram'} href={socialAccount.instagram.url} target={'_blank'} rel={'noreferrer'}>
               <Icon path={mdiInstagram} size={1} title={'Instagram'} />
             </a>
