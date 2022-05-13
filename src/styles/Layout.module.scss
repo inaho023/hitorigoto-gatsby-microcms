@@ -124,13 +124,13 @@ a {
         margin-right: 8px;
         padding-top: 0.25em;
         padding-bottom: 0.25em;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 700;
         overflow: hidden;
       }
 
       li {
-        min-width: 6rem;
+        min-width: 4rem;
         flex-wrap: nowrap;
         vertical-align: middle;
         margin-top: 8px;
@@ -142,8 +142,8 @@ a {
         border: 1px solid #332100;
         border-left: 16px solid #332100;
         box-shadow: #332100 1px 1px 2px;
-        font-weight: 700;
-        font-size: 1.25rem;
+        font-weight: 500;
+        font-size: 1rem;
         overflow: hidden;
         white-space: nowrap;
         text-decoration: none;
