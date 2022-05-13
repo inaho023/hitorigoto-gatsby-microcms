@@ -104,9 +104,8 @@ const BlogList = ({ data, pageContext }) => {
         {blog.map(blog => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
-          const srcSet =
-            `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 600w,` + `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 960w,` + `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 1280w,`
-          const sizes = '100vw'
+          const srcSet = `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 270w,` + `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 360w,` + `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,`
+          const sizes = '(max-width: 600px) 100w, (min-width: 900px) 50w, (max-width: 1536px) 33w, 25w'
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
