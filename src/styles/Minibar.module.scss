@@ -1,4 +1,5 @@
 .minibar {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 32px;
@@ -11,7 +12,7 @@
   box-shadow: #332100 4px 4px 4px;
 
   nav {
-    width: calc(100% - 160px);
+    width: calc(100% - 192px);
     display: flex;
     flex-grow: 0;
     flex-direction: column;
@@ -69,6 +70,7 @@
     align-items: center;
     vertical-align: middle;
     margin: auto;
+    margin-right: 32px;
 
     a {
       height: 24px;

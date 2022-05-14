@@ -18,10 +18,6 @@ import * as styles from '../styles/Minibar.module.scss'
 
 // ミニバー
 const Minibar = ({ misc, pageContext }) => {
-  //
-  if (pageContext === null || pageContext === undefined) {
-    return
-  }
   // パンくずリスト
   const disableLinks = ['/archive', '/category', '/tag']
   const hiddenCrumbs = ['/page', '/post']
@@ -30,9 +26,9 @@ const Minibar = ({ misc, pageContext }) => {
   let navPrev = {}
   let navNext = {}
   let navLast = {}
-  if (misc.ogp.type === 'website') {
+  if (misc.ogpInfo.type === 'website') {
     navFirst = {
-      path: pageContext.list == 'all' ? '/' : `/${pageContext.list}/${pageContext.id}/`,
+      path: pageContext.list === 'all' ? '/' : `/${pageContext.list}/${pageContext.id}/`,
       title: '最初のページへ',
       disabled: pageContext.humanPageNumber === 1
     }
@@ -47,7 +43,7 @@ const Minibar = ({ misc, pageContext }) => {
       disabled: pageContext.humanPageNumber === pageContext.numberOfPages
     }
     navLast = {
-      path: pageContext.list == 'all' ? `/page/${pageContext.numberOfPages.toString()}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.numberOfPages.toString()}/`,
+      path: pageContext.list === 'all' ? `/page/${pageContext.numberOfPages.toString()}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.numberOfPages.toString()}/`,
       title: '最後のページへ',
       disabled: pageContext.humanPageNumber === pageContext.numberOfPages
     }
