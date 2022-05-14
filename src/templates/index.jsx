@@ -17,6 +17,7 @@ export const pageQuery = graphql`
           title
           datetime(formatString: "YYYY.MM.DD")
           category {
+            id
             name
           }
           image {

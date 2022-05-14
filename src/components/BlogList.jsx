@@ -16,6 +16,9 @@ import { CardActionArea } from '@mui/material'
 import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
+// その他コンポーネント
+import moment from 'moment'
+
 // 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
@@ -36,7 +39,7 @@ const BlogList = ({ data, pageContext }) => {
   // 変数定義
   let sitePosition
   let crumbLabel
-  let ogp
+  let ogpInfo
   // 記事リスト種別による場合分け
   switch (pageContext.list) {
     case 'archive':
@@ -45,7 +48,7 @@ const BlogList = ({ data, pageContext }) => {
       // パンくずラベル
       crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
-      ogp = {
+      ogpInfo = {
         type: 'website',
         url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
@@ -59,7 +62,7 @@ const BlogList = ({ data, pageContext }) => {
       // パンくずラベル
       crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
-      ogp = {
+      ogpInfo = {
         type: 'website',
         url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
@@ -73,7 +76,7 @@ const BlogList = ({ data, pageContext }) => {
       // パンくずラベル
       crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
-      ogp = {
+      ogpInfo = {
         type: 'website',
         url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
         title: sitePosition,
@@ -87,7 +90,7 @@ const BlogList = ({ data, pageContext }) => {
       // パンくずラベル
       crumbLabel = pageContext.pageNumber == 0 ? 'ホーム' : `${pageContext.humanPageNumber}ページ目`
       // OGP設定
-      ogp = {
+      ogpInfo = {
         type: 'website',
         url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
         title: sitePosition,
@@ -96,11 +99,11 @@ const BlogList = ({ data, pageContext }) => {
       }
       break
   }
-  const misc = { position: sitePosition, crumbLabel: crumbLabel, ogp: ogp }
+  const misc = { position: sitePosition, crumbLabel: crumbLabel, ogpInfo: ogpInfo }
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
-      <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
+      <Grid container spacing={3} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
@@ -116,27 +119,31 @@ const BlogList = ({ data, pageContext }) => {
                       <img srcSet={srcSet} sizes={sizes} src={src} alt={blog.node.title} loading={'lazy'} />
                     </CardMedia>
                     <CardContent className={styles.content}>
-                      <Grid container spacing={1} justifyContent={'center'}>
+                      <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
                         <Grid item xs={12}>
                           <Box className={styles.title}>
                             <h3>{blog.node.title}</h3>
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
-                          <Box className={styles.box}>
-                            <span className={styles.icon}>
-                              <Icon path={mdiCalendarToday} size={0.75} title={'日付'} />
-                            </span>
-                            <span className={styles.text}>{blog.node.datetime}</span>
-                          </Box>
+                          <Link to={`/archive/${moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYYMM')}/`} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}>
+                            <Box className={styles.box}>
+                              <span className={styles.icon}>
+                                <Icon path={mdiCalendarToday} size={0.8} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
+                              </span>
+                              <span className={styles.text}>{blog.node.datetime}</span>
+                            </Box>
+                          </Link>
                         </Grid>
                         <Grid item xs={6}>
-                          <Box className={styles.box}>
-                            <span className={styles.icon}>
-                              <Icon path={mdiShape} size={0.75} title={'カテゴリー'} />
-                            </span>
-                            <span className={styles.text}>{blog.node.category.name}</span>
-                          </Box>
+                          <Link to={`/category/${blog.node.category.id}/`} title={blog.node.category.name}>
+                            <Box className={styles.box}>
+                              <span className={styles.icon}>
+                                <Icon path={mdiShape} size={0.8} title={blog.node.category.name} />
+                              </span>
+                              <span className={styles.text}>{blog.node.category.name}</span>
+                            </Box>
+                          </Link>
                         </Grid>
                       </Grid>
                     </CardContent>
