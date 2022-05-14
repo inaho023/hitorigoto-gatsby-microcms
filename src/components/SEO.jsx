@@ -44,25 +44,33 @@ const SEO = ({ misc, pageContext }) => {
   const image = data.microcmsPicture
   // ウォーターマーク取得
   const imageWatermark = imgixWatermark()
+  // メタ情報
+  const metaData = {
+    title: `${misc.position && misc.position + ' - '} {site.title} ${site.subtitle}`,
+    description: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title
+  }
   // OGP設定
-  const ogpUrl = misc.ogp && site.siteUrl + misc.ogp.url
-  const ogpSiteName = misc.ogp && site.title + ' ' + site.subtitle
-  const ogpTitle = misc.ogp && misc.ogp.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogp.title && ' ' + misc.ogp.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogp.title
-  const ogpImage = misc.ogp && misc.ogp.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogp.image + imageWatermark.xl
-  const ogpDescription = misc.ogp && striptags(misc.ogp.description)
+  const ogpData = {
+    type: misc.ogpInfo.type,
+    url: site.siteUrl + misc.ogpInfo.url,
+    site: site.title + ' ' + site.subtitle,
+    title: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title,
+    image: misc.ogpInfo.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogpInfo.image + imageWatermark.xl,
+    description: striptags(misc.ogpInfo.description)
+  }
   // リターン
   return (
     <Helmet htmlAttributes={{ lang: site.lang, prefix: 'og: http://ogp.me/ns#' }}>
-      <title>{`${(misc.position && misc.position + ' - ') + site.title} ${site.subtitle}`}</title>
-      <meta name='description' content={ogpTitle} />
+      <title>{metaData.title}</title>
+      <meta name='description' content={metaData.description} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
-      {misc.ogp && <meta property='og:type' content={misc.ogp.type} />}
-      {misc.ogp && <meta property='og:url' content={ogpUrl} />}
-      {misc.ogp && <meta property='og:site_neme' content={ogpSiteName} />}
-      {misc.ogp && <meta property='og:title' content={ogpTitle} />}
-      {misc.ogp && <meta property='og:description' content={ogpDescription} />}
-      {misc.ogp && <meta property='og:image' content={ogpImage} />}
-      {misc.ogp && <meta property='og:image:alt' content={ogpTitle} />}
+      {misc.ogp && <meta property='og:type' content={ogpData.type} />}
+      {misc.ogp && <meta property='og:url' content={ogpData.url} />}
+      {misc.ogp && <meta property='og:site_neme' content={ogpData.site} />}
+      {misc.ogp && <meta property='og:title' content={ogpData.title} />}
+      {misc.ogp && <meta property='og:description' content={ogpData.description} />}
+      {misc.ogp && <meta property='og:image' content={ogpData.image} />}
+      {misc.ogp && <meta property='og:image:alt' content={ogpData.title} />}
       {misc.ogp && <meta name='twitter:card' content='summary_large_image' />}
       {misc.ogp && <meta name='twitter:site' content={socialAccount.twitter.account} />}
       {misc.ogp && <meta name='twitter:creator' content={socialAccount.twitter.account} />}

@@ -17,7 +17,7 @@ const BlogPost = ({ data, pageContext }) => {
   // 記事詳細
   const blog = data.microcmsBlog
   // OGP設定
-  const ogp = {
+  const ogpInfo = {
     type: 'article',
     url: '/post/' + (blog.blogId ? blog.blogId : blog.id) + '/',
     title: blog.title,
@@ -25,7 +25,7 @@ const BlogPost = ({ data, pageContext }) => {
     image: blog.image && blog.image.url + imgixImageOption.ogp
   }
   // ページ情報設定
-  const misc = { position: blog.title, crumbLabel: blog.title, ogp: ogp }
+  const misc = { position: blog.title, crumbLabel: blog.title, ogpInfo: ogpInfo }
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>

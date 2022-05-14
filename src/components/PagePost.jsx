@@ -20,7 +20,7 @@ const PagePost = ({ data, pageContext }) => {
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()
   // OGP設定
-  const ogp = {
+  const ogpInfo = {
     type: 'article',
     url: `/${page.pageId ? page.pageId : page.id}`,
     title: page.title,
@@ -28,7 +28,7 @@ const PagePost = ({ data, pageContext }) => {
     image: page.image && page.image.url + imgixImageOption.ogp + imageWatermark.xl
   }
   // ページ情報設定
-  const misc = { position: page.title, crumbLabel: page.title, ogp: ogp }
+  const misc = { position: page.title, crumbLabel: page.title, ogpInfo: ogpInfo }
   // 画像URL生成
   const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
   const srcSet =
