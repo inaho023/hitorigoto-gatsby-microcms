@@ -58,7 +58,7 @@ const Gallery = ({ galleries }) => {
                       const sizes = '(max-width:900px) 50vw, 25vw'
                       // リターン
                       return (
-                        <Grid item key={images.image.url} xs={6} sm={3}>
+                        <Grid item key={images.image.url} xs={6} md={3}>
                           <a key={images.image.url} href={images.image.url + '?' + imageWatermark.full}>
                             <img className={styles.img} src={src} srcSet={srcSet} sizes={sizes} alt={title} loading={'lazy'} />
                           </a>
