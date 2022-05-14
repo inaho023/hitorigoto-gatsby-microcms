@@ -37,69 +37,42 @@ const BlogList = ({ data, pageContext }) => {
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()
   // 変数定義
-  let sitePosition
-  let crumbLabel
-  let ogpInfo
+  let misc = {}
   // 記事リスト種別による場合分け
   switch (pageContext.list) {
-    case 'archive':
-      // ポジション
-      sitePosition = pageContext.name
-      // パンくずラベル
-      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
-      // OGP設定
-      ogpInfo = {
-        type: 'website',
-        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
-        title: sitePosition,
-        description: 'トップページ',
-        image: ''
-      }
-      break
-    case 'category':
-      // ポジション
-      sitePosition = pageContext.name
-      // パンくずラベル
-      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
-      // OGP設定
-      ogpInfo = {
-        type: 'website',
-        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
-        title: sitePosition,
-        description: 'トップページ',
-        image: ''
-      }
-      break
-    case 'tag':
-      // ポジション
-      sitePosition = pageContext.name
-      // パンくずラベル
-      crumbLabel = pageContext.pageNumber == 0 ? sitePosition : `${pageContext.humanPageNumber}ページ目`
-      // OGP設定
-      ogpInfo = {
-        type: 'website',
-        url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
-        title: sitePosition,
-        description: 'トップページ',
-        image: ''
+    case ('archive', 'category', 'tag'):
+      misc = {
+        // ポジション
+        position: pageContext.name,
+        // パンくずラベル
+        crumbLabel: pageContext.pageNumber == 0 ? pageContext.name : `${pageContext.humanPageNumber}ページ目`,
+        // OGP設定
+        ogpInfo: {
+          type: 'website',
+          url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
+          title: pageContext.name,
+          description: 'トップページ',
+          image: ''
+        }
       }
       break
     default:
-      // ポジション
-      sitePosition = ''
-      // パンくずラベル
-      crumbLabel = pageContext.pageNumber == 0 ? 'ホーム' : `${pageContext.humanPageNumber}ページ目`
-      // OGP設定
-      ogpInfo = {
-        type: 'website',
-        url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
-        title: sitePosition,
-        description: 'トップページ',
-        image: ''
+      misc = {
+        // ポジション
+        position: '',
+        // パンくずラベル
+        crumbLabel: pageContext.pageNumber == 0 ? 'ホーム' : `${pageContext.humanPageNumber}ページ目`,
+        // OGP設定
+        ogpInfo: {
+          type: 'website',
+          url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
+          title: '',
+          description: 'トップページ',
+          image: ''
+        }
       }
       break
   }
-  const misc = { position: sitePosition, crumbLabel: crumbLabel, ogpInfo: ogpInfo }
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
@@ -126,24 +99,20 @@ const BlogList = ({ data, pageContext }) => {
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
-                          <Link to={`/archive/${moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYYMM')}/`} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}>
-                            <Box className={styles.box}>
-                              <span className={styles.icon}>
-                                <Icon path={mdiCalendarToday} size={0.8} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
-                              </span>
-                              <span className={styles.text}>{blog.node.datetime}</span>
-                            </Box>
-                          </Link>
+                          <Box className={styles.box}>
+                            <span className={styles.icon}>
+                              <Icon path={mdiCalendarToday} size={0.8} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
+                            </span>
+                            <span className={styles.text}>{blog.node.datetime}</span>
+                          </Box>
                         </Grid>
                         <Grid item xs={6}>
-                          <Link to={`/category/${blog.node.category.id}/`} title={blog.node.category.name}>
-                            <Box className={styles.box}>
-                              <span className={styles.icon}>
-                                <Icon path={mdiShape} size={0.8} title={blog.node.category.name} />
-                              </span>
-                              <span className={styles.text}>{blog.node.category.name}</span>
-                            </Box>
-                          </Link>
+                          <Box className={styles.box}>
+                            <span className={styles.icon}>
+                              <Icon path={mdiShape} size={0.8} title={blog.node.category.name} />
+                            </span>
+                            <span className={styles.text}>{blog.node.category.name}</span>
+                          </Box>
                         </Grid>
                       </Grid>
                     </CardContent>
