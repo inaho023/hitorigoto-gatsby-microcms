@@ -1,5 +1,6 @@
 .minibar {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 32px;
   margin-bottom: 32px;
   margin-left: auto;
@@ -10,13 +11,12 @@
   box-shadow: #332100 4px 4px 4px;
 
   nav {
-    width: 100%;
+    width: calc(100% - 160px);
     display: flex;
     flex-grow: 0;
     flex-direction: column;
 
     ol {
-      width: 98%;
       display: flex;
       margin-left: 0px;
       margin-right: 0px;
@@ -36,7 +36,8 @@
       }
 
       li {
-        min-width: 4rem;
+        width: fit-content;
+        min-width: 5rem;
         flex-wrap: nowrap;
         vertical-align: middle;
         margin-top: 8px;
@@ -59,16 +60,13 @@
     }
   }
 
-  .grow {
-    flex-grow: 1;
-  }
-
   .pager {
-    width: auto;
-    height: fit-content;
+    width: 128px;
     display: flex;
-    flex-grow: 0;
+    flex-basis: content;
     flex-wrap: nowrap;
+    justify-items: right;
+    align-items: center;
     vertical-align: middle;
     margin: auto;
 

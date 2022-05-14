@@ -16,7 +16,7 @@ import { mdiPageFirst, mdiChevronLeft, mdiChevronRight, mdiPageLast } from '@mdi
 // スタイルシート
 import * as styles from '../styles/Minibar.module.scss'
 
-//
+// ミニバー
 const Minibar = ({ misc, pageContext }) => {
   // パンくずリスト
   const disableLinks = ['/archive', '/category', '/tag']
@@ -49,8 +49,8 @@ const Minibar = ({ misc, pageContext }) => {
     }
   } else {
     navFirst = {
-      path: `/post/${pageContext.first.node.blogId}`,
-      title: pageContext.first.node.title,
+      path: pageContext.first && `/post/${pageContext.first.node.blogId}`,
+      title: pageContext.first && pageContext.first.node.title,
       disabled: pageContext.post.node.blogId === pageContext.first.node.blogId
     }
     navPrev = {
@@ -64,8 +64,8 @@ const Minibar = ({ misc, pageContext }) => {
       disabled: pageContext.next ? false : true
     }
     navLast = {
-      path: `/post/${pageContext.last.node.blogId}`,
-      title: pageContext.last.node.title,
+      path: pageContext.last && `/post/${pageContext.last.node.blogId}`,
+      title: pageContext.last && pageContext.last.node.title,
       disabled: pageContext.post.node.blogId === pageContext.last.node.blogId
     }
   }
@@ -73,7 +73,6 @@ const Minibar = ({ misc, pageContext }) => {
   return (
     <Box className={styles.minibar}>
       <Breadcrumb crumbs={pageContext.breadcrumb.crumbs} crumbLabel={misc.crumbLabel} crumbSeparator={' / '} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
-      <Box className={styles.grow} />
       <Box className={styles.pager}>
         <IconButton className={styles.button} disabled={navFirst.disabled}>
           <Link to={navFirst.path}>
