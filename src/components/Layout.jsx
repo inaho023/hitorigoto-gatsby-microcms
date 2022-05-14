@@ -3,7 +3,6 @@ import React from 'react'
 
 // Gatsby
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import { Breadcrumb } from 'gatsby-plugin-breadcrumb'
 
 // Material-UI
 import Container from '@mui/material/Container'
@@ -18,7 +17,7 @@ import { mdiNavigation } from '@mdi/js'
 // 自作コンポーネント
 import SEO from './SEO'
 import Menubar from './Menubar'
-import MiniPager from './MiniPager'
+import Minibar from './Minibar'
 import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
@@ -27,7 +26,7 @@ import TagCloud from './TagCloud'
 import * as styles from '../styles/Layout.module.scss'
 
 // Layout コンポーネント
-const Layout = ({ misc, pageContext, crumbLabel, children }) => {
+const Layout = ({ misc, pageContext, children }) => {
   // サイト情報
   const data = useStaticQuery(graphql`
     query {
@@ -42,9 +41,6 @@ const Layout = ({ misc, pageContext, crumbLabel, children }) => {
       }
     }
   `)
-  // パンくずリスト
-  const disableLinks = ['/archive', '/category', '/tag']
-  const hiddenCrumbs = ['/page', '/post']
   // リターン
   return (
     <>
@@ -57,14 +53,8 @@ const Layout = ({ misc, pageContext, crumbLabel, children }) => {
             <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
+          {pageContext && <Minibar misc={misc} pageContext={pageContext} />}
         </header>
-        {pageContext && (
-          <Box className={styles.minibar}>
-            <Breadcrumb crumbs={pageContext.breadcrumb.crumbs} crumbLabel={crumbLabel} crumbSeparator={' / '} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
-            <Box className={styles.grow} />
-            {misc.ogp.type === 'website' && <MiniPager className={styles.pager} pageContext={pageContext} />}
-          </Box>
-        )}
         <article>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>

@@ -17,7 +17,8 @@ a {
 }
 
 .header {
-  padding: 16px;
+  width: 100%;
+  padding: 0px;
 
   .title {
     color: #332100;
@@ -90,74 +91,5 @@ a {
   .fab:active {
     color: #332100;
     background-color: orange;
-  }
-}
-
-.minibar {
-  display: flex;
-  margin-top: 32px;
-  margin-bottom: 32px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 8px;
-  color: #332100;
-  background-color: #cc8500;
-  box-shadow: #332100 4px 4px 4px;
-
-  nav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    ol {
-      width: 98%;
-      display: flex;
-      margin-left: 0px;
-      margin-right: 0px;
-      list-style-type: none;
-      list-style-position: inside;
-
-      span {
-        min-width: fit-content;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        margin-right: 8px;
-        padding-top: 0.25em;
-        padding-bottom: 0.25em;
-        font-size: 1rem;
-        font-weight: 700;
-        overflow: hidden;
-      }
-
-      li {
-        min-width: 4rem;
-        flex-wrap: nowrap;
-        vertical-align: middle;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        margin-right: 8px;
-        padding: 0.25rem;
-        color: #332100;
-        background: orange;
-        border: 1px solid #332100;
-        border-left: 16px solid #332100;
-        box-shadow: #332100 1px 1px 2px;
-        font-weight: 500;
-        font-size: 1rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-decoration: none;
-        text-transform: none;
-        text-overflow: ellipsis;
-      }
-    }
-  }
-
-  .grow {
-    flex-grow: 1;
-  }
-
-  .pager {
-    flex: auto;
   }
 }

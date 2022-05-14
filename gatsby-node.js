@@ -2,6 +2,7 @@
 const moment = require('moment')
 const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
+
 // 定数
 const SITE_LIST_PER_PAGE = 12 // 1ページあたりの記事数
 //
@@ -198,16 +199,19 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  const post = result.data.allMicrocmsBlog.edges
+  const blog = result.data.allMicrocmsBlog.edges
+  const first = blog[0]
+  const last = blog[blog.length - 1]
   result.data.allMicrocmsBlog.edges.forEach(edge => {
     const id = edge.node.blogId
-    const current = post.findIndex(post => post.node.blogId === id)
-    const prev = current === 0 ? null : post[current - 1]
-    const next = current === post.length - 1 ? null : post[current + 1]
+    const current = blog.findIndex(blog => blog.node.blogId === id)
+    const post = blog[current]
+    const prev = current === 0 ? null : blog[current - 1]
+    const next = current === blog.length - 1 ? null : blog[current + 1]
     actions.createPage({
       path: '/post/' + id,
       component: path.resolve('src/templates/post/{blog.id}.jsx'),
-      context: { id: id, prev: prev, next: next }
+      context: { id: id, post: post, prev: prev, next: next, first: first, last: last }
     })
   })
   // ページリスト

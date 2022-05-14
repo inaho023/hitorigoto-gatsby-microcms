@@ -25,10 +25,10 @@ const BlogPost = ({ data, pageContext }) => {
     image: blog.image && blog.image.url + imgixImageOption.ogp
   }
   // ページ情報設定
-  const misc = { position: blog.title, ogp: ogp }
+  const misc = { position: blog.title, crumbLabel: blog.title, ogp: ogp }
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext} crumbLabel={blog.title}>
+    <Layout misc={misc} pageContext={pageContext}>
       {
         // 記事情報
       }

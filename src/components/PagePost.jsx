@@ -28,7 +28,7 @@ const PagePost = ({ data, pageContext }) => {
     image: page.image && page.image.url + imgixImageOption.ogp + imageWatermark.xl
   }
   // ページ情報設定
-  const misc = { position: page.title, ogp: ogp }
+  const misc = { position: page.title, crumbLabel: page.title, ogp: ogp }
   // 画像URL生成
   const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
   const srcSet =
@@ -40,7 +40,7 @@ const PagePost = ({ data, pageContext }) => {
   const sizes = '100vw'
   // イメージ
   return (
-    <Layout misc={misc} pageContext={pageContext} crumbLabel={page.title}>
+    <Layout misc={misc} pageContext={pageContext}>
       <Box className={styles.title}>
         <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
       </Box>

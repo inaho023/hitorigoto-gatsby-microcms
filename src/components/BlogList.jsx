@@ -96,10 +96,10 @@ const BlogList = ({ data, pageContext }) => {
       }
       break
   }
-  const misc = { position: sitePosition, ogp: ogp }
+  const misc = { position: sitePosition, crumbLabel: crumbLabel, ogp: ogp }
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext} crumbLabel={crumbLabel}>
+    <Layout misc={misc} pageContext={pageContext}>
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像URL生成
