@@ -53,7 +53,7 @@ const Layout = ({ misc, pageContext, children }) => {
             <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
-          {pageContext && <Minibar misc={misc} pageContext={pageContext} />}
+          {pageContext ? <Minibar misc={misc} pageContext={pageContext ? pageContext : null} /> : null}
         </header>
         <article>{children}</article>
         <section id={'Bottom'}>

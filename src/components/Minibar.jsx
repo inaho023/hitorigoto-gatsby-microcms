@@ -18,6 +18,10 @@ import * as styles from '../styles/Minibar.module.scss'
 
 // ミニバー
 const Minibar = ({ misc, pageContext }) => {
+  //
+  if (pageContext === null || pageContext === undefined) {
+    return
+  }
   // パンくずリスト
   const disableLinks = ['/archive', '/category', '/tag']
   const hiddenCrumbs = ['/page', '/post']
@@ -51,7 +55,7 @@ const Minibar = ({ misc, pageContext }) => {
     navFirst = {
       path: pageContext.first && `/post/${pageContext.first.node.blogId}`,
       title: pageContext.first && pageContext.first.node.title,
-      disabled: pageContext.post.node.blogId === pageContext.first.node.blogId
+      disabled: pageContext.id === pageContext?.first?.node?.blogId
     }
     navPrev = {
       path: pageContext.prev && `/post/${pageContext.prev.node.blogId}`,
@@ -66,7 +70,7 @@ const Minibar = ({ misc, pageContext }) => {
     navLast = {
       path: pageContext.last && `/post/${pageContext.last.node.blogId}`,
       title: pageContext.last && pageContext.last.node.title,
-      disabled: pageContext.post.node.blogId === pageContext.last.node.blogId
+      disabled: pageContext.id === pageContext?.last?.node?.blogId
     }
   }
   // リターン

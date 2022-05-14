@@ -16,7 +16,7 @@ const E404 = () => {
     description: 'ページがありません。'
   }
   // ページ情報設定
-  const misc = { position: '404', ogp: ogp }
+  const misc = { position: '404', crumbLabel: '404', ogp: ogp }
   // リターン
   return (
     <Layout misc={misc}>
