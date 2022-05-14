@@ -10,13 +10,13 @@ import * as styles from '../styles/404.module.scss'
 // 404ページ
 const E404 = () => {
   // OGP設定
-  const ogp = {
+  const ogpInfo = {
     type: 'article',
     title: '404',
     description: 'ページがありません。'
   }
   // ページ情報設定
-  const misc = { position: '404', crumbLabel: '404', ogp: ogp }
+  const misc = { position: '404', crumbLabel: '404', ogpInfo: ogpInfo }
   // リターン
   return (
     <Layout misc={misc}>

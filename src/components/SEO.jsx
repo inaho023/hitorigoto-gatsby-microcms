@@ -64,16 +64,16 @@ const SEO = ({ misc, pageContext }) => {
       <title>{metaData.title}</title>
       <meta name='description' content={metaData.description} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
-      {misc.ogp && <meta property='og:type' content={ogpData.type} />}
-      {misc.ogp && <meta property='og:url' content={ogpData.url} />}
-      {misc.ogp && <meta property='og:site_neme' content={ogpData.site} />}
-      {misc.ogp && <meta property='og:title' content={ogpData.title} />}
-      {misc.ogp && <meta property='og:description' content={ogpData.description} />}
-      {misc.ogp && <meta property='og:image' content={ogpData.image} />}
-      {misc.ogp && <meta property='og:image:alt' content={ogpData.title} />}
-      {misc.ogp && <meta name='twitter:card' content='summary_large_image' />}
-      {misc.ogp && <meta name='twitter:site' content={socialAccount.twitter.account} />}
-      {misc.ogp && <meta name='twitter:creator' content={socialAccount.twitter.account} />}
+      {misc.ogpInfo && <meta property='og:type' content={ogpData.type} />}
+      {misc.ogpInfo && <meta property='og:url' content={ogpData.url} />}
+      {misc.ogpInfo && <meta property='og:site_neme' content={ogpData.site} />}
+      {misc.ogpInfo && <meta property='og:title' content={ogpData.title} />}
+      {misc.ogpInfo && <meta property='og:description' content={ogpData.description} />}
+      {misc.ogpInfo && <meta property='og:image' content={ogpData.image} />}
+      {misc.ogpInfo && <meta property='og:image:alt' content={ogpData.title} />}
+      {misc.ogpInfo && <meta name='twitter:card' content='summary_large_image' />}
+      {misc.ogpInfo && <meta name='twitter:site' content={socialAccount.twitter.account} />}
+      {misc.ogpInfo && <meta name='twitter:creator' content={socialAccount.twitter.account} />}
     </Helmet>
   )
 }
