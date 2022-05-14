@@ -46,7 +46,7 @@ const SEO = ({ misc, pageContext }) => {
   const imageWatermark = imgixWatermark()
   // メタ情報
   const metaData = {
-    title: `${misc.position && misc.position + ' - '} {site.title} ${site.subtitle}`,
+    title: `${misc.position && misc.position + ' - '} ${site.title} ${site.subtitle}`,
     description: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title
   }
   // OGP設定
