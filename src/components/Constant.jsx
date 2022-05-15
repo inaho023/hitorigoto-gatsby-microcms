@@ -30,11 +30,11 @@ export const imgixImageOption = {
   },
   // 記事本文用画像オプション
   body: {
-    xl: '?fm=webp&q=30&max-w=1920',
-    l: '?fm=webp&q=30&max-w=1536',
-    m: '?fm=webp&q=30&max-w=1200',
-    s: '?fm=webp&q=30&max-w=900',
-    xs: '?fm=webp&q=30&max-w=600'
+    xl: '?fm=webp&q=30&w=1920',
+    l: '?fm=webp&q=30&w=1536',
+    m: '?fm=webp&q=30&w=1200',
+    s: '?fm=webp&q=30&w=900',
+    xs: '?fm=webp&q=30&w=600'
   }
 }
 // ソーシャルアカウント
