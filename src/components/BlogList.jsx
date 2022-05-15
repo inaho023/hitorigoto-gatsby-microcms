@@ -40,7 +40,9 @@ const BlogList = ({ data, pageContext }) => {
   let misc = {}
   // 記事リスト種別による場合分け
   switch (pageContext.list) {
-    case ('archive', 'category', 'tag'):
+    case 'archive':
+    case 'category':
+    case 'tag':
       misc = {
         // ポジション
         position: pageContext.name,
