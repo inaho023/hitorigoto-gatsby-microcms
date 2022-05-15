@@ -40,7 +40,11 @@ const Menubar = () => {
     <AppBar className={styles.appbar} position={'sticky'}>
       <Toolbar className={styles.toolbar}>
         <Link key={'Home'} to={'/'}>
-          <p>{data.site.siteMetadata.title + ' ' + data.site.siteMetadata.subtitle}</p>
+          <p>
+            {data.site.siteMetadata.title}
+            <br />
+            {data.site.siteMetadata.subtitle}
+          </p>
         </Link>
         <Box className={styles.grow} />
         <Box className={styles.icon}>
