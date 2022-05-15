@@ -48,7 +48,7 @@ const BlogInfo = ({ blog }) => {
       <Grid item className={styles.wrapper} xs={12}>
         <Grid container spacing={0}>
           <Grid item xs={12} md={6}>
-            <img className={styles.image} src={src} srcSet={srcSet} sizes={sizes} alt={blog.title} />
+            <img className={styles.image} srcSet={srcSet} sizes={sizes} src={src} alt={blog.title} />
           </Grid>
           <Grid item className={styles.wrapper} xs={12} md={6}>
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>

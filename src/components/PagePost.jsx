@@ -44,7 +44,7 @@ const PagePost = ({ data, pageContext }) => {
       <Box className={styles.title}>
         <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
       </Box>
-      <img className={styles.image} src={src} srcSet={srcSet} sizes={sizes} alt={page.title} />
+      <img className={styles.image} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
       <Box className={styles.post} key={data.microcmsPage.pageId} dangerouslySetInnerHTML={{ __html: data.microcmsPage.body }} />
     </Layout>
   )
