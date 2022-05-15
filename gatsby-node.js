@@ -1,10 +1,11 @@
 // モジュールの読み込み
-const moment = require('moment')
+const dayjs = require('dayjs')
 const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
 
 // 定数
 const SITE_LIST_PER_PAGE = 12 // 1ページあたりの記事数
+
 //
 exports.createPages = async ({ graphql, actions }) => {
   // 定数定義
@@ -54,18 +55,14 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
   result.data.allMicrocmsBlog.edges.forEach((edge, index) => {
     const id = edge.node.datetime
-    const name = moment(edge.node.datetime, 'YYYYMM').format('YYYY年M月')
-    const from = new Date(Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')), Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) - 1, 1)
-    const to = new Date(
-      Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')) + 1 : Number(moment(edge.node.datetime, 'YYYYMM').format('YYYY')),
-      Number(moment(edge.node.datetime, 'YYYYMM').format('MM')) === 12 ? 0 : Number(moment(edge.node.datetime, 'YYYYMM').format('MM')),
-      1
-    )
-    context[index] = { list: list, id: id, name: name, from: from.toISOString(), to: to.toISOString() }
+    const name = dayjs(edge.node.datetime, 'YYYYMM').format('YYYY年M月')
+    const from = dayjs(id, 'YYYYMM').startOf('month').format()
+    const to = dayjs(id, 'YYYYMM').startOf('month').add(1, 'month').format()
+    context[index] = { list: list, id: id, name: name, from: from, to: to }
     pathList[index] = '/' + list + '/' + id
     // 記事リスト（アーカイブ）
     blogArchive[index] = graphql(`
-      query archiveListQuery($from: Date = "${from.toISOString()}", $to: Date = "${to.toISOString()}") {
+      query archiveListQuery($from: Date = "${from}", $to: Date = "${to}") {
         allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }, filter: { datetime: { gte: $from, lt: $to } }) {
           edges {
             node {

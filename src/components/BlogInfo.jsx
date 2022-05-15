@@ -14,7 +14,7 @@ import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape, mdiTag, mdiShareVariant } from '@mdi/js'
 
 // その他モジュール
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 // 自作コンポーネント
 import ShareButton from './ShareButton'
@@ -54,8 +54,8 @@ const BlogInfo = ({ blog }) => {
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
               <Box>
-                <Link key={moment(blog.datetime).format('YYYYMM')} to={`/archive/${moment(blog.datetime).format('YYYYMM')}/`}>
-                  <Button className={styles.button}>{moment(blog.datetime).format('YYYY年MM月DD日')}</Button>
+                <Link key={dayjs(blog.datetime).format('YYYYMM')} to={`/archive/${dayjs(blog.datetime).format('YYYYMM')}/`}>
+                  <Button className={styles.button}>{dayjs(blog.datetime).format('YYYY年MM月DD日')}</Button>
                 </Link>
               </Box>
             </Grid>

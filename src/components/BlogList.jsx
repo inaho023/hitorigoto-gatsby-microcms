@@ -17,7 +17,7 @@ import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
 // その他コンポーネント
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 // 自作コンポーネント
 import Layout from './Layout'
@@ -103,7 +103,7 @@ const BlogList = ({ data, pageContext }) => {
                         <Grid item xs={6}>
                           <Box className={styles.box}>
                             <span className={styles.icon}>
-                              <Icon path={mdiCalendarToday} size={0.8} title={moment(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
+                              <Icon path={mdiCalendarToday} size={0.8} title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
                             </span>
                             <span className={styles.text}>{blog.node.datetime}</span>
                           </Box>

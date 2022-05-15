@@ -17,7 +17,7 @@ import Icon from '@mdi/react'
 import { mdiArchive, mdiChevronDown } from '@mdi/js'
 
 // その他モジュール
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 // スタイルシート
 import * as styles from '../styles/ArchiveMenu.module.scss'
@@ -38,8 +38,8 @@ const ArchiveMenu = () => {
   const arrayMonth = []
   // 年月を配列化
   data.allMicrocmsBlog.nodes.map((node, index) => {
-    arrayYear[index] = moment(node.datetime, 'YYYYMM').format('YYYY')
-    arrayMonth[index] = moment(node.datetime, 'YYYYMM').format('YYYYMM')
+    arrayYear[index] = dayjs(node.datetime, 'YYYYMM').format('YYYY')
+    arrayMonth[index] = dayjs(node.datetime, 'YYYYMM').format('YYYYMM')
   })
   // 年および年月の配列をユニーク化
   const siteYear = Array.from(new Set(arrayYear))
@@ -55,15 +55,15 @@ const ArchiveMenu = () => {
         {siteYear.map(siteYear => {
           return (
             <Accordion key={siteYear} className={styles.accordion}>
-              <AccordionSummary expandIcon={<Icon path={mdiChevronDown} size={1} />}>{moment(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
+              <AccordionSummary expandIcon={<Icon path={mdiChevronDown} size={1} />}>{dayjs(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
               <AccordionDetails className={styles.detail}>
                 <ButtonGroup orientation={'vertical'} fullWidth>
                   {siteMonth.map(siteMonth => {
                     return (
-                      moment(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
+                      dayjs(siteMonth, 'YYYYMM').format('YYYY') === siteYear && (
                         <Link key={siteMonth} to={`/archive/${siteMonth}/`}>
                           <Button key={siteMonth} className={styles.button} size={'large'} variant={'contained'} fullWidth>
-                            {moment(siteMonth, 'YYYYMM').format('M月')}
+                            {dayjs(siteMonth, 'YYYYMM').format('M月')}
                           </Button>
                         </Link>
                       )
