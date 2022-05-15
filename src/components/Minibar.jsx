@@ -76,7 +76,7 @@ const Minibar = ({ misc, pageContext }) => {
   // リターン
   return (
     <Box className={styles.minibar}>
-      <Breadcrumb crumbs={pageContext.breadcrumb.crumbs} crumbLabel={misc.crumbLabel} crumbSeparator={' / '} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
+      <Breadcrumb crumbs={pageContext.breadcrumb.crumbs} crumbLabel={misc.crumbLabel} disableLinks={disableLinks} hiddenCrumbs={hiddenCrumbs} />
       <Box className={styles.pager}>
         <IconButton className={styles.button} disabled={navFirst.disabled}>
           <Link key={'First'} to={navFirst.path}>

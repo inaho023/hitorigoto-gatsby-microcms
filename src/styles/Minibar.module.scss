@@ -12,7 +12,9 @@
   box-shadow: #332100 4px 4px 4px;
 
   nav {
-    width: calc(100% - 192px);
+    position: relative;
+    left: -24px;
+    width: calc(100% - 112px);
     display: flex;
     flex-grow: 0;
     flex-direction: column;
@@ -22,7 +24,6 @@
       margin-left: 0px;
       margin-right: 0px;
       list-style-type: none;
-      list-style-position: inside;
 
       span {
         min-width: fit-content;
@@ -31,14 +32,14 @@
         margin-right: 8px;
         padding-top: 0.25em;
         padding-bottom: 0.25em;
-        font-size: 0.75rem;
+        font-size: 0.5rem;
         font-weight: 500;
         overflow: hidden;
       }
 
       li {
         width: fit-content;
-        min-width: 4rem;
+        min-width: 4.5rem;
         flex-wrap: nowrap;
         vertical-align: middle;
         margin-top: 8px;
@@ -51,7 +52,7 @@
         border-left: 16px solid #332100;
         box-shadow: #332100 1px 1px 2px;
         font-weight: 500;
-        font-size: 0.75rem;
+        font-size: 0.5rem;
         overflow: hidden;
         white-space: nowrap;
         text-decoration: none;
@@ -62,7 +63,7 @@
   }
 
   .pager {
-    width: 128px;
+    width: 112px;
     display: flex;
     flex-basis: content;
     flex-wrap: nowrap;
@@ -70,16 +71,17 @@
     align-items: center;
     vertical-align: middle;
     margin: auto;
-    margin-right: 32px;
+    margin-right: 16px;
     padding: 0px;
 
-    a {
+    .button {
+      width: 24px;
       height: 24px;
-
-      .button {
-        height: fit-content;
-        flex: auto;
-        margin: auto;
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+      svg {
+        display: flex;
       }
     }
   }
