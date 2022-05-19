@@ -36,11 +36,11 @@ export const imgixImageOption = {
     s: '?fm=webp&q=30&w=900',
     xs: '?fm=webp&q=30&w=600'
   },
-  // 記事本文用画像オプション
+  // 404ページ用画像オプション
   e404: {
-    l: '?fm=webp&q=30&w=1200',
-    m: '?fm=webp&q=30&w=900',
-    s: '?fm=webp&q=30&w=600'
+    l: '?fm=webp&q=20&w=1200',
+    m: '?fm=webp&q=20&w=900',
+    s: '?fm=webp&q=20&w=600'
   }
 }
 // ソーシャルアカウント
