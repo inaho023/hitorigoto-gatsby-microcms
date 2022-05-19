@@ -28,14 +28,14 @@ a {
 
     h1 {
       padding: 8px;
-      line-height: 4rem;
+      line-height: 3.5rem;
       font-size: 3rem;
       font-weight: 700;
     }
 
     h2 {
       padding: 8px;
-      line-height: 3.5rem;
+      line-height: 3rem;
       font-size: 2.5rem;
       font-weight: 700;
     }
@@ -83,7 +83,7 @@ a {
 
   .fab {
     color: #332100;
-    background-color: #cc8500;
+    background-color: orange;
     margin: 8px;
   }
 
@@ -91,6 +91,6 @@ a {
   .fab:focus,
   .fab:active {
     color: #332100;
-    background-color: orange;
+    background-color: #cc8500;
   }
 }
