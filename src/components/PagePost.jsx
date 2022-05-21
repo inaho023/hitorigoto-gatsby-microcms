@@ -8,7 +8,7 @@ import Box from '@mui/material/Box'
 import Layout from './Layout'
 
 // 自作ライブラリー
-import { imgixWatermark } from '../libs/Util'
+import { imgixWatermark, richEditorProcessor } from '../libs/Util'
 import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
@@ -39,14 +39,16 @@ const PagePost = ({ data, pageContext }) => {
     `${page.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
     `${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '100vw'
-  // イメージ
+  // 本文処理
+  const richEditor = richEditorProcessor({ title: page.title, richEditor: page.body })
+  // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
       <Box className={styles.title}>
-        <h1>{data.microcmsPage.title && data.microcmsPage.title}</h1>
+        <h1>{page.title && page.title}</h1>
       </Box>
       <img className={styles.image} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
-      <Box className={styles.post} key={data.microcmsPage.pageId} dangerouslySetInnerHTML={{ __html: data.microcmsPage.body }} />
+      <Box className={styles.post} key={page.pageId} dangerouslySetInnerHTML={{ __html: richEditor }} />
     </Layout>
   )
 }
