@@ -16,6 +16,7 @@ import { mdiTag } from '@mdi/js'
 // スタイルシート
 import * as styles from '../styles/TagCloud.module.scss'
 
+// タグクラウドコンポーネント
 const TagCloud = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`

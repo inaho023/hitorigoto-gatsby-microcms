@@ -14,14 +14,12 @@ import { mdiChevronDown, mdiCamera } from '@mdi/js'
 // その他モジュール
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
-// 自作コンポーネント
-import { imgixWatermark } from './Util'
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/Gallery.module.scss'
-
-// 定数
-import { imgixImageOption } from './Constant'
 
 // ギャラリーコンポーネント
 const Gallery = ({ galleries }) => {

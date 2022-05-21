@@ -18,15 +18,15 @@ import dayjs from 'dayjs'
 
 // 自作コンポーネント
 import ShareButton from './ShareButton'
-import { imgixWatermark } from './Util'
+
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/BlogInfo.module.scss'
 
-// 定数
-import { imgixImageOption } from './Constant'
-
-// 記事詳細
+// ブログ記事情報コンポーネント
 const BlogInfo = ({ blog }) => {
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()

@@ -11,7 +11,7 @@ import Layout from '../components/Layout'
 import * as styles from '../styles/404.module.scss'
 
 // 定数
-import { imgixImageOption } from '../components/Constant'
+import { imgixImageOption } from '../libs/Constant'
 
 // ページクエリー
 export const query = graphql`

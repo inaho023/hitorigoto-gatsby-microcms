@@ -8,11 +8,9 @@ import { useStaticQuery, graphql } from 'gatsby'
 // その他
 import striptags from 'striptags'
 
-// 自作コンポーネント
-import { imgixWatermark } from './Util'
-
-// 定数
-import { socialAccount } from './Constant'
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { socialAccount } from '../libs/Constant'
 
 // SEO コンポーネント
 const SEO = ({ misc, pageContext }) => {
@@ -55,7 +53,7 @@ const SEO = ({ misc, pageContext }) => {
     url: site.siteUrl + misc.ogpInfo.url,
     site: site.title + ' ' + site.subtitle,
     title: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title,
-    image: misc.ogpInfo.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogpInfo.image + imageWatermark.xl,
+    image: misc.ogpInfo.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogpInfo.image,
     description: striptags(misc.ogpInfo.description)
   }
   // リターン

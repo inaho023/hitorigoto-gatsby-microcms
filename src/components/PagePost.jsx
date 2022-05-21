@@ -6,16 +6,17 @@ import Box from '@mui/material/Box'
 
 // 自作モジュール
 import Layout from './Layout'
-import { imgixWatermark } from './Util'
+
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/PagePost.module.scss'
 
-// 定数
-import { imgixImageOption } from './Constant'
-
+// ページ記事詳細コンポーネント
 const PagePost = ({ data, pageContext }) => {
-  // ページ詳細
+  // ページ記事詳細
   const page = data.microcmsPage
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()

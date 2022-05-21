@@ -16,6 +16,7 @@ import { mdiShape } from '@mdi/js'
 // スタイルシート
 import * as styles from '../styles/CategoryMenu.module.scss'
 
+// カテゴリーメニューコンポーネント
 const CategoryMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`

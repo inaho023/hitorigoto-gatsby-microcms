@@ -22,15 +22,15 @@ import dayjs from 'dayjs'
 // 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
-import { imgixWatermark } from './Util'
+
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/BlogList.module.scss'
 
-// 定数
-import { imgixImageOption } from './Constant'
-
-// ブログリスト
+// ブログ記事リストコンポーネント
 const BlogList = ({ data, pageContext }) => {
   // 定数定義
   const blog = data.allMicrocmsBlog.edges

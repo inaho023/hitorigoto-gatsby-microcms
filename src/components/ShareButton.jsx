@@ -27,12 +27,13 @@ import {
   TwitterIcon
 } from 'react-share'
 
+// 自作ライブラリー
+import { sizeShareButton } from '../libs/Constant'
+
 // スタイルシート
 import * as styles from '../styles/ShareButton.module.scss'
 
-// 定数
-import { sizeShareButton } from './Constant'
-
+// シェアボタンコンポーネント
 const ShareButton = ({ blog }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`

@@ -13,6 +13,7 @@ import { Disqus } from 'gatsby-plugin-disqus'
 // スタイルシート
 import * as styles from '../styles/Comment.module.scss'
 
+// コメントコンポーネント
 const Comment = ({ blog }) => {
   // サイト情報
   const data = useStaticQuery(graphql`

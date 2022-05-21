@@ -11,7 +11,7 @@ import PaginationItem from '@mui/material/PaginationItem'
 // スタイル
 import * as styles from '../styles/Pager.module.scss'
 
-// ページャー
+// ページネーションコンポーネント
 const Pager = ({ pageContext }) => {
   // パス設定
   const path = []

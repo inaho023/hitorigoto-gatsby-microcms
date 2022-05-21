@@ -16,7 +16,7 @@ import { mdiPageFirst, mdiChevronLeft, mdiChevronRight, mdiPageLast } from '@mdi
 // スタイルシート
 import * as styles from '../styles/Minibar.module.scss'
 
-// ミニバー
+// ミニバーコンポーネント
 const Minibar = ({ misc, pageContext }) => {
   // pageContextがNULLかUndefinedの場合はリターン
   if (pageContext === null || pageContext === undefined) {

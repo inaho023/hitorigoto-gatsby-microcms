@@ -22,6 +22,7 @@ import dayjs from 'dayjs'
 // スタイルシート
 import * as styles from '../styles/ArchiveMenu.module.scss'
 
+// アーカイブメニューコンポーネント
 const ArchiveMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`

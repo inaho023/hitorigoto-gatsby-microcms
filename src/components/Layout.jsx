@@ -25,7 +25,7 @@ import TagCloud from './TagCloud'
 // スタイルシート
 import * as styles from '../styles/Layout.module.scss'
 
-// Layout コンポーネント
+// レイアウトコンポーネント
 const Layout = ({ misc, pageContext, children }) => {
   // サイト情報
   const data = useStaticQuery(graphql`

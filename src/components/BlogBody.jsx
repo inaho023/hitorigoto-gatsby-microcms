@@ -9,14 +9,14 @@ import { load } from 'cheerio'
 import hljs from 'highlight.js'
 
 // 自作モジュール
-import { imgixWatermark } from './Util'
-import { imgixImageOption } from './Constant'
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import 'highlight.js/styles/base16/windows-10.css'
 import * as styles from '../styles/BlogBody.module.scss'
 
-// ブログ本文処理
+// ブログ記事本文コンポーネント
 const BlogBody = ({ blog }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()

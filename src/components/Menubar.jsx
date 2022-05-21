@@ -14,12 +14,13 @@ import IconButton from '@mui/material/IconButton'
 import Icon from '@mdi/react'
 import { mdiAccount, mdiTwitter, mdiInstagram, mdiBroadcast } from '@mdi/js'
 
+// 自作ライブラリー
+import { socialAccount } from '../libs/Constant'
+
 // スタイルシート
 import * as styles from '../styles/Menubar.module.scss'
 
-// 定数
-import { socialAccount } from './Constant'
-
+// メニューバーコンポーネント
 const Menubar = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`

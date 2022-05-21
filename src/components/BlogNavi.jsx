@@ -11,16 +11,14 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea } from '@mui/material'
 
-// 自作モジュール
-import { imgixWatermark } from './Util'
+// 自作ライブラリー
+import { imgixWatermark } from '../libs/Util'
+import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/BlogNavi.module.scss'
 
-// 定数
-import { imgixImageOption } from './Constant'
-
-// ブログリスト
+// ブログ記事ナビゲーションコンポーネント
 const BlogNavi = ({ pageContext }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
