@@ -35,8 +35,8 @@ const Gallery = ({ galleries }) => {
       // リターン
       return (
         <Accordion key={'Gallery' + (index + 1).toString()} className={styles.gallery} defaultExpanded>
-          <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={2} />}>
-            <Icon path={mdiCamera} size={2} title={'ギャラリー'} />
+          <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={1} />}>
+            <Icon path={mdiCamera} size={1} title={'ギャラリー'} />
             <span className={styles.text}>{galleryTitle}</span>
           </AccordionSummary>
           <AccordionDetails>
@@ -50,11 +50,12 @@ const Gallery = ({ galleries }) => {
                       const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
                       // 画像URL生成
                       const src = images.image.url + imgixImageOption.gallery.m + imageWatermark.m
-                      const srcSet = `${images.image.url}${imgixImageOption.gallery.xs}${imageWatermark.s} 280w,
-                                      ${images.image.url}${imgixImageOption.gallery.s}${imageWatermark.s} 330w,
-                                      ${images.image.url}${imgixImageOption.gallery.m}${imageWatermark.s} 380w,
-                                      ${images.image.url}${imgixImageOption.gallery.l}${imageWatermark.s} 430w,
-                                      ${images.image.url}${imgixImageOption.gallery.xl}${imageWatermark.s} 480w`
+                      const srcSet =
+                        `${images.image.url}${imgixImageOption.gallery.xs}${imageWatermark.s} 280w,` +
+                        `${images.image.url}${imgixImageOption.gallery.s}${imageWatermark.s} 330w,` +
+                        `${images.image.url}${imgixImageOption.gallery.m}${imageWatermark.s} 380w,` +
+                        `${images.image.url}${imgixImageOption.gallery.l}${imageWatermark.s} 430w,` +
+                        `${images.image.url}${imgixImageOption.gallery.xl}${imageWatermark.s} 480w`
                       const sizes = '(max-width:900px) 50vw, 25vw'
                       // リターン
                       return (
