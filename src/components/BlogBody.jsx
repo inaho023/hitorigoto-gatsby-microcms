@@ -5,7 +5,7 @@ import React from 'react'
 import Paper from '@mui/material/Paper'
 
 // シンタックスハイライト
-import cheerio from 'cheerio'
+import { load } from 'cheerio'
 import hljs from 'highlight.js'
 
 // 自作モジュール
@@ -21,7 +21,7 @@ const BlogBody = ({ blog }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 本文をロード
-  const $ = cheerio.load(blog.body)
+  const $ = load(blog.body)
   // シンタックスハイライト処理
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text())
