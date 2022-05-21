@@ -47,6 +47,7 @@ export const imgixWatermark = () => {
   }
 }
 
+// リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ title, richEditor }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
