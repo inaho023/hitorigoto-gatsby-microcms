@@ -58,25 +58,30 @@
           align-items: center;
           justify-content: center;
           vertical-align: middle;
-          padding-right: 2px;
           color: #332100;
           line-height: 1rem;
           font-weight: 500;
-          font-size: 0.75rem;
+          font-size: 0.8rem;
         }
 
         .text {
           display: inline-flex;
-          width: auto;
+          width: calc(100% - 24px);
           align-items: center;
-          justify-content: left;
+          justify-content: center;
           vertical-align: middle;
-          text-align: center;
-          color: #332100;
-          line-height: 1rem;
-          font-weight: 500;
-          font-size: 0.75rem;
-          word-break: keep-all;
+          margin: 0px;
+          padding: 0px;
+
+          p {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+            color: #332100;
+            line-height: 1rem;
+            font-weight: 500;
+            font-size: 0.8rem;
+          }
         }
       }
     }
