@@ -52,17 +52,19 @@ export const richEditorProcessor = ({ title, richEditor }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 本文をロード
-  const $ = load(richEditor)
+  const cheerio = load(richEditor)
   // シンタックスハイライト処理
-  $('pre code').each((_, elm) => {
-    const result = hljs.highlightAuto($(elm).text())
-    $(elm).html(result.value)
-    $(elm).addClass('hljs')
+  cheerio('pre code').each((index, elm) => {
+    const result = hljs.highlightAuto(cheerio(elm).text())
+    cheerio(elm).html(result.value)
+    cheerio(elm).addClass('hljs')
   })
   // 画像処理
-  $('img').each((_, elm) => {
+  cheerio('img').each((index, elm) => {
     // 画像ソースを取得
-    const imgSrc = $(elm).attr('src')
+    const imgSrc = cheerio(elm).attr('src')
+    // Altテキスト設定
+    const alt = `${title} ${(index + 1).toString()}枚目`
     // レスポンシブ画像
     const srcSet =
       imgSrc +
@@ -89,15 +91,15 @@ export const richEditorProcessor = ({ title, richEditor }) => {
     // フォールバック画像
     const src = imgSrc + imgixImageOption.body.m + imageWatermark.m
     // 属性削除
-    $(elm).removeAttr('src')
-    $(elm).removeAttr('width')
-    $(elm).removeAttr('height')
+    cheerio(elm).removeAttr('src')
+    cheerio(elm).removeAttr('width')
+    cheerio(elm).removeAttr('height')
     // 属性設定
-    $(elm).attr('srcSet', srcSet)
-    $(elm).attr('sizes', sizes)
-    $(elm).attr('src', src)
-    $(elm).attr('alt', title)
+    cheerio(elm).attr('srcSet', srcSet)
+    cheerio(elm).attr('sizes', sizes)
+    cheerio(elm).attr('src', src)
+    cheerio(elm).attr('alt', alt)
   })
   // リターン
-  return $.html()
+  return cheerio.html()
 }
