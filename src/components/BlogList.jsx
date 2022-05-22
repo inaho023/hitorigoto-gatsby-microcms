@@ -107,13 +107,9 @@ const BlogList = ({ data, pageContext }) => {
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
-                          <Box className={styles.box}>
+                          <Box className={styles.box} title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}>
                             <span className={styles.icon}>
-                              <Icon
-                                path={mdiCalendarToday}
-                                size={0.8}
-                                title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}
-                              />
+                              <Icon path={mdiCalendarToday} size={0.75} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.datetime}</p>
@@ -121,9 +117,9 @@ const BlogList = ({ data, pageContext }) => {
                           </Box>
                         </Grid>
                         <Grid item xs={6}>
-                          <Box className={styles.box}>
+                          <Box className={styles.box} title={blog.node.category.name}>
                             <span className={styles.icon}>
-                              <Icon path={mdiShape} size={0.8} title={blog.node.category.name} />
+                              <Icon path={mdiShape} size={0.75} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.category.name}</p>

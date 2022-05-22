@@ -1,15 +1,15 @@
 .minibar {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: 16px;
+  margin-bottom: 16px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 8px;
   color: #332100;
   background-color: #cc8500;
+  border-radius: 8px;
   box-shadow: #332100 4px 4px 4px;
+  overflow: hidden;
 
   nav {
     position: relative;
@@ -95,38 +95,6 @@
 
       svg {
         display: flex;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .minibar {
-    nav {
-      ol {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-
-        span {
-          display: none;
-        }
-
-        li {
-          width: fit-content;
-          max-width: 100%;
-          min-width: 0%;
-          display: block;
-          margin: 4px;
-
-          span {
-            display: block;
-          }
-
-          a {
-            display: block;
-          }
-        }
       }
     }
   }

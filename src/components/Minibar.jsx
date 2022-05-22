@@ -19,7 +19,7 @@ import * as styles from '../styles/Minibar.module.scss'
 // ミニバーコンポーネント
 const Minibar = ({ misc, pageContext }) => {
   // pageContextがNULLかUndefinedの場合はリターン
-  if (pageContext === null || pageContext === undefined) {
+  if (!pageContext) {
     return null
   }
   // パンくずリスト

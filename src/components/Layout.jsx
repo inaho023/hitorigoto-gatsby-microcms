@@ -45,7 +45,7 @@ const Layout = ({ misc, pageContext, children }) => {
   return (
     <>
       <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
-      <section id={'Header'}>
+      <section id={'Menubar'}>
         <Menubar />
       </section>
       <Container maxWidth={'xl'}>
@@ -55,9 +55,11 @@ const Layout = ({ misc, pageContext, children }) => {
             <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
-          <Minibar misc={misc} pageContext={pageContext ? pageContext : null} />
         </header>
-        <article>{children}</article>
+        <section id={'Minibar'}>
+          <Minibar misc={misc} pageContext={pageContext ? pageContext : null} />
+        </section>
+        <article className={styles.main}>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={6} md={3}>
@@ -78,7 +80,7 @@ const Layout = ({ misc, pageContext, children }) => {
         </footer>
       </Container>
       <Box className={styles.float}>
-        <Fab className={styles.fab} href={'#Header'}>
+        <Fab className={styles.fab} href={'#Menubar'}>
           <Icon path={mdiNavigation} size={1} title={'ページの先頭へ'} />
         </Fab>
       </Box>

@@ -1,6 +1,6 @@
 .card {
   max-width: 480px;
-  min-width: 270px;
+  min-width: 240px;
   margin-left: auto;
   margin-right: auto;
   background: #cc8500;
@@ -20,7 +20,7 @@
     .content {
       width: 100%;
       display: flex;
-      padding-top: 0px;
+      padding: 8px;
 
       .title {
         width: 100%;
@@ -45,6 +45,8 @@
         align-items: center;
         justify-content: center;
         vertical-align: middle;
+        margin: 0px;
+        padding: 0px;
         color: #332100;
         background: orange;
         border: 1px solid #332100;
@@ -61,7 +63,7 @@
           color: #332100;
           line-height: 1rem;
           font-weight: 500;
-          font-size: 0.8rem;
+          font-size: 0.75rem;
         }
 
         .text {
@@ -80,7 +82,7 @@
             color: #332100;
             line-height: 1rem;
             font-weight: 500;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
           }
         }
       }
