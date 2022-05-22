@@ -4,7 +4,7 @@ const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
 
 // 定数
-const SITE_LIST_PER_PAGE = 12 // 1ページあたりの記事数
+const siteListPerPage = 12 // 1ページあたりの記事数
 
 //
 exports.createPages = async ({ graphql, actions }) => {
@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
   paginate({
     createPage, // The Gatsby `createPage` function
     items: result.data.allMicrocmsBlog.edges, // An array of objects
-    itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
+    itemsPerPage: siteListPerPage, // How many items you want per page
     pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/page'), // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve('src/templates/index.jsx'), // Just like `createPage()`
     context: { list: list }
@@ -80,7 +80,7 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
+      itemsPerPage: siteListPerPage, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
       component: path.resolve('src/templates/archive/{month.id}.jsx'), // Just like `createPage()`
       context: context[index]
@@ -126,7 +126,7 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
+      itemsPerPage: siteListPerPage, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
       component: path.resolve('src/templates/category/{category.id}.jsx'), // Just like `createPage()`
       context: context[index]
@@ -172,7 +172,7 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage, // The Gatsby `createPage` function
       items: result.data.allMicrocmsBlog.edges, // An array of objects
-      itemsPerPage: SITE_LIST_PER_PAGE, // How many items you want per page
+      itemsPerPage: siteListPerPage, // How many items you want per page
       pathPrefix: pathList[index], // Creates pages like `/blog`, `/blog/2`, etc
       component: path.resolve('src/templates/tag/{tag.id}.jsx'), // Just like `createPage()`
       context: context[index]
