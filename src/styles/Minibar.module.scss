@@ -47,20 +47,25 @@
         font-size: 0.5rem;
         overflow: hidden;
         white-space: nowrap;
-        text-decoration: none;
-        text-transform: none;
-        text-overflow: ellipsis;
-        text-align: justify;
-        text-align-last: justify;
         span {
           display: block;
           margin: 0px;
           padding: 0px;
+          text-decoration: none;
+          text-transform: none;
+          text-align: justify;
+          text-align-last: justify;
+          text-overflow: ellipsis;
         }
         a {
           display: block;
           margin: 0px;
           padding: 0px;
+          text-decoration: none;
+          text-transform: none;
+          text-align: justify;
+          text-align-last: justify;
+          text-overflow: ellipsis;
         }
       }
     }
