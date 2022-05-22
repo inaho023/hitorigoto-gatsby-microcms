@@ -14,11 +14,11 @@ export const imgixImageOption = {
   ogp: '?fit=crop&crop=faces&fm=webp&q=50&w=1200&h=630',
   // 記事詳細用画像オプション
   detail: {
-    xl: '?fit=crop&crop=faces&fm=webp&q=50&w=960&h=960',
-    l: '?fit=crop&crop=faces&fm=webp&q=50&w=800&h=800',
-    m: '?fit=crop&crop=faces&fm=webp&q=50&w=640&h=640',
-    s: '?fit=crop&crop=faces&fm=webp&q=50&w=480&h=480',
-    xs: '?fit=crop&crop=faces&fm=webp&q=50&w=320&h=320'
+    xl: '?fit=crop&crop=faces&fm=webp&q=40&w=960&h=720',
+    l: '?fit=crop&crop=faces&fm=webp&q=40&w=800&h=600',
+    m: '?fit=crop&crop=faces&fm=webp&q=40&w=640&h=480',
+    s: '?fit=crop&crop=faces&fm=webp&q=40&w=480&h=360',
+    xs: '?fit=crop&crop=faces&fm=webp&q=40&w=320&h=240'
   },
   // ギャラリー用画像オプション
   gallery: {
