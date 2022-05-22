@@ -56,7 +56,9 @@ const ArchiveMenu = () => {
         {siteYear.map(siteYear => {
           return (
             <Accordion key={siteYear} className={styles.accordion}>
-              <AccordionSummary expandIcon={<Icon path={mdiChevronDown} size={1} />}>{dayjs(siteYear, 'YYYY').format('YYYY年')}</AccordionSummary>
+              <AccordionSummary expandIcon={<Icon path={mdiChevronDown} size={1} />}>
+                {dayjs(siteYear, 'YYYY').format('YYYY年')}
+              </AccordionSummary>
               <AccordionDetails className={styles.detail}>
                 <ButtonGroup orientation={'vertical'} fullWidth>
                   {siteMonth.map(siteMonth => {

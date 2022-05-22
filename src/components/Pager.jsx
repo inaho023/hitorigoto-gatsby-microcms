@@ -42,7 +42,9 @@ const Pager = ({ pageContext }) => {
       shape={'rounded'}
       showFirstButton
       showLastButton
-      renderItem={item => <PaginationItem className={styles.paginationitem} component={Link} to={path[item.page ? item.page - 1 : 0]} {...item} />}
+      renderItem={item => (
+        <PaginationItem className={styles.paginationitem} component={Link} to={path[item.page ? item.page - 1 : 0]} {...item} />
+      )}
     />
   )
 }

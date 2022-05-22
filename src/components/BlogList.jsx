@@ -51,7 +51,10 @@ const BlogList = ({ data, pageContext }) => {
         // OGP設定
         ogpInfo: {
           type: 'website',
-          url: pageContext.pageNumber == 0 ? `/${pageContext.list}/${pageContext.id}/` : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
+          url:
+            pageContext.pageNumber == 0
+              ? `/${pageContext.list}/${pageContext.id}/`
+              : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
           title: pageContext.name,
           description: 'トップページ',
           image: ''
@@ -82,7 +85,10 @@ const BlogList = ({ data, pageContext }) => {
         {blog.map(blog => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
-          const srcSet = `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 270w,` + `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 360w,` + `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,`
+          const srcSet =
+            `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 270w,` +
+            `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 360w,` +
+            `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,`
           const sizes = '(max-width: 600px) 100w, (min-width: 900px) 50w, (max-width: 1536px) 33w, 25w'
           // リターン
           return (
@@ -103,7 +109,11 @@ const BlogList = ({ data, pageContext }) => {
                         <Grid item xs={6}>
                           <Box className={styles.box}>
                             <span className={styles.icon}>
-                              <Icon path={mdiCalendarToday} size={0.8} title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')} />
+                              <Icon
+                                path={mdiCalendarToday}
+                                size={0.8}
+                                title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}
+                              />
                             </span>
                             <span className={styles.text}>{blog.node.datetime}</span>
                           </Box>

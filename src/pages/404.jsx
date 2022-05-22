@@ -33,7 +33,16 @@ export const query = graphql`
 const E404 = ({ data }) => {
   // 画像取得
   const src = data.microcmsPicture.picture.url + imgixImageOption.e404.m
-  const srcSet = data.microcmsPicture.picture.url + imgixImageOption.e404.s + ' 600w,' + data.microcmsPicture.picture.url + imgixImageOption.e404.m + ' 900w,' + data.microcmsPicture.picture.url + imgixImageOption.e404.l + ' 1200w'
+  const srcSet =
+    data.microcmsPicture.picture.url +
+    imgixImageOption.e404.s +
+    ' 600w,' +
+    data.microcmsPicture.picture.url +
+    imgixImageOption.e404.m +
+    ' 900w,' +
+    data.microcmsPicture.picture.url +
+    imgixImageOption.e404.l +
+    ' 1200w'
   const sizes = '100w'
   // OGP設定
   const ogpInfo = {

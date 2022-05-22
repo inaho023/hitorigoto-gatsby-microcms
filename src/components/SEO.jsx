@@ -45,14 +45,24 @@ const SEO = ({ misc, pageContext }) => {
   // メタ情報
   const metaData = {
     title: `${misc.position && misc.position + ' - '} ${site.title} ${site.subtitle}`,
-    description: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title
+    description:
+      misc.ogpInfo.type === 'website'
+        ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${
+            pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`
+          }`
+        : misc.ogpInfo.title
   }
   // OGP設定
   const ogpData = {
     type: misc.ogpInfo.type,
     url: site.siteUrl + misc.ogpInfo.url,
     site: site.title + ' ' + site.subtitle,
-    title: misc.ogpInfo.type === 'website' ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`}` : misc.ogpInfo.title,
+    title:
+      misc.ogpInfo.type === 'website'
+        ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${
+            pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`
+          }`
+        : misc.ogpInfo.title,
     image: misc.ogpInfo.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogpInfo.image,
     description: striptags(misc.ogpInfo.description)
   }

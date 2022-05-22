@@ -45,7 +45,12 @@ const Gallery = ({ galleries }) => {
                     // 画像を配置
                     gallery.images.map((images, index) => {
                       // キャプション生成
-                      const title = gallery.name + '　' + (gallery.display_name == null ? '' : gallery.display_name + '　') + (index + 1).toString() + '枚目'
+                      const title =
+                        gallery.name +
+                        ' ' +
+                        (gallery.display_name ? gallery.display_name + ' ' : '') +
+                        (index + 1).toString() +
+                        '枚目'
                       // 画像URL生成
                       const src = images.image.url + imgixImageOption.gallery.m + imageWatermark.m
                       const srcSet =

@@ -10,7 +10,12 @@ import BlogList from '../../components/BlogList'
 // ページクエリー
 export const pageQuery = graphql`
   query tagIndexQuery($limit: Int!, $skip: Int!, $id: String!) {
-    allMicrocmsBlog(limit: $limit, skip: $skip, sort: { fields: datetime, order: DESC }, filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
+    allMicrocmsBlog(
+      limit: $limit
+      skip: $skip
+      sort: { fields: datetime, order: DESC }
+      filter: { tags: { elemMatch: { id: { eq: $id } } } }
+    ) {
       edges {
         node {
           blogId

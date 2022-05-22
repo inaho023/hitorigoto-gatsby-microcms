@@ -8,7 +8,7 @@
     "eslint:recommended",
     "plugin:import/recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "globals": {
     "__PATH_PREFIX__": true,
@@ -36,7 +36,7 @@
     "sourceType": "module",
     "parser": "@babel/eslint-parser",
     "requireConfigFile": false
-},
+  },
   "plugins": ["react"],
   "rules": {
     "react/jsx-uses-react": "error",
@@ -58,6 +58,6 @@
         "js": "never",
         "jsx": "never"
       }
-   ]
+    ]
   }
 }
