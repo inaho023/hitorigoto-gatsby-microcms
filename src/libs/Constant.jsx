@@ -72,6 +72,7 @@ export const serviceEndpoint = {
   },
   iframely: {
     url: 'https://iframe.ly/api/iframely',
+    key: 'ed2561c3c4c71d4dece262554ddd48b8',
     parameter: '&iframe=1,card&media=0&omit_script=1&omit_css=1'
   }
 }
