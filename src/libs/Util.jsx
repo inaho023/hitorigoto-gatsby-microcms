@@ -57,7 +57,7 @@ export const richLinkProcessor = ({ cheerio }) => {
   // エンドポイント設定
   const url =
     `${serviceEndpoint.iframely.url}` +
-    `?key=${process.env.IFRAMELY_API_KEY}` +
+    `?key=${process.env.GATSBY_IFRAMELY_API_KEY}` +
     `&url=${encodeURI(cheerio.attr('href'))}` +
     `${serviceEndpoint.iframely.parameter}`
   // エンドポイントへアクセス
