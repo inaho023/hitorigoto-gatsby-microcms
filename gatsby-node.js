@@ -1,11 +1,9 @@
 // モジュールの読み込み
-const dayjs = require('dayjs')
 const path = require('path')
+const dayjs = require('dayjs')
 const { paginate } = require('gatsby-awesome-pagination')
-
 // 定数
 const siteListPerPage = 12 // 1ページあたりの記事数
-
 //
 exports.createPages = async ({ graphql, actions }) => {
   // 定数定義
@@ -191,6 +189,7 @@ exports.createPages = async ({ graphql, actions }) => {
               width
               height
             }
+            body
           }
         }
       }
@@ -199,7 +198,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blog = result.data.allMicrocmsBlog.edges
   const first = blog[0]
   const last = blog[blog.length - 1]
-  result.data.allMicrocmsBlog.edges.forEach(edge => {
+  result.data.allMicrocmsBlog.edges.forEach(async edge => {
     const id = edge.node.blogId
     const current = blog.findIndex(blog => blog.node.blogId === id)
     const post = blog[current]
@@ -221,7 +220,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  result.data.allMicrocmsPage.nodes.forEach(node => {
+  result.data.allMicrocmsPage.nodes.forEach(async node => {
     const id = node.pageId
     actions.createPage({
       path: '/' + id,
