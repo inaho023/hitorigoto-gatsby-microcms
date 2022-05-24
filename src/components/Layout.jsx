@@ -45,9 +45,8 @@ const Layout = ({ misc, pageContext, children }) => {
   return (
     <>
       <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
-      <section id={'Menubar'}>
-        <Menubar />
-      </section>
+      <section id={'Menubar'} />
+      <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header} key={'Header'}>
           <Link key={'Header'} className={styles.title} to={'/'}>
