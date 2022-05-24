@@ -86,9 +86,11 @@ const BlogList = ({ data, pageContext }) => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
           const srcSet =
-            `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 270w,` +
+            `${blog.node.image.url}${imgixImageOption.list.xs}${imageWatermark.s} 120w,` +
+            `${blog.node.image.url}${imgixImageOption.list.s}${imageWatermark.s} 240w,` +
             `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 360w,` +
-            `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,`
+            `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,` +
+            `${blog.node.image.url}${imgixImageOption.list.xl}${imageWatermark.s} 600w,`
           const sizes = '(max-width: 600px) 100w, (min-width: 900px) 50w, (max-width: 1536px) 33w, 25w'
           // リターン
           return (
