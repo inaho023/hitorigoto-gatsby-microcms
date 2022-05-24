@@ -1,15 +1,18 @@
+// React
+import { useEffect, useState } from 'react'
+
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
-
-// その他
-import { Base64 } from 'js-base64'
 
 // シンタックスハイライト
 import { load } from 'cheerio'
 import hljs from 'highlight.js'
 
-// 自作モジュール
-import { imgixImageOption } from '../libs/Constant'
+// その他
+import { Base64 } from 'js-base64'
+
+// 自作ライブラリー
+import { imgixImageOption, serviceEndpoint } from './Constant'
 
 // 画像用ウォーターマーク
 export const imgixWatermark = () => {
@@ -47,20 +50,57 @@ export const imgixWatermark = () => {
   }
 }
 
+// リッチリンク処理関数（Iframely）
+export const richLinkProcessor = ({ cheerio }) => {
+  // ステート設定
+  const [data, setData] = useState(null)
+  // エンドポイント設定
+  const url =
+    `${serviceEndpoint.iframely.url}` +
+    `?key=${process.env.IFRAMELY_API_KEY}` +
+    `&url=${encodeURI(cheerio.attr('href'))}` +
+    `${serviceEndpoint.iframely.parameter}`
+  // エンドポイントへアクセス
+  useEffect(() => {
+    fetch(url)
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        return setData(res)
+      })
+  }, [])
+  // データーがなければそのまま返す
+  if (!data?.html) {
+    return null
+  }
+  // 出力確認
+  // console.log(data)
+  // カード構築
+  return data.html
+}
+
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ title, richEditor }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 本文をロード
   const cheerio = load(richEditor)
+  // リッチリンク処理
+  cheerio('a').map((index, elm) => {
+    const result = richLinkProcessor({ cheerio: cheerio(elm) })
+    if (result) {
+      cheerio(elm).html(result)
+    }
+  })
   // シンタックスハイライト処理
-  cheerio('pre code').each((index, elm) => {
+  cheerio('pre code').map((index, elm) => {
     const result = hljs.highlightAuto(cheerio(elm).text())
     cheerio(elm).html(result.value)
     cheerio(elm).addClass('hljs')
   })
   // 画像処理
-  cheerio('img').each((index, elm) => {
+  cheerio('img').map((index, elm) => {
     // 画像ソースを取得
     const imgSrc = cheerio(elm).attr('src')
     // Altテキスト設定
@@ -100,6 +140,8 @@ export const richEditorProcessor = ({ title, richEditor }) => {
     cheerio(elm).attr('src', src)
     cheerio(elm).attr('alt', alt)
   })
+  // 出力確認
+  // console.log(cheerio.html())
   // リターン
   return cheerio.html()
 }

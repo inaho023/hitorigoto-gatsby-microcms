@@ -4,9 +4,11 @@ export const sizeShareButton = 36 // シェアボタンサイズ
 export const imgixImageOption = {
   // 記事リスト用画像オプション
   list: {
+    xl: '?fit=crop&crop=faces&fm=webp&q=20&w=600&h=400',
     l: '?fit=crop&crop=faces&fm=webp&q=20&w=480&h=320',
     m: '?fit=crop&crop=faces&fm=webp&q=20&w=360&h=240',
-    s: '?fit=crop&crop=faces&fm=webp&q=20&w=270&h=180'
+    s: '?fit=crop&crop=faces&fm=webp&q=20&w=240&h=160',
+    xs: '?fit=crop&crop=faces&fm=webp&q=20&w=120&h=80'
   },
   // ナビゲーション用画像オプション
   navi: '?fit=crop&crop=faces&fm=webp&q=20&w=96&h=96',
@@ -57,5 +59,19 @@ export const socialAccount = {
   },
   twitcasting: {
     url: 'https://twitcasting.tv/inaho_lx/'
+  }
+}
+
+// エンドポイント
+export const serviceEndpoint = {
+  microCMSBlog: {
+    url: 'https://inaho.microcms.io/api/v1/blog'
+  },
+  microCMSPage: {
+    url: 'https://inaho.microcms.io/api/v1/page'
+  },
+  iframely: {
+    url: 'https://iframe.ly/api/iframely',
+    parameter: '&iframe=1,card&media=0&omit_script=1&omit_css=1'
   }
 }

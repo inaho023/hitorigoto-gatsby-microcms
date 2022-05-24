@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// Iframely
+import Iframely from './Iframely'
+
 // 自作コンポーネント
 import Layout from './Layout'
 import BlogInfo from './BlogInfo'
@@ -32,6 +35,10 @@ const BlogPost = ({ data, pageContext }) => {
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
+      {
+        // Iframely
+      }
+      <Iframely />
       {
         // 記事情報
       }

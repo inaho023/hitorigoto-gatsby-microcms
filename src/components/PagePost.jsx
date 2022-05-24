@@ -2,7 +2,11 @@
 import React from 'react'
 
 // Material-UI
+import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
+
+// Iframely
+import Iframely from './Iframely'
 
 // 自作モジュール
 import Layout from './Layout'
@@ -44,11 +48,24 @@ const PagePost = ({ data, pageContext }) => {
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
+      {
+        // Iframely
+      }
+      <Iframely />
+      {
+        // タイトル
+      }
       <Box className={styles.title}>
         <h1>{page.title && page.title}</h1>
       </Box>
+      {
+        // タイトル画像
+      }
       <img className={styles.image} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
-      <Box className={styles.post} key={page.pageId} dangerouslySetInnerHTML={{ __html: richEditor }} />
+      {
+        // 記事本文
+      }
+      <Paper className={styles.post} key={page.pageId} dangerouslySetInnerHTML={{ __html: richEditor }} />
     </Layout>
   )
 }
