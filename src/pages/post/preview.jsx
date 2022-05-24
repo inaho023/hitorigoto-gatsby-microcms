@@ -4,17 +4,20 @@ import React, { useEffect, useState } from 'react'
 // その他
 import queryString from 'query-string'
 
-// コンポーネント
+// 自作コンポーネント
 import BlogPost from '../../components/BlogPost'
+
+// 自作ライブラリー
+import { serviceEndpoint } from '../../libs/Constant'
 
 const PagePreview = ({ location }) => {
   // コンテンツIDおよびドラフトキーを取得
   const { contentId, draftKey } = queryString.parse(location.search)
-  //
+  // ステート
   const [data, setData] = useState(null)
   // 記事詳細取得
   useEffect(() => {
-    fetch(`https://inaho.microcms.io/api/v1/blog/${contentId}?draftKey=${draftKey}`, {
+    fetch(`${serviceEndpoint.microCMSBlog.url}/${contentId}?draftKey=${draftKey}`, {
       headers: {
         'X-MICROCMS-API-KEY': process.env.GATSBY_MICROCMS_API_KEY
       }
@@ -27,7 +30,7 @@ const PagePreview = ({ location }) => {
       })
   }, [])
   // リターン
-  if (data === null) {
+  if (!data) {
     return null
   }
   return <BlogPost data={data} />

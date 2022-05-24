@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react'
 // その他
 import queryString from 'query-string'
 
-// コンポーネント
+// 自作コンポーネント
 import PagePost from '../../components/PagePost'
+
+// 自作ライブラリー
+import { serviceEndpoint } from '../../libs/Constant'
 
 const PagePreview = ({ location }) => {
   // コンテンツIDおよびドラフトキーを取得
@@ -14,7 +17,7 @@ const PagePreview = ({ location }) => {
   const [data, setData] = useState(null)
   // 記事詳細取得
   useEffect(() => {
-    fetch(`https://inaho.microcms.io/api/v1/page/${contentId}?draftKey=${draftKey}`, {
+    fetch(`${serviceEndpoint.microCMSPage.url}/${contentId}?draftKey=${draftKey}`, {
       headers: {
         'X-MICROCMS-API-KEY': process.env.GATSBY_MICROCMS_API_KEY
       }
