@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 
+// Iframelyコンポーネント
 const Iframely = () => {
   // Iframelyロード
   useEffect(() => {
