@@ -5,7 +5,8 @@
   "description": "いなほちゅんのひとりごと ブログ版",
   "author": "inaho023",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "microCMS"
   ],
   "scripts": {
     "develop": "gatsby develop -H 0.0.0.0 --verbose",
