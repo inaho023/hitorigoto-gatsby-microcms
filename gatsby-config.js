@@ -24,12 +24,7 @@ module.exports = {
         }
       }
     },
-    {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        excludes: ['/post/preview/', '/page/preview/']
-      }
-    },
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
