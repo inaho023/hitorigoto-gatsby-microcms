@@ -10,7 +10,7 @@
   "scripts": {
     "develop": "gatsby develop -H 0.0.0.0",
     "start": "gatsby develop -H 0.0.0.0",
-    "build": "gatsby build",
+    "build": "gatsby build --verbose",
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "format:prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md}\"",
