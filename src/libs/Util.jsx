@@ -69,8 +69,11 @@ export const richLinkProcessor = ({ cheerio }) => {
       .then(res => {
         return setData(res)
       })
+      .catch(() => {
+        return setData(null)
+      })
   }, [])
-  // データーがなければそのまま返す
+  // データーがなければNULLを返す
   if (!data?.html) {
     return null
   }
@@ -89,7 +92,7 @@ export const richEditorProcessor = ({ title, richEditor }) => {
   // リッチリンク処理
   cheerio('a').map((index, elm) => {
     const result = richLinkProcessor({ cheerio: cheerio(elm) })
-    if (result) {
+    if (result !== null) {
       cheerio(elm).html(result)
     }
   })
