@@ -8,10 +8,10 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop -H 0.0.0.0",
-    "start": "gatsby develop -H 0.0.0.0",
+    "develop": "gatsby develop -H 0.0.0.0 --verbose",
+    "start": "gatsby develop -H 0.0.0.0 --verbose",
     "build": "gatsby build --verbose",
-    "serve": "gatsby serve -H 0.0.0.0",
+    "serve": "gatsby serve -H 0.0.0.0 --verbose",
     "clean": "gatsby clean",
     "format:prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:eslint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\""
