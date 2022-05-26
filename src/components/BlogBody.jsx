@@ -9,6 +9,7 @@ import { richEditorProcessor } from '../libs/Util'
 
 // スタイルシート
 import * as styles from '../styles/BlogBody.module.scss'
+import 'prismjs/themes/prism-okaidia.min.css'
 
 // ブログ記事本文コンポーネント
 const BlogBody = ({ blog }) => {

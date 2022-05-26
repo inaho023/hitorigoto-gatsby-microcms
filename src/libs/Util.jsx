@@ -97,22 +97,28 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
     }
   })
   // シンタックスハイライト処理
-  useEffect(() => {
-    Prism.highlightAll()
-  }, [])
-  // クラス設定
   cheerio('pre code').map((index, elm) => {
     // 言語設定
     if (codeClass) {
       if (codeClass[index].class) {
         if (codeClass[index].class[0]) {
           cheerio(elm).addClass('language-' + codeClass[index].class[0])
+        } else {
+          cheerio(elm).addClass('language-log')
         }
+      } else {
+        cheerio(elm).addClass('language-log')
       }
+    } else {
+      cheerio(elm).addClass('language-log')
     }
     // 行番号設定
     cheerio(elm).parent().addClass('line-numbers')
   })
+  //
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
   // 画像処理
   cheerio('img').map((index, elm) => {
     // 画像ソースを取得
