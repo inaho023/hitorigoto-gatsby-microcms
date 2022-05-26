@@ -28,6 +28,9 @@ export const pageQuery = graphql`
         height
       }
       body
+      codeClass {
+        class
+      }
       galleries {
         gallery {
           id

@@ -124,25 +124,7 @@
     object-fit: scale-down;
   }
 
-  pre {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 8px;
-
-    code {
-      width: 100%;
-      padding: 1rem;
-      overflow-x: scroll;
-      box-shadow: #332100 4px 4px 4px;
-      line-height: 1.25rem;
-      font-size: 1rem;
-      font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
-      white-space: pre;
-    }
-  }
-
-  code {
+  code:not(pre) {
     color: white;
     background: #332100;
     margin: 2px;

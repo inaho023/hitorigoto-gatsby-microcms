@@ -6,8 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 // シンタックスハイライト
 import { load } from 'cheerio'
-import hljs from 'highlight.js'
-
+import Prism from 'prismjs'
 // その他
 import { Base64 } from 'js-base64'
 
@@ -32,26 +31,26 @@ export const imgixWatermark = () => {
     }
   `)
   // ウォーターマーク画像URLをBase64変換
-  const b64Image = {
-    full: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=400&h=80fm=png`),
-    xl: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=250&h=50&fm=png`),
-    l: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=200&h=40&fm=png`),
-    m: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=150&h=30&fm=png`),
-    s: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=100&h=20&fm=png`),
-    xs: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=50&h=10&fm=png`)
+  const base64Image = {
+    full: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=400&h=80fm=png${data.microcmsPicture.parameter}`),
+    xl: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=250&h=50&fm=png${data.microcmsPicture.parameter}`),
+    l: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=200&h=40&fm=png${data.microcmsPicture.parameter}`),
+    m: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=150&h=30&fm=png${data.microcmsPicture.parameter}`),
+    s: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=100&h=20&fm=png${data.microcmsPicture.parameter}`),
+    xs: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=50&h=10&fm=png${data.microcmsPicture.parameter}`)
   }
   return {
-    full: `&mark-w=400&mark-h=80&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.full}`,
-    xl: `&mark-w=250&mark-h=50&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.xl}`,
-    l: `&mark-w=200&mark-h=40&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.l}`,
-    m: `&mark-w=150&mark-h=30&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.m}`,
-    s: `&mark-w=100&mark-h=20&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.s}`,
-    xs: `&mark-w=50&mark-h=10&mark-align=bottom,center&mark-alpha=50&mark64=${b64Image.xs}`
+    full: `&mark-w=400&mark-h=80&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.full}`,
+    xl: `&mark-w=250&mark-h=50&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.xl}`,
+    l: `&mark-w=200&mark-h=40&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.l}`,
+    m: `&mark-w=150&mark-h=30&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.m}`,
+    s: `&mark-w=100&mark-h=20&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.s}`,
+    xs: `&mark-w=50&mark-h=10&mark-align=bottom,center&mark-alpha=50&mark64=${base64Image.xs}`
   }
 }
 
 // リッチリンク処理関数（Iframely）
-export const richLinkProcessor = ({ cheerio }) => {
+const richLinkProcessor = ({ cheerio }) => {
   // ステート設定
   const [data, setData] = useState(null)
   // エンドポイント設定
@@ -79,12 +78,12 @@ export const richLinkProcessor = ({ cheerio }) => {
   }
   // 出力確認
   // console.log(data)
-  // カード構築
+  // HTMLを返す
   return data.html
 }
 
 // リッチエディター処理関数（microCMS用）
-export const richEditorProcessor = ({ title, richEditor }) => {
+export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 本文をロード
@@ -97,17 +96,26 @@ export const richEditorProcessor = ({ title, richEditor }) => {
     }
   })
   // シンタックスハイライト処理
-  cheerio('pre code').map((index, elm) => {
-    const result = hljs.highlightAuto(cheerio(elm).text())
-    cheerio(elm).html(result.value)
-    cheerio(elm).addClass('hljs')
-  })
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+  if (codeClass) {
+    // 言語設定
+    cheerio('pre code').map((index, elm) => {
+      // 言語設定
+      if (codeClass[index].class[0]) {
+        cheerio(elm).addClass('language-' + codeClass[index].class[0])
+        // 行番号設定
+        cheerio(elm).parent().addClass('line-numbers')
+      }
+    })
+  }
   // 画像処理
   cheerio('img').map((index, elm) => {
     // 画像ソースを取得
     const imgSrc = cheerio(elm).attr('src')
     // Altテキスト設定
-    const alt = `${title} ${(index + 1).toString()}枚目`
+    const altText = `${title} ${(index + 1).toString()}枚目`
     // レスポンシブ画像
     const srcSet =
       imgSrc +
@@ -132,7 +140,7 @@ export const richEditorProcessor = ({ title, richEditor }) => {
       ' 1920w'
     const sizes = '100w'
     // フォールバック画像
-    const src = imgSrc + imgixImageOption.body.m + imageWatermark.m
+    const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
     // 属性削除
     cheerio(elm).removeAttr('src')
     cheerio(elm).removeAttr('width')
@@ -141,7 +149,7 @@ export const richEditorProcessor = ({ title, richEditor }) => {
     cheerio(elm).attr('srcSet', srcSet)
     cheerio(elm).attr('sizes', sizes)
     cheerio(elm).attr('src', src)
-    cheerio(elm).attr('alt', alt)
+    cheerio(elm).attr('alt', altText)
   })
   // 出力確認
   // console.log(cheerio.html())

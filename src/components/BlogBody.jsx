@@ -8,13 +8,12 @@ import Paper from '@mui/material/Paper'
 import { richEditorProcessor } from '../libs/Util'
 
 // スタイルシート
-import 'highlight.js/styles/base16/windows-10.css'
 import * as styles from '../styles/BlogBody.module.scss'
 
 // ブログ記事本文コンポーネント
 const BlogBody = ({ blog }) => {
   // 本文処理
-  const richEditor = richEditorProcessor({ title: blog.title, richEditor: blog.body })
+  const richEditor = richEditorProcessor({ title: blog.title, codeClass: blog.codeClass, richEditor: blog.body })
   // リターン
   return <Paper className={styles.post} key={'Post'} dangerouslySetInnerHTML={{ __html: richEditor }} />
 }
