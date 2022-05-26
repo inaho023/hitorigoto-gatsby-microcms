@@ -62,7 +62,6 @@ const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   cheerio.parent().addClass('line-numbers')
   // 言語設定
   cheerio.addClass('language-' + codeClass.class)
-  // データー確認
 }
 
 // リッチリンク処理関数（Iframely）
