@@ -7,6 +7,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 // シンタックスハイライト
 import { load } from 'cheerio'
 import Prism from 'prismjs'
+
 // その他
 import { Base64 } from 'js-base64'
 
@@ -99,16 +100,13 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   useEffect(() => {
     Prism.highlightAll()
   }, [])
-  if (codeClass) {
-    cheerio('pre code').map((index, elm) => {
-      if (codeClass[index].class[0]) {
-        // 言語設定
-        cheerio(elm).addClass('language-' + codeClass[index].class[0])
-        // 行番号設定
-        cheerio(elm).parent().addClass('line-numbers')
-      }
-    })
-  }
+  // クラス設定
+  cheerio('pre code').map((index, elm) => {
+    // 言語設定
+    cheerio(elm).addClass('language-' + codeClass[index].class[0])
+    // 行番号設定
+    cheerio(elm).parent().addClass('line-numbers')
+  })
   // 画像処理
   cheerio('img').map((index, elm) => {
     // 画像ソースを取得
