@@ -124,7 +124,8 @@
     object-fit: scale-down;
   }
 
-  code:not(pre) {
+  code:not([class^='language-']),
+  code:not([class*='language-']) {
     color: white;
     background: #332100;
     margin: 2px;
@@ -138,11 +139,11 @@
     white-space: pre;
   }
 
-  div .iframely-card {
+  div:has(.iframely-card) {
     width: 100%;
     margin: 8px;
 
-    div .iframely-responsive {
+    div:has(.iframely-responsive) {
       width: 100%;
       margin-left: auto;
       margin-right: auto;
