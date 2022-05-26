@@ -58,10 +58,10 @@ const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   }, [])
   // コンテナ設定
   cheerio.parent().addClass('container')
-  // 言語設定
-  cheerio.addClass('language-' + codeClass.class)
   // 行番号設定
   cheerio.parent().addClass('line-numbers')
+  // 言語設定
+  cheerio.addClass('language-' + codeClass.class)
   // データー確認
 }
 
