@@ -102,9 +102,13 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   }, [])
   // クラス設定
   cheerio('pre code').map((index, elm) => {
-    if (codeClass[index].class[0]) {
-      // 言語設定
-      cheerio(elm).addClass('language-' + codeClass[index].class[0])
+    // 言語設定
+    if (codeClass) {
+      if (codeClass[index].class) {
+        if (codeClass[index].class[0]) {
+          cheerio(elm).addClass('language-' + codeClass[index].class[0])
+        }
+      }
     }
     // 行番号設定
     cheerio(elm).parent().addClass('line-numbers')
