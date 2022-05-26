@@ -137,22 +137,4 @@
     word-break: break-all;
     white-space: pre;
   }
-
-  div:has(.iframely-card) {
-    width: 100%;
-    margin: 8px;
-
-    div:has(.iframely-responsive) {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 8px;
-      box-shadow: #332100 4px 4px 4px;
-      overflow: hidden;
-
-      iframe {
-        width: 100%;
-      }
-    }
-  }
 }

@@ -55,7 +55,7 @@ const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   // シンタックスハイライト処理
   useEffect(() => {
     Prism.highlightAll()
-  }, [])
+  }, [cheerio])
   // コンテナ設定
   cheerio.parent().addClass('container')
   // 行番号設定
@@ -66,8 +66,6 @@ const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
 
 // リッチリンク処理関数（Iframely）
 const richLinkProcessor = ({ cheerio }) => {
-  // ステート設定
-  const [data, setData] = useState(null)
   // エンドポイント設定
   const url =
     `${serviceEndpoint.iframely.url}` +
@@ -75,24 +73,28 @@ const richLinkProcessor = ({ cheerio }) => {
     `&url=${encodeURI(cheerio.attr('href'))}` +
     `${serviceEndpoint.iframely.parameter}`
   // エンドポイントへアクセス
+  const [data, setData] = useState(url)
   useEffect(() => {
-    fetch(url)
-      .then(res => {
-        return res.json()
-      })
-      .then(res => {
-        return setData(res)
-      })
-      .catch(() => {
-        return setData(null)
-      })
-  }, [])
+    async function getIframely(url) {
+      await fetch(url)
+        .then(res => {
+          return res.json()
+        })
+        .then(res => {
+          return setData(res)
+        })
+        .catch(() => {
+          return setData(null)
+        })
+    }
+    getIframely(url)
+  }, [url])
+  // 出力確認
+  console.log(data.html)
   // データーがなければNULLを返す
   if (!data?.html) {
     return null
   }
-  // 出力確認
-  // console.log(data)
   // HTMLを返す
   return data.html
 }
