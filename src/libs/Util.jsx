@@ -100,10 +100,9 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
     Prism.highlightAll()
   }, [])
   if (codeClass) {
-    // 言語設定
     cheerio('pre code').map((index, elm) => {
-      // 言語設定
       if (codeClass[index].class[0]) {
+        // 言語設定
         cheerio(elm).addClass('language-' + codeClass[index].class[0])
         // 行番号設定
         cheerio(elm).parent().addClass('line-numbers')
