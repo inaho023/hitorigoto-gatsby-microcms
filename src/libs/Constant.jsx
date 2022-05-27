@@ -1,5 +1,5 @@
 // シェアボタン用設定
-export const sizeShareButton = 32 // シェアボタンサイズ
+export const sizeShareButton = 32
 // 画像用パラメーター
 export const imgixImageOption = {
   // 記事リスト用画像オプション
