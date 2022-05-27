@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react'
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
 
-// シンタックスハイライト
-import { load } from 'cheerio'
-import Prism from 'prismjs'
-
 // その他
+import { load } from 'cheerio'
 import { Base64 } from 'js-base64'
+import Prism from 'prismjs'
 
 // 自作ライブラリー
 import { imgixImageOption, serviceEndpoint } from './Constant'
@@ -52,12 +50,6 @@ export const imgixWatermark = () => {
 
 // シンタックスハイライト処理関数
 const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
-  // シンタックスハイライト処理
-  useEffect(() => {
-    Prism.highlightAll()
-  }, [cheerio])
-  // コンテナ設定
-  cheerio.parent().addClass('container')
   // 行番号設定
   cheerio.parent().addClass('line-numbers')
   // 言語設定
@@ -72,10 +64,11 @@ const richLinkProcessor = ({ cheerio }) => {
     `?key=${serviceEndpoint.iframely.key}` +
     `&url=${encodeURI(cheerio.attr('href'))}` +
     `${serviceEndpoint.iframely.parameter}`
-  // エンドポイントへアクセス
-  const [data, setData] = useState(url)
+  // エンドポイントアクセス
+  const [data, setData] = useState(null)
   useEffect(() => {
-    async function getIframely(url) {
+    // フェッチ関数
+    const getIframely = async url => {
       await fetch(url)
         .then(res => {
           return res.json()
@@ -88,9 +81,9 @@ const richLinkProcessor = ({ cheerio }) => {
         })
     }
     getIframely(url)
-  }, [url])
+  }, [])
   // 出力確認
-  console.log(data.html)
+  // console.log({ data })
   // データーがなければNULLを返す
   if (!data?.html) {
     return null
@@ -101,6 +94,10 @@ const richLinkProcessor = ({ cheerio }) => {
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
+  useEffect(() => {
+    Prism.highlightAll()
+    window.iframely && window.iframely.load()
+  })
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 本文をロード
@@ -108,13 +105,13 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   // リッチリンク処理
   cheerio('a').map((index, elm) => {
     const result = richLinkProcessor({ cheerio: cheerio(elm) })
-    if (result !== null) {
-      cheerio(elm).html(result)
+    if (result) {
+      cheerio(elm).parent().html(result)
     }
   })
   // シンタックスハイライト処理
   cheerio('pre code').map((index, elm) => {
-    syntaxHighlightProcessor({ cheerio: cheerio(elm), codeClass: codeClass[index] ? codeClass[index] : 'log' })
+    syntaxHighlightProcessor({ cheerio: cheerio(elm), codeClass: codeClass[index] ? codeClass[index] : 'text' })
   })
   // 画像処理
   cheerio('img').map((index, elm) => {
@@ -157,8 +154,6 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
     cheerio(elm).attr('src', src)
     cheerio(elm).attr('alt', altText)
   })
-  // 出力確認
-  // console.log(cheerio.html())
   // リターン
   return cheerio.html()
 }
