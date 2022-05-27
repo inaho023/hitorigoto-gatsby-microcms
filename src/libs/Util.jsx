@@ -108,7 +108,7 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   cheerio('a').map((index, elm) => {
     const result = richLinkProcessor({ cheerio: cheerio(elm) })
     if (result) {
-      cheerio(elm).parent().html(result)
+      cheerio(elm).html(result)
     }
   })
   // シンタックスハイライト処理
