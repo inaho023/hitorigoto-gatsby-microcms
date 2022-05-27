@@ -53,7 +53,9 @@ const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   // 行番号設定
   cheerio.parent().addClass('line-numbers')
   // 言語設定
-  cheerio.addClass('language-' + codeClass.class)
+  if (codeClass) {
+    cheerio.addClass('language-' + codeClass.class)
+  }
 }
 
 // リッチリンク処理関数（Iframely）
@@ -111,7 +113,7 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   })
   // シンタックスハイライト処理
   cheerio('pre code').map((index, elm) => {
-    syntaxHighlightProcessor({ cheerio: cheerio(elm), codeClass: codeClass[index] ? codeClass[index] : 'text' })
+    syntaxHighlightProcessor({ cheerio: cheerio(elm), codeClass: codeClass && (codeClass[index] ? codeClass[index] : 'log') })
   })
   // 画像処理
   cheerio('img').map((index, elm) => {
