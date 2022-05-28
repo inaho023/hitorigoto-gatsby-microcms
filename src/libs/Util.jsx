@@ -51,8 +51,6 @@ export const imgixWatermark = () => {
 // シンタックスハイライト処理関数
 const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   if (codeClass) {
-    //
-    console.log(codeClass)
     // 言語設定
     cheerio.addClass('language-' + codeClass.class[0])
     // 共通設定
