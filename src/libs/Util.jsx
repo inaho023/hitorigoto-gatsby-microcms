@@ -146,7 +146,7 @@ const richLinkProcessor = ({ cheerio }) => {
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
-  //
+  // シンタックスハイライトとIframelyをロード
   useEffect(() => {
     Prism.highlightAll()
     window.iframely && window.iframely.load()
