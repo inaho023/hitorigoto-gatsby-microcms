@@ -4,7 +4,7 @@
       "prismjs",
       {
         "languages": "all",
-        "plugins": ["line-numbers", "show-language"],
+        "plugins": ["line-numbers", "show-language", "command-line", "match-braces"],
         "theme": "okaidia",
         "css": true
       }

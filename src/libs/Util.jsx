@@ -50,11 +50,29 @@ export const imgixWatermark = () => {
 
 // シンタックスハイライト処理関数
 const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
-  // 行番号設定
-  cheerio.parent().addClass('line-numbers')
-  // 言語設定
   if (codeClass) {
-    cheerio.addClass('language-' + codeClass.class)
+    //
+    console.log(codeClass)
+    // 言語設定
+    cheerio.addClass('language-' + codeClass.class[0])
+    // 共通設定
+    cheerio.addClass('match-braces')
+    cheerio.addClass('rainbow-braces')
+    // 言語毎の処理
+    switch (codeClass.class[0]) {
+      case 'bash':
+      case 'shell':
+        cheerio.parent().addClass('command-line')
+        if (codeClass.user) {
+          cheerio.parent().attr('data-user', codeClass.user[0])
+          cheerio.parent().attr('data-host', 'localhost')
+        }
+        break
+      default:
+        // 行番号設定
+        cheerio.parent().addClass('line-numbers')
+        break
+    }
   }
 }
 
@@ -96,6 +114,7 @@ const richLinkProcessor = ({ cheerio }) => {
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
+  //
   useEffect(() => {
     Prism.highlightAll()
     window.iframely && window.iframely.load()
@@ -113,7 +132,14 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   })
   // シンタックスハイライト処理
   cheerio('pre code').map((index, elm) => {
-    syntaxHighlightProcessor({ cheerio: cheerio(elm), codeClass: codeClass && (codeClass[index] ? codeClass[index] : 'log') })
+    syntaxHighlightProcessor({
+      cheerio: cheerio(elm),
+      codeClass: codeClass
+        ? codeClass[index]
+          ? codeClass[index]
+          : { class: ['none'], user: [] }
+        : { class: ['none'], user: [] }
+    })
   })
   // 画像処理
   cheerio('img').map((index, elm) => {
