@@ -50,27 +50,63 @@ export const imgixWatermark = () => {
 
 // シンタックスハイライト処理関数
 const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
-  if (codeClass) {
-    // 言語設定
-    cheerio.addClass('language-' + codeClass.class[0])
-    // 共通設定
-    cheerio.addClass('match-braces')
-    cheerio.addClass('rainbow-braces')
-    // 言語毎の処理
-    switch (codeClass.class[0]) {
-      case 'bash':
-      case 'shell':
+  // codeClassが無ければリターン
+  if (!codeClass) {
+    return
+  }
+  // 言語設定
+  cheerio.addClass('language-' + codeClass.class[0])
+  // 共通設定
+  cheerio.addClass('match-braces')
+  cheerio.addClass('rainbow-braces')
+  // 言語毎の処理
+  switch (codeClass.class[0]) {
+    case 'bash':
+    case 'shell':
+      if (codeClass.user) {
+        // コマンドラインプラグイン
         cheerio.parent().addClass('command-line')
-        if (codeClass.user) {
-          cheerio.parent().attr('data-user', codeClass.user[0])
-          cheerio.parent().attr('data-host', 'localhost')
-        }
-        break
-      default:
-        // 行番号設定
+        cheerio.parent().attr('data-user', codeClass.user[0])
+        cheerio.parent().attr('data-host', 'localhost')
+      } else {
+        // 行番号プラグイン
         cheerio.parent().addClass('line-numbers')
-        break
-    }
+      }
+      break
+    case 'batch':
+      if (codeClass.user) {
+        // コマンドラインプラグイン
+        cheerio.parent().addClass('command-line')
+        cheerio.parent().attr('data-prompt', `C:\\Users\\${codeClass.user[0]}\\>`)
+      } else {
+        // 行番号プラグイン
+        cheerio.parent().addClass('line-numbers')
+      }
+      break
+    case 'powershell':
+      if (codeClass.user) {
+        // コマンドラインプラグイン
+        cheerio.parent().addClass('command-line')
+        cheerio.parent().attr('data-prompt', `PS C:\\Users\\${codeClass.user[0]}\\`)
+      } else {
+        // 行番号プラグイン
+        cheerio.parent().addClass('line-numbers')
+      }
+      break
+    case 'sql':
+      if (codeClass.user) {
+        // コマンドラインプラグイン
+        cheerio.parent().addClass('command-line')
+        cheerio.parent().attr('data-prompt', 'SQL>')
+      } else {
+        // 行番号プラグイン
+        cheerio.parent().addClass('line-numbers')
+      }
+      break
+    default:
+      // 行番号プラグイン
+      cheerio.parent().addClass('line-numbers')
+      break
   }
 }
 
@@ -100,14 +136,12 @@ const richLinkProcessor = ({ cheerio }) => {
     }
     getIframely(url)
   }, [])
-  // 出力確認
-  // console.log({ data })
   // データーがなければNULLを返す
-  if (!data?.html) {
+  if (!data) {
     return null
   }
   // HTMLを返す
-  return data.html
+  return data
 }
 
 // リッチエディター処理関数（microCMS用）
@@ -117,29 +151,25 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
     Prism.highlightAll()
     window.iframely && window.iframely.load()
   })
-  // ウォーターマーク生成
-  const imageWatermark = imgixWatermark()
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
   cheerio('a').map((index, elm) => {
     const result = richLinkProcessor({ cheerio: cheerio(elm) })
     if (result) {
-      cheerio(elm).html(result)
+      cheerio(elm).html(result.html)
     }
   })
   // シンタックスハイライト処理
+  const noCodeClass = { class: ['none'], user: [] } // codeClassが無いときの値
   cheerio('pre code').map((index, elm) => {
     syntaxHighlightProcessor({
       cheerio: cheerio(elm),
-      codeClass: codeClass
-        ? codeClass[index]
-          ? codeClass[index]
-          : { class: ['none'], user: [] }
-        : { class: ['none'], user: [] }
+      codeClass: codeClass ? (codeClass[index] ? codeClass[index] : noCodeClass) : noCodeClass
     })
   })
   // 画像処理
+  const imageWatermark = imgixWatermark() // ウォーターマーク生成
   cheerio('img').map((index, elm) => {
     // 画像ソースを取得
     const imgSrc = cheerio(elm).attr('src')
