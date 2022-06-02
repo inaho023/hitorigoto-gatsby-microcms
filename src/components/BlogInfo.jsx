@@ -38,7 +38,7 @@ const BlogInfo = ({ blog }) => {
     `${blog.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,` +
     `${blog.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
     `${blog.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
-  const sizes = '(max-width:900px) 100vw, 50vw'
+  const sizes = '(min-width:900px) 50vw, 100vw'
   // リターン
   return (
     <Grid container className={styles.info} key={'Info'} spacing={0}>

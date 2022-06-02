@@ -91,7 +91,7 @@ const BlogList = ({ data, pageContext }) => {
             `${blog.node.image.url}${imgixImageOption.list.m}${imageWatermark.s} 360w,` +
             `${blog.node.image.url}${imgixImageOption.list.l}${imageWatermark.s} 480w,` +
             `${blog.node.image.url}${imgixImageOption.list.xl}${imageWatermark.s} 600w,`
-          const sizes = '(max-width: 600px) 100w, (min-width: 900px) 50w, (max-width: 1536px) 33w, 25w'
+          const sizes = '(min-width: 1536px) 25vw, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw'
           // リターン
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>

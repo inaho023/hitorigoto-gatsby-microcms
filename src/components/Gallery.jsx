@@ -59,7 +59,7 @@ const Gallery = ({ galleries }) => {
                         `${images.image.url}${imgixImageOption.gallery.m}${imageWatermark.s} 380w,` +
                         `${images.image.url}${imgixImageOption.gallery.l}${imageWatermark.s} 430w,` +
                         `${images.image.url}${imgixImageOption.gallery.xl}${imageWatermark.s} 480w`
-                      const sizes = '(max-width:900px) 50vw, 25vw'
+                      const sizes = '(min-width:900px) 25vw, 50vw'
                       // リターン
                       return (
                         <Grid item key={images.image.url} xs={6} md={3}>
