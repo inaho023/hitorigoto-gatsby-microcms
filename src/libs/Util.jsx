@@ -48,7 +48,7 @@ export const imgixWatermark = () => {
   }
 }
 
-// シンタックスハイライト処理関数
+// シンタックスハイライト処理関数（Prism.js）
 const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
   // codeClassが無ければリターン
   if (!codeClass) {
