@@ -35,7 +35,7 @@
     border: 1px solid #332100;
     border-left: 16px solid #332100;
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .button:hover,
@@ -44,5 +44,6 @@
     cursor: pointer;
     color: #332100;
     background-color: orange;
+    font-weight: 900;
   }
 }
