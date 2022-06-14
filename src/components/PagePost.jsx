@@ -44,7 +44,7 @@ const PagePost = ({ data, pageContext }) => {
     `${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
   const sizes = '100vw'
   // 本文処理
-  const richEditor = richEditorProcessor({ title: page.title, richEditor: page.body })
+  const richEditor = richEditorProcessor({ richEditor: page.body, title: page.title })
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
