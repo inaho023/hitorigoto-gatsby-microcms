@@ -48,12 +48,52 @@ export const imgixWatermark = () => {
   }
 }
 
+// 画像処理関数（ImgIX）
+const imageProcessor = ({ cheerio, title, index }) => {
+  // ウォーターマーク生成
+  const imageWatermark = imgixWatermark()
+  // 画像ソースを取得
+  const imgSrc = cheerio.attr('src')
+  // Altテキスト設定
+  const altText = `${title} ${(index + 1).toString()}枚目`
+  // レスポンシブ画像
+  const srcSet =
+    imgSrc +
+    imgixImageOption.body.xs +
+    imageWatermark.xs +
+    ' 600w,' +
+    imgSrc +
+    imgixImageOption.body.s +
+    imageWatermark.s +
+    ' 900w,' +
+    imgSrc +
+    imgixImageOption.body.m +
+    imageWatermark.m +
+    ' 1200w,' +
+    imgSrc +
+    imgixImageOption.body.l +
+    imageWatermark.l +
+    ' 1536w,' +
+    imgSrc +
+    imgixImageOption.body.xl +
+    imageWatermark.xl +
+    ' 1920w'
+  const sizes = '100w'
+  // フォールバック画像
+  const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
+  // 属性削除
+  cheerio.removeAttr('src')
+  cheerio.removeAttr('width')
+  cheerio.removeAttr('height')
+  // 属性設定
+  cheerio.attr('srcSet', srcSet)
+  cheerio.attr('sizes', sizes)
+  cheerio.attr('src', src)
+  cheerio.attr('alt', altText)
+}
+
 // シンタックスハイライト処理関数（Prism.js）
-const syntaxHighlightProcessor = ({ cheerio, codeClass }) => {
-  // codeClassが無ければリターン
-  if (!codeClass) {
-    return
-  }
+const syntaxHighlightProcessor = ({ cheerio, codeClass = { class: ['none'], user: [] } }) => {
   // 言語設定
   cheerio.addClass('language-' + codeClass.class[0])
   // 共通設定
@@ -136,16 +176,14 @@ const richLinkProcessor = ({ cheerio }) => {
     }
     getIframely(url)
   }, [])
-  // データーがなければNULLを返す
-  if (!data) {
-    return null
+  // データーが取得できたら置き換える
+  if (data) {
+    cheerio.html(data.html)
   }
-  // HTMLを返す
-  return data
 }
 
 // リッチエディター処理関数（microCMS用）
-export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
+export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   // ロード
   useEffect(() => {
     // Prism.js
@@ -156,61 +194,25 @@ export const richEditorProcessor = ({ title, codeClass, richEditor }) => {
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
-  cheerio('a').map((index, elm) => {
-    const result = richLinkProcessor({ cheerio: cheerio(elm) })
-    if (result) {
-      cheerio(elm).html(result.html)
-    }
+  cheerio('a').each((index, elm) => {
+    richLinkProcessor({
+      cheerio: cheerio(elm)
+    })
   })
   // シンタックスハイライト処理
-  const noCodeClass = { class: ['none'], user: [] } // codeClassが無いときの値
-  cheerio('pre code').map((index, elm) => {
+  cheerio('pre code').each((index, elm) => {
     syntaxHighlightProcessor({
       cheerio: cheerio(elm),
-      codeClass: codeClass ? (codeClass[index] ? codeClass[index] : noCodeClass) : noCodeClass
+      codeClass: codeClass[index]
     })
   })
   // 画像処理
-  const imageWatermark = imgixWatermark() // ウォーターマーク生成
-  cheerio('img').map((index, elm) => {
-    // 画像ソースを取得
-    const imgSrc = cheerio(elm).attr('src')
-    // Altテキスト設定
-    const altText = `${title} ${(index + 1).toString()}枚目`
-    // レスポンシブ画像
-    const srcSet =
-      imgSrc +
-      imgixImageOption.body.xs +
-      imageWatermark.xs +
-      ' 600w,' +
-      imgSrc +
-      imgixImageOption.body.s +
-      imageWatermark.s +
-      ' 900w,' +
-      imgSrc +
-      imgixImageOption.body.m +
-      imageWatermark.m +
-      ' 1200w,' +
-      imgSrc +
-      imgixImageOption.body.l +
-      imageWatermark.l +
-      ' 1536w,' +
-      imgSrc +
-      imgixImageOption.body.xl +
-      imageWatermark.xl +
-      ' 1920w'
-    const sizes = '100w'
-    // フォールバック画像
-    const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
-    // 属性削除
-    cheerio(elm).removeAttr('src')
-    cheerio(elm).removeAttr('width')
-    cheerio(elm).removeAttr('height')
-    // 属性設定
-    cheerio(elm).attr('srcSet', srcSet)
-    cheerio(elm).attr('sizes', sizes)
-    cheerio(elm).attr('src', src)
-    cheerio(elm).attr('alt', altText)
+  cheerio('img').each((index, elm) => {
+    imageProcessor({
+      cheerio: cheerio(elm),
+      title: title,
+      index: index
+    })
   })
   // リターン
   return cheerio.html()
