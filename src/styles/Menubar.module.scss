@@ -1,11 +1,11 @@
 .appbar {
   width: 100%;
   top: 0px;
-  position: sticky;
-  display: flex;
-  z-index: 999;
+  left: 0px;
+  z-index: 9;
 
   .toolbar {
+    display: flex;
     background: #332100;
 
     .grow {
