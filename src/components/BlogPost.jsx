@@ -9,7 +9,7 @@ import Layout from './Layout'
 import BlogInfo from './BlogInfo'
 import BlogBody from './BlogBody'
 import BlogNavi from './BlogNavi'
-import Gallery from './Gallery'
+import PhotoGallery from './PhotoGallery'
 import Comment from './Comment'
 
 // 自作ライブラリー
@@ -50,7 +50,7 @@ const BlogPost = ({ data, pageContext }) => {
       {
         // ギャラリー
       }
-      <Gallery galleries={blog.galleries} />
+      <PhotoGallery galleries={blog.galleries} />
       {
         // コメント欄
       }
