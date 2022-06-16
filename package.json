@@ -41,7 +41,6 @@
     "gatsby-plugin-sitemap": "^5.1.0",
     "gatsby-source-microcms": "^2.0.0",
     "js-base64": "^3.7.2",
-    "luminous-lightbox": "^2.4.0",
     "node-sass": "^7.0.1",
     "path": "^0.12.7",
     "photoswipe": "^5.2.7",
