@@ -190,7 +190,7 @@ export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
     Prism.highlightAll()
     // iframely
     window.iframely && window.iframely.load()
-  })
+  }, [])
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
