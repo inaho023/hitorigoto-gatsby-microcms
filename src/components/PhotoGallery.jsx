@@ -48,7 +48,7 @@ const PhotoGallery = ({ galleries }) => {
             <LightGallery
               licenseKey={process.env.LIGHTGALLERY_KEY}
               plugins={[lgZoom, lgThumbnail]}
-              mode={'lg-fade'}
+              mode={'lg-slide'}
               elementClassNames={styles.thumbnails}
               selector={'.' + className}
               mousewheel
