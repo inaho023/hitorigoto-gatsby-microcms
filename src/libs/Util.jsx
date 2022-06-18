@@ -184,13 +184,16 @@ const richLinkProcessor = ({ cheerio }) => {
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
-  // ロード
+  // Prism.js ロード
   useEffect(() => {
     // Prism.js
     Prism.highlightAll()
+  })
+  // Iframely ロード
+  useEffect(() => {
     // iframely
     window.iframely && window.iframely.load()
-  }, [])
+  })
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
