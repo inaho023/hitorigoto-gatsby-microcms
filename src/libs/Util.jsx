@@ -186,12 +186,10 @@ const richLinkProcessor = ({ cheerio }) => {
 export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   // Prism.js ロード
   useEffect(() => {
-    // Prism.js
     Prism.highlightAll()
   })
   // Iframely ロード
   useEffect(() => {
-    // iframely
     window.iframely && window.iframely.load()
   })
   // 本文をロード
