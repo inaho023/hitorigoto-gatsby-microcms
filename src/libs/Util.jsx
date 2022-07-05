@@ -94,6 +94,10 @@ const imageProcessor = ({ cheerio, title, index }) => {
 
 // シンタックスハイライト処理関数（Prism.js）
 const syntaxHighlightProcessor = ({ cheerio, codeClass = { class: ['none'], user: [] } }) => {
+  // Prism.js ロード
+  useEffect(() => {
+    Prism.highlightAll()
+  })
   // 言語設定
   cheerio.addClass('language-' + codeClass.class[0])
   // 共通設定
@@ -184,10 +188,6 @@ const richLinkProcessor = ({ cheerio }) => {
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
-  // Prism.js ロード
-  useEffect(() => {
-    Prism.highlightAll()
-  })
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
