@@ -188,10 +188,6 @@ export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   useEffect(() => {
     Prism.highlightAll()
   })
-  // Iframely ロード
-  useEffect(() => {
-    window.iframely && window.iframely.load()
-  })
   // 本文をロード
   const cheerio = load(richEditor)
   // リッチリンク処理
