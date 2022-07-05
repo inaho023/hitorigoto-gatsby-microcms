@@ -55,46 +55,30 @@ const ShareButton = ({ blog }) => {
   // リターン
   return (
     <Box className={styles.share}>
-      <Box className={styles.button}>
-        <TwitterShareButton url={url} title={title} hashtags={[data.site.siteMetadata.title]}>
-          <TwitterIcon size={sizeShareButton} round />
-        </TwitterShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <FacebookShareButton url={url} quote={title}>
-          <FacebookIcon size={sizeShareButton} round />
-        </FacebookShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <TumblrShareButton url={url} title={title}>
-          <TumblrIcon size={sizeShareButton} round />
-        </TumblrShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <LineShareButton url={url} title={title}>
-          <LineIcon size={sizeShareButton} round />
-        </LineShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <PinterestShareButton url={url} description={title} media={''}>
-          <PinterestIcon size={sizeShareButton} round />
-        </PinterestShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <PocketShareButton url={url} title={title}>
-          <PocketIcon size={sizeShareButton} round />
-        </PocketShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <HatenaShareButton url={url} title={title}>
-          <HatenaIcon size={sizeShareButton} round />
-        </HatenaShareButton>
-      </Box>
-      <Box className={styles.button}>
-        <EmailShareButton url={url} subject={title} body={title}>
-          <EmailIcon size={sizeShareButton} round />
-        </EmailShareButton>
-      </Box>
+      <TwitterShareButton url={url} title={title} hashtags={[data.site.siteMetadata.title]}>
+        <TwitterIcon size={sizeShareButton} round />
+      </TwitterShareButton>
+      <FacebookShareButton url={url} quote={title}>
+        <FacebookIcon size={sizeShareButton} round />
+      </FacebookShareButton>
+      <TumblrShareButton url={url} title={title}>
+        <TumblrIcon size={sizeShareButton} round />
+      </TumblrShareButton>
+      <LineShareButton url={url} title={title}>
+        <LineIcon size={sizeShareButton} round />
+      </LineShareButton>
+      <PinterestShareButton url={url} description={title} media={''}>
+        <PinterestIcon size={sizeShareButton} round />
+      </PinterestShareButton>
+      <PocketShareButton url={url} title={title}>
+        <PocketIcon size={sizeShareButton} round />
+      </PocketShareButton>
+      <HatenaShareButton url={url} title={title}>
+        <HatenaIcon size={sizeShareButton} round />
+      </HatenaShareButton>
+      <EmailShareButton url={url} subject={title} body={title}>
+        <EmailIcon size={sizeShareButton} round />
+      </EmailShareButton>
     </Box>
   )
 }
