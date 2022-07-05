@@ -31,7 +31,7 @@ export const imgixWatermark = () => {
   `)
   // ウォーターマーク画像URLをBase64変換
   const base64Image = {
-    full: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=400&h=80fm=png${data.microcmsPicture.parameter}`),
+    full: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=300&h=60fm=png${data.microcmsPicture.parameter}`),
     xl: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=250&h=50&fm=png${data.microcmsPicture.parameter}`),
     l: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=200&h=40&fm=png${data.microcmsPicture.parameter}`),
     m: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=150&h=30&fm=png${data.microcmsPicture.parameter}`),
