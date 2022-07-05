@@ -81,7 +81,7 @@ const BlogList = ({ data, pageContext }) => {
   // リターン
   return (
     <Layout misc={misc} pageContext={pageContext}>
-      <Grid container spacing={3} alignItems={'center'} justifyItems={'center'}>
+      <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map(blog => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
@@ -96,7 +96,7 @@ const BlogList = ({ data, pageContext }) => {
           return (
             <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
               <Link key={blog.node.blogId} to={`/post/${blog.node.blogId}/`}>
-                <Card className={styles.card} title={blog.node.title} elevation={8}>
+                <Card className={styles.card} title={blog.node.title} elevation={4}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
                       <img srcSet={srcSet} sizes={sizes} src={src} alt={blog.node.title} loading={'lazy'} />

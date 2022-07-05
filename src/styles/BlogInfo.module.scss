@@ -6,8 +6,6 @@
     align-items: center;
     justify-content: center;
     margin: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
     padding: 8px;
     background-color: #cc8500;
     border-radius: 8px;
@@ -22,7 +20,6 @@
   .wrapper {
     width: 100%;
     display: flex;
-    margin: 0px;
     margin-top: 2px;
     margin-bottom: 2px;
     padding: 0px;
@@ -32,6 +29,8 @@
       height: 100%;
       display: flex;
       margin: 0px;
+      margin-top: 2px;
+      margin-bottom: 2px;
       padding: 0px;
       overflow: hidden;
       object-fit: scale-down;
