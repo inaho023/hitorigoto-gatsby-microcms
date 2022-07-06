@@ -39,7 +39,7 @@ export const imgixWatermark = () => {
     xs: Base64.encodeURI(`${data.microcmsPicture.picture.url}?w=50&h=10&fm=png${data.microcmsPicture.parameter}`)
   }
   return {
-    full: `&mark-w=400&mark-h=80&mark-align=bottom,center&mark-alpha=30&mark64=${base64Image.full}`,
+    full: `&mark-w=300&mark-h=60&mark-align=bottom,center&mark-alpha=30&mark64=${base64Image.full}`,
     xl: `&mark-w=250&mark-h=50&mark-align=bottom,center&mark-alpha=30&mark64=${base64Image.xl}`,
     l: `&mark-w=200&mark-h=40&mark-align=bottom,center&mark-alpha=30&mark64=${base64Image.l}`,
     m: `&mark-w=150&mark-h=30&mark-align=bottom,center&mark-alpha=30&mark64=${base64Image.m}`,
