@@ -55,7 +55,7 @@ const BlogInfo = ({ blog }) => {
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
               <Box>
                 <Link key={dayjs(blog.datetime).format('YYYYMM')} to={`/archive/${dayjs(blog.datetime).format('YYYYMM')}/`}>
-                  <Button className={styles.button}>{dayjs(blog.datetime).format('YYYY年MM月DD日')}</Button>
+                  <Button className={styles.buttonLarge}>{dayjs(blog.datetime).format('YYYY年MM月DD日')}</Button>
                 </Link>
               </Box>
             </Grid>
@@ -63,7 +63,7 @@ const BlogInfo = ({ blog }) => {
               <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
               <Box>
                 <Link key={blog.category.categoriesId} to={`/category/${blog.category.id}/`}>
-                  <Button className={styles.button}>{blog.category.name}</Button>
+                  <Button className={styles.buttonLarge}>{blog.category.name}</Button>
                 </Link>
               </Box>
             </Grid>
@@ -73,7 +73,7 @@ const BlogInfo = ({ blog }) => {
                 {blog.tags.map(tag => {
                   return (
                     <Link key={tag.id} to={`/tag/${tag.id}/`}>
-                      <Button className={styles.button}>{tag.name}</Button>
+                      <Button className={styles.buttonSmall}>{tag.name}</Button>
                     </Link>
                   )
                 })}
