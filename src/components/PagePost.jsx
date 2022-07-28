@@ -61,7 +61,7 @@ const PagePost = ({ data, pageContext }) => {
       {
         // タイトル画像
       }
-      <img className={styles.image} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
+      <img className={styles.image} width={960} height={720} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
       {
         // 記事本文
       }

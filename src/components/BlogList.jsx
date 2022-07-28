@@ -99,7 +99,15 @@ const BlogList = ({ data, pageContext }) => {
                 <Card className={styles.card} title={blog.node.title} elevation={4}>
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
-                      <img srcSet={srcSet} sizes={sizes} src={src} alt={blog.node.title} loading={'lazy'} />
+                      <img
+                        width={640}
+                        height={400}
+                        srcSet={srcSet}
+                        sizes={sizes}
+                        src={src}
+                        alt={blog.node.title}
+                        loading={'lazy'}
+                      />
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
