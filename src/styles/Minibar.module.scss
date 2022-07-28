@@ -13,7 +13,7 @@
   nav {
     position: relative;
     left: -24px;
-    width: calc(100% - 112px);
+    width: calc(100% - 176px);
     display: flex;
     flex-grow: 0;
     flex-direction: column;
@@ -73,7 +73,7 @@
   }
 
   .pager {
-    width: 112px;
+    width: 176px;
     display: flex;
     flex-basis: content;
     flex-wrap: nowrap;
@@ -85,8 +85,8 @@
     padding: 0px;
 
     .button {
-      width: 24px;
-      height: 24px;
+      width: 40px;
+      height: 40px;
       display: flex;
       margin-top: auto;
       margin-bottom: auto;

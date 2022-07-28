@@ -89,22 +89,22 @@ const Minibar = ({ misc, pageContext }) => {
       <Box className={styles.pager}>
         <IconButton className={styles.button} disabled={nav.first.disabled}>
           <Link key={'First'} to={nav.first.path}>
-            <Icon path={mdiPageFirst} size={1} title={nav.first.title} />
+            <Icon path={mdiPageFirst} size={2} title={nav.first.title} />
           </Link>
         </IconButton>
         <IconButton className={styles.button} disabled={nav.prev.disabled}>
           <Link key={'Prev'} to={nav.prev.path}>
-            <Icon path={mdiChevronLeft} size={1} title={nav.prev.title} />
+            <Icon path={mdiChevronLeft} size={2} title={nav.prev.title} />
           </Link>
         </IconButton>
         <IconButton className={styles.button} disabled={nav.next.disabled}>
           <Link key={'Next'} to={nav.next.path}>
-            <Icon path={mdiChevronRight} size={1} title={nav.next.title} />
+            <Icon path={mdiChevronRight} size={2} title={nav.next.title} />
           </Link>
         </IconButton>
         <IconButton className={styles.button} disabled={nav.last.disabled}>
           <Link key={'Last'} to={nav.last.path}>
-            <Icon path={mdiPageLast} size={1} title={nav.last.title} />
+            <Icon path={mdiPageLast} size={2} title={nav.last.title} />
           </Link>
         </IconButton>
       </Box>
