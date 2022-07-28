@@ -83,8 +83,6 @@ const imageProcessor = ({ cheerio, title, index }) => {
   const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
   // 属性削除
   cheerio.removeAttr('src')
-  // cheerio.removeAttr('width')
-  // cheerio.removeAttr('height')
   // 属性設定
   cheerio.attr('srcSet', srcSet)
   cheerio.attr('sizes', sizes)
