@@ -99,7 +99,7 @@ const PhotoGallery = ({ galleries }) => {
                         data-src={dataSrc}
                         data-lg-size={dataSize}
                       >
-                        <img srcSet={srcSet} sizes={sizes} src={src} alt={title} />
+                        <img srcSet={srcSet} sizes={sizes} src={src} alt={title} width={480} height={480} />
                       </Grid>
                     )
                   })
