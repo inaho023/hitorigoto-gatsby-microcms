@@ -57,7 +57,7 @@ const E404 = ({ data }) => {
   return (
     <Layout misc={misc}>
       <div className={styles.post}>
-        <img srcSet={srcSet} sizes={sizes} src={src} alt={'ページがありません。'} loading={'lazy'} />
+        <img srcSet={srcSet} sizes={sizes} src={src} alt={'ページがありません。'} loading={'lazy'} width={1200} height={630} />
       </div>
     </Layout>
   )
