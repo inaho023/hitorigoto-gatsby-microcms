@@ -92,7 +92,8 @@ a {
 
   .fab {
     color: #332100;
-    background-color: orange;
+    background-color: #cc8500;
+    opacity: 0.4;
   }
 
   .fab:hover,
@@ -100,5 +101,6 @@ a {
   .fab:active {
     color: #332100;
     background-color: #cc8500;
+    opacity: 1;
   }
 }
