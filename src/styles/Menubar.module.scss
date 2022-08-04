@@ -41,6 +41,7 @@
       text-decoration: none;
 
       .button {
+        cursor: pointer;
         display: inline-block;
         opacity: 0.75;
       }
@@ -48,10 +49,10 @@
       .button:hover,
       .button:focus,
       .button:active {
-        cursor: pointer;
         color: #332100;
         background-color: orange;
         opacity: 1;
+        transition: all 0.5s;
       }
     }
   }

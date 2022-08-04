@@ -91,16 +91,15 @@ a {
   padding: 4px;
 
   .fab {
-    color: #332100;
-    background-color: #cc8500;
-    opacity: 0.4;
+    color: orange;
+    background-color: #332100;
+    opacity: 0.5;
   }
 
   .fab:hover,
   .fab:focus,
   .fab:active {
-    color: #332100;
-    background-color: #cc8500;
     opacity: 1;
+    transition: all 0.5s;
   }
 }

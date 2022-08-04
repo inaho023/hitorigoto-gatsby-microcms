@@ -50,6 +50,14 @@
         text-align-last: justify;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        span {
+          display: inline-flex;
+        }
+
+        a {
+          display: inline-flex;
+        }
       }
     }
   }

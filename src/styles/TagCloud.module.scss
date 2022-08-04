@@ -49,6 +49,7 @@
     .button:active {
       cursor: pointer;
       font-weight: 900;
+      transition: all 0.5s;
     }
   }
 }

@@ -161,24 +161,4 @@
     word-break: break-all;
     white-space: pre;
   }
-
-  div .iframely-card {
-    width: 100%;
-    display: flex;
-
-    div .iframely-responsive {
-      width: 100%;
-      display: flex;
-
-      iframe {
-        width: 100%;
-        display: flex;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: #332100 4px 4px 4px;
-      }
-    }
-  }
 }
