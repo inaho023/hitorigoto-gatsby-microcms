@@ -12,9 +12,9 @@
 
   nav {
     position: relative;
-    left: -24px;
-    width: calc(100% - 176px);
-    display: flex;
+    left: -32px;
+    width: calc(100% - 168px);
+    display: inline-flex;
     flex-grow: 0;
     flex-direction: column;
 
@@ -30,59 +30,42 @@
 
       li {
         width: fit-content;
-        min-width: 4.5rem;
+        min-width: 5rem;
         flex-wrap: nowrap;
         vertical-align: middle;
         margin-top: 8px;
         margin-bottom: 8px;
-        margin-right: 8px;
+        margin-left: 8px;
         padding: 0.25rem;
         color: #332100;
         background: orange;
         border: 1px solid #332100;
         border-left: 16px solid #332100;
         font-weight: 500;
-        font-size: 0.75rem;
+        font-size: 1rem;
+        white-space: nowrap;
+        text-decoration: none;
+        text-transform: none;
+        text-align: justify;
+        text-align-last: justify;
         overflow: hidden;
-
-        span {
-          display: block;
-          margin: 0px;
-          padding: 0px;
-          white-space: nowrap;
-          text-decoration: none;
-          text-transform: none;
-          text-align: justify;
-          text-align-last: justify;
-          text-overflow: ellipsis;
-        }
-
-        a {
-          display: block;
-          margin: 0px;
-          padding: 0px;
-          white-space: nowrap;
-          text-decoration: none;
-          text-transform: none;
-          text-align: justify;
-          text-align-last: justify;
-          text-overflow: ellipsis;
-        }
+        text-overflow: ellipsis;
       }
     }
   }
 
   .pager {
-    width: 176px;
-    display: flex;
+    width: 168px;
+    display: inline-flex;
+    flex-grow: 0;
     flex-basis: content;
     flex-wrap: nowrap;
     justify-items: right;
     align-items: center;
     vertical-align: middle;
-    margin: auto;
-    margin-right: 16px;
+    margin: 0px;
     padding: 0px;
+    padding-right: 8px;
 
     .button {
       width: 40px;
