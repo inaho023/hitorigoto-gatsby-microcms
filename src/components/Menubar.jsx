@@ -40,35 +40,37 @@ const Menubar = () => {
   return (
     <AppBar className={styles.appbar} position={'sticky'}>
       <Toolbar className={styles.toolbar}>
-        <Link key={'Home'} to={'/'}>
-          <p>
-            {data.site.siteMetadata.title}
-            <br />
-            {data.site.siteMetadata.subtitle}
-          </p>
-        </Link>
+        <Box className={styles.title}>
+          <Link key={'Home'} to={'/'}>
+            <p>
+              {data.site.siteMetadata.title}
+              <br />
+              {data.site.siteMetadata.subtitle}
+            </p>
+          </Link>
+        </Box>
         <Box className={styles.grow} />
         <Box className={styles.icon}>
-          <IconButton color={'inherit'}>
-            <Link key={'Profile'} to={'/profile/'}>
+          <Link key={'Profile'} to={'/profile/'}>
+            <IconButton className={styles.button} color={'inherit'}>
               <Icon path={mdiAccount} size={1} title={'プロフィール'} />
-            </Link>
-          </IconButton>
-          <IconButton color={'inherit'}>
-            <a key={'Twitter'} href={socialAccount.twitter.url} target={'_blank'} rel={'noreferrer'}>
+            </IconButton>
+          </Link>
+          <a key={'Twitter'} href={socialAccount.twitter.url} target={'_blank'} rel={'noreferrer'}>
+            <IconButton className={styles.button} color={'inherit'}>
               <Icon path={mdiTwitter} size={1} title={'Twitter'} />
-            </a>
-          </IconButton>
-          <IconButton color={'inherit'}>
-            <a key={'Instagram'} href={socialAccount.instagram.url} target={'_blank'} rel={'noreferrer'}>
+            </IconButton>
+          </a>
+          <a key={'Instagram'} href={socialAccount.instagram.url} target={'_blank'} rel={'noreferrer'}>
+            <IconButton className={styles.button} color={'inherit'}>
               <Icon path={mdiInstagram} size={1} title={'Instagram'} />
-            </a>
-          </IconButton>
-          <IconButton color={'inherit'}>
-            <a key={'TwitCasting'} href={socialAccount.twitcasting.url} target={'_blank'} rel={'noreferrer'}>
+            </IconButton>
+          </a>
+          <a key={'TwitCasting'} href={socialAccount.twitcasting.url} target={'_blank'} rel={'noreferrer'}>
+            <IconButton className={styles.button} color={'inherit'}>
               <Icon path={mdiBroadcast} size={1} title={'ツイキャス'} />
-            </a>
-          </IconButton>
+            </IconButton>
+          </a>
         </Box>
       </Toolbar>
     </AppBar>
