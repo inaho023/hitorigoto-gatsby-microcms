@@ -58,7 +58,7 @@ const Minibar = ({ misc, pageContext }) => {
       first: {
         path: pageContext.first ? `/post/${pageContext.first.node.blogId}` : '/',
         title: pageContext.first ? pageContext.first.node.title : '',
-        disabled: pageContext.id === pageContext?.first?.node?.blogId
+        disabled: !pageContext.first || pageContext.id === pageContext?.first?.node?.blogId
       },
       prev: {
         path: pageContext.prev ? `/post/${pageContext.prev.node.blogId}` : '/',
@@ -73,7 +73,7 @@ const Minibar = ({ misc, pageContext }) => {
       last: {
         path: pageContext.last ? `/post/${pageContext.last.node.blogId}` : '/',
         title: pageContext.last ? pageContext.last.node.title : '',
-        disabled: pageContext.id === pageContext?.last?.node?.blogId
+        disabled: !pageContext.last || pageContext.id === pageContext?.last?.node?.blogId
       }
     }
   }
