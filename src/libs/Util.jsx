@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 // その他
+import Prism from 'prismjs'
 import { load } from 'cheerio'
 import { Base64 } from 'js-base64'
-import Prism from 'prismjs'
 
 // 自作ライブラリー
 import { imgixImageOption, serviceEndpoint } from './Constant'
@@ -92,10 +92,6 @@ const imageProcessor = ({ cheerio, title, index }) => {
 
 // シンタックスハイライト処理関数（Prism.js）
 const syntaxHighlightProcessor = ({ cheerio, codeClass = { class: ['none'], user: [] } }) => {
-  // Prism.js ロード
-  useEffect(() => {
-    Prism.highlightAll()
-  })
   // 言語設定
   cheerio.addClass('language-' + codeClass.class[0])
   // 共通設定
@@ -196,6 +192,13 @@ export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   })
   // シンタックスハイライト処理
   cheerio('pre code').each((index, elm) => {
+    // Prism.js ロード
+    if (index === 0) {
+      useEffect(() => {
+        Prism.highlightAll()
+      })
+    }
+    // シンタックスハイライト設定
     syntaxHighlightProcessor({
       cheerio: cheerio(elm),
       codeClass: codeClass[index]
