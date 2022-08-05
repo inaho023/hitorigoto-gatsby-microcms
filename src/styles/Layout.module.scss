@@ -99,6 +99,8 @@ a {
   .fab:hover,
   .fab:focus,
   .fab:active {
+    color: orange;
+    background-color: #332100;
     opacity: 1;
     transition: all 0.5s;
   }
