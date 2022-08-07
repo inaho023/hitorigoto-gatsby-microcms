@@ -1,6 +1,8 @@
 .info {
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
+  overflow: hidden;
 
   .title {
     align-items: center;
@@ -8,13 +10,12 @@
     margin: 0px;
     padding: 8px;
     background-color: #cc8500;
-    border-radius: 8px;
     border: 1px solid #332100;
 
     h1 {
       text-align: center;
-      line-height: 1.5em;
-      font-size: 1.75rem;
+      line-height: 1.25em;
+      font-size: 1.5rem;
       font-weight: 700;
     }
   }
@@ -33,7 +34,6 @@
       padding: 0px;
       overflow: hidden;
       object-fit: scale-down;
-      border-radius: 8px;
     }
 
     .wrapper {
@@ -53,7 +53,6 @@
         vertical-align: middle;
         overflow: hidden;
         border: 1px solid #332100;
-        border-radius: 8px;
         padding: 2px;
         background-color: #cc8500;
 
