@@ -9,6 +9,7 @@
     padding: 8px;
     background-color: #cc8500;
     border-radius: 8px;
+    border: 1px solid #332100;
 
     h1 {
       text-align: center;
@@ -21,8 +22,7 @@
   .wrapper {
     width: 100%;
     display: flex;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin: 0px;
     padding: 0px;
 
     .image {
@@ -37,9 +37,11 @@
     }
 
     .wrapper {
+      width: 100%;
+      height: auto;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      justify-content: space-between;
       margin: 0px;
       padding: 0px;
 
@@ -48,17 +50,15 @@
         flex-direction: row;
         flex-basis: 25%;
         align-items: center;
-        justify-content: left;
         vertical-align: middle;
         overflow: hidden;
+        border: 1px solid #332100;
         border-radius: 8px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        padding: 4px;
-        background: #cc8500;
+        padding: 2px;
+        background-color: #cc8500;
 
         .icon {
-          width: fit-content;
+          flex-basis: content;
           justify-content: left;
           vertical-align: middle;
           margin-right: 16px;
@@ -67,11 +67,11 @@
         }
 
         .buttonLarge {
+          display: inline-flex;
           flex-basis: 100%;
-          background-color: #cc8500;
-          display: inline-block;
-          width: fit-content;
+          justify-content: stretch;
           vertical-align: middle;
+          align-items: stretch;
           margin-top: 2px;
           margin-bottom: 2px;
           margin-right: 4px;
@@ -82,7 +82,7 @@
           text-decoration: none;
           text-transform: none;
           color: #332100;
-          background: orange;
+          background-color: orange;
           border: 1px solid #332100;
           border-left: 24px solid #332100;
           box-shadow: #332100 2px 2px 4px;
@@ -99,8 +99,7 @@
 
         .buttonSmall {
           flex-basis: 100%;
-          background-color: #cc8500;
-          display: inline-block;
+          display: inline-flex;
           width: fit-content;
           vertical-align: middle;
           margin-top: 4px;
@@ -113,7 +112,7 @@
           text-decoration: none;
           text-transform: none;
           color: #332100;
-          background: orange;
+          background-color: orange;
           border: 1px solid #332100;
           border-left: 16px solid #332100;
           box-shadow: #332100 1px 1px 2px;
