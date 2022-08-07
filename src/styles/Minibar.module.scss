@@ -15,7 +15,6 @@
     left: -32px;
     width: calc(100% - 168px);
     display: inline-flex;
-    flex-grow: 0;
     flex-direction: column;
 
     ol {
@@ -29,9 +28,8 @@
       }
 
       li {
-        width: fit-content;
-        min-width: 5rem;
-        flex-wrap: nowrap;
+        display: flex;
+        flex-basis: content;
         vertical-align: middle;
         margin-top: 8px;
         margin-bottom: 8px;
@@ -42,7 +40,7 @@
         border: 1px solid #332100;
         border-left: 16px solid #332100;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 0.8rem;
         white-space: nowrap;
         text-decoration: none;
         text-transform: none;
