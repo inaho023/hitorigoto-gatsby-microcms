@@ -16,9 +16,6 @@ import { CardActionArea } from '@mui/material'
 import Icon from '@mdi/react'
 import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
-// その他コンポーネント
-import dayjs from 'dayjs'
-
 // 自作コンポーネント
 import Layout from './Layout'
 import Pager from './Pager'
@@ -101,7 +98,7 @@ const BlogList = ({ data, pageContext }) => {
                   <CardActionArea className={styles.area}>
                     <CardMedia className={styles.media}>
                       <img
-                        width={640}
+                        width={600}
                         height={400}
                         srcSet={srcSet}
                         sizes={sizes}
@@ -109,35 +106,31 @@ const BlogList = ({ data, pageContext }) => {
                         alt={blog.node.title}
                         loading={loading}
                       />
-                    </CardMedia>
-                    <CardContent className={styles.content}>
-                      <Grid container spacing={1} justifyContent={'center'} alignItems={'center'}>
-                        <Grid item xs={12}>
-                          <Box className={styles.title}>
-                            <h3>{blog.node.title}</h3>
-                          </Box>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Box className={styles.box} title={dayjs(blog.node.datetime, 'YYYY.MM.DD').format('YYYY年MM月DD日')}>
+                      <Box className={styles.info}>
+                        <Grid container spacing={1} justifyContent={'space-around'} alignItems={'center'}>
+                          <Grid item className={styles.box} xs={6}>
                             <span className={styles.icon}>
                               <Icon path={mdiCalendarToday} size={0.75} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.datetime}</p>
                             </span>
-                          </Box>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Box className={styles.box} title={blog.node.category.name}>
+                          </Grid>
+                          <Grid item className={styles.box} xs={6}>
                             <span className={styles.icon}>
                               <Icon path={mdiShape} size={0.75} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.category.name}</p>
                             </span>
-                          </Box>
+                          </Grid>
                         </Grid>
-                      </Grid>
+                      </Box>
+                    </CardMedia>
+                    <CardContent className={styles.content}>
+                      <Box className={styles.title}>
+                        <h3>{blog.node.title}</h3>
+                      </Box>
                     </CardContent>
                   </CardActionArea>
                 </Card>
