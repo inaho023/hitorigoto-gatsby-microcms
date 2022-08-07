@@ -32,11 +32,11 @@ export const imgixImageOption = {
   },
   // 記事本文用画像オプション
   body: {
-    xl: '?fm=webp&q=30&w=1920',
-    l: '?fm=webp&q=30&w=1536',
-    m: '?fm=webp&q=30&w=1200',
-    s: '?fm=webp&q=30&w=900',
-    xs: '?fm=webp&q=30&w=600'
+    xl: '?fm=webp&q=50&w=1920',
+    l: '?fm=webp&q=50&w=1536',
+    m: '?fm=webp&q=50&w=1200',
+    s: '?fm=webp&q=50&w=900',
+    xs: '?fm=webp&q=50&w=600'
   },
   // 404ページ用画像オプション
   e404: {
