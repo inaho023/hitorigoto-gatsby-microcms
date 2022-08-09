@@ -18,6 +18,7 @@ import { mdiCalendarToday, mdiShape } from '@mdi/js'
 
 // 自作コンポーネント
 import Layout from './Layout'
+import Minibar from './Minibar'
 import Pager from './Pager'
 
 // 自作ライブラリー
@@ -33,51 +34,10 @@ const BlogList = ({ data, pageContext }) => {
   const blog = data.allMicrocmsBlog.edges
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()
-  // 変数定義
-  let misc = {}
-  // 記事リスト種別による場合分け
-  switch (pageContext.list) {
-    case 'archive':
-    case 'category':
-    case 'tag':
-      misc = {
-        // ポジション
-        position: pageContext.name,
-        // パンくずラベル
-        crumbLabel: pageContext.pageNumber == 0 ? pageContext.name : `${pageContext.humanPageNumber}ページ目`,
-        // OGP設定
-        ogpInfo: {
-          type: 'website',
-          url:
-            pageContext.pageNumber == 0
-              ? `/${pageContext.list}/${pageContext.id}/`
-              : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
-          title: pageContext.name,
-          description: 'トップページ',
-          image: ''
-        }
-      }
-      break
-    default:
-      misc = {
-        // ポジション
-        position: '',
-        // パンくずラベル
-        crumbLabel: pageContext.pageNumber == 0 ? 'ホーム' : `${pageContext.humanPageNumber}ページ目`,
-        // OGP設定
-        ogpInfo: {
-          type: 'website',
-          url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
-          title: '',
-          description: 'トップページ',
-          image: ''
-        }
-      }
-      break
-  }
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext}>
+    <Layout pageContext={pageContext}>
+      <Minibar pageContext={pageContext} />
       <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map((blog, index) => {
           // 画像URL生成
@@ -129,7 +89,7 @@ const BlogList = ({ data, pageContext }) => {
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Box className={styles.title}>
-                        <h3>{blog.node.title}</h3>
+                        <h4>{blog.node.title}</h4>
                       </Box>
                     </CardContent>
                   </CardActionArea>
