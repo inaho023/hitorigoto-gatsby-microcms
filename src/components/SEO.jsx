@@ -10,10 +10,10 @@ import striptags from 'striptags'
 
 // 自作ライブラリー
 import { imgixWatermark } from '../libs/Util'
-import { socialAccount } from '../libs/Constant'
+import { imgixImageOption, socialAccount } from '../libs/Constant'
 
 // SEO コンポーネント
-const SEO = ({ misc, pageContext }) => {
+const SEO = ({ pageContext }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     query {
@@ -42,6 +42,64 @@ const SEO = ({ misc, pageContext }) => {
   const image = data.microcmsPicture
   // ウォーターマーク取得
   const imageWatermark = imgixWatermark()
+  // 記事リスト種別による場合分け
+  let misc = {}
+  switch (pageContext.type) {
+    case 'article':
+      // 汎用引数JSON
+      misc = {
+        // ポジション
+        position: pageContext.post.title,
+        // OGP設定
+        ogpInfo: {
+          type: 'article',
+          url: '/post/' + pageContext.id + '/',
+          title: pageContext.post.title,
+          description: pageContext.post.body,
+          image: pageContext.post.image && pageContext.post.image.url + imgixImageOption.ogp + imageWatermark.l
+        }
+      }
+      break
+    case 'website':
+      switch (pageContext.list) {
+        case 'archive':
+        case 'category':
+        case 'tag':
+          // 汎用引数JSON
+          misc = {
+            // ポジション
+            position: pageContext.name,
+            // OGP設定
+            ogpInfo: {
+              type: 'website',
+              url:
+                pageContext.pageNumber == 0
+                  ? `/${pageContext.list}/${pageContext.id}/`
+                  : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
+              title: pageContext.name,
+              description: 'トップページ',
+              image: ''
+            }
+          }
+          break
+        default:
+          // 汎用引数JSON
+          misc = {
+            // ポジション
+            position: 'ホーム',
+            // OGP設定
+            ogpInfo: {
+              type: 'website',
+              url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
+              title: '',
+              description: 'トップページ',
+              image: ''
+            }
+          }
+          break
+      }
+      break
+  }
   // メタ情報
   const metaData = {
     title: `${misc.position && misc.position + ' - '} ${site.title} ${site.subtitle}`,

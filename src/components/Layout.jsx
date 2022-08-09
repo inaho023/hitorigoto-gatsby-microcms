@@ -17,7 +17,6 @@ import { mdiNavigation } from '@mdi/js'
 // 自作コンポーネント
 import SEO from './SEO'
 import Menubar from './Menubar'
-import Minibar from './Minibar'
 import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
 import TagCloud from './TagCloud'
@@ -45,7 +44,7 @@ const Layout = ({ misc, pageContext, children }) => {
   return (
     <>
       <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
-      <section id={'Menubar'} />
+      <a id={'Header'} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <header className={styles.header} key={'Header'}>
@@ -55,9 +54,6 @@ const Layout = ({ misc, pageContext, children }) => {
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
         </header>
-        <section id={'Minibar'}>
-          <Minibar misc={misc} pageContext={pageContext ? pageContext : null} />
-        </section>
         <article className={styles.main}>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>
@@ -79,7 +75,7 @@ const Layout = ({ misc, pageContext, children }) => {
         </footer>
       </Container>
       <Box className={styles.float}>
-        <Fab className={styles.fab} href={'#Menubar'}>
+        <Fab className={styles.fab} href={'#Header'}>
           <Icon path={mdiNavigation} size={1} title={'ページの先頭へ'} />
         </Fab>
       </Box>
