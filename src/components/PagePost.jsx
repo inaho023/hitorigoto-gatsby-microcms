@@ -24,16 +24,6 @@ const PagePost = ({ data, pageContext }) => {
   const page = data.microcmsPage
   // ウォーターマークURL取得
   const imageWatermark = imgixWatermark()
-  // OGP設定
-  const ogpInfo = {
-    type: 'article',
-    url: `/${page.pageId ? page.pageId : page.id}`,
-    title: page.title,
-    description: page.body,
-    image: page.image && page.image.url + imgixImageOption.ogp + imageWatermark.xl
-  }
-  // ページ情報設定
-  const misc = { position: page.title, crumbLabel: page.title, ogpInfo: ogpInfo }
   // 画像URL生成
   const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
   const srcSet =
@@ -47,7 +37,7 @@ const PagePost = ({ data, pageContext }) => {
   const richEditor = richEditorProcessor({ richEditor: page.body, title: page.title })
   // リターン
   return (
-    <Layout misc={misc} pageContext={pageContext}>
+    <Layout pageContext={pageContext}>
       {
         // Iframely
       }
