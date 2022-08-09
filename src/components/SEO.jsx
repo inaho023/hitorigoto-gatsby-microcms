@@ -14,6 +14,10 @@ import { imgixImageOption, socialAccount } from '../libs/Constant'
 
 // SEO コンポーネント
 const SEO = ({ pageContext }) => {
+  // pageContextが空の場合はリターン
+  if (!pageContext) {
+    return null
+  }
   // クエリー実行
   const data = useStaticQuery(graphql`
     query {

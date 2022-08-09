@@ -44,18 +44,9 @@ const E404 = ({ data }) => {
     imgixImageOption.e404.l +
     ' 1200w'
   const sizes = '100w'
-  // OGP設定
-  const ogpInfo = {
-    type: 'article',
-    title: '404',
-    description: 'ページがありません。',
-    image: data.microcmsPicture.picture.url + imgixImageOption.e404.l
-  }
-  // ページ情報設定
-  const misc = { position: '404', crumbLabel: '404', ogpInfo: ogpInfo }
   // リターン
   return (
-    <Layout misc={misc}>
+    <Layout>
       <div className={styles.post}>
         <img srcSet={srcSet} sizes={sizes} src={src} alt={'ページがありません。'} loading={'lazy'} width={1200} height={630} />
       </div>
