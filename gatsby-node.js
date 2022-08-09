@@ -12,8 +12,10 @@ exports.createPages = async ({ graphql, actions }) => {
   let result
   let context
   let list
+  let type
   let pathList
   // 記事リスト
+  type = 'website'
   list = 'all'
   result = await graphql(`
     query {
@@ -33,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
     itemsPerPage: siteListPerPage, // How many items you want per page
     pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/' : '/page'), // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve('src/templates/index.jsx'), // Just like `createPage()`
-    context: { list: list }
+    context: { type: type, list: list }
   })
   // アーカイブリスト
   list = 'archive'
@@ -52,11 +54,12 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   result.data.allMicrocmsBlog.edges.forEach((edge, index) => {
+    const type = 'website'
     const id = edge.node.datetime
     const name = dayjs(edge.node.datetime, 'YYYYMM').format('YYYY年M月')
     const from = dayjs(id, 'YYYYMM').startOf('month').format()
     const to = dayjs(id, 'YYYYMM').startOf('month').add(1, 'month').format()
-    context[index] = { list: list, id: id, name: name, from: from, to: to }
+    context[index] = { type: type, list: list, id: id, name: name, from: from, to: to }
     pathList[index] = '/' + list + '/' + id
     // 記事リスト（アーカイブ）
     blogArchive[index] = graphql(`
@@ -100,9 +103,10 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   result.data.allMicrocmsCategory.nodes.forEach((node, index) => {
+    const type = 'website'
     const id = node.categoryId
     const name = node.name
-    context[index] = { list: list, id: id, name: name }
+    context[index] = { type: type, list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id
     // 記事リスト（カテゴリー）
     blogCategory[index] = graphql(`
@@ -146,10 +150,11 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   result.data.allMicrocmsTag.nodes.forEach((node, index) => {
+    const type = 'website'
     const list = 'tag'
     const id = node.tagId
     const name = node.name
-    context[index] = { list: list, id: id, name: name }
+    context[index] = { type: type, list: list, id: id, name: name }
     pathList[index] = '/' + list + '/' + id
     blogTag[index] = graphql(`
       query tagListQuery($id: String = "${id}") {
@@ -199,6 +204,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const first = blog[0]
   const last = blog[blog.length - 1]
   result.data.allMicrocmsBlog.edges.forEach(async edge => {
+    const type = 'article'
     const id = edge.node.blogId
     const current = blog.findIndex(blog => blog.node.blogId === id)
     const post = blog[current]
@@ -207,7 +213,7 @@ exports.createPages = async ({ graphql, actions }) => {
     actions.createPage({
       path: '/post/' + id,
       component: path.resolve('src/templates/post/{blog.id}.jsx'),
-      context: { id: id, post: post, prev: prev, next: next, first: first, last: last }
+      context: { type: type, id: id, post: post, prev: prev, next: next, first: first, last: last }
     })
   })
   // ページリスト
@@ -221,11 +227,13 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   result.data.allMicrocmsPage.nodes.forEach(async node => {
+    const type = 'article'
     const id = node.pageId
+    const post = node
     actions.createPage({
       path: '/' + id,
       component: path.resolve('src/templates/{page.id}.jsx'),
-      context: { id: id }
+      context: { type: type, id: id, post: post }
     })
   })
 }
