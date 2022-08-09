@@ -33,7 +33,10 @@ const PagePreview = ({ location }) => {
   if (!data) {
     return null
   }
-  return <BlogPost data={data} />
+  // ページコンテキスト生成
+  const pageContext = { type: 'article', id: data.microcmsBlog.id, post: data.microcmsBlog }
+  // リターン
+  return <BlogPost data={data} pageContext={pageContext} />
 }
 
 export default PagePreview
