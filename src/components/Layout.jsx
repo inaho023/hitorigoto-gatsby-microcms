@@ -25,7 +25,7 @@ import TagCloud from './TagCloud'
 import * as styles from '../styles/Layout.module.scss'
 
 // レイアウトコンポーネント
-const Layout = ({ misc, pageContext, children }) => {
+const Layout = ({ pageContext, children }) => {
   // サイト情報
   const data = useStaticQuery(graphql`
     query {
@@ -44,7 +44,7 @@ const Layout = ({ misc, pageContext, children }) => {
   return (
     <>
       <a id={'Header'} />
-      <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
+      <SEO pageContext={pageContext ? pageContext : null} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <section className={styles.title} id={'title'} key={'title'}>
