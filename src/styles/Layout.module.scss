@@ -37,6 +37,7 @@ a {
   h1:active {
     cursor: pointer;
     font-weight: 700;
+    transition: all 0.5s;
   }
 
   h2 {
@@ -51,6 +52,7 @@ a {
   h2:active {
     cursor: pointer;
     font-weight: 700;
+    transition: all 0.5s;
   }
 
   .description {
