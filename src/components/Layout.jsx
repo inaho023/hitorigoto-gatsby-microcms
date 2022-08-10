@@ -43,17 +43,17 @@ const Layout = ({ misc, pageContext, children }) => {
   // リターン
   return (
     <>
-      <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
       <a id={'Header'} />
+      <SEO misc={misc} pageContext={pageContext ? pageContext : null} />
       <Menubar />
       <Container maxWidth={'xl'}>
-        <header className={styles.header} key={'Header'}>
-          <Link key={'Header'} className={styles.title} to={'/'}>
+        <section className={styles.title} id={'title'} key={'title'}>
+          <Link key={'title'} to={'/'}>
             <h1>{data.site.siteMetadata.title}</h1>
             <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
-        </header>
+        </section>
         <article className={styles.main}>{children}</article>
         <section id={'Bottom'}>
           <Grid container spacing={1}>
@@ -68,12 +68,12 @@ const Layout = ({ misc, pageContext, children }) => {
             </Grid>
           </Grid>
         </section>
-        <footer className={styles.footer}>
-          <Link key={'Footer'} to={'/'}>
-            &copy; {data.site.siteMetadata.title}
-          </Link>
-        </footer>
       </Container>
+      <footer className={styles.footer}>
+        <Link key={'Footer'} to={'/'}>
+          &copy; {data.site.siteMetadata.title}
+        </Link>
+      </footer>
       <Box className={styles.float}>
         <Fab className={styles.fab} href={'#Header'}>
           <Icon path={mdiNavigation} size={1} title={'ページの先頭へ'} />
