@@ -46,7 +46,7 @@ const SEO = ({ pageContext }) => {
   const image = data.microcmsPicture
   // ウォーターマーク取得
   const imageWatermark = imgixWatermark()
-  // 記事リスト種別による場合分け
+  // ページ種別による場合分け
   let misc = {}
   switch (pageContext.type) {
     case 'article':
