@@ -203,11 +203,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const blog = result.data.allMicrocmsBlog.edges
   const first = blog[0]
   const last = blog[blog.length - 1]
-  result.data.allMicrocmsBlog.edges.forEach(async edge => {
+  result.data.allMicrocmsBlog.edges.forEach(edge => {
     const type = 'article'
     const id = edge.node.blogId
     const current = blog.findIndex(blog => blog.node.blogId === id)
-    const post = blog[current]
+    const post = blog[current].node
     const prev = current === 0 ? null : blog[current - 1]
     const next = current === blog.length - 1 ? null : blog[current + 1]
     actions.createPage({
@@ -226,7 +226,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  result.data.allMicrocmsPage.nodes.forEach(async node => {
+  result.data.allMicrocmsPage.nodes.forEach(node => {
     const type = 'article'
     const id = node.pageId
     const post = node
