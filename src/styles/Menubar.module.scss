@@ -4,21 +4,18 @@
   top: 0px;
   left: 0px;
   opacity: 0.75;
-  z-index: 10;
+  z-index: 10 !important;
 
   .toolbar {
     display: flex;
     background: #332100;
-    z-index: 20;
 
     .grow {
       flex-grow: 1;
-      z-index: 30;
     }
 
     .title {
       display: inline-flex;
-      z-index: 30;
 
       p {
         color: orange;
@@ -27,7 +24,6 @@
         text-align: center;
         text-decoration: none;
         opacity: 0.75;
-        z-index: 40;
       }
 
       p:hover,
@@ -35,7 +31,6 @@
       p:active {
         cursor: pointer;
         opacity: 1;
-        z-index: 40;
       }
     }
 
@@ -45,13 +40,11 @@
       font-weight: 700;
       font-size: 1rem;
       text-decoration: none;
-      z-index: 30;
 
       .button {
         cursor: pointer;
         display: inline-block;
         opacity: 0.75;
-        z-index: 40;
       }
 
       .button:hover,
@@ -61,7 +54,6 @@
         background-color: orange;
         opacity: 1;
         transition: all 0.5s;
-        z-index: 40;
       }
     }
   }
