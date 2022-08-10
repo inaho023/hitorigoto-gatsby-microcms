@@ -222,6 +222,13 @@ exports.createPages = async ({ graphql, actions }) => {
       allMicrocmsPage(limit: 1024) {
         nodes {
           pageId
+          title
+          image {
+            url
+            width
+            height
+          }
+          body
         }
       }
     }
