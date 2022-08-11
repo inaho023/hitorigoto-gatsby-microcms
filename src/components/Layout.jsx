@@ -47,9 +47,11 @@ const Layout = ({ pageContext, children }) => {
       <SEO pageContext={pageContext ? pageContext : null} />
       <Menubar />
       <Container maxWidth={'xl'}>
-        <section className={styles.title} id={'title'} key={'title'}>
-          <Link key={'title'} to={'/'}>
+        <section id={'title'} key={'title'}>
+          <Link className={styles.title} key={'title'} to={'/'}>
             <h1>{data.site.siteMetadata.title}</h1>
+          </Link>
+          <Link className={styles.subtitle} key={'subtitle'} to={'/'}>
             <h2>{data.site.siteMetadata.subtitle}</h2>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
