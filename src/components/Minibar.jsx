@@ -33,22 +33,28 @@ const Minibar = ({ pageContext }) => {
     case 'archive':
       // アイコン
       listIcon = mdiCalendarToday
-      listTitle = 'アーカイブ：'
+      listTitle = `${pageContext.name}${
+        pageContext.humanPageNumber === 1 ? '' : ` / ${pageContext.humanPageNumber.toString()}ページ目`
+      }`
       break
     case 'category':
       // アイコン
       listIcon = mdiShape
-      listTitle = 'カテゴリー：'
+      listTitle = `${pageContext.name}${
+        pageContext.humanPageNumber === 1 ? '' : ` / ${pageContext.humanPageNumber.toString()}ページ目`
+      }`
       break
     case 'tag':
       // アイコン
       listIcon = mdiTag
-      listTitle = 'タグ：'
+      listTitle = `${pageContext.name}${
+        pageContext.humanPageNumber === 1 ? '' : ` / ${pageContext.humanPageNumber.toString()}ページ目`
+      }`
       break
     default:
       // アイコン
       listIcon = mdiHome
-      listTitle = ''
+      listTitle = `ホーム${pageContext.humanPageNumber === 1 ? '' : ` / ${pageContext.humanPageNumber.toString()}ページ目`}`
       break
   }
   // ナビゲーションパス設定
@@ -80,13 +86,13 @@ const Minibar = ({ pageContext }) => {
   // リターン
   return (
     <Box className={styles.minibar}>
-      <span className={styles.list} title={pageContext.name ? listTitle + pageContext.name : 'ホーム'}>
+      <span className={styles.list} title={listTitle && listTitle}>
         <span className={styles.wrapper}>
           <span className={styles.icon}>
             <Icon path={listIcon} size={2} />
           </span>
           <span className={styles.text}>
-            <h3>{pageContext.name ? pageContext.name : 'ホーム'}</h3>
+            <h3>{listTitle}</h3>
           </span>
         </span>
       </span>
