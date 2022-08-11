@@ -12,6 +12,7 @@
     height: 4rem;
     display: inline-flex;
     flex-basis: 100%;
+    vertical-align: middle;
     margin: auto;
     padding: 12px;
     color: #332100;
@@ -24,7 +25,8 @@
       align-items: center;
       justify-content: stretch;
       vertical-align: middle;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
 
       .icon {
         display: inline-flex;
@@ -44,7 +46,6 @@
           margin: 0px;
           padding: 0px;
           color: #332100;
-          line-height: 2.5rem;
           font-weight: 700;
           font-size: 2rem;
           overflow: hidden;
@@ -78,8 +79,9 @@
   .minibar {
     .list {
       height: 4rem;
-      width: 67%;
-      flex-basis: 67%;
+      width: calc(67% - 8px);
+      flex-basis: calc(67% - 8px);
+      margin-right: 8px;
     }
     .pager {
       width: 33%;

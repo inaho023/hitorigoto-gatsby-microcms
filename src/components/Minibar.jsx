@@ -28,22 +28,27 @@ import * as styles from '../styles/Minibar.module.scss'
 const Minibar = ({ pageContext }) => {
   // リストアイコン設定
   let listIcon
+  let listTitle
   switch (pageContext.list) {
     case 'archive':
       // アイコン
       listIcon = mdiCalendarToday
+      listTitle = 'アーカイブ：'
       break
     case 'category':
       // アイコン
       listIcon = mdiShape
+      listTitle = 'カテゴリー：'
       break
     case 'tag':
       // アイコン
       listIcon = mdiTag
+      listTitle = 'タグ：'
       break
     default:
       // アイコン
       listIcon = mdiHome
+      listTitle = ''
       break
   }
   // ナビゲーションパス設定
@@ -75,7 +80,7 @@ const Minibar = ({ pageContext }) => {
   // リターン
   return (
     <Box className={styles.minibar}>
-      <span className={styles.list}>
+      <span className={styles.list} title={pageContext.name ? listTitle + pageContext.name : 'ホーム'}>
         <span className={styles.wrapper}>
           <span className={styles.icon}>
             <Icon path={listIcon} size={2} />
