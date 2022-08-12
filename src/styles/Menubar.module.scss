@@ -8,7 +8,7 @@
 
   .toolbar {
     display: flex;
-    background: #332100;
+    background: black;
 
     .grow {
       flex-grow: 1;
@@ -23,14 +23,6 @@
         font-size: 1rem;
         text-align: center;
         text-decoration: none;
-        opacity: 0.75;
-      }
-
-      p:hover,
-      p:focus,
-      p:active {
-        cursor: pointer;
-        opacity: 1;
       }
     }
 
@@ -43,13 +35,12 @@
 
       .button {
         cursor: pointer;
-        display: inline-block;
-        opacity: 0.75;
       }
 
       .button:hover,
       .button:focus,
       .button:active {
+        cursor: pointer;
         color: #332100;
         background-color: orange;
         opacity: 1;
