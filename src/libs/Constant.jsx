@@ -24,11 +24,11 @@ export const imgixImageOption = {
   },
   // ギャラリー用画像オプション
   gallery: {
-    xl: '?fit=crop&crop=faces&fm=webp&q=20&w=480&h=480',
-    l: '?fit=crop&crop=faces&fm=webp&q=20&w=430&h=430',
-    m: '?fit=crop&crop=faces&fm=webp&q=20&w=380&h=380',
-    s: '?fit=crop&crop=faces&fm=webp&q=20&w=330&h=330',
-    xs: '?fit=crop&crop=faces&fm=webp&q=20&w=280&h=280'
+    xl: '?fit=crop&crop=faces&fm=webp&q=15&w=480&h=480',
+    l: '?fit=crop&crop=faces&fm=webp&q=15&w=430&h=430',
+    m: '?fit=crop&crop=faces&fm=webp&q=15&w=380&h=380',
+    s: '?fit=crop&crop=faces&fm=webp&q=15&w=330&h=330',
+    xs: '?fit=crop&crop=faces&fm=webp&q=15&w=280&h=280'
   },
   // 記事本文用画像オプション
   body: {
@@ -73,6 +73,6 @@ export const serviceEndpoint = {
   iframely: {
     url: 'https://iframe.ly/api/iframely',
     key: 'ed2561c3c4c71d4dece262554ddd48b8',
-    parameter: '&iframe=1,card&media=0&omit_script=1&omit_css=1&language=ja'
+    parameter: '&iframe=1,card&media=0&omit_script=1&omit_css=0&language=ja'
   }
 }
