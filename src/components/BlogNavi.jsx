@@ -38,7 +38,7 @@ const BlogNavi = ({ pageContext }) => {
               <Card className={styles.prev}>
                 <CardActionArea className={styles.area}>
                   <CardContent className={styles.content}>
-                    <h5>{prev.node.title}</h5>
+                    <p>{prev.node.title}</p>
                   </CardContent>
                   <CardMedia className={styles.media}>
                     <img src={prevImage} alt={prev.node.title} width={96} height={96} />
@@ -59,7 +59,7 @@ const BlogNavi = ({ pageContext }) => {
                     <img src={nextImage} alt={next.node.title} width={96} height={96} />
                   </CardMedia>
                   <CardContent className={styles.content}>
-                    <h5>{next.node.title}</h5>
+                    <p>{next.node.title}</p>
                   </CardContent>
                 </CardActionArea>
               </Card>

@@ -44,14 +44,14 @@
           justify-content: center;
           padding: 8px;
 
-          h5 {
+          p {
             position: relative;
             justify-content: center;
             vertical-align: middle;
             text-align: left;
             padding: 0.25rem;
-            line-height: 1.25rem;
-            font-size: 1rem;
+            line-height: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 500;
             word-break: break-all;
           }
@@ -63,6 +63,12 @@
     .prev:focus,
     .prev:hover {
       background: orange;
+
+      .area {
+        p {
+          font-weight: 700;
+        }
+      }
     }
 
     .next {
@@ -97,14 +103,14 @@
           justify-content: center;
           padding: 8px;
 
-          h5 {
+          p {
             position: relative;
             justify-content: center;
             vertical-align: middle;
             text-align: left;
             padding: 0.25rem;
-            line-height: 1.25rem;
-            font-size: 1rem;
+            line-height: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 500;
             word-break: break-all;
           }
@@ -116,6 +122,12 @@
     .next:focus,
     .next:hover {
       background: orange;
+
+      .area {
+        p {
+          font-weight: 700;
+        }
+      }
     }
   }
 }
