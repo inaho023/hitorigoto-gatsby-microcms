@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 // その他
 import Prism from 'prismjs'
-import { load } from 'cheerio'
+import * as cheerio from 'cheerio'
 import { Base64 } from 'js-base64'
 
 // 自作ライブラリー
@@ -49,11 +49,11 @@ export const imgixWatermark = () => {
 }
 
 // 画像処理関数（ImgIX）
-const imageProcessor = ({ cheerio, title, index }) => {
+const imageProcessor = ({ node, title, index }) => {
   // ウォーターマーク生成
   const imageWatermark = imgixWatermark()
   // 画像ソースを取得
-  const imgSrc = cheerio.attr('src')
+  const imgSrc = node.attr('src')
   // Altテキスト設定
   const altText = `${title} ${(index + 1).toString()}枚目`
   // レスポンシブ画像
@@ -82,79 +82,81 @@ const imageProcessor = ({ cheerio, title, index }) => {
   // フォールバック画像
   const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
   // 属性削除
-  cheerio.removeAttr('src')
+  node.removeAttr('src')
   // 属性設定
-  cheerio.attr('srcSet', srcSet)
-  cheerio.attr('sizes', sizes)
-  cheerio.attr('src', src)
-  cheerio.attr('alt', altText)
+  node.attr('srcSet', srcSet)
+  node.attr('sizes', sizes)
+  node.attr('src', src)
+  node.attr('alt', altText)
 }
 
 // シンタックスハイライト処理関数（Prism.js）
-const syntaxHighlightProcessor = ({ cheerio, codeClass = { class: ['none'], user: [] } }) => {
+const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [] } }) => {
   // 言語設定
-  cheerio.addClass('language-' + codeClass.class[0])
+  node.addClass('language-' + codeClass.class[0])
   // 共通設定
-  cheerio.addClass('match-braces')
-  cheerio.addClass('rainbow-braces')
+  node.addClass('match-braces')
+  node.addClass('rainbow-braces')
   // 言語毎の処理
   switch (codeClass.class[0]) {
     case 'bash':
     case 'shell':
       if (codeClass.user) {
         // コマンドラインプラグイン
-        cheerio.parent().addClass('command-line')
-        cheerio.parent().attr('data-user', codeClass.user[0])
-        cheerio.parent().attr('data-host', 'localhost')
+        node.parent().addClass('command-line')
+        node.parent().attr('data-user', codeClass.user[0])
+        node.parent().attr('data-host', 'localhost')
       } else {
         // 行番号プラグイン
-        cheerio.parent().addClass('line-numbers')
+        node.parent().addClass('line-numbers')
       }
       break
     case 'batch':
       if (codeClass.user) {
         // コマンドラインプラグイン
-        cheerio.parent().addClass('command-line')
-        cheerio.parent().attr('data-prompt', `C:\\Users\\${codeClass.user[0]}\\>`)
+        node.parent().addClass('command-line')
+        node.parent().attr('data-prompt', `C:\\Users\\${codeClass.user[0]}\\>`)
       } else {
         // 行番号プラグイン
-        cheerio.parent().addClass('line-numbers')
+        node.parent().addClass('line-numbers')
       }
       break
     case 'powershell':
       if (codeClass.user) {
         // コマンドラインプラグイン
-        cheerio.parent().addClass('command-line')
-        cheerio.parent().attr('data-prompt', `PS C:\\Users\\${codeClass.user[0]}\\`)
+        node.parent().addClass('command-line')
+        node.parent().attr('data-prompt', `PS C:\\Users\\${codeClass.user[0]}\\`)
       } else {
         // 行番号プラグイン
-        cheerio.parent().addClass('line-numbers')
+        node.parent().addClass('line-numbers')
       }
       break
     case 'sql':
       if (codeClass.user) {
         // コマンドラインプラグイン
-        cheerio.parent().addClass('command-line')
-        cheerio.parent().attr('data-prompt', 'SQL>')
+        node.parent().addClass('command-line')
+        node.parent().attr('data-prompt', 'SQL>')
       } else {
         // 行番号プラグイン
-        cheerio.parent().addClass('line-numbers')
+        node.parent().addClass('line-numbers')
       }
       break
     default:
       // 行番号プラグイン
-      cheerio.parent().addClass('line-numbers')
+      node.parent().addClass('line-numbers')
       break
   }
 }
 
 // リッチリンク処理関数（Iframely）
-const richLinkProcessor = ({ cheerio }) => {
+const richLinkProcessor = ({ node }) => {
+  // 定数定義
+  const href = node.attr('href')
   // エンドポイント設定
   const url =
     `${serviceEndpoint.iframely.url}` +
     `?key=${serviceEndpoint.iframely.key}` +
-    `&url=${encodeURI(cheerio.attr('href'))}` +
+    `&url=${encodeURI(href)}` +
     `${serviceEndpoint.iframely.parameter}`
   // エンドポイントアクセス
   const [data, setData] = useState(null)
@@ -176,22 +178,24 @@ const richLinkProcessor = ({ cheerio }) => {
   }, [])
   // データーが取得できたら置き換える
   if (data) {
-    cheerio.html(data.html)
+    // リンクを置換
+    node.replaceWith(data.html)
   }
 }
 
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   // 本文をロード
-  const cheerio = load(richEditor)
+  const $ = cheerio.load(richEditor)
   // リッチリンク処理
-  cheerio('a').each((index, elm) => {
+  $('a').each((index, elm) => {
+    // リッチリンク処理
     richLinkProcessor({
-      cheerio: cheerio(elm)
+      node: $(elm)
     })
   })
   // シンタックスハイライト処理
-  cheerio('pre code').each((index, elm) => {
+  $('pre code').each((index, elm) => {
     // Prism.js ロード
     if (index === 0) {
       useEffect(() => {
@@ -200,18 +204,18 @@ export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
     }
     // シンタックスハイライト設定
     syntaxHighlightProcessor({
-      cheerio: cheerio(elm),
+      node: $(elm),
       codeClass: codeClass[index]
     })
   })
   // 画像処理
-  cheerio('img').each((index, elm) => {
+  $('img').each((index, elm) => {
     imageProcessor({
-      cheerio: cheerio(elm),
+      node: $(elm),
       title: title,
       index: index
     })
   })
   // リターン
-  return cheerio.html()
+  return $.html()
 }
