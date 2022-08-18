@@ -73,11 +73,11 @@ const imageProcessor = ({ node, title, index }) => {
     imgSrc +
     imgixImageOption.body.l +
     imageWatermark.l +
-    ' 1536w,' +
+    ' 1500w,' +
     imgSrc +
     imgixImageOption.body.xl +
     imageWatermark.xl +
-    ' 1920w'
+    ' 1800w'
   const sizes = '100w'
   // フォールバック画像
   const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
