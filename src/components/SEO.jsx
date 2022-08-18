@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Helmet } from 'react-helmet'
 
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
@@ -130,7 +129,7 @@ const SEO = ({ pageContext }) => {
   }
   // リターン
   return (
-    <Helmet htmlAttributes={{ lang: site.lang, prefix: 'og: http://ogp.me/ns#' }}>
+    <>
       <title>{metaData.title}</title>
       <meta name='description' content={metaData.description} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -144,7 +143,7 @@ const SEO = ({ pageContext }) => {
       {misc.ogpInfo && <meta name='twitter:card' content='summary_large_image' />}
       {misc.ogpInfo && <meta name='twitter:site' content={socialAccount.twitter.account} />}
       {misc.ogpInfo && <meta name='twitter:creator' content={socialAccount.twitter.account} />}
-    </Helmet>
+    </>
   )
 }
 

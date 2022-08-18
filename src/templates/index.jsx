@@ -5,6 +5,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 // 自作モジュール
+import SEO from '../components/SEO'
 import BlogList from '../components/BlogList'
 
 // ページクエリー
@@ -30,8 +31,12 @@ export const pageQuery = graphql`
     }
   }
 `
+// ヘッダー
+export const Head = ({ pageContext }) => {
+  return <SEO pageContext={pageContext} />
+}
 
-// インデックスページ
+// ページテンプレート
 const PageTemplate = ({ data, pageContext }) => {
   // リターン
   return <BlogList data={data} pageContext={pageContext} />

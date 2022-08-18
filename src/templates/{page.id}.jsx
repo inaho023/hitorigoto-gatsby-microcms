@@ -5,6 +5,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 // 自作モジュール
+import SEO from '../components/SEO'
 import PagePost from '../components/PagePost'
 
 // クエリー実行
@@ -23,7 +24,12 @@ export const query = graphql`
     }
   }
 `
+// ヘッダー
+export const Head = ({ pageContext }) => {
+  return <SEO pageContext={pageContext} />
+}
 
+// ページテンプレート
 const PageTemplate = ({ data, pageContext }) => {
   // リターン
   return <PagePost data={data} pageContext={pageContext} />
