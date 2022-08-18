@@ -177,7 +177,7 @@ const richLinkProcessor = ({ node }) => {
     getIframely(url)
   }, [])
   // データーが取得できたら置き換える
-  if (data) {
+  if (data?.html) {
     // リンクを置換
     node.replaceWith(data.html)
   }
