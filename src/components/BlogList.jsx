@@ -38,7 +38,7 @@ const BlogList = ({ data, pageContext }) => {
   return (
     <Layout pageContext={pageContext}>
       <Minibar pageContext={pageContext} />
-      <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
+      <Grid container spacing={2} alignItems={'center'} justifyContent={'center'}>
         {blog.map((blog, index) => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
@@ -67,7 +67,7 @@ const BlogList = ({ data, pageContext }) => {
                         loading={loading}
                       />
                       <Box className={styles.info}>
-                        <Grid container spacing={1} justifyContent={'space-around'} alignItems={'center'}>
+                        <Grid container spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                           <Grid item className={styles.box} xs={6}>
                             <span className={styles.icon}>
                               <Icon path={mdiCalendarToday} size={0.75} />
