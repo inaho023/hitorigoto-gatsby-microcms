@@ -54,8 +54,6 @@ const imageProcessor = ({ node, title, index }) => {
   const imageWatermark = imgixWatermark()
   // 画像ソースを取得
   const imgSrc = node.attr('src')
-  // Altテキスト設定
-  const altText = `${title} ${(index + 1).toString()}枚目`
   // レスポンシブ画像
   const srcSet =
     imgSrc +
@@ -81,6 +79,8 @@ const imageProcessor = ({ node, title, index }) => {
   const sizes = '100w'
   // フォールバック画像
   const src = imgSrc + imgixImageOption.body.l + imageWatermark.l
+  // Altテキスト設定
+  const altText = `${title} ${(index + 1).toString()}枚目`
   // 属性削除
   node.removeAttr('src')
   // 属性設定
