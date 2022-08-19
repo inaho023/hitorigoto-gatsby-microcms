@@ -38,7 +38,7 @@ const BlogList = ({ data, pageContext }) => {
   return (
     <Layout pageContext={pageContext}>
       <Minibar pageContext={pageContext} />
-      <Grid container spacing={2} alignItems={'center'} justifyContent={'center'}>
+      <Grid container spacing={2} alignItems={'center'} justifyItems={'center'}>
         {blog.map((blog, index) => {
           // 画像URL生成
           const src = blog.node.image.url + imgixImageOption.list.m + imageWatermark.s
