@@ -6,6 +6,7 @@ import { graphql } from 'gatsby'
 
 // 自作モジュール
 import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
 // スタイルシート
 import * as styles from '../styles/404.module.scss'
@@ -28,6 +29,10 @@ export const query = graphql`
     }
   }
 `
+// ヘッダー
+export const Head = ({ location, pageContext }) => {
+  return <SEO location={location} pageContext={pageContext} />
+}
 
 // 404ページ
 const E404 = ({ data }) => {

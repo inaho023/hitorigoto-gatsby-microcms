@@ -51,8 +51,8 @@ export const pageQuery = graphql`
   }
 `
 // ヘッダー
-export const Head = ({ pageContext }) => {
-  return <SEO pageContext={pageContext} />
+export const Head = ({ location, pageContext }) => {
+  return <SEO location={location} pageContext={pageContext} />
 }
 
 // ページテンプレート

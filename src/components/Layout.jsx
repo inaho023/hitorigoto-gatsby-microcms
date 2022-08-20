@@ -15,7 +15,6 @@ import Icon from '@mdi/react'
 import { mdiNavigation } from '@mdi/js'
 
 // 自作コンポーネント
-import SEO from './SEO'
 import Menubar from './Menubar'
 import ArchiveMenu from './ArchiveMenu'
 import CategoryMenu from './CategoryMenu'
@@ -25,7 +24,7 @@ import TagCloud from './TagCloud'
 import * as styles from '../styles/Layout.module.scss'
 
 // レイアウトコンポーネント
-const Layout = ({ pageContext, children }) => {
+const Layout = ({ children }) => {
   // サイト情報
   const data = useStaticQuery(graphql`
     query {
@@ -44,7 +43,6 @@ const Layout = ({ pageContext, children }) => {
   return (
     <>
       <section id={'Header'} />
-      <SEO pageContext={pageContext ? pageContext : null} />
       <Menubar />
       <Container maxWidth={'xl'}>
         <section id={'title'} key={'title'}>

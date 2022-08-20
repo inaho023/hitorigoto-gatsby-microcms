@@ -12,11 +12,7 @@ import { imgixWatermark } from '../libs/Util'
 import { imgixImageOption, socialAccount } from '../libs/Constant'
 
 // SEO コンポーネント
-const SEO = ({ pageContext }) => {
-  // pageContextが空の場合はリターン
-  if (!pageContext) {
-    return null
-  }
+const SEO = ({ location, pageContext }) => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     query {
@@ -29,120 +25,97 @@ const SEO = ({ pageContext }) => {
           lang
         }
       }
-      microcmsPicture(pictureId: { eq: "ogp-no-picture" }) {
-        pictureId
-        title
-        picture {
-          url
-          width
-          height
+      allMicrocmsPicture(filter: { pictureId: { in: ["404", "ogp-no-picture"] } }) {
+        edges {
+          node {
+            pictureId
+            title
+            picture {
+              url
+              width
+              height
+            }
+            parameter
+          }
         }
-        parameter
       }
     }
   `)
+  // サイト情報
   const site = data.site.siteMetadata
-  const image = data.microcmsPicture
+  // 画像情報
+  const images = data.allMicrocmsPicture.edges
+  let img404 = {}
+  let imgOGP = {}
+  images.forEach(image => {
+    switch (image.node.pictureId) {
+      case '404':
+        img404 = image.node
+        break
+      case 'ogp-no-picture':
+        imgOGP = image.node
+        break
+    }
+  })
   // ウォーターマーク取得
   const imageWatermark = imgixWatermark()
   // ページ種別による場合分け
-  let misc = {}
+  let pageInfo = {}
   switch (pageContext.type) {
     case 'article':
-      // 汎用引数JSON
-      misc = {
-        // ポジション
+      // ページ情報
+      pageInfo = {
+        type: pageContext.type,
+        url: location.pathname,
+        site: site.title + ' ' + site.subtitle,
         position: pageContext.post.title,
-        // OGP設定
-        ogpInfo: {
-          type: 'article',
-          url: '/post/' + pageContext.id + '/',
-          title: pageContext.post.title,
-          description: pageContext.post.body,
-          image: pageContext.post.image && pageContext.post.image.url + imgixImageOption.ogp + imageWatermark.l
-        }
+        title: `${pageContext.post.title} - ${site.title} ${site.subtitle}`,
+        description: striptags(pageContext.post.body),
+        image: pageContext.post.image && pageContext.post.image.url + imgixImageOption.ogp + imageWatermark.l
       }
       break
     case 'website':
-      switch (pageContext.list) {
-        case 'archive':
-        case 'category':
-        case 'tag':
-          // 汎用引数JSON
-          misc = {
-            // ポジション
-            position: pageContext.name,
-            // OGP設定
-            ogpInfo: {
-              type: 'website',
-              url:
-                pageContext.pageNumber == 0
-                  ? `/${pageContext.list}/${pageContext.id}/`
-                  : `/${pageContext.list}/${pageContext.id}/${pageContext.pageNumber}/`,
-              title: pageContext.name,
-              description: 'トップページ',
-              image: ''
-            }
-          }
-          break
-        default:
-          // 汎用引数JSON
-          misc = {
-            // ポジション
-            position: 'ホーム',
-            // OGP設定
-            ogpInfo: {
-              type: 'website',
-              url: pageContext.pageNumber == 0 ? '/' : `/page/${pageContext.pageNumber}/`,
-              title: '',
-              description: 'トップページ',
-              image: ''
-            }
-          }
-          break
+      // ページ情報
+      pageInfo = {
+        type: pageContext.type,
+        url: site.siteUrl + location.pathname,
+        site: site.title + ' ' + site.subtitle,
+        position: pageContext.name,
+        title: `${site.title} ${site.subtitle}${pageContext.name ? ` ${pageContext.name}` : ''}${
+          pageContext.pageNumber !== 0 ? ` ${pageContext.pageNumber}ページ` : ''
+        }`,
+        description: 'インデックスページ',
+        image: `${imgOGP.picture.url}?${imgOGP.parameter}${imageWatermark.xl}`
       }
       break
-  }
-  // メタ情報
-  const metaData = {
-    title: `${misc.position && misc.position + ' - '} ${site.title} ${site.subtitle}`,
-    description:
-      misc.ogpInfo.type === 'website'
-        ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${
-            pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`
-          }`
-        : misc.ogpInfo.title
-  }
-  // OGP設定
-  const ogpData = {
-    type: misc.ogpInfo.type,
-    url: site.siteUrl + misc.ogpInfo.url,
-    site: site.title + ' ' + site.subtitle,
-    title:
-      misc.ogpInfo.type === 'website'
-        ? `${site.title} ${site.subtitle}${misc.ogpInfo.title && ' ' + misc.ogpInfo.title}${
-            pageContext.pageNumber == 0 ? '' : ` ${pageContext.pageNumber}ページ`
-          }`
-        : misc.ogpInfo.title,
-    image: misc.ogpInfo.type === 'website' ? `${image.picture.url}?${image.parameter}${imageWatermark.xl}` : misc.ogpInfo.image,
-    description: striptags(misc.ogpInfo.description)
+    default:
+      pageInfo = {
+        type: 'article',
+        url: location.pathname,
+        site: site.title + ' ' + site.subtitle,
+        position: '404',
+        title: `404 - ${site.title} ${site.subtitle}`,
+        description: 'ページがないよ。',
+        image: `${img404.picture.url}?${img404.parameter}${imageWatermark.xl}`
+      }
+      break
   }
   // リターン
   return (
     <>
-      <title>{metaData.title}</title>
-      <meta name='description' content={metaData.description} />
+      <title>{pageInfo.title}</title>
+      <meta name='description' content={pageInfo.description} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
-      {misc.ogpInfo && <meta property='og:type' content={ogpData.type} />}
-      {misc.ogpInfo && <meta property='og:url' content={ogpData.url} />}
-      {misc.ogpInfo && <meta property='og:site_neme' content={ogpData.site} />}
-      {misc.ogpInfo && <meta property='og:title' content={ogpData.title} />}
-      {misc.ogpInfo && <meta property='og:description' content={ogpData.description} />}
-      {misc.ogpInfo && <meta property='og:image' content={ogpData.image} />}
-      {misc.ogpInfo && <meta property='og:image:alt' content={ogpData.title} />}
-      {misc.ogpInfo && <meta name='twitter:card' content='summary_large_image' />}
-      {misc.ogpInfo && <meta name='twitter:site' content={socialAccount.twitter.account} />}
-      {misc.ogpInfo && <meta name='twitter:creator' content={socialAccount.twitter.account} />}
+      <meta property='og:type' content={pageInfo.type} />
+      <meta property='og:url' content={pageInfo.url} />
+      <meta property='og:site_neme' content={pageInfo.site} />
+      <meta property='og:title' content={pageInfo.title} />
+      <meta property='og:description' content={pageInfo.description} />
+      <meta property='og:image' content={pageInfo.image} />
+      <meta property='og:image:alt' content={pageInfo.title} />
+      <meta name='twitter:card' content='summary_large_image' />
+      <meta name='twitter:site' content={socialAccount.twitter.account} />
+      <meta name='twitter:creator' content={socialAccount.twitter.account} />
     </>
   )
 }

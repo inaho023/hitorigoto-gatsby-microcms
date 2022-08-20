@@ -25,8 +25,8 @@ export const query = graphql`
   }
 `
 // ヘッダー
-export const Head = ({ pageContext }) => {
-  return <SEO pageContext={pageContext} />
+export const Head = ({ location, pageContext }) => {
+  return <SEO location={location} pageContext={pageContext} />
 }
 
 // ページテンプレート
