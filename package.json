@@ -18,6 +18,8 @@
     "format:eslint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.5.0",
     "@mui/material": "^5.1.0",
@@ -31,6 +33,7 @@
     "gatsby-plugin-disqus": "^1.2.3",
     "gatsby-plugin-google-gtag": "^4.1.0",
     "gatsby-plugin-manifest": "^4.1.0",
+    "gatsby-plugin-material-ui": "^4.1.0",
     "gatsby-plugin-robots-txt": "^1.6.14",
     "gatsby-plugin-sass": "^5.1.0",
     "gatsby-plugin-sharp": "^4.1.0",
