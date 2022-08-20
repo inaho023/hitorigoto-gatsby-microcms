@@ -33,6 +33,7 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-material-ui',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
