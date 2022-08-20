@@ -66,7 +66,7 @@ const SEO = ({ location, pageContext }) => {
       // ページ情報
       pageInfo = {
         type: pageContext.type,
-        url: location.pathname,
+        url: site.siteUrl + location.pathname,
         site: site.title + ' ' + site.subtitle,
         position: pageContext.post.title,
         title: `${pageContext.post.title} - ${site.title} ${site.subtitle}`,
@@ -91,7 +91,7 @@ const SEO = ({ location, pageContext }) => {
     default:
       pageInfo = {
         type: 'article',
-        url: location.pathname,
+        url: site.siteUrl + location.pathname,
         site: site.title + ' ' + site.subtitle,
         position: '404',
         title: `404 - ${site.title} ${site.subtitle}`,
