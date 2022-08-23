@@ -4,6 +4,9 @@ import React from 'react'
 // Gatsby
 import { graphql } from 'gatsby'
 
+// Iframely
+import Iframely from '../../components/Iframely'
+
 // 自作コンポーネント
 import SEO from '../../components/SEO'
 import BlogPost from '../../components/BlogPost'
@@ -52,7 +55,12 @@ export const pageQuery = graphql`
 `
 // ヘッダー
 export const Head = ({ location, pageContext }) => {
-  return <SEO location={location} pageContext={pageContext} />
+  return (
+    <>
+      <SEO location={location} pageContext={pageContext} />
+      <Iframely />
+    </>
+  )
 }
 
 // ページテンプレート

@@ -1,6 +1,5 @@
 // React
 import React, { useEffect } from 'react'
-import { Helmet } from 'react-helmet'
 
 // Iframelyコンポーネント
 const Iframely = () => {
@@ -11,11 +10,7 @@ const Iframely = () => {
     }
   }, [])
   // リターン
-  return (
-    <Helmet>
-      <script async src='https://cdn.iframe.ly/embed.js' />
-    </Helmet>
-  )
+  return <script async src='https://cdn.iframe.ly/embed.js' />
 }
 
 export default Iframely

@@ -5,9 +5,6 @@ import React from 'react'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 
-// Iframely
-import Iframely from './Iframely'
-
 // 自作モジュール
 import Layout from './Layout'
 
@@ -38,10 +35,6 @@ const PagePost = ({ data, pageContext }) => {
   // リターン
   return (
     <Layout pageContext={pageContext}>
-      {
-        // Iframely
-      }
-      <Iframely />
       {
         // タイトル
       }
