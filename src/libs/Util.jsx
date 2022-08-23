@@ -161,7 +161,7 @@ const richLinkProcessor = ({ node }) => {
   // エンドポイントアクセス
   const [data, setData] = useState(null)
   useEffect(() => {
-    // フェッチ関数
+    // フェッチ
     const getIframely = async url => {
       await fetch(url)
         .then(res => {
