@@ -25,7 +25,7 @@ import {
   PocketIcon,
   TumblrIcon,
   TwitterIcon
-} from 'react-share'
+} from 'next-share'
 
 // 自作ライブラリー
 import { sizeShareButton } from '../libs/Constant'
