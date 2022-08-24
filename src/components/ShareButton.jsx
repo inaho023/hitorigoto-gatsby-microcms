@@ -28,7 +28,7 @@ import {
 } from 'next-share'
 
 // 自作ライブラリー
-import { sizeShareButton } from '../libs/Constant'
+import { shareButton } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/ShareButton.module.scss'
@@ -56,28 +56,28 @@ const ShareButton = ({ blog }) => {
   return (
     <Box className={styles.share}>
       <TwitterShareButton url={url} title={title} hashtags={[data.site.siteMetadata.title]}>
-        <TwitterIcon size={sizeShareButton} round />
+        <TwitterIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </TwitterShareButton>
       <FacebookShareButton url={url} quote={title}>
-        <FacebookIcon size={sizeShareButton} round />
+        <FacebookIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </FacebookShareButton>
       <TumblrShareButton url={url} title={title}>
-        <TumblrIcon size={sizeShareButton} round />
+        <TumblrIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </TumblrShareButton>
       <LineShareButton url={url} title={title}>
-        <LineIcon size={sizeShareButton} round />
+        <LineIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </LineShareButton>
       <PinterestShareButton url={url} description={title} media={''}>
-        <PinterestIcon size={sizeShareButton} round />
+        <PinterestIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </PinterestShareButton>
       <PocketShareButton url={url} title={title}>
-        <PocketIcon size={sizeShareButton} round />
+        <PocketIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </PocketShareButton>
       <HatenaShareButton url={url} title={title}>
-        <HatenaIcon size={sizeShareButton} round />
+        <HatenaIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </HatenaShareButton>
       <EmailShareButton url={url} subject={title} body={title}>
-        <EmailIcon size={sizeShareButton} round />
+        <EmailIcon className={styles.button} size={shareButton.size} round iconFillColor={shareButton.color} />
       </EmailShareButton>
     </Box>
   )
