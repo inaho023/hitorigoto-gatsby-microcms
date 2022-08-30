@@ -38,7 +38,7 @@
     "gatsby-plugin-sass": "^5.1.0",
     "gatsby-plugin-sharp": "^4.1.0",
     "gatsby-plugin-sitemap": "^5.1.0",
-    "gatsby-source-microcms": "^2.0.0",
+    "gatsby-source-microcms": "^3.0.0",
     "js-base64": "^3.7.2",
     "lightgallery": "^2.5.0",
     "next-share": "^0.18.0",
