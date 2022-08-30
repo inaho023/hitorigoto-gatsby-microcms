@@ -21,7 +21,7 @@ const CategoryMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsCategory(limit: 1024) {
+      allMicrocmsCategory(limit: 10000) {
         nodes {
           categoryId
           name

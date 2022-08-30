@@ -27,24 +27,17 @@ const ArchiveMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsBlog(limit: 1024, sort: { fields: datetime, order: DESC }) {
+      allMicrocmsBlog(limit: 10000, sort: { fields: datetime, order: DESC }) {
         nodes {
           datetime(formatString: "YYYYMM")
         }
       }
     }
   `)
-  // 配列初期化
-  const arrayYear = []
-  const arrayMonth = []
-  // 年月を配列化
-  data.allMicrocmsBlog.nodes.map((node, index) => {
-    arrayYear[index] = dayjs(node.datetime, 'YYYYMM').format('YYYY')
-    arrayMonth[index] = dayjs(node.datetime, 'YYYYMM').format('YYYYMM')
-  })
-  // 年および年月の配列をユニーク化
-  const siteYear = Array.from(new Set(arrayYear))
-  const siteMonth = Array.from(new Set(arrayMonth))
+  // 年配列取得（ユニーク化済）
+  const siteYear = Array.from(new Set(data.allMicrocmsBlog.nodes.map(node => dayjs(node.datetime, 'YYYYMM').format('YYYY'))))
+  // 年月配列取得（ユニーク化済）
+  const siteMonth = Array.from(new Set(data.allMicrocmsBlog.nodes.map(node => node.datetime)))
   // 月別アーカイブ
   return (
     <Box className={styles.wrapper}>
