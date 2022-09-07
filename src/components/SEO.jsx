@@ -104,6 +104,7 @@ const SEO = ({ location, pageContext }) => {
   return (
     <>
       <title>{pageInfo.title}</title>
+      <meta charSet='utf-8' />
       <meta name='description' content={pageInfo.description} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta property='og:type' content={pageInfo.type} />
