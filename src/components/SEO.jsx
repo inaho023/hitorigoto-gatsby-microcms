@@ -89,6 +89,7 @@ const SEO = ({ location, pageContext }) => {
       }
       break
     default:
+      // ページ情報
       pageInfo = {
         type: 'article',
         url: site.siteUrl + location.pathname,
