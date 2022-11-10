@@ -43,7 +43,7 @@ const BlogInfo = ({ blog }) => {
   return (
     <Grid container className={styles.info} key={'Info'} spacing={0}>
       <Grid item className={styles.title} xs={12}>
-        <h1>{blog.title}</h1>
+        <h1>{blog.title && blog.title}</h1>
       </Grid>
       <Grid item className={styles.wrapper} xs={12}>
         <Grid container spacing={0}>

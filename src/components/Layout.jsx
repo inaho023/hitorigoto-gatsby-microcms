@@ -45,17 +45,17 @@ const Layout = ({ children }) => {
       <section id={'Header'} />
       <Menubar />
       <Container maxWidth={'xl'}>
-        <section id={'title'} key={'title'}>
+        <Box id={'title'}>
           <Link className={styles.title} key={'title'} to={'/'}>
-            <h1>{data.site.siteMetadata.title}</h1>
-          </Link>
-          <Link className={styles.subtitle} key={'subtitle'} to={'/'}>
-            <h2>{data.site.siteMetadata.subtitle}</h2>
+            <h1>
+              <span>{data.site.siteMetadata.title}</span>
+              <span>{data.site.siteMetadata.subtitle}</span>
+            </h1>
           </Link>
           <p className={styles.description}>{data.site.siteMetadata.description}</p>
-        </section>
+        </Box>
         <article className={styles.main}>{children}</article>
-        <section id={'Bottom'}>
+        <Box id={'Bottom'}>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={6} md={3}>
               <ArchiveMenu />
@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
               <TagCloud />
             </Grid>
           </Grid>
-        </section>
+        </Box>
       </Container>
       <footer className={styles.footer}>
         <Link key={'Footer'} to={'/'}>

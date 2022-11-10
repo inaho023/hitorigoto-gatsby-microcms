@@ -11,14 +11,6 @@
   border-radius: 8px;
   box-sizing: border-box;
 
-  h1 {
-    font-size: 36px;
-    font-weight: 700;
-    margin: 40px 0 20px;
-    padding: 8px 16px;
-    border-radius: 8px;
-  }
-
   h2 {
     font-size: 33px;
     font-weight: 700;
@@ -44,6 +36,15 @@
     padding: 8px 16px;
     border-top: 2px solid orange;
     border-bottom: 2px solid orange;
+  }
+
+  h5 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 40px 0 8px;
+    padding: 8px 16px;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
   }
 
   a {

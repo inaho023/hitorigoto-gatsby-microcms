@@ -42,7 +42,9 @@ const PhotoGallery = ({ galleries }) => {
         <Accordion key={'Gallery-' + gallery.id} className={styles.gallery} defaultExpanded>
           <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={1} />}>
             <Icon path={mdiCamera} size={1} title={'ギャラリー'} />
-            <span className={styles.text}>{galleryTitle}</span>
+            <span className={styles.text}>
+              <h3>{galleryTitle}</h3>
+            </span>
           </AccordionSummary>
           <AccordionDetails className={styles.detail}>
             <LightGallery
