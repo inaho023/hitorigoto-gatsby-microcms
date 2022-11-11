@@ -7,16 +7,21 @@
   margin-bottom: 8px;
   margin-left: auto;
   margin-right: auto;
+  background-color: orange;
 
   .summary {
-    background: #cc8500;
     padding: 8px;
+    background-color: #cc8500;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     .text {
       margin-left: auto;
       margin-right: auto;
 
       h3 {
+        margin: 0px;
+        padding: 0px;
         font-weight: 500;
         font-size: 1.25rem;
       }
