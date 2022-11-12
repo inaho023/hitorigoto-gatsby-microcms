@@ -32,7 +32,41 @@ module.exports = {
       }
     },
     'gatsby-plugin-sass',
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
+    {
+      resolve: '@imgix/gatsby',
+      options: {
+        domain: 'images.microcms-assets.io',
+        defaultImgixParams: { auto: ['format', 'compress'] },
+        fields: [
+          {
+            nodeType: 'MicrocmsBlogImage',
+            fieldName: 'imgixImage',
+            rawURLKey: 'url',
+            URLPrefix: 'https:'
+          },
+          {
+            nodeType: 'MicrocmsPageImage',
+            fieldName: 'imgixImage',
+            rawURLKey: 'url',
+            URLPrefix: 'https:'
+          },
+          {
+            nodeType: 'MicrocmsPicturePicture',
+            fieldName: 'imgixImage',
+            rawURLKey: 'url',
+            URLPrefix: 'https:'
+          },
+          {
+            nodeType: 'MicrocmsBlogGalleriesGalleryImagesImage',
+            fieldName: 'imgixImage',
+            rawURLKey: 'url',
+            URLPrefix: 'https:'
+          }
+        ]
+      }
+    },
     'gatsby-plugin-material-ui',
     {
       resolve: 'gatsby-plugin-manifest',
