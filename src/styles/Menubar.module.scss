@@ -10,12 +10,9 @@
     display: flex;
     background: black;
 
-    .grow {
-      flex-grow: 1;
-    }
-
     .title {
       display: inline-flex;
+      flex-grow: 1;
 
       p {
         color: orange;
