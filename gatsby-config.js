@@ -64,7 +64,7 @@ module.exports = {
     //     ]
     //   }
     // },
-    'gatsby-plugin-material-ui',
+    // 'gatsby-plugin-material-ui',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
