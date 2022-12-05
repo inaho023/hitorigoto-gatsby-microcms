@@ -31,10 +31,10 @@ const CategoryMenu = () => {
   `)
   // リターン
   return (
-    <Box className={styles.wrapper}>
+    <article className={styles.wrapper}>
       <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiShape} size={1.5} />
-        <p>カテゴリー</p>
+        <h1>カテゴリー</h1>
       </Box>
       <ButtonGroup orientation={'vertical'} fullWidth>
         {data.allMicrocmsCategory.nodes.map(node => {
@@ -47,7 +47,7 @@ const CategoryMenu = () => {
           )
         })}
       </ButtonGroup>
-    </Box>
+    </article>
   )
 }
 

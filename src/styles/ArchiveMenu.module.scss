@@ -15,7 +15,7 @@
       text-align: center;
     }
 
-    p {
+    h1 {
       vertical-align: middle;
       text-align: center;
       font-size: 1.75rem;
@@ -52,7 +52,7 @@
         .button:focus,
         .button:active {
           cursor: pointer;
-          font-weight: 900;
+          font-weight: 700;
           transition: all 0.5s;
         }
       }

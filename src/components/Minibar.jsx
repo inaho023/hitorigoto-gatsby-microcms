@@ -92,7 +92,7 @@ const Minibar = ({ pageContext }) => {
             <Icon path={listIcon} size={2} />
           </span>
           <span className={styles.text}>
-            <p>{listTitle}</p>
+            <h1>{listTitle}</h1>
           </span>
         </span>
       </span>

@@ -17,6 +17,15 @@ a {
   box-sizing: border-box;
 }
 
+header {
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(33, 21, 00, 0.75);
+  z-index: 10 !important;
+}
+
 .title {
   width: content;
   display: block;
@@ -43,35 +52,7 @@ a {
   h1:hover,
   h1:focus,
   h1:active {
-    font-weight: 500;
     text-shadow: 2px 2px 4px #332100;
-    transition: all 0.5s;
-  }
-}
-
-.subtitle {
-  width: content;
-  display: block;
-  margin: auto;
-
-  h1 {
-    width: content;
-    display: block;
-    margin: auto;
-    padding: 16px;
-    color: #332100;
-    line-height: 2.75rem;
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-align: center;
-    text-shadow: 2px 2px 4px #332100;
-  }
-
-  h2:hover,
-  h2:focus,
-  h2:active {
-    font-weight: 700;
-    text-shadow: 4px 4px 8px #332100;
     transition: all 0.5s;
   }
 }

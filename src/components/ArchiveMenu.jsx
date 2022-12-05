@@ -40,10 +40,10 @@ const ArchiveMenu = () => {
   const siteMonth = Array.from(new Set(data.allMicrocmsBlog.nodes.map(node => node.datetime)))
   // 月別アーカイブ
   return (
-    <Box className={styles.wrapper}>
+    <article className={styles.wrapper}>
       <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiArchive} size={1.5} />
-        <p>アーカイブ</p>
+        <h1>アーカイブ</h1>
       </Box>
       <Box className={styles.menu}>
         {siteYear.map(siteYear => {
@@ -71,7 +71,7 @@ const ArchiveMenu = () => {
           )
         })}
       </Box>
-    </Box>
+    </article>
   )
 }
 

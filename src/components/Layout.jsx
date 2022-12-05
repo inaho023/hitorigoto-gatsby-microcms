@@ -42,8 +42,9 @@ const Layout = ({ children }) => {
   // リターン
   return (
     <>
-      <section id={'Header'} />
-      <Menubar />
+      <header id={'Header'}>
+        <Menubar />
+      </header>
       <Container maxWidth={'xl'}>
         <Box id={'title'}>
           <Link className={styles.title} key={'title'} to={'/'}>

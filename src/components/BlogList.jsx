@@ -89,7 +89,7 @@ const BlogList = ({ data, pageContext }) => {
                     </CardMedia>
                     <CardContent className={styles.content}>
                       <Box className={styles.title}>
-                        <p>{blog.node.title}</p>
+                        <h2>{blog.node.title}</h2>
                       </Box>
                     </CardContent>
                   </CardActionArea>

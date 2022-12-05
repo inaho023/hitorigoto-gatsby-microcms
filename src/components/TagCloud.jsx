@@ -31,10 +31,10 @@ const TagCloud = () => {
   `)
   // リターン
   return (
-    <Box className={styles.wrapper}>
+    <article className={styles.wrapper}>
       <Box className={styles.title}>
         <Icon className={styles.icon} path={mdiTag} size={1.5} />
-        <p>タグ</p>
+        <h1>タグ</h1>
       </Box>
       <Card className={styles.tagcloud}>
         {data.allMicrocmsTag.nodes.map(node => {
@@ -47,7 +47,7 @@ const TagCloud = () => {
           )
         })}
       </Card>
-    </Box>
+    </article>
   )
 }
 
