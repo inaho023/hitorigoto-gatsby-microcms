@@ -1,10 +1,11 @@
+//
 const env = process.env.NODE_ENV || 'development'
 require('dotenv').config({ path: `./.env.${env}` })
-
+//
 const path = require('path')
-
+//
 const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules')
-
+//
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
@@ -43,26 +44,22 @@ module.exports = {
           {
             nodeType: 'MicrocmsBlogImage',
             fieldName: 'imgixImage',
-            rawURLKey: 'url',
-            URLPrefix: 'https:'
+            rawURLKey: 'url'
           },
           {
             nodeType: 'MicrocmsPageImage',
             fieldName: 'imgixImage',
-            rawURLKey: 'url',
-            URLPrefix: 'https:'
+            rawURLKey: 'url'
           },
           {
             nodeType: 'MicrocmsPicturePicture',
             fieldName: 'imgixImage',
-            rawURLKey: 'url',
-            URLPrefix: 'https:'
+            rawURLKey: 'url'
           },
           {
             nodeType: 'MicrocmsBlogGalleriesGalleryImagesImage',
             fieldName: 'imgixImage',
-            rawURLKey: 'url',
-            URLPrefix: 'https:'
+            rawURLKey: 'url'
           }
         ]
       }
