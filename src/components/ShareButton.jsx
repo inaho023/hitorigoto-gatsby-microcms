@@ -50,7 +50,7 @@ const ShareButton = ({ blog }) => {
     }
   `)
   //
-  const url = `${data.site.siteMetadata.siteUrl}/post/${blog.blogId}`
+  const url = `${data.site.siteMetadata.siteUrl}/post/${blog.blogId}/`
   const title = '「' + blog.title.replace('＠', ' ＠ ').replace('@', ' @ ') + '」'
   // リターン
   return (
