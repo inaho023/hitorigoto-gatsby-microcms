@@ -63,7 +63,7 @@ jobs:
           DISQUS_SHORTNAME: ${{ secrets.DISQUS_SHORTNAME }}
           GATSBY_MICROCMS_API_KEY: ${{ secrets.GATSBY_MICROCMS_API_KEY }}
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
-          GENERATE_SOURCEMAP: false
+          GENERATE_SOURCEMAP: "false"
           LIGHTGALLERY_KEY: ${{ secrets.LIGHTGALLERY_KEY }}
           MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
