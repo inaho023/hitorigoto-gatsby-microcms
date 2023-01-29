@@ -73,5 +73,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           projectName: "hitorigoto-gatsby-microcms"
-          directory: "./public"
+          directory: "public"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
