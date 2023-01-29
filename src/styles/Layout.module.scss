@@ -26,6 +26,13 @@ header {
   z-index: 10 !important;
 }
 
+header:hover,
+header:focus,
+header:active {
+  background-color: rgba(33, 21, 00, 1);
+  transition: all 0.5s;
+}
+
 .title {
   width: content;
   display: block;
@@ -53,7 +60,7 @@ header {
   h1:hover,
   h1:focus,
   h1:active {
-    text-shadow: 2px 2px 4px #332100;
+    text-shadow: 1px 1px 2px #332100;
     transition: all 0.5s;
   }
 }
@@ -102,7 +109,7 @@ header {
   .fab {
     color: orange;
     background-color: #332100;
-    opacity: 0.5;
+    opacity: 0.75;
   }
 
   .fab:hover,
