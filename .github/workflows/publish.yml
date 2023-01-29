@@ -1,7 +1,7 @@
 name: Deploy Gatsby site to Cloudflare Pages
 on:
   repository_dispatch:
-    types: [update_post]
+    types: [UpdateBlog, UpdatePage]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: ${{ vars.NODE_VERSION }}
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
@@ -36,7 +36,7 @@ jobs:
           DISQUS_SHORTNAME: ${{ secrets.DISQUS_SHORTNAME }}
           GATSBY_MICROCMS_API_KEY: ${{ secrets.GATSBY_MICROCMS_API_KEY }}
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
-          GENERATE_SOURCEMAP: "false"
+          GENERATE_SOURCEMAP: ${{ vars.GENERATE_SOURCEMAP }}
           LIGHTGALLERY_KEY: ${{ secrets.LIGHTGALLERY_KEY }}
           MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
@@ -45,6 +45,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: "hitorigoto-gatsby-microcms"
-          directory: "public"
+          projectName: ${{ vars.PROJECT_NAME }}
+          directory: ${{ vars.ASSET_DIRECTORY }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
