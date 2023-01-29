@@ -1,5 +1,7 @@
 name: Deploy Gatsby site to Cloudflare Pages
 on:
+  push:
+    branches: [main]
   repository_dispatch:
     types: [UpdateBlog, UpdatePage]
 jobs:
