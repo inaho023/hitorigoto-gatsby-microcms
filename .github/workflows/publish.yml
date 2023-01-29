@@ -2,7 +2,7 @@
 #
 # To get started with Gatsby see: https://www.gatsbyjs.com/docs/quick-start/
 #
-name: Deploy Gatsby site to Pages
+name: Deploy Gatsby site to Cloudflare Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -60,6 +60,12 @@ jobs:
       - name: Build with Gatsby
         env:
           PREFIX_PATHS: "true"
+          DISQUS_SHORTNAME: ${{ secrets.DISQUS_SHORTNAME }}
+          GATSBY_MICROCMS_API_KEY: ${{ secrets.GATSBY_MICROCMS_API_KEY }}
+          GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
+          GENERATE_SOURCEMAP: ${{ env.DISQUS_SHORTNAME }}
+          LIGHTGALLERY_KEY: ${{ secrets.LIGHTGALLERY_KEY }}
+          MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
