@@ -47,6 +47,7 @@ const Menubar = () => {
             {data.site.siteMetadata.subtitle}
           </p>
         </Link>
+        <Box className={styles.grow}></Box>
         <Box className={styles.icon}>
           <Link key={'Profile'} to={'/profile/'}>
             <IconButton className={styles.button} color={'inherit'}>
