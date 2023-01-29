@@ -70,8 +70,8 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: "de38a489000c02986adb86276e575a08"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           projectName: "hitorigoto-gatsby-microcms"
-          directory: "./public"
+          directory: "public"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
