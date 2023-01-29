@@ -63,7 +63,7 @@ jobs:
           DISQUS_SHORTNAME: ${{ secrets.DISQUS_SHORTNAME }}
           GATSBY_MICROCMS_API_KEY: ${{ secrets.GATSBY_MICROCMS_API_KEY }}
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
-          GENERATE_SOURCEMAP: ${{ env.GENERATE_SOURCEMAP }}
+          GENERATE_SOURCEMAP: false
           LIGHTGALLERY_KEY: ${{ secrets.LIGHTGALLERY_KEY }}
           MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
@@ -73,5 +73,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           projectName: "hitorigoto-gatsby-microcms"
-          directory: "public"
+          directory: "./public"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
