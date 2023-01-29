@@ -1,11 +1,8 @@
 name: Deploy Gatsby site to Cloudflare Pages
-
 on:
   repository_dispatch:
     types: [update_post]
-
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
