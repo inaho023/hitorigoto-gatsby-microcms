@@ -1,6 +1,8 @@
 name: Deploy Gatsby site to Cloudflare Pages
 
-on: [push]
+on:
+  repository_dispatch:
+    types: [update_post]
 
 jobs:
   # Build job
