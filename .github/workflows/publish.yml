@@ -67,15 +67,11 @@ jobs:
           LIGHTGALLERY_KEY: ${{ secrets.LIGHTGALLERY_KEY }}
           MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./public
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           projectName: "hitorigoto-gatsby-microcms"
-          directory: ${{ env.ASSET_DIRECTORY }}
+          directory: "public"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
