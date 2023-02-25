@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Gatsby
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage, getSrc } from 'gatsby-plugin-image'
 
 // Material-UI
 import Grid from '@mui/material/Grid'
@@ -51,6 +51,7 @@ const PhotoGallery = ({ galleries }) => {
           <AccordionDetails className={styles.detail}>
             <LightGallery
               licenseKey={process.env.LIGHTGALLERY_KEY}
+              exThumbImage={'data-external-thumb-image'}
               plugins={[lgZoom, lgThumbnail]}
               mode={'lg-slide'}
               elementClassNames={styles.thumbnails}
@@ -83,6 +84,7 @@ const PhotoGallery = ({ galleries }) => {
                       '枚目'
                     const dataSrc = images.image.url + '?' + imageWatermark.full
                     const dataSize = images.image.width.toString() + '-' + images.image.height.toString()
+                    const dataThumb = getSrc(images.image.imgixImage)
                     // リターン
                     return (
                       <Grid
@@ -93,6 +95,7 @@ const PhotoGallery = ({ galleries }) => {
                         md={3}
                         data-src={dataSrc}
                         data-lg-size={dataSize}
+                        data-external-thumb-image={dataThumb}
                       >
                         <GatsbyImage image={getImage(images.image.imgixImage)} alt={title} />
                       </Grid>
