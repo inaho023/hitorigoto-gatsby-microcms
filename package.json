@@ -1,6 +1,6 @@
 {
   "name": "hitorigoto-gatsby-microcms",
-  "version": "2.15.0",
+  "version": "2.16.0",
   "private": true,
   "description": "いなほちゅんのひとりごと ブログ版",
   "author": "inaho023",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@imgix/gatsby": "^2.1.2",
     "@mdi/js": "^7.1.96",
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.11.10",
@@ -28,19 +29,20 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",
-    "gatsby": "^5.6.1",
+    "gatsby": "^5.7.0",
     "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-disqus": "^1.2.4",
-    "gatsby-plugin-google-gtag": "^5.6.0",
-    "gatsby-plugin-image": "^3.6.0",
-    "gatsby-plugin-manifest": "^5.6.0",
+    "gatsby-plugin-google-gtag": "^5.7.0",
+    "gatsby-plugin-image": "^3.7.0",
+    "gatsby-plugin-manifest": "^5.7.0",
     "gatsby-plugin-robots-txt": "^1.8.0",
-    "gatsby-plugin-sass": "^6.6.0",
-    "gatsby-plugin-sharp": "^5.6.0",
-    "gatsby-plugin-sitemap": "^6.6.0",
+    "gatsby-plugin-sass": "^6.7.0",
+    "gatsby-plugin-sharp": "^5.7.0",
+    "gatsby-plugin-sitemap": "^6.7.0",
     "gatsby-source-microcms": "^3.0.0",
     "js-base64": "^3.7.5",
     "lightgallery": "^2.7.1",
+    "lmdb": "^2.7.9",
     "next-share": "^0.19.0",
     "node-sass": "^8.0.0",
     "path": "^0.12.7",
@@ -66,6 +68,6 @@
     "eslint-webpack-plugin": "^3.2.0",
     "gatsby-plugin-eslint": "^4.0.3",
     "prettier": "^2.8.4",
-    "wrangler": "^2.10.0"
+    "wrangler": "^2.11.1"
   }
 }
