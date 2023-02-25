@@ -3,6 +3,7 @@ import React from 'react'
 
 // Gatsby
 import { graphql } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // 自作モジュール
 import Layout from '../components/Layout'
@@ -11,9 +12,6 @@ import SEO from '../components/SEO'
 // スタイルシート
 import * as styles from '../styles/404.module.scss'
 
-// 定数
-import { imgixImageOption } from '../libs/Constant'
-
 // ページクエリー
 export const query = graphql`
   query e404PageQuery {
@@ -21,11 +19,36 @@ export const query = graphql`
       pictureId
       title
       picture {
-        url
-        width
-        height
+        imgixImage {
+          gatsbyImageData(
+            imgixParams: {
+              fit: "crop"
+              crop: "faces"
+              q: 50
+              w: 1200
+              markbase: "https://images.microcms-assets.io/assets/"
+              mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+              markalign: "bottom,center"
+              markalpha: 40
+              markscale: 25
+            }
+            placeholderImgixParams: {
+              fit: "crop"
+              crop: "faces"
+              q: 50
+              w: 1200
+              markbase: "https://images.microcms-assets.io/assets/"
+              mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+              markalign: "bottom,center"
+              markalpha: 40
+              markscale: 25
+            }
+            placeholder: BLURRED
+            width: 1200
+            layout: CONSTRAINED
+          )
+        }
       }
-      parameter
     }
   }
 `
@@ -36,24 +59,11 @@ export const Head = ({ location, pageContext }) => {
 
 // 404ページ
 const E404 = ({ data }) => {
-  // 画像取得
-  const src = data.microcmsPicture.picture.url + imgixImageOption.e404.m
-  const srcSet =
-    data.microcmsPicture.picture.url +
-    imgixImageOption.e404.s +
-    ' 600w,' +
-    data.microcmsPicture.picture.url +
-    imgixImageOption.e404.m +
-    ' 900w,' +
-    data.microcmsPicture.picture.url +
-    imgixImageOption.e404.l +
-    ' 1200w'
-  const sizes = '100w'
   // リターン
   return (
     <Layout>
       <div className={styles.post}>
-        <img srcSet={srcSet} sizes={sizes} src={src} alt={'ページがありません。'} loading={'lazy'} width={1200} height={630} />
+        <GatsbyImage image={getImage(data.microcmsPicture.picture.imgixImage)} alt={'ページがありません。'} />
       </div>
     </Layout>
   )

@@ -20,9 +20,16 @@ export const query = graphql`
       datetime(formatString: "YYYYMMDD")
       body
       image {
-        url
-        width
-        height
+        imgixImage {
+          gatsbyImageData(
+            imgixParams: { fit: "crop", crop: "faces", fm: "webp", q: 40, width: 960, height: 720 }
+            placeholderImgixParams: { fit: "crop", crop: "faces", fm: "webp", q: 40, width: 960, height: 720 }
+            placeholder: BLURRED
+            width: 960
+            height: 720
+            layout: CONSTRAINED
+          )
+        }
       }
     }
   }

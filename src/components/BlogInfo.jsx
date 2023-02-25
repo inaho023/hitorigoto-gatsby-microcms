@@ -3,6 +3,7 @@ import React from 'react'
 
 // Gatsby
 import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Material-UI
 import Grid from '@mui/material/Grid'
@@ -19,26 +20,11 @@ import dayjs from 'dayjs'
 // 自作コンポーネント
 import ShareButton from './ShareButton'
 
-// 自作ライブラリー
-import { imgixWatermark } from '../libs/Util'
-import { imgixImageOption } from '../libs/Constant'
-
 // スタイルシート
 import * as styles from '../styles/BlogInfo.module.scss'
 
 // ブログ記事情報コンポーネント
 const BlogInfo = ({ blog }) => {
-  // ウォーターマークURL取得
-  const imageWatermark = imgixWatermark()
-  // 画像URL生成
-  const src = blog.image.url + imgixImageOption.detail.m + imageWatermark.m
-  const srcSet =
-    `${blog.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,` +
-    `${blog.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,` +
-    `${blog.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,` +
-    `${blog.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
-    `${blog.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
-  const sizes = '(min-width:900px) 50vw, 100vw'
   // リターン
   return (
     <Grid container className={styles.info} key={'Info'} spacing={0}>
@@ -48,7 +34,7 @@ const BlogInfo = ({ blog }) => {
       <Grid item className={styles.wrapper} xs={12}>
         <Grid container spacing={0}>
           <Grid item xs={12} md={6}>
-            <img className={styles.image} width={960} height={720} srcSet={srcSet} sizes={sizes} src={src} alt={blog.title} />
+            <GatsbyImage className={styles.image} image={getImage(blog.image.imgixImage)} alt={blog.title} />
           </Grid>
           <Grid item className={styles.wrapper} xs={12} md={6}>
             <Grid item className={styles.box} key={'BoxDate'} xs={12}>

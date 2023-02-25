@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// Gatsby
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 // Material-UI
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
@@ -9,8 +12,7 @@ import Box from '@mui/material/Box'
 import Layout from './Layout'
 
 // 自作ライブラリー
-import { imgixWatermark, richEditorProcessor } from '../libs/Util'
-import { imgixImageOption } from '../libs/Constant'
+import { richEditorProcessor } from '../libs/Util'
 
 // スタイルシート
 import * as styles from '../styles/PagePost.module.scss'
@@ -19,17 +21,6 @@ import * as styles from '../styles/PagePost.module.scss'
 const PagePost = ({ data, pageContext }) => {
   // ページ記事詳細
   const page = data.microcmsPage
-  // ウォーターマークURL取得
-  const imageWatermark = imgixWatermark()
-  // 画像URL生成
-  const src = page.image.url + imgixImageOption.detail.m + imageWatermark.m
-  const srcSet =
-    `${page.image.url}${imgixImageOption.detail.xs}${imageWatermark.xs} 320w,` +
-    `${page.image.url}${imgixImageOption.detail.s}${imageWatermark.s} 480w,` +
-    `${page.image.url}${imgixImageOption.detail.m}${imageWatermark.m} 640w,` +
-    `${page.image.url}${imgixImageOption.detail.l}${imageWatermark.l} 800w,` +
-    `${page.image.url}${imgixImageOption.detail.xl}${imageWatermark.xl} 960w`
-  const sizes = '100vw'
   // 本文処理
   const richEditor = richEditorProcessor({ richEditor: page.body, title: page.title })
   // リターン
@@ -44,7 +35,7 @@ const PagePost = ({ data, pageContext }) => {
       {
         // タイトル画像
       }
-      <img className={styles.image} width={960} height={720} srcSet={srcSet} sizes={sizes} src={src} alt={page.title} />
+      <GatsbyImage className={styles.image} image={getImage(page.image.imgixImage)} alt={page.title} />
       {
         // 記事本文
       }

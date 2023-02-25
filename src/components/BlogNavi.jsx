@@ -3,6 +3,7 @@ import React from 'react'
 
 // Gatsby
 import { Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Material-UI
 import Grid from '@mui/material/Grid'
@@ -11,23 +12,17 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea } from '@mui/material'
 
-// 自作ライブラリー
-import { imgixWatermark } from '../libs/Util'
-import { imgixImageOption } from '../libs/Constant'
-
 // スタイルシート
 import * as styles from '../styles/BlogNavi.module.scss'
 
 // ブログ記事ナビゲーションコンポーネント
 const BlogNavi = ({ pageContext }) => {
-  // ウォーターマーク生成
-  const imageWatermark = imgixWatermark()
   // 前記事の画像
   const prev = pageContext?.prev && pageContext.prev
-  const prevImage = prev ? prev.node.image.url + imgixImageOption.navi + imageWatermark.xs : null
+  const prevImage = prev ? getImage(prev.node.image.imgixImage) : null
   // 次記事の画像
   const next = pageContext?.next && pageContext.next
-  const nextImage = next ? next.node.image.url + imgixImageOption.navi + imageWatermark.xs : null
+  const nextImage = next ? getImage(next.node.image.imgixImage) : null
   // リターン
   return (
     <nav className={styles.nav}>
@@ -41,7 +36,7 @@ const BlogNavi = ({ pageContext }) => {
                     <p>{prev.node.title}</p>
                   </CardContent>
                   <CardMedia className={styles.media}>
-                    <img src={prevImage} alt={prev.node.title} width={96} height={96} />
+                    <GatsbyImage image={prevImage} alt={prev.node.title} />
                   </CardMedia>
                 </CardActionArea>
               </Card>
@@ -56,7 +51,7 @@ const BlogNavi = ({ pageContext }) => {
               <Card className={styles.next}>
                 <CardActionArea className={styles.area}>
                   <CardMedia className={styles.media}>
-                    <img src={nextImage} alt={next.node.title} width={96} height={96} />
+                    <GatsbyImage image={nextImage} alt={next.node.title} />
                   </CardMedia>
                   <CardContent className={styles.content}>
                     <p>{next.node.title}</p>

@@ -27,9 +27,38 @@ export const pageQuery = graphql`
         name
       }
       image {
-        url
-        width
-        height
+        imgixImage {
+          gatsbyImageData(
+            imgixParams: {
+              fit: "crop"
+              crop: "faces"
+              q: 40
+              w: 960
+              h: 720
+              markbase: "https://images.microcms-assets.io/assets/"
+              mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+              markalign: "bottom,center"
+              markalpha: 40
+              markscale: 25
+            }
+            placeholderImgixParams: {
+              fit: "crop"
+              crop: "faces"
+              q: 40
+              w: 960
+              h: 720
+              markbase: "https://images.microcms-assets.io/assets/"
+              mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+              markalign: "bottom,center"
+              markalpha: 40
+              markscale: 25
+            }
+            placeholder: BLURRED
+            width: 960
+            height: 720
+            layout: CONSTRAINED
+          )
+        }
       }
       body
       codeClass {
@@ -46,6 +75,38 @@ export const pageQuery = graphql`
               url
               width
               height
+              imgixImage {
+                gatsbyImageData(
+                  imgixParams: {
+                    fit: "crop"
+                    crop: "faces"
+                    q: 15
+                    w: 480
+                    h: 480
+                    markbase: "https://images.microcms-assets.io/assets/"
+                    mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+                    markalign: "bottom,center"
+                    markalpha: 40
+                    markscale: 25
+                  }
+                  placeholderImgixParams: {
+                    fit: "crop"
+                    crop: "faces"
+                    q: 15
+                    w: 480
+                    h: 480
+                    markbase: "https://images.microcms-assets.io/assets/"
+                    mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
+                    markalign: "bottom,center"
+                    markalpha: 40
+                    markscale: 25
+                  }
+                  placeholder: BLURRED
+                  width: 480
+                  height: 480
+                  layout: CONSTRAINED
+                )
+              }
             }
           }
         }

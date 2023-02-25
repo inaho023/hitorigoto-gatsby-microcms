@@ -1,6 +1,9 @@
 // React
 import React from 'react'
 
+// Gatsby
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 // Material-UI
 import Grid from '@mui/material/Grid'
 import Accordion from '@mui/material/Accordion'
@@ -18,7 +21,6 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 
 // 自作ライブラリー
 import { imgixWatermark } from '../libs/Util'
-import { imgixImageOption } from '../libs/Constant'
 
 // スタイルシート
 import * as styles from '../styles/PhotoGallery.module.scss'
@@ -72,24 +74,15 @@ const PhotoGallery = ({ galleries }) => {
                 {
                   // 画像を配置
                   gallery.images.map((images, index) => {
-                    // キャプション生成
+                    // ギャラリー用データー生成
                     const title =
                       gallery.name +
                       ' ' +
                       (gallery.display_name ? gallery.display_name + ' ' : '') +
                       (index + 1).toString() +
                       '枚目'
-                    // 画像URL生成
                     const dataSrc = images.image.url + '?' + imageWatermark.full
                     const dataSize = images.image.width.toString() + '-' + images.image.height.toString()
-                    const src = images.image.url + imgixImageOption.gallery.xl + imageWatermark.m
-                    const srcSet =
-                      `${images.image.url}${imgixImageOption.gallery.xs}${imageWatermark.s} 280w,` +
-                      `${images.image.url}${imgixImageOption.gallery.s}${imageWatermark.s} 330w,` +
-                      `${images.image.url}${imgixImageOption.gallery.m}${imageWatermark.s} 380w,` +
-                      `${images.image.url}${imgixImageOption.gallery.l}${imageWatermark.s} 430w,` +
-                      `${images.image.url}${imgixImageOption.gallery.xl}${imageWatermark.s} 480w`
-                    const sizes = '(min-width:900px) 25vw, 50vw'
                     // リターン
                     return (
                       <Grid
@@ -101,7 +94,7 @@ const PhotoGallery = ({ galleries }) => {
                         data-src={dataSrc}
                         data-lg-size={dataSize}
                       >
-                        <img srcSet={srcSet} sizes={sizes} src={src} alt={title} width={480} height={480} loading={'lazy'} />
+                        <GatsbyImage image={getImage(images.image.imgixImage)} alt={title} />
                       </Grid>
                     )
                   })
