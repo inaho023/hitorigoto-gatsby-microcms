@@ -37,15 +37,17 @@ const PhotoGallery = ({ galleries }) => {
     return galleries.gallery.map(gallery => {
       // クラス名生成
       const className = 'lg-' + gallery.id
-      // ギャラリータイトル設定
-      const galleryTitle = gallery.display_name ? gallery.display_name : gallery.name
+      // ギャラリータイトル設定（フル）
+      const galleryTitleFull = gallery.name + (gallery.display_name && ' ' + gallery.display_name)
+      // ギャラリータイトル設定（サブ）
+      const galleryTitleSub = gallery.display_name ? gallery.display_name : gallery.name
       // リターン
       return (
         <Accordion key={'Gallery-' + gallery.id} className={styles.gallery} defaultExpanded>
           <AccordionSummary className={styles.summary} expandIcon={<Icon path={mdiChevronDown} size={1} />}>
             <Icon path={mdiCamera} size={1} title={'ギャラリー'} />
             <span className={styles.text}>
-              <h3>{galleryTitle}</h3>
+              <h3>{galleryTitleSub}</h3>
             </span>
           </AccordionSummary>
           <AccordionDetails className={styles.detail}>
@@ -76,14 +78,9 @@ const PhotoGallery = ({ galleries }) => {
                   // 画像を配置
                   gallery.images.map((images, index) => {
                     // ギャラリー用データー生成
-                    const title =
-                      gallery.name +
-                      ' ' +
-                      (gallery.display_name ? gallery.display_name + ' ' : '') +
-                      (index + 1).toString() +
-                      '枚目'
-                    const dataSrc = images.image.url + '?' + imageWatermark.full
-                    const dataSize = images.image.width.toString() + '-' + images.image.height.toString()
+                    const title = `${galleryTitleFull} ${(index + 1).toString()}枚目`
+                    const dataSrc = `${images.image.url}?${imageWatermark.full}`
+                    const dataSize = `${images.image.width.toString()}-${images.image.height.toString()}`
                     const dataThumb = getSrc(images.image.imgixImage)
                     // リターン
                     return (
@@ -96,6 +93,7 @@ const PhotoGallery = ({ galleries }) => {
                         data-src={dataSrc}
                         data-lg-size={dataSize}
                         data-external-thumb-image={dataThumb}
+                        title={title}
                       >
                         <GatsbyImage image={getImage(images.image.imgixImage)} alt={title} />
                       </Grid>
