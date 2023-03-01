@@ -27,6 +27,9 @@ export const pageQuery = graphql`
         name
       }
       image {
+        url
+        width
+        height
         imgixImage {
           gatsbyImageData(
             imgixParams: {
