@@ -202,6 +202,9 @@ exports.createPages = async ({ graphql, actions }) => {
             blogId
             title
             image {
+              url
+              width
+              height
               imgixImage {
                 gatsbyImageData(
                   imgixParams: {
