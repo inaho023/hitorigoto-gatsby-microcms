@@ -70,7 +70,7 @@ const SEO = ({ location, pageContext }) => {
         site: site.title + ' ' + site.subtitle,
         position: pageContext.post.title,
         title: `${pageContext.post.title} - ${site.title} ${site.subtitle}`,
-        description: striptags(pageContext.post.body),
+        description: striptags(pageContext.post.body).substring(0, 100),
         image: pageContext.post.image && pageContext.post.image.url + imgixImageOption.ogp + imageWatermark.l
       }
       break
