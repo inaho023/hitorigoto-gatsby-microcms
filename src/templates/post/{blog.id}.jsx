@@ -85,6 +85,7 @@ export const pageQuery = graphql`
                   placeholder: BLURRED
                   width: 480
                   height: 480
+                  srcSetMaxWidth: 480
                   layout: CONSTRAINED
                 )
               }
