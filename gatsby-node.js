@@ -207,23 +207,11 @@ exports.createPages = async ({ graphql, actions }) => {
               height
               imgixImage {
                 gatsbyImageData(
-                  imgixParams: {
-                    fit: "crop"
-                    crop: "faces"
-                    q: 20
-                    w: 96
-                    h: 96
-                    markbase: "https://images.microcms-assets.io/assets/"
-                    mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
-                    markalign: "bottom,center"
-                    markalpha: 40
-                    markscale: 25
-                  }
+                  imgixParams: { fit: "crop", crop: "faces", q: 20, w: 96, h: 96 }
                   placeholderImgixParams: { fit: "crop", crop: "faces", q: 20, w: 96, h: 96 }
                   placeholder: BLURRED
                   width: 96
                   height: 96
-                  srcSetMaxWidth: 96
                   layout: CONSTRAINED
                 )
               }
