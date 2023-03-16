@@ -40,7 +40,7 @@ const TagCloud = () => {
         {data.allMicrocmsTag.nodes.map(node => {
           return (
             <Link key={node.tagId} to={`/tag/${node.tagId}/`}>
-              <Button className={styles.button} size={'medium'} variant={'contained'}>
+              <Button className={styles.button} size={'small'} variant={'contained'}>
                 {node.name}
               </Button>
             </Link>
