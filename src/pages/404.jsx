@@ -24,7 +24,7 @@ export const query = graphql`
             imgixParams: {
               fit: "crop"
               crop: "faces"
-              q: 50
+              q: 40
               w: 1200
               markbase: "https://images.microcms-assets.io/assets/"
               mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
@@ -32,19 +32,10 @@ export const query = graphql`
               markalpha: 40
               markscale: 25
             }
-            placeholderImgixParams: {
-              fit: "crop"
-              crop: "faces"
-              q: 50
-              w: 1200
-              markbase: "https://images.microcms-assets.io/assets/"
-              mark: "6bbffba8f6d74ebea8e8fb201b5ddd27/44ce136c755d4a91a9edecdebea58c45/Watermark.png"
-              markalign: "bottom,center"
-              markalpha: 40
-              markscale: 25
-            }
+            placeholderImgixParams: { fit: "crop", crop: "faces", q: 40, w: 1200 }
             placeholder: BLURRED
             width: 1200
+            srcSetMaxWidth: 1200
             layout: CONSTRAINED
           )
         }

@@ -44,10 +44,11 @@ export const pageQuery = graphql`
               markalpha: 40
               markscale: 25
             }
-            placeholderImgixParams: { fit: "crop", crop: "faces", w: 960, h: 720 }
+            placeholderImgixParams: { fit: "crop", crop: "faces", q: 40, w: 960, h: 720 }
             placeholder: BLURRED
             width: 960
             height: 720
+            srcSetMaxWidth: 960
             layout: CONSTRAINED
           )
         }
