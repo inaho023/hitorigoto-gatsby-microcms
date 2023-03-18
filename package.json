@@ -1,6 +1,6 @@
 {
   "name": "hitorigoto-gatsby-microcms",
-  "version": "2.16.0",
+  "version": "2.17.0",
   "private": true,
   "description": "いなほちゅんのひとりごと ブログ版",
   "author": "inaho023",
@@ -23,7 +23,7 @@
     "@imgix/gatsby": "^2.1.2",
     "@mdi/js": "^7.1.96",
     "@mdi/react": "^1.6.1",
-    "@mui/material": "^5.11.12",
+    "@mui/material": "^5.11.13",
     "babel-plugin-prismjs": "^2.1.0",
     "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.7",
@@ -48,13 +48,13 @@
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.59.2",
+    "sass": "^1.59.3",
     "sass-loader": "^13.2.0",
     "striptags": "^3.2.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.19.1",
+    "@babel/eslint-parser": "^7.21.3",
     "@babel/plugin-syntax-jsx": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
     "eslint": "^8.36.0",
@@ -67,6 +67,6 @@
     "eslint-webpack-plugin": "^3.2.0",
     "gatsby-plugin-eslint": "^4.0.3",
     "prettier": "^2.8.4",
-    "wrangler": "^2.12.2"
+    "wrangler": "^2.12.3"
   }
 }
