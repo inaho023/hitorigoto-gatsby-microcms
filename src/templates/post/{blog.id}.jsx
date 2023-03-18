@@ -72,7 +72,7 @@ export const pageQuery = graphql`
                 gatsbyImageData(
                   imgixParams: {
                     fit: "crop"
-                    crop: "faces"
+                    crop: "faces, center"
                     q: 15
                     w: 480
                     h: 480
@@ -82,7 +82,7 @@ export const pageQuery = graphql`
                     markalpha: 40
                     markscale: 25
                   }
-                  placeholderImgixParams: { fit: "crop", crop: "faces", q: 15, w: 480, h: 480 }
+                  placeholderImgixParams: { fit: "crop", crop: "faces, center", q: 15, w: 480, h: 480 }
                   placeholder: BLURRED
                   width: 480
                   height: 480
