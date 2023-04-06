@@ -23,7 +23,7 @@
     "@imgix/gatsby": "^2.1.2",
     "@mdi/js": "^7.2.96",
     "@mdi/react": "^1.6.1",
-    "@mui/material": "^5.11.15",
+    "@mui/material": "^5.11.16",
     "babel-plugin-prismjs": "^2.1.0",
     "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.7",
@@ -67,6 +67,6 @@
     "eslint-webpack-plugin": "^4.0.0",
     "gatsby-plugin-eslint": "^4.0.4",
     "prettier": "^2.8.7",
-    "wrangler": "^2.13.0"
+    "wrangler": "^2.14.0"
   }
 }
