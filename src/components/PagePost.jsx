@@ -35,7 +35,9 @@ const PagePost = ({ data, pageContext }) => {
       {
         // タイトル画像
       }
-      <GatsbyImage className={styles.image} image={getImage(page.image.imgixImage)} alt={page.title} />
+      <Box className={styles.imagewapper}>
+        <GatsbyImage className={styles.image} image={getImage(page.image.imgixImage)} alt={page.title} />
+      </Box>
       {
         // 記事本文
       }
