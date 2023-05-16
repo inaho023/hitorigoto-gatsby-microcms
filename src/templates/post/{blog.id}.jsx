@@ -49,6 +49,7 @@ export const pageQuery = graphql`
             width: 960
             height: 720
             srcSetMaxWidth: 960
+            srcSetMinWidth: 480
             layout: CONSTRAINED
           )
         }
@@ -87,6 +88,7 @@ export const pageQuery = graphql`
                   width: 480
                   height: 480
                   srcSetMaxWidth: 480
+                  srcSetMinWidth: 240
                   layout: CONSTRAINED
                 )
               }
