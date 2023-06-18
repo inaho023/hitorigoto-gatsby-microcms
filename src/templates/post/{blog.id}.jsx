@@ -56,7 +56,6 @@ export const pageQuery = graphql`
       }
       body
       codeClass {
-        class
         user
       }
       galleries {
