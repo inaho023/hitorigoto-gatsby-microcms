@@ -1,5 +1,5 @@
 // React
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 // Gatsby
 import { useStaticQuery, graphql } from 'gatsby'
@@ -10,7 +10,7 @@ import * as cheerio from 'cheerio'
 import { Base64 } from 'js-base64'
 
 // 自作ライブラリー
-import { imgixImageOption, serviceEndpoint } from './Constant'
+import { imgixImageOption } from './Constant'
 
 // 画像用ウォーターマーク
 export const imgixWatermark = () => {
@@ -91,17 +91,15 @@ const imageProcessor = ({ node, title, index }) => {
 }
 
 // シンタックスハイライト処理関数（Prism.js）
-const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [] } }) => {
-  // 言語設定
-  node.addClass('language-' + codeClass.class[0])
+const syntaxHighlightProcessor = ({ node, codeClass = { user: [''] } }) => {
   // 共通設定
   node.addClass('match-braces')
   node.addClass('rainbow-braces')
   // 言語毎の処理
-  switch (codeClass.class[0]) {
-    case 'bash':
-    case 'shell':
-      if (codeClass.user) {
+  switch (true) {
+    case node.hasClass('language-bash'):
+    case node.hasClass('language-shell'):
+      if (codeClass.user[0]) {
         // コマンドラインプラグイン
         node.parent().addClass('command-line')
         node.parent().attr('data-user', codeClass.user[0])
@@ -111,8 +109,8 @@ const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [
         node.parent().addClass('line-numbers')
       }
       break
-    case 'batch':
-      if (codeClass.user) {
+    case node.hasClass('language-batch'):
+      if (codeClass.user[0]) {
         // コマンドラインプラグイン
         node.parent().addClass('command-line')
         node.parent().attr('data-prompt', `C:\\Users\\${codeClass.user[0]}\\>`)
@@ -121,8 +119,8 @@ const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [
         node.parent().addClass('line-numbers')
       }
       break
-    case 'powershell':
-      if (codeClass.user) {
+    case node.hasClass('language-powershell'):
+      if (codeClass.user[0]) {
         // コマンドラインプラグイン
         node.parent().addClass('command-line')
         node.parent().attr('data-prompt', `PS C:\\Users\\${codeClass.user[0]}\\`)
@@ -131,8 +129,8 @@ const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [
         node.parent().addClass('line-numbers')
       }
       break
-    case 'sql':
-      if (codeClass.user) {
+    case node.hasClass('language-sql'):
+      if (codeClass.user[0]) {
         // コマンドラインプラグイン
         node.parent().addClass('command-line')
         node.parent().attr('data-prompt', 'SQL>')
@@ -148,52 +146,10 @@ const syntaxHighlightProcessor = ({ node, codeClass = { class: ['none'], user: [
   }
 }
 
-// リッチリンク処理関数（Iframely）
-const richLinkProcessor = ({ node }) => {
-  // 定数定義
-  const href = node.attr('href')
-  // エンドポイント設定
-  const url =
-    `${serviceEndpoint.iframely.url}` +
-    `?key=${serviceEndpoint.iframely.key}` +
-    `&url=${encodeURI(href)}` +
-    `${serviceEndpoint.iframely.parameter}`
-  // エンドポイントアクセス
-  const [data, setData] = useState(null)
-  useEffect(() => {
-    // フェッチ
-    const getIframely = async url => {
-      await fetch(url)
-        .then(res => {
-          return res.json()
-        })
-        .then(res => {
-          return setData(res)
-        })
-        .catch(() => {
-          return setData(null)
-        })
-    }
-    getIframely(url)
-  }, [])
-  // データーが取得できたら置き換える
-  if (data?.html) {
-    // リンクを置換
-    node.replaceWith(data.html)
-  }
-}
-
 // リッチエディター処理関数（microCMS用）
 export const richEditorProcessor = ({ richEditor, title, codeClass }) => {
   // 本文をロード
   const $ = cheerio.load(richEditor)
-  // リッチリンク処理
-  $('a').each((index, elm) => {
-    // リッチリンク処理
-    richLinkProcessor({
-      node: $(elm)
-    })
-  })
   // シンタックスハイライト処理
   $('pre code').each((index, elm) => {
     // Prism.js ロード
