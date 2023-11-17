@@ -29,12 +29,10 @@ const Comment = ({ blog }) => {
       }
     }
   `)
-  // URL組み立て
-  const url = `${data.site.siteMetadata.siteUrl}/post/${blog.blogId}/`
   // リターン
   return (
     <Box className={styles.comment}>
-      <Disqus config={{ url: url, identifier: blog.blogId, title: blog.title }} />
+      <Disqus identifier={blog.blogId} title={blog.title} url={`${data.site.siteMetadata.siteUrl}/post/${blog.blogId}/`} />
     </Box>
   )
 }
