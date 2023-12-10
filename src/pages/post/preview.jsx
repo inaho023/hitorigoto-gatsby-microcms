@@ -39,8 +39,8 @@ const PagePreview = ({ location }) => {
   // リターン
   return (
     <>
-      <Iframely />
       <BlogPost data={data} pageContext={pageContext} />
+      <Iframely />
     </>
   )
 }
