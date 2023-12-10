@@ -6,6 +6,7 @@ import queryString from 'query-string'
 
 // 自作コンポーネント
 import PagePost from '../../components/PagePost'
+import Iframely from '../../components/Iframely'
 
 // 自作ライブラリー
 import { serviceEndpoint } from '../../libs/Constant'
@@ -36,7 +37,12 @@ const PagePreview = ({ location }) => {
   // ページコンテキスト生成
   const pageContext = { type: 'article', id: data.microcmsPage.id, post: data.microcmsPage }
   // リターン
-  return <PagePost data={data} pageContext={pageContext} />
+  return (
+    <>
+      <Iframely />
+      <PagePost data={data} pageContext={pageContext} />
+    </>
+  )
 }
 
 export default PagePreview
