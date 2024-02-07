@@ -26,7 +26,7 @@ jobs:
             exit 1
           fi
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ vars.NODE_VERSION }}
           cache: ${{ steps.detect-package-manager.outputs.manager }}
@@ -34,7 +34,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby
         env:
-          PREFIX_PATHS: "true"
+          PREFIX_PATHS: 'true'
           DISQUS_SHORTNAME: ${{ secrets.DISQUS_SHORTNAME }}
           GATSBY_MICROCMS_API_KEY: ${{ secrets.GATSBY_MICROCMS_API_KEY }}
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
