@@ -18,16 +18,16 @@
     "format:eslint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@imgix/gatsby": "^2.1.3",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
-    "@mui/material": "^5.15.7",
+    "@mui/material": "^5.15.11",
     "babel-plugin-prismjs": "^2.1.0",
     "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.10",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0",
     "gatsby": "^5.13.3",
     "gatsby-awesome-pagination": "^0.3.8",
@@ -40,7 +40,7 @@
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-source-microcms": "^3.0.0",
-    "js-base64": "^3.7.6",
+    "js-base64": "^3.7.7",
     "lightgallery": "^2.7.2",
     "next-share": "^0.27.0",
     "node-sass": "^9.0.0",
@@ -48,8 +48,8 @@
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.70.0",
-    "sass-loader": "^14.1.0",
+    "sass": "^1.71.1",
+    "sass-loader": "^14.1.1",
     "striptags": "^3.2.0",
     "url": "^0.11.3"
   },
@@ -57,7 +57,7 @@
     "@babel/eslint-parser": "^7.23.10",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-webpack": "^0.13.8",
     "eslint-plugin-import": "^2.29.1",
@@ -67,6 +67,6 @@
     "eslint-webpack-plugin": "^4.0.1",
     "gatsby-plugin-eslint": "^4.0.4",
     "prettier": "^3.2.5",
-    "wrangler": "^3.27.0"
+    "wrangler": "^3.30.1"
   }
 }
