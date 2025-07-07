@@ -7,6 +7,8 @@ const siteListPerPage = 12 // 1ページあたりの記事数
 //
 exports.onCreateWebpackConfig = helper => {
   const { stage, actions, getConfig } = helper
+
+  // CSS order warnings for 'develop' stage
   if (stage === 'develop') {
     const config = getConfig()
     const miniCssExtractPlugin = config.plugins.find(plugin => plugin.constructor.name === 'MiniCssExtractPlugin')
@@ -14,6 +16,42 @@ exports.onCreateWebpackConfig = helper => {
       miniCssExtractPlugin.options.ignoreOrder = true
     }
     actions.replaceWebpackConfig(config)
+  }
+
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      externals: [
+        'node:sqlite',
+        // Node.js の組み込みモジュールを外部化
+        // これらのモジュールは SSR 環境では Node.js が提供すると期待される
+        {
+          fs: 'commonjs fs',
+          path: 'commonjs path',
+          crypto: 'commonjs crypto',
+          child_process: 'commonjs child_process',
+          net: 'commonjs net',
+          tls: 'commonjs tls',
+          util: 'commonjs util',
+          stream: 'commonjs stream',
+          zlib: 'commonjs zlib',
+          http: 'commonjs http',
+          https: 'commonjs https'
+          // 必要に応じてさらに追加
+          // 'node:fs': 'commonjs node:fs', // Node.js 16.0.0+ の新しい構文
+          // 'node:path': 'commonjs node:path',
+          // 'node:crypto': 'commonjs node:crypto',
+        }
+      ],
+      resolve: {
+        // externals と一緒に使う場合、fallback は重複する可能性もあるが、
+        // エラーの種類によっては fallback も効果があるかもしれない。
+        // ただし、今回は externals を優先して試す。
+        fallback: {
+          // 'node:sqlite': false, // externals で対応済みなら不要
+          // fs: false, // externals で対応済みなら不要
+        }
+      }
+    })
   }
 }
 //
