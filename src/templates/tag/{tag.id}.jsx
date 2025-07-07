@@ -14,7 +14,7 @@ export const pageQuery = graphql`
     allMicrocmsBlog(
       limit: $limit
       skip: $skip
-      sort: { fields: datetime, order: DESC }
+      sort: { datetime: DESC }
       filter: { tags: { elemMatch: { id: { eq: $id } } } }
     ) {
       edges {
