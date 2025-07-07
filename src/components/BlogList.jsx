@@ -37,7 +37,16 @@ const BlogList = ({ data, pageContext }) => {
         {blog.map(blog => {
           // リターン
           return (
-            <Grid key={blog.node.blogId} item xs={12} sm={6} md={4} lg={3} xl={3}>
+            <Grid
+              key={blog.node.blogId}
+              size={{
+                xs: 12,
+                sm: 6,
+                md: 4,
+                lg: 3,
+                xl: 3
+              }}
+            >
               <Link key={blog.node.blogId} to={`/post/${blog.node.blogId}/`}>
                 <Card className={styles.card} title={blog.node.title} elevation={4}>
                   <CardActionArea className={styles.area}>
@@ -45,17 +54,17 @@ const BlogList = ({ data, pageContext }) => {
                       <GatsbyImage image={getImage(blog.node.image.imgixImage)} alt={blog.node.title} />
                       <Box className={styles.info}>
                         <Grid container spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                          <Grid item className={styles.box} xs={6}>
+                          <Grid className={styles.box} size={6}>
                             <span className={styles.icon}>
-                              <Icon path={mdiCalendarToday} size={0.75} />
+                              <Icon path={mdiCalendarToday} size={1} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.datetime}</p>
                             </span>
                           </Grid>
-                          <Grid item className={styles.box} xs={6}>
+                          <Grid className={styles.box} size={6}>
                             <span className={styles.icon}>
-                              <Icon path={mdiShape} size={0.75} />
+                              <Icon path={mdiShape} size={1} />
                             </span>
                             <span className={styles.text}>
                               <p>{blog.node.category.name}</p>

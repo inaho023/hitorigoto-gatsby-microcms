@@ -28,7 +28,11 @@ const BlogNavi = ({ pageContext }) => {
     <nav className={styles.nav}>
       <Grid container className={styles.wrapper} justifyContent={'space-between'} alignItems={'center'} spacing={1}>
         {prev ? (
-          <Grid item xs={12} md={6}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 6
+            }}>
             <Link key={prev.node.blogId} to={`/post/${prev.node.blogId}/`} title={'前の記事へ'}>
               <Card className={styles.prev}>
                 <CardActionArea className={styles.area}>
@@ -43,10 +47,19 @@ const BlogNavi = ({ pageContext }) => {
             </Link>
           </Grid>
         ) : (
-          <Grid item className={styles.nocard} xs={12} md={6} />
+          <Grid
+            className={styles.nocard}
+            size={{
+              xs: 12,
+              md: 6
+            }} />
         )}
         {next ? (
-          <Grid item xs={12} md={6}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 6
+            }}>
             <Link key={next.node.blogId} to={`/post/${next.node.blogId}/`} title={'次の記事へ'}>
               <Card className={styles.next}>
                 <CardActionArea className={styles.area}>
@@ -61,11 +74,16 @@ const BlogNavi = ({ pageContext }) => {
             </Link>
           </Grid>
         ) : (
-          <Grid item className={styles.nocard} xs={12} md={6} />
+          <Grid
+            className={styles.nocard}
+            size={{
+              xs: 12,
+              md: 6
+            }} />
         )}
       </Grid>
     </nav>
-  )
+  );
 }
 
 export default BlogNavi

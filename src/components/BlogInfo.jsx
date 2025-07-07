@@ -28,16 +28,25 @@ const BlogInfo = ({ blog }) => {
   // リターン
   return (
     <Grid container className={styles.info} key={'Info'} spacing={0}>
-      <Grid item className={styles.title} xs={12}>
+      <Grid className={styles.title} size={12}>
         <h1>{blog.title && blog.title}</h1>
       </Grid>
-      <Grid item className={styles.wrapper} xs={12}>
+      <Grid className={styles.wrapper} size={12}>
         <Grid container spacing={0}>
-          <Grid item xs={12} md={6}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 6
+            }}>
             <GatsbyImage className={styles.image} image={getImage(blog.image.imgixImage)} alt={blog.title} />
           </Grid>
-          <Grid item className={styles.wrapper} xs={12} md={6}>
-            <Grid item className={styles.box} key={'BoxDate'} xs={12}>
+          <Grid
+            className={styles.wrapper}
+            size={{
+              xs: 12,
+              md: 6
+            }}>
+            <Grid className={styles.box} key={'BoxDate'} size={12}>
               <Icon className={styles.icon} path={mdiCalendarToday} size={3} title={'日付'} />
               <Box>
                 <Link key={dayjs(blog.datetime).format('YYYYMM')} to={`/archive/${dayjs(blog.datetime).format('YYYYMM')}/`}>
@@ -45,7 +54,7 @@ const BlogInfo = ({ blog }) => {
                 </Link>
               </Box>
             </Grid>
-            <Grid item className={styles.box} key={'BoxCategory'} xs={12}>
+            <Grid className={styles.box} key={'BoxCategory'} size={12}>
               <Icon className={styles.icon} path={mdiShape} size={3} title={'カテゴリー'} />
               <Box>
                 <Link key={blog.category.categoriesId} to={`/category/${blog.category.id}/`}>
@@ -53,7 +62,7 @@ const BlogInfo = ({ blog }) => {
                 </Link>
               </Box>
             </Grid>
-            <Grid item className={styles.box} key={'BoxTags'} xs={12}>
+            <Grid className={styles.box} key={'BoxTags'} size={12}>
               <Icon className={styles.icon} path={mdiTag} size={3} title={'タグ'} />
               <Box>
                 {blog.tags.map(tag => {
@@ -65,7 +74,7 @@ const BlogInfo = ({ blog }) => {
                 })}
               </Box>
             </Grid>
-            <Grid item className={styles.box} key={'BoxShare'} xs={12}>
+            <Grid className={styles.box} key={'BoxShare'} size={12}>
               <Icon className={styles.icon} path={mdiShareVariant} size={3} title={'シェア'} />
               <Box>
                 <ShareButton blog={blog} />
@@ -75,7 +84,7 @@ const BlogInfo = ({ blog }) => {
         </Grid>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 export default BlogInfo

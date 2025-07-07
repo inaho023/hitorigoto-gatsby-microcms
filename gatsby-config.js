@@ -103,19 +103,19 @@ module.exports = {
       options: {
         shortname: process.env.DISQUS_SHORTNAME
       }
-    },
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        // Gatsby required rules directory
-        rulePaths: [gatsbyRequiredRules],
-        // Default settings that may be ommitted or customized
-        stages: ['develop'],
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
-        exclude: ['node_modules', 'bower_components', '.cache', 'public']
-        // Any additional eslint-webpack-plugin options below
-        // ...
-      }
     }
+    // {
+    //   resolve: 'gatsby-plugin-eslint',
+    //   options: {
+    //     // Gatsby required rules directory
+    //     rulePaths: [gatsbyRequiredRules],
+    //     // Default settings that may be ommitted or customized
+    //     stages: ['develop'],
+    //     extensions: ['js', 'jsx', 'ts', 'tsx'],
+    //     exclude: ['node_modules', 'bower_components', '.cache', 'public']
+    //     // Any additional eslint-webpack-plugin options below
+    //     // ...
+    //   }
+    // }
   ]
 }

@@ -26,25 +26,18 @@
       }
 
       .info {
-        width: calc(100% - 10px);
         position: absolute;
+        display: block;
+        flex-direction: row;
+        width: 100%;
         bottom: 8px;
-        left: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        vertical-align: middle;
-        margin: 0px;
-        padding: 0px;
 
         .box {
-          display: inline-flex;
-          flex-basis: calc(50% - 8px);
+          display: flex;
+          flex-basis: 46%;
           align-items: center;
           justify-content: center;
           vertical-align: middle;
-          margin: 0px;
-          padding: 2px;
           color: #332100;
           background: orange;
           border: 1px solid #332100;
@@ -53,16 +46,16 @@
           opacity: 0.8;
 
           .icon {
-            display: inline-flex;
-            width: content;
+            display: flex;
+            margin: auto;
+            padding: 4px;
             color: #332100;
-            line-height: 1rem;
+            line-height: 1.5rem;
             font-weight: 500;
-            font-size: 0.75rem;
           }
 
           .text {
-            display: inline-flex;
+            display: inline-block;
             width: calc(100% - 24px);
             margin: 0px;
             padding: 0px;
@@ -75,9 +68,9 @@
               margin: 0px;
               padding: 0px;
               color: #332100;
-              line-height: 1rem;
+              line-height: 1.25rem;
               font-weight: 700;
-              font-size: 0.8rem;
+              font-size: 0.75rem;
             }
           }
         }

@@ -85,28 +85,28 @@ const PhotoGallery = ({ galleries }) => {
                     // リターン
                     return (
                       <Grid
-                        item
                         key={images.image.url}
                         className={className + ' ' + styles.thumbnail}
-                        xs={6}
-                        md={3}
                         data-src={dataSrc}
                         data-lg-size={dataSize}
                         data-external-thumb-image={dataThumb}
                         title={title}
-                      >
+                        size={{
+                          xs: 6,
+                          md: 3
+                        }}>
                         <GatsbyImage image={getImage(images.image.imgixImage)} alt={title} />
                       </Grid>
-                    )
+                    );
                   })
                 }
               </Grid>
             </LightGallery>
           </AccordionDetails>
         </Accordion>
-      )
-    })
-  })
+      );
+    });
+  });
 }
 
 export default PhotoGallery
