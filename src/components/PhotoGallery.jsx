@@ -24,9 +24,9 @@ import { imgixWatermark } from '../libs/Util'
 
 // スタイルシート
 import * as styles from '../styles/PhotoGallery.module.scss'
-import 'lightgallery/scss/lightgallery.scss'
-import 'lightgallery/scss/lg-zoom.scss'
-import 'lightgallery/scss/lg-thumbnail.scss'
+import 'lightgallery/css/lightgallery.css'
+import 'lightgallery/css/lg-zoom.css'
+import 'lightgallery/css/lg-thumbnail.css'
 
 // ギャラリーコンポーネント
 const PhotoGallery = ({ galleries }) => {
@@ -94,19 +94,20 @@ const PhotoGallery = ({ galleries }) => {
                         size={{
                           xs: 6,
                           md: 3
-                        }}>
+                        }}
+                      >
                         <GatsbyImage image={getImage(images.image.imgixImage)} alt={title} />
                       </Grid>
-                    );
+                    )
                   })
                 }
               </Grid>
             </LightGallery>
           </AccordionDetails>
         </Accordion>
-      );
-    });
-  });
+      )
+    })
+  })
 }
 
 export default PhotoGallery

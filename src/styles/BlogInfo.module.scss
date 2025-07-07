@@ -21,13 +21,15 @@
   }
 
   .wrapper {
-    width: 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
     margin: 0px;
     padding: 0px;
 
     .image {
-      width: 100%;
+      width: content;
       height: auto;
       display: flex;
       margin: 0px;
@@ -37,10 +39,10 @@
     }
 
     .wrapper {
-      width: 100%;
-      height: auto;
       display: flex;
       flex-direction: column;
+      flex-shrink: 1;
+      flex-grow: 1;
       justify-content: space-between;
       margin: 0px;
       padding: 0px;
