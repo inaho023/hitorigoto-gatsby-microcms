@@ -7,6 +7,8 @@ const siteListPerPage = 12 // 1ページあたりの記事数
 //
 exports.onCreateWebpackConfig = helper => {
   const { stage, actions, getConfig } = helper
+
+  // CSS order warnings for 'develop' stage
   if (stage === 'develop') {
     const config = getConfig()
     const miniCssExtractPlugin = config.plugins.find(plugin => plugin.constructor.name === 'MiniCssExtractPlugin')
@@ -14,6 +16,22 @@ exports.onCreateWebpackConfig = helper => {
       miniCssExtractPlugin.options.ignoreOrder = true
     }
     actions.replaceWebpackConfig(config)
+  }
+
+  // Handle 'node:sqlite' and other Node.js core modules for SSR build stages
+  // This part addresses the "Reading from "node:sqlite" is not handled by plugins" error.
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      resolve: {
+        fallback: {
+          'node:sqlite': false, // Prevents Webpack from trying to bundle 'node:sqlite'
+          fs: false // Also ignore 'fs' (filesystem) if it causes issues
+          // path: require.resolve('path-browserify'), // Uncomment if 'path' causes issues and needs a browser polyfill
+          // crypto: require.resolve('crypto-browserify'), // Uncomment if 'crypto' causes issues and needs a browser polyfill
+          // stream: require.resolve('stream-browserify'), // Uncomment if 'stream' causes issues and needs a browser polyfill
+        }
+      }
+    })
   }
 }
 //
