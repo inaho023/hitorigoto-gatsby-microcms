@@ -21,7 +21,7 @@ const TagCloud = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsTag(limit: 10000, sort: { fields: name, order: ASC }) {
+      allMicrocmsTag(limit: 10000, sort: { name: ASC }) {
         nodes {
           tagId
           name

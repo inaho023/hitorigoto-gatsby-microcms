@@ -27,7 +27,7 @@ const ArchiveMenu = () => {
   // クエリー実行
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsBlog(limit: 10000, sort: { fields: datetime, order: DESC }) {
+      allMicrocmsBlog(limit: 10000, sort: { datetime: DESC }) {
         nodes {
           datetime(formatString: "YYYYMM")
         }

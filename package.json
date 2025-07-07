@@ -67,6 +67,7 @@
     "eslint-webpack-plugin": "^5.0.2",
     "prettier": "^3.6.2",
     "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
     "wrangler": "^3.114.10"
   }
 }
