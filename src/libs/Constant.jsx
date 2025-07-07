@@ -58,7 +58,7 @@ export const socialAccount = {
     url: 'https://twilog.org/inaho_lx'
   },
   instagram: {
-    url: 'https://www.instagram.com/inaho_lx/'
+    url: 'https://www.instagram.com/inaho.lx/'
   },
   twitcasting: {
     url: 'https://twitcasting.tv/inaho_lx/'
